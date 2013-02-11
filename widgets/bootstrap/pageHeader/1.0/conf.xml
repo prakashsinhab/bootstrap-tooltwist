@@ -1,0 +1,16 @@
+<widget>
+  <widgetType>primitive</widgetType>
+  <showInToolbox>true</showInToolbox>
+  <toolboxCategory></toolboxCategory>
+  <widgetType>primitive</widgetType>
+  <widgetClass>tooltwist.bootstrap.widgets.PageHeaderWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <imageFile>/ttsvr/mall/widgetti/icons/pageTitle.png</imageFile>
+  <sampleImage>/ttsvr/mall/widgetti/icons/pageTitle.png</sampleImage>
+  <label>Page Title</label>
+  <description>Page Title</description>	
+  <editableSnippet>
+  	<name>pageTitle_cssHeader.css</name>
+  	<theme>project</theme>
+  </editableSnippet>
+</widget>
