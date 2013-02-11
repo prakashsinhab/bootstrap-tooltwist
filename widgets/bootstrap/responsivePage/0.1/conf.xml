@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.wbd.CustomPageWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>Responsive page</label>
+  <description>Responsive web page</description>
+</widget>

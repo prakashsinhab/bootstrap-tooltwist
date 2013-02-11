@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.bootstrap.widgets.HeroWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>Hero unit</label>
+  <description>Hero unit</description>
+</widget>

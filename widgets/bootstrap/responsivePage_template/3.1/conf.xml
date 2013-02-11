@@ -1,0 +1,21 @@
+<widget>
+  <widgetType>template</widgetType>
+  <widgetClass>tooltwist.wbd.CustomPageWidget</widgetClass>
+  <linkedWidget>bootstrap.responsivePage</linkedWidget>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>Bootstrap Web Page</label>
+  <description>Responsive web page, using Bootstrap.js</description>
+  <cell>
+<widget>
+  <widgetClass>tooltwist.wbd.GridWidget</widgetClass>
+  <idWithinRootWidget>1</idWithinRootWidget>
+  <linkedWidget>toolbox.grid</linkedWidget>
+  <cols>1</cols>
+  <rows>1</rows>
+  <width></width>
+  <height></height>
+  <align>center</align>
+  <valign>top</valign>
+</widget>
+  </cell>
+</widget>
