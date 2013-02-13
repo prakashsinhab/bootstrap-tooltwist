@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.bootstrap.widgets.RowWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>Row</label>
+  <description>Row of columns</description>
+</widget>

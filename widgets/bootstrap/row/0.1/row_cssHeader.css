@@ -1,0 +1,23 @@
+
+.tooltwist-bootstrap-row-table {
+	width: 100%;
+	border-spacing: 6;
+	padding: 0px;
+	margin: 0px;
+	vertical-align: top;
+}
+
+.tooltwist-bootstrap-row-table td {
+	zmargin: 4px;
+	padding-left: 5px;
+	padding-right: 5px;
+	zheight: 30px;
+	width: 25%;
+	background-color: #eee;
+	border-color: #666;
+	zborder-color: red;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 6px;
+	vertical-align: top;
+}

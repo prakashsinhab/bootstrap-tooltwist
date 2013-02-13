@@ -1,46 +1,21 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<%
+	WbdProductionHelper helper = null;
+	JspHelper jh = null;
+	String snippetVar_myProperty;
+	String snippetVar_thisNavpoint;
+%>
 <!--START-->
-<!-- header for responsivePage -->
 <%@page import="tooltwist.wbd.WbdProductionHelper"%>
 <%@page import="com.dinaa.data.XData"%>
 <%@page import="tooltwist.misc.JspHelper"%>
 <%@page import="tooltwist.ecommerce.AutomaticUrlParametersMode"%>
 <%@page import="tooltwist.ecommerce.RoutingUIM"%>
-<%@page import="tooltwist.wbd.WbdSession"%>
-%%importCode%%
-<%
-	String jspName = "%%navpointId%%";
-	JspHelper jh = JspHelper.getJspHelper(pageContext, jspName);
-%%preFetchCode%%
-%>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>%%pageTitle%%</title>
-	<meta name="description" content="%%descriptionMetatag%%">
-	<meta name="keywords" content="%%keywordMetatag%%">
-	<meta name="generator" content="ToolTwist" />
 
-%%headerCode%%
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="%%URL(/ttsvr/bootstrap/css/bootstrap.min.css)%%" rel="stylesheet" media="screen">
-  </head>
-  <body>
-%%topCode%%
- <div class="container-fluid">
- 
- HELLO DEXTER<br>
-
-<%--
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-      </div>
-
-      <!-- Example row of columns -->
-      <div class="row">
         <div class="span4">
           <h2>Heading</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
@@ -56,16 +31,7 @@
           <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
           <p><a class="btn" href="#">View details &raquo;</a></p>
         </div>
-      </div>
---%>
 
 <!--END-->
-      <hr>
-
-      <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
-
-    </div> <!-- /container -->
 </body>
 </html>

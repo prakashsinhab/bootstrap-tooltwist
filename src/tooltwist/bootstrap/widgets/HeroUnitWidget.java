@@ -1,15 +1,10 @@
 package tooltwist.bootstrap.widgets;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.ContainerWidget;
-import tooltwist.wbd.DesignerHelper;
-import tooltwist.wbd.UserPreferences;
-import tooltwist.wbd.UserPreferences.ColorScheme;
-import tooltwist.wbd.WbdChildIndex;
+import tooltwist.wbd.StylesheetCodeInserter;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
@@ -17,11 +12,6 @@ import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSizeInfo;
 import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdWidget;
-import tooltwist.wbd.WbdWidgetController;
-import tooltwist.wbd.WidgetId;
-import tooltwist.wbd.ZoneWidget;
-
-import com.dinaa.data.XDataException;
 import com.dinaa.data.XNodes;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
@@ -48,7 +38,7 @@ public class HeroUnitWidget extends ContainerWidget
 			CodeInserter[] arr = {
 
 //				// Include a CSS snippet
-//				new StylesheetCodeInserter(instance.miscellaneousFilePath(generator, "div_cssHeader.css")),
+				new StylesheetCodeInserter(generator, instance, "herounit_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -115,9 +105,12 @@ public class HeroUnitWidget extends ContainerWidget
 	@Override
 	public void renderForDesigner(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException
 	{
+		rh.append("<div class=\"ttdesigner-bootstrap-herounit-div\">");
 		
 		// Display the children, starting with index 0.
 		flowChildren_renderForDesigner(generator, instance, ud, rh, null);
+		
+		rh.append("</div>");
 
 //		// Work out the ID for the area where we can drop stuff.
 //		WidgetId dropAreaWidgetId = new WidgetId(instance);
