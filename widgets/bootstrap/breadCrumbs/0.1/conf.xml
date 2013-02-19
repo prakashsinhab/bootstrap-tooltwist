@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.bootstrap.widgets.BreadCrumbsWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>BreadCrumbs Widget</label>
+  <description>BreadCrumbs Widget</description>
+</widget>
