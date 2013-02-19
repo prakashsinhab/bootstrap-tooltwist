@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.bootstrap.widgets.LabelAndBadgeWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>Labels and Badges Widget</label>
+  <description>Label and Badges Widget</description>
+</widget>
