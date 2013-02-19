@@ -5,10 +5,10 @@ import tooltwist.repository.ToolTwist;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.StylesheetCodeInserter;
+import tooltwist.wbd.StylesheetLinkInserter;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
-import tooltwist.wbd.StylesheetLinkInserter;
 import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSizeInfo;
@@ -16,33 +16,16 @@ import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WbdWidgetController;
 
-import com.dinaa.data.XData;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 
 
-public class LabelAndBadgeWidget extends WbdWidgetController {
-	
-	private void renderWidget(WbdGenerator generator, WbdWidget instance, WbdRenderHelper buf) throws WbdException {
-		
-		String labelText = instance.getFinalProperty(generator, "labelText");
-		String type = instance.getFinalProperty(generator, "type");
-		String subType = instance.getFinalProperty(generator, "subType");
-		if (labelText==null | labelText.trim().equals("")) {
-			labelText = "Default";
-		}
-		
-		if (!subType.equalsIgnoreCase("")) {
-			subType = " " + type + "-" + subType;
-		}
-			
-		buf.append("<span class='" + type + subType + "'>" + XData.htmlString(labelText) + "</span>");
-	}
+public class ProgressBarWidget extends WbdWidgetController {
 
 	@Override
 	public String getLabel(WbdWidget instance) throws WbdException
 	{
-		return "Labels and Badges";
+		return "Progress Bar Widget";
 	}
 
 	@Override
@@ -55,9 +38,10 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 	protected void init(WbdWidget instance) throws WbdException
 	{
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdRadioTextProperty("type", null, "Type",  "label,badge", "label"));
-		instance.defineProperty(new WbdStringProperty("labelText", null, "Label Text", ""));
-		instance.defineProperty(new WbdSelectProperty("subType", null, "Sub Type", "success,warning,important,info,inverse", ""));
+		instance.defineProperty(new WbdStringProperty("width", null, "width", ""));
+		instance.defineProperty(new WbdSelectProperty("subType", null, "Sub Type", "info,success,warning,danger", ""));
+		instance.defineProperty(new WbdRadioTextProperty("striped", null, "Striped", "yes,no", "yes"));
+		instance.defineProperty(new WbdRadioTextProperty("active", null, "Active", "yes,no", "yes"));
 	}
 
 	@Override
@@ -86,7 +70,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css"),
+					new StylesheetCodeInserter(generator, instance, "progressBar_cssHeader.css"),
 					new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css"),
 			};
 			codeInserterList.add(arr);
@@ -96,7 +80,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 			// Add code inserters for preview mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css"),
+					new StylesheetCodeInserter(generator, instance, "progressBar_cssHeader.css"),
 					new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css"),
 			};
 			codeInserterList.add(arr);
@@ -106,7 +90,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css"),
+					new StylesheetCodeInserter(generator, instance, "progressBar_cssHeader.css"),
 					new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css"),
 			};
 			codeInserterList.add(arr);
@@ -118,4 +102,31 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 	{
 		return true;
 	}
+	
+	private void renderWidget(WbdGenerator generator, WbdWidget instance, WbdRenderHelper buf) throws WbdException {
+		String elementId = instance.getFinalProperty(generator, "elementId");
+		String width = instance.getFinalProperty(generator, "width");
+		String subType = instance.getFinalProperty(generator, "subType");
+		String striped = instance.getFinalProperty(generator, "striped");
+		String active = instance.getFinalProperty(generator, "active");
+		
+		String stripedClass = "";
+		if (striped.equalsIgnoreCase("yes")) {
+			stripedClass = " progress-striped";
+		}
+		
+		String activeClass = "";
+		if (active.equalsIgnoreCase("yes")) {
+			activeClass = " active";
+		}
+		
+		if (!elementId.equalsIgnoreCase("")) {
+			elementId = " id='" + elementId + "'";
+		}
+		
+		buf.append("<div" + elementId + " class='progress progress-" + subType + stripedClass + activeClass + "'>\n");
+		buf.append("  <div class='bar' style='width: " + width + "'>&nbsp;</div>\n");
+		buf.append("</div>\n");
+	}
+	
 }

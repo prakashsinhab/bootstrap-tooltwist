@@ -5,10 +5,12 @@ import java.util.List;
 
 import tooltwist.ecommerce.AutomaticUrlParametersMode;
 import tooltwist.ecommerce.RoutingUIM;
+import tooltwist.repository.ToolTwist;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.Navpoint;
 import tooltwist.wbd.StylesheetCodeInserter;
+import tooltwist.wbd.StylesheetLinkInserter;
 import tooltwist.wbd.WbdCache;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
@@ -71,7 +73,8 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "breadCrumbs_cssHeader.css")
+					new StylesheetCodeInserter(generator, instance, "breadCrumbs_cssHeader.css"),	
+					new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css"),
 			};
 			codeInserterList.add(arr);
 		}
@@ -80,7 +83,8 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 			// Add code inserters for preview mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "breadCrumbs_cssHeader.css")
+					new StylesheetCodeInserter(generator, instance, "breadCrumbs_cssHeader.css"),
+					new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css"),
 			};
 			codeInserterList.add(arr);
 		}
@@ -89,7 +93,8 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "breadCrumbs_cssHeader.css")
+					new StylesheetCodeInserter(generator, instance, "breadCrumbs_cssHeader.css"),
+					new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css"),
 			};
 			codeInserterList.add(arr);
 		}

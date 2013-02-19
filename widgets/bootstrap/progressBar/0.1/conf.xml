@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.bootstrap.widgets.ProgressBarWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>ProgressBar Widget</label>
+  <description>ProgressBar Widget</description>
+</widget>
