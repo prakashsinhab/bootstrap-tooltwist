@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.bootstrap.widgets.ButtonDropdownWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>ButtonDropdown Widget</label>
+  <description>ButtonDropdown Widget</description>
+</widget>
