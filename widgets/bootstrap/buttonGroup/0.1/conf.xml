@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.bootstrap.widgets.ButtonGroupWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>ButtonGroup Widget</label>
+  <description>ButtonGroup Widget</description>
+</widget>
