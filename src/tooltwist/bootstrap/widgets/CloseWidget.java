@@ -1,10 +1,8 @@
 package tooltwist.bootstrap.widgets;
 
-import tooltwist.repository.ToolTwist;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.SnippetParam;
-import tooltwist.wbd.StylesheetLinkInserter;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
@@ -78,8 +76,7 @@ public class CloseWidget extends WbdWidgetController {
 		{
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
-				// Include a CSS snippet
-					new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css"),
+					
 			};
 			codeInserterList.add(arr);
 		}
@@ -87,8 +84,7 @@ public class CloseWidget extends WbdWidgetController {
 		{
 			// Add code inserters for preview mode
 			CodeInserter[] arr = {
-				// Include a CSS snippet
-					new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css"),
+					
 			};
 			codeInserterList.add(arr);
 		}
@@ -96,8 +92,7 @@ public class CloseWidget extends WbdWidgetController {
 		{
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
-				// Include a CSS snippet
-					new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css"),
+					
 			};
 			codeInserterList.add(arr);
 		}

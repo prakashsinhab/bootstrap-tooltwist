@@ -1,10 +1,8 @@
 package tooltwist.bootstrap.widgets;
 
-import tooltwist.repository.ToolTwist;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.StylesheetCodeInserter;
-import tooltwist.wbd.StylesheetLinkInserter;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
@@ -39,6 +37,7 @@ public class NavsWidget extends WbdWidgetController {
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
 		instance.defineProperty(new WbdStringProperty("tabs", null, "Tabs", ""));
 		instance.defineProperty(new WbdRadioTextProperty("type", null, "Type", "nav-tabs,nav-pills", "nav-tabs"));
+		instance.defineProperty(new WbdStringProperty("activeTab", null, "Active Tab", ""));
 	}
 
 	@Override
@@ -67,8 +66,7 @@ public class NavsWidget extends WbdWidgetController {
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "navs_cssHeader.css"),
-					new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css"),
+					new StylesheetCodeInserter(generator, instance, "navs_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -77,8 +75,7 @@ public class NavsWidget extends WbdWidgetController {
 			// Add code inserters for preview mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "navs_cssHeader.css"),
-					new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css"),
+					new StylesheetCodeInserter(generator, instance, "navs_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -87,8 +84,7 @@ public class NavsWidget extends WbdWidgetController {
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "navs_cssHeader.css"),
-					new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css"),
+					new StylesheetCodeInserter(generator, instance, "navs_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -104,15 +100,21 @@ public class NavsWidget extends WbdWidgetController {
 		String elementId = instance.getFinalProperty(generator, "elementId");
 		String tabs = instance.getFinalProperty(generator, "tabs");
 		String type = instance.getFinalProperty(generator, "type");
+		String activeTab = instance.getFinalProperty(generator, "activeTab");
 		
-		if (!elementId.equalsIgnoreCase("")) {
-			elementId = " id='" + elementId + "' ";
+		if (!elementId.equals("")) {
+			elementId = "id='" + elementId + "' ";
 		}
 		
 		buf.append("<ul " + elementId + "class='nav " + type + "'>\n");
 		String[] tabList = tabs.split(",");
 		for (String label: tabList) {
-			buf.append("  <li>\n");
+			
+			if (label.equalsIgnoreCase(activeTab)) {
+				buf.append("  <li class='active'>\n");
+			} else {
+				buf.append("  <li>\n");
+			}
 			buf.append("   <a href='#'>" + label + "</a>\n");
 			buf.append("  </li>\n");
 		}
