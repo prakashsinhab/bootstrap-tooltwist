@@ -7,6 +7,7 @@ import tooltwist.wbd.StylesheetCodeInserter;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
+import tooltwist.wbd.SnippetParam;
 import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSizeInfo;
@@ -19,6 +20,10 @@ import com.dinaa.ui.UimHelper;
 
 
 public class ProgressBarWidget extends WbdWidgetController {
+	
+	private static final String SNIPPET_PRODUCTION = "progressBar_production.jsp";
+	private static final String SNIPPET_PREVIEW = "progressBar_preview.html";
+	private static final boolean USE_PRODUCTION_HELPER = false;
 
 	@Override
 	public String getLabel(WbdWidget instance) throws WbdException
@@ -45,19 +50,21 @@ public class ProgressBarWidget extends WbdWidgetController {
 	@Override
 	public void renderForDesigner(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException
 	{
-		renderWidget(generator, instance, buf);
+		buf.renderSnippetForStaticPage(generator, instance, SNIPPET_PREVIEW, getSnippetParams(generator, instance, ud));
 	}
 	
 	@Override
 	public void renderForPreview(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException
 	{
-		renderWidget(generator, instance, buf);
+		buf.renderSnippetForStaticPage(generator, instance, SNIPPET_PREVIEW, getSnippetParams(generator, instance, ud));
 	}
 
 	@Override
 	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper buf) throws WbdException
 	{
-		renderWidget(generator, instance, buf);
+		buf.beforeProductionCode(generator, instance, getSnippetParams(generator, instance, ud), USE_PRODUCTION_HELPER);
+		buf.renderSnippetForProduction(generator, instance, SNIPPET_PRODUCTION);
+		buf.afterProductionCode(generator, instance);
 	}
 
 	@Override
@@ -98,8 +105,7 @@ public class ProgressBarWidget extends WbdWidgetController {
 		return true;
 	}
 	
-	private void renderWidget(WbdGenerator generator, WbdWidget instance, WbdRenderHelper buf) throws WbdException {
-		String elementId = instance.getFinalProperty(generator, "elementId");
+	private SnippetParam[] getSnippetParams(WbdGenerator generator, WbdWidget instance, UimData ud) throws WbdException {
 		String width = instance.getFinalProperty(generator, "width");
 		String subType = instance.getFinalProperty(generator, "subType");
 		String striped = instance.getFinalProperty(generator, "striped");
@@ -115,13 +121,13 @@ public class ProgressBarWidget extends WbdWidgetController {
 			activeClass = " active";
 		}
 		
-		if (!elementId.equalsIgnoreCase("")) {
-			elementId = " id='" + elementId + "'";
-		}
-		
-		buf.append("<div" + elementId + " class='progress progress-" + subType + stripedClass + activeClass + "'>\n");
-		buf.append("  <div class='bar' style='width: " + width + "'>&nbsp;</div>\n");
-		buf.append("</div>\n");
+		SnippetParam[] params = {
+			new SnippetParam("width", width),	
+			new SnippetParam("subType", subType),	
+			new SnippetParam("active", activeClass),	
+			new SnippetParam("striped", stripedClass),	
+		};
+		return params;
 	}
 	
 }
