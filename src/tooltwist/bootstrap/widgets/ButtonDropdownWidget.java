@@ -129,9 +129,10 @@ public class ButtonDropdownWidget extends WbdWidgetController {
 		}
 		
 		buf.append("<div" + elementId + " class='btn-group " + dropPosition + "'>\n");
-		buf.append("  <a class='btn dropdown-toggle " + type + sizeClass + "' data-toggle='dropdown' href='#'>" + label + "\n");
+		buf.append("<button class='btn " + type + sizeClass + "'>" + label + "</button>\n");
+		buf.append(" <button class='btn dropdown-toggle " + type + sizeClass + "' data-toggle='dropdown' href='#'>\n");
 	    buf.append("   <span class='caret'></span>\n");
-	    buf.append(" </a>\n");
+	    buf.append(" </button>\n");
 	    buf.append("  <ul class='dropdown-menu'>\n");
 
 	    String[] itemList = items.split(",");
