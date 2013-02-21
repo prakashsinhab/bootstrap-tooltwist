@@ -64,10 +64,10 @@ public class AlertWidget extends WbdWidgetController
 //				new StylesheetLinkInserter(cssUrl),
 
 				// Include a javascript snippet 
-				new JavascriptCodeInserter(generator, instance, "alert_jsHeader.js"),
+//				new JavascriptCodeInserter(generator, instance, "alert_jsHeader.js"),
 
 				// Include a CSS snippet
-				new StylesheetCodeInserter(generator, instance, "alert_cssHeader.css"),
+//				new StylesheetCodeInserter(generator, instance, "alert_cssHeader.css"),
 			};
 			codeInserterList.add(arr);
 		}
@@ -82,10 +82,10 @@ public class AlertWidget extends WbdWidgetController
 //				new StylesheetLinkInserter(cssUrl),
 					
 				// Include a javascript snippet 
-				new JavascriptCodeInserter(generator, instance, "alert_jsHeader.js"),
+//				new JavascriptCodeInserter(generator, instance, "alert_jsHeader.js"),
 					
 				// Include a CSS snippet
-				new StylesheetCodeInserter(generator, instance, "alert_cssHeader.css"),
+//				new StylesheetCodeInserter(generator, instance, "alert_cssHeader.css"),
 
 //				// Add import statements to the JSP
 //				new PageImportCodeInserter(XData.class.getName()),
