@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.bootstrap.widgets.AlertWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>Alert</label>
+  <description>Alert Bootstrap Widget</description>
+</widget>
