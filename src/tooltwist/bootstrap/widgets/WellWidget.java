@@ -2,22 +2,20 @@ package tooltwist.bootstrap.widgets;
 
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
-import tooltwist.wbd.JavascriptCodeInserter;
 import tooltwist.wbd.PageImportCodeInserter;
 import tooltwist.wbd.SnippetParam;
 import tooltwist.wbd.StylesheetCodeInserter;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
-import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
-import tooltwist.wbd.WbdNavPointProperty;
+import tooltwist.wbd.WbdProductionHelper;
+import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSizeInfo;
 import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WbdWidgetController;
-import tooltwist.wbd.WbdProductionHelper;
-import tooltwist.bootstrap.productionHelpers.WellProductionHelper;
+
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 
@@ -96,8 +94,8 @@ public class WellWidget extends WbdWidgetController
 			if (USE_PRODUCTION_HELPER)
 			{
 				SnippetParam[] productionHelperParams = null;
-				codeInserterList.add(WbdProductionHelper.codeInserter(instance, WellProductionHelper.class.getName(), productionHelperParams));
-				codeInserterList.add(new PageImportCodeInserter(WellProductionHelper.class.getName()));
+//				codeInserterList.add(WbdProductionHelper.codeInserter(instance, WellProductionHelper.class.getName(), productionHelperParams));
+//				codeInserterList.add(new PageImportCodeInserter(WellProductionHelper.class.getName()));
 			}
 		}
 
