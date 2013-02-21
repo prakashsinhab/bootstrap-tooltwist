@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.bootstrap.widgets.AccordionWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>Accordion</label>
+  <description>Accordion Widget</description>
+</widget>
