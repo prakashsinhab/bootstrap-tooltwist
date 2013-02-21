@@ -173,11 +173,12 @@ public class AccordionWidget extends ContainerWidget
 			
 //			rh.beforeProductionCode(generator, instance, null, false);
 			
-			String indexPrefix = "accordion-inner-" + "1";
+			
 			rh.append("<div class=\"accordion\" id=\"accordion2\">");
 
 			String rows = instance.getProperty("rows", null);
 			for (int row = 0; row < Integer.valueOf(rows); row++) {
+				String indexPrefix = row + ",";
 				rh.append("<div class=\"accordion-group\">");
 				rh.append("	<div class=\"accordion-heading\">");
 				rh.append("		<a class=\"accordion-toggle collapsed\" data-toggle=\"collapse\" data-parent=\"#accordion2\" href=\"#collapse-" + row + "\"> Collapsible Group Item #" + row + " </a>");
@@ -237,7 +238,7 @@ public class AccordionWidget extends ContainerWidget
 			for(int row = 0; row < Integer.valueOf(rows); row++) {
 				
 				String display = (selectedRow == row) ? "block" : "none";
-				String indexPrefix = "accordion-inner-" + row;
+				String indexPrefix =  row + ",";
 				
 				rh.append("	<div class=\"accordion-group\">");
 				rh.append("		<div class=\"accordion-heading\">");
@@ -380,38 +381,38 @@ public class AccordionWidget extends ContainerWidget
 	{
 		super.loadPropertiesFromXml(generator, widget, node);
 
-		// Get the cells
-		XNodes cells;
-		try
-		{
-			cells = node.getNodes("./cell");
-		}
-		catch (XDataException e)
-		{
-			throw new WbdException("Error getting cells");
-		}
-		while (cells.next())
-		{
-			String indexStr = cells.getText("./index");
-			String title = cells.getText("./title");
-
-			WbdChildIndex index = new WbdChildIndex(indexStr);
-			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
-
-			try
-			{
-				XNodes widgetNode = cells.getNodes("./widget");
-				if (widgetNode.next())
-				{
-					WbdWidget child = WbdWidget.loadBasicPropertiesFromXml(generator, widgetNode);
-					child.setParent(widget, index);
-				}
-			}
-			catch (XDataException e)
-			{
-				throw new WbdException("Error finding cell widget: " + e);
-			}
-		}
+//		// Get the cells
+//		XNodes cells;
+//		try
+//		{
+//			cells = node.getNodes("./cell");
+//		}
+//		catch (XDataException e)
+//		{
+//			throw new WbdException("Error getting cells");
+//		}
+//		while (cells.next())
+//		{
+//			String indexStr = cells.getText("./index");
+//			String title = cells.getText("./title");
+//
+//			WbdChildIndex index = new WbdChildIndex(indexStr);
+//			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
+//
+//			try
+//			{
+//				XNodes widgetNode = cells.getNodes("./widget");
+//				if (widgetNode.next())
+//				{
+//					WbdWidget child = WbdWidget.loadBasicPropertiesFromXml(generator, widgetNode);
+//					child.setParent(widget, index);
+//				}
+//			}
+//			catch (XDataException e)
+//			{
+//				throw new WbdException("Error finding cell widget: " + e);
+//			}
+//		}
 	
 		
 		//for children
@@ -426,17 +427,17 @@ public class AccordionWidget extends ContainerWidget
 		
 		int rows = Integer.valueOf(instance.getProperty("rows", null));
 
-		for (int r = 0; r < rows; r++) {
-			WbdChildIndex index = new WbdChildIndex(r+"");
-			pw.println(indentStr(indent) + "<cell>");
-			pw.println(indentStr(indent + 1) + "<index>" + index.getIndexStr() + "</index>");
-			pw.println(indentStr(indent + 1) + "<title>" + index.getIndexStr() + "</title>");
-			instance.getProperties().writeProperties(pw, indent + 1, index);
-			WbdWidget child = instance.findChildByIndex(index);
-			if (child != null)
-				child.saveToFile(generator, pw, indent + 1);
-			pw.println(indentStr(indent) + "</cell>");
-		}
+//		for (int r = 0; r < rows; r++) {
+//			WbdChildIndex index = new WbdChildIndex(r+"");
+//			pw.println(indentStr(indent) + "<cell>");
+//			pw.println(indentStr(indent + 1) + "<index>" + index.getIndexStr() + "</index>");
+//			pw.println(indentStr(indent + 1) + "<title>" + index.getIndexStr() + "</title>");
+//			instance.getProperties().writeProperties(pw, indent + 1, index);
+//			WbdWidget child = instance.findChildByIndex(index);
+//			if (child != null)
+//				child.saveToFile(generator, pw, indent + 1);
+//			pw.println(indentStr(indent) + "</cell>");
+//		}
 		
 		
 		this.flowChildren_writeProperties(generator, instance, pw, indent, null);
