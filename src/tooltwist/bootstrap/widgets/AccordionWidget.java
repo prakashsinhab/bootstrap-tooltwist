@@ -168,36 +168,42 @@ public class AccordionWidget extends ContainerWidget
 	}
 	
 	@Override
-	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper rh) throws Exception
-	{
-try {
+	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper rh) throws Exception {
+		try {
+			
+//			rh.beforeProductionCode(generator, instance, null, false);
 			
 			String indexPrefix = "accordion-inner-" + "1";
 			rh.append("<div class=\"accordion\" id=\"accordion2\">");
-			
+
 			String rows = instance.getProperty("rows", null);
-			for(int row = 0; row < Integer.valueOf(rows); row++) {
+			for (int row = 0; row < Integer.valueOf(rows); row++) {
 				rh.append("<div class=\"accordion-group\">");
-				rh.append("<div class=\"accordion-heading\">");
-				rh.append("<a class=\"accordion-toggle collapsed\" data-toggle=\"collapse\" data-parent=\"#accordion2\" href=\"#collapse-"+row+"\"> Collapsible Group Item #"+row+" </a>");
-				rh.append("</div>");
-				rh.append("<div id=\"collapse-"+row+"\" class=\"accordion-body collapse\" style=\"height: 0px;display: none;\">");
-				rh.append("<div class=\"accordion-inner\">");
+				rh.append("	<div class=\"accordion-heading\">");
+				rh.append("		<a class=\"accordion-toggle collapsed\" data-toggle=\"collapse\" data-parent=\"#accordion2\" href=\"#collapse-" + row + "\"> Collapsible Group Item #" + row + " </a>");
+				rh.append("	</div>");
+				rh.append("	<div id=\"collapse-" + row + "\" class=\"accordion-body collapse\" style=\"height: 0px;\">");
+				rh.append(		"<div class=\"accordion-inner\">");
 				this.flowChildren_renderForJSP(generator, instance, ud, rh, indexPrefix);
-				rh.append("</div>");
-				rh.append("</div>");
+				rh.append("		</div>");
+				rh.append("	</div>");
 				rh.append("</div>");
 			}
-			
+//
 			rh.append("</div>");
-			
-			//String html = codeToInsert(generator, instance, SnippetLocation.PRIMITIVE_WIDGET, "accordion_production.jsp", null);
-			
-//			String js = codeToInsert(generator, instance, SnippetLocation.PRIMITIVE_WIDGET, "accordion_jsHeader.js", null);
-			
-			//rh.append(html);
-//			rh.append(js);
-			
+//			rh.renderSnippetForProduction(generator, instance, SNIPPET_PRODUCTION);
+//			rh.afterProductionCode(generator, instance);
+
+			// String html = codeToInsert(generator, instance,
+			// SnippetLocation.PRIMITIVE_WIDGET, "accordion_production.jsp",
+			// null);
+
+			// String js = codeToInsert(generator, instance,
+			// SnippetLocation.PRIMITIVE_WIDGET, "accordion_jsHeader.js", null);
+
+			// rh.append(html);
+			// rh.append(js);
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
