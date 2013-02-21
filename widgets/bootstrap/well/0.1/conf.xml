@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.bootstrap.widgets.WellWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>Well</label>
+  <description>Well Boostrap Widget</description>
+</widget>
