@@ -27,7 +27,7 @@ public class WellWidget extends WbdWidgetController
 	private static final String SNIPPET_PREVIEW = "well_preview.html";
 	private static final String SNIPPET_DESIGN = "well_design.html";
 	private static final String SNIPPET_PRODUCTION = "well_production.jsp";
-	private static final boolean USE_PRODUCTION_HELPER = true;
+	private static final boolean USE_PRODUCTION_HELPER = false;
 
 	@Override
 	protected void init(WbdWidget instance) throws WbdException
