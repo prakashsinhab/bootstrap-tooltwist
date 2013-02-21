@@ -1,6 +1,5 @@
 package tooltwist.bootstrap.widgets;
 
-import tooltwist.bootstrap.properties.WbdSelectProperty;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.StylesheetCodeInserter;
@@ -14,17 +13,16 @@ import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WbdWidgetController;
 
-import com.dinaa.data.XData;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 
 
-public class LabelAndBadgeWidget extends WbdWidgetController {
+public class NavsWidget extends WbdWidgetController {
 
 	@Override
 	public String getLabel(WbdWidget instance) throws WbdException
 	{
-		return "Labels and Badges";
+		return "Navs Widget";
 	}
 
 	@Override
@@ -37,9 +35,9 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 	protected void init(WbdWidget instance) throws WbdException
 	{
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdRadioTextProperty("type", null, "Type",  "label,badge", "label"));
-		instance.defineProperty(new WbdStringProperty("labelText", null, "Label Text", ""));
-		instance.defineProperty(new WbdSelectProperty("subType", null, "Sub Type", "success,warning,important,info,inverse", ""));
+		instance.defineProperty(new WbdStringProperty("tabs", null, "Tabs", ""));
+		instance.defineProperty(new WbdRadioTextProperty("type", null, "Type", "nav-tabs,nav-pills", "nav-tabs"));
+		instance.defineProperty(new WbdStringProperty("activeTab", null, "Active Tab", ""));
 	}
 
 	@Override
@@ -68,7 +66,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css")
+					new StylesheetCodeInserter(generator, instance, "navs_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -77,7 +75,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 			// Add code inserters for preview mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css")
+					new StylesheetCodeInserter(generator, instance, "navs_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -86,7 +84,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css")
+					new StylesheetCodeInserter(generator, instance, "navs_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -100,17 +98,27 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 	
 	private void renderWidget(WbdGenerator generator, WbdWidget instance, WbdRenderHelper buf) throws WbdException {
 		String elementId = instance.getFinalProperty(generator, "elementId");
-		String labelText = instance.getFinalProperty(generator, "labelText");
+		String tabs = instance.getFinalProperty(generator, "tabs");
 		String type = instance.getFinalProperty(generator, "type");
-		String subType = instance.getFinalProperty(generator, "subType");
-		if (labelText==null | labelText.trim().equals("")) {
-			labelText = "Default";
+		String activeTab = instance.getFinalProperty(generator, "activeTab");
+		
+		if (!elementId.equals("")) {
+			elementId = "id='" + elementId + "' ";
 		}
 		
-		if (!subType.equalsIgnoreCase("")) {
-			subType = " " + type + "-" + subType;
-		}
+		buf.append("<ul " + elementId + "class='nav " + type + "'>\n");
+		String[] tabList = tabs.split(",");
+		for (String label: tabList) {
 			
-		buf.append("<span id='" + elementId + "' class='" + type + subType + "'>" + XData.htmlString(labelText) + "</span>");
+			if (label.equalsIgnoreCase(activeTab)) {
+				buf.append("  <li class='active'>\n");
+			} else {
+				buf.append("  <li>\n");
+			}
+			buf.append("   <a href='#'>" + label + "</a>\n");
+			buf.append("  </li>\n");
+		}
+		buf.append("</ul>\n");
 	}
+	
 }

@@ -1,9 +1,8 @@
 package tooltwist.bootstrap.widgets;
 
-import tooltwist.bootstrap.properties.WbdSelectProperty;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
-import tooltwist.wbd.StylesheetCodeInserter;
+import tooltwist.wbd.SnippetParam;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
@@ -14,17 +13,26 @@ import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WbdWidgetController;
 
-import com.dinaa.data.XData;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 
 
-public class LabelAndBadgeWidget extends WbdWidgetController {
+/*
+ * A generic close widget. You need to specify what is the type of
+ * the element that you want to hide/close.
+ * If the element type is CLASS, all of the elements that contain the specified name will be hidden.
+ * otherwise only single element will be close.
+ */
+
+public class CloseWidget extends WbdWidgetController {
+	
+	private static final String SNIPPET_PRODUCTION = "close_production.jsp";
+	private static final boolean USE_PRODUCTION_HELPER = false;
 
 	@Override
 	public String getLabel(WbdWidget instance) throws WbdException
 	{
-		return "Labels and Badges";
+		return "Close Widget";
 	}
 
 	@Override
@@ -36,10 +44,9 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 	@Override
 	protected void init(WbdWidget instance) throws WbdException
 	{
-		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdRadioTextProperty("type", null, "Type",  "label,badge", "label"));
-		instance.defineProperty(new WbdStringProperty("labelText", null, "Label Text", ""));
-		instance.defineProperty(new WbdSelectProperty("subType", null, "Sub Type", "success,warning,important,info,inverse", ""));
+		instance.defineProperty(new WbdStringProperty("elementId", null, "Element Id", ""));
+		instance.defineProperty(new WbdRadioTextProperty("elementType", null, "Element Type", "id,class", "id"));
+		instance.defineProperty(new WbdStringProperty("elementName", null, "Close Element Name", ""));
 	}
 
 	@Override
@@ -57,7 +64,9 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 	@Override
 	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper buf) throws WbdException
 	{
-		renderWidget(generator, instance, buf);
+		buf.beforeProductionCode(generator, instance, getSnippetParams(generator, instance, ud), USE_PRODUCTION_HELPER);
+		buf.renderSnippetForProduction(generator, instance, SNIPPET_PRODUCTION);
+		buf.afterProductionCode(generator, instance);
 	}
 
 	@Override
@@ -67,8 +76,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 		{
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
-				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css")
+					
 			};
 			codeInserterList.add(arr);
 		}
@@ -76,8 +84,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 		{
 			// Add code inserters for preview mode
 			CodeInserter[] arr = {
-				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css")
+					
 			};
 			codeInserterList.add(arr);
 		}
@@ -85,8 +92,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 		{
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
-				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css")
+					
 			};
 			codeInserterList.add(arr);
 		}
@@ -99,18 +105,18 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 	}
 	
 	private void renderWidget(WbdGenerator generator, WbdWidget instance, WbdRenderHelper buf) throws WbdException {
-		String elementId = instance.getFinalProperty(generator, "elementId");
-		String labelText = instance.getFinalProperty(generator, "labelText");
-		String type = instance.getFinalProperty(generator, "type");
-		String subType = instance.getFinalProperty(generator, "subType");
-		if (labelText==null | labelText.trim().equals("")) {
-			labelText = "Default";
-		}
 		
-		if (!subType.equalsIgnoreCase("")) {
-			subType = " " + type + "-" + subType;
-		}
-			
-		buf.append("<span id='" + elementId + "' class='" + type + subType + "'>" + XData.htmlString(labelText) + "</span>");
+		buf.append("<button class='close'>&times;</button>\n");
 	}
+	
+	private SnippetParam[] getSnippetParams(WbdGenerator generator, WbdWidget instance, UimData ud) throws WbdException {
+		String elementType = instance.getFinalProperty(generator, "elementType");
+		String elementName = instance.getFinalProperty(generator, "elementName");
+		SnippetParam[] params = {
+				new SnippetParam("elementType", elementType),
+				new SnippetParam("elementName", elementName),
+		};
+		return params;
+	}
+	
 }

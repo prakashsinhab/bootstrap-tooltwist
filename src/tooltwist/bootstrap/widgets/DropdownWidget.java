@@ -1,30 +1,27 @@
 package tooltwist.bootstrap.widgets;
 
-import tooltwist.bootstrap.properties.WbdSelectProperty;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.StylesheetCodeInserter;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
-import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSizeInfo;
 import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WbdWidgetController;
 
-import com.dinaa.data.XData;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 
 
-public class LabelAndBadgeWidget extends WbdWidgetController {
+public class DropdownWidget extends WbdWidgetController {
 
 	@Override
 	public String getLabel(WbdWidget instance) throws WbdException
 	{
-		return "Labels and Badges";
+		return "Dropdown Widget";
 	}
 
 	@Override
@@ -37,9 +34,9 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 	protected void init(WbdWidget instance) throws WbdException
 	{
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdRadioTextProperty("type", null, "Type",  "label,badge", "label"));
-		instance.defineProperty(new WbdStringProperty("labelText", null, "Label Text", ""));
-		instance.defineProperty(new WbdSelectProperty("subType", null, "Sub Type", "success,warning,important,info,inverse", ""));
+		instance.defineProperty(new WbdStringProperty("items", null, "Items", ""));
+		instance.defineProperty(new WbdStringProperty("subMenuLabel", null, "Sub Menu Label", ""));
+		instance.defineProperty(new WbdStringProperty("subMenuItems", null, "Sub Menu Items", ""));
 	}
 
 	@Override
@@ -68,7 +65,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css")
+				new StylesheetCodeInserter(generator, instance, "dropdown_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -77,7 +74,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 			// Add code inserters for preview mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css")
+				new StylesheetCodeInserter(generator, instance, "dropdown_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -86,7 +83,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css")
+					new StylesheetCodeInserter(generator, instance, "dropdown_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -100,17 +97,36 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 	
 	private void renderWidget(WbdGenerator generator, WbdWidget instance, WbdRenderHelper buf) throws WbdException {
 		String elementId = instance.getFinalProperty(generator, "elementId");
-		String labelText = instance.getFinalProperty(generator, "labelText");
-		String type = instance.getFinalProperty(generator, "type");
-		String subType = instance.getFinalProperty(generator, "subType");
-		if (labelText==null | labelText.trim().equals("")) {
-			labelText = "Default";
+		String items = instance.getFinalProperty(generator, "items");
+		String subMenuLabel = instance.getFinalProperty(generator, "subMenuLabel");
+		String subMenuItems = instance.getFinalProperty(generator, "subMenuItems");
+		
+		if (!elementId.equals("")) {
+			elementId = " id='" + elementId + "' ";
 		}
 		
-		if (!subType.equalsIgnoreCase("")) {
-			subType = " " + type + "-" + subType;
+		
+		buf.append("<ul" + elementId + " class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu' style='display: block; position: static; margin-bottom: 5px;'>\n");
+		String[] itemList = items.split(",");
+		for (String item: itemList) {
+			buf.append("  <li><a tabindex='-1' href='#'>" + item + "</a></li>\n");
 		}
+		
+		if (!subMenuLabel.equals("")) {
+			buf.append("<li class='divider'></li>\n");
+			buf.append("<li class='dropdown-submenu'>\n");
+			buf.append("<a tabindex='-1' href='#'>" + subMenuLabel + "</a>\n");
+			buf.append(" <ul class='dropdown-menu'>\n");
 			
-		buf.append("<span id='" + elementId + "' class='" + type + subType + "'>" + XData.htmlString(labelText) + "</span>");
+			String[] menuItemList = subMenuItems.split(",");
+			for (String item: menuItemList) {
+				buf.append("  <li><a tabindex='-1' href='#'>" + item + "</a></li>\n");
+			}
+			buf.append(" </ul>\n");
+			buf.append("</li>\n");
+		}
+		
+		buf.append("</ul>\n");
 	}
+	
 }

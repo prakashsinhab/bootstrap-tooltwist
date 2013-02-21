@@ -1,6 +1,5 @@
 package tooltwist.bootstrap.widgets;
 
-import tooltwist.bootstrap.properties.WbdSelectProperty;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.StylesheetCodeInserter;
@@ -14,17 +13,16 @@ import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WbdWidgetController;
 
-import com.dinaa.data.XData;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 
 
-public class LabelAndBadgeWidget extends WbdWidgetController {
+public class ButtonGroupWidget extends WbdWidgetController {
 
 	@Override
 	public String getLabel(WbdWidget instance) throws WbdException
 	{
-		return "Labels and Badges";
+		return "ButtonGroup Widget";
 	}
 
 	@Override
@@ -37,9 +35,8 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 	protected void init(WbdWidget instance) throws WbdException
 	{
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdRadioTextProperty("type", null, "Type",  "label,badge", "label"));
-		instance.defineProperty(new WbdStringProperty("labelText", null, "Label Text", ""));
-		instance.defineProperty(new WbdSelectProperty("subType", null, "Sub Type", "success,warning,important,info,inverse", ""));
+		instance.defineProperty(new WbdStringProperty("items", null, "Items", ""));
+		instance.defineProperty(new WbdRadioTextProperty("vertical", null, "Vertical", "yes,no", "no"));
 	}
 
 	@Override
@@ -68,7 +65,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css")
+					new StylesheetCodeInserter(generator, instance, "buttonGroup_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -77,7 +74,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 			// Add code inserters for preview mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css")
+					new StylesheetCodeInserter(generator, instance, "buttonGroup_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -86,7 +83,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css")
+					new StylesheetCodeInserter(generator, instance, "buttonGroup_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -100,17 +97,26 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 	
 	private void renderWidget(WbdGenerator generator, WbdWidget instance, WbdRenderHelper buf) throws WbdException {
 		String elementId = instance.getFinalProperty(generator, "elementId");
-		String labelText = instance.getFinalProperty(generator, "labelText");
-		String type = instance.getFinalProperty(generator, "type");
-		String subType = instance.getFinalProperty(generator, "subType");
-		if (labelText==null | labelText.trim().equals("")) {
-			labelText = "Default";
+		String items = instance.getFinalProperty(generator, "items");
+		String vertical = instance.getFinalProperty(generator, "vertical");
+		
+		if (!elementId.equals("")) {
+			elementId = " id='" + elementId + "'";
 		}
 		
-		if (!subType.equalsIgnoreCase("")) {
-			subType = " " + type + "-" + subType;
+		String verticalClass = "";
+		if (vertical.equalsIgnoreCase("yes")) {
+			verticalClass = " btn-group-vertical";
 		}
-			
-		buf.append("<span id='" + elementId + "' class='" + type + subType + "'>" + XData.htmlString(labelText) + "</span>");
+		
+		buf.append("<div"+ elementId + " class='btn-group" + verticalClass + "'>\n");
+		
+		String[] itemList = items.split(",");
+		for (String item: itemList) {
+			buf.append("  <button class='btn'>" + item + "</button>\n");
+		}
+		
+		buf.append("</div>\n");
 	}
+	
 }

@@ -14,17 +14,16 @@ import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WbdWidgetController;
 
-import com.dinaa.data.XData;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 
 
-public class LabelAndBadgeWidget extends WbdWidgetController {
+public class ButtonDropdownWidget extends WbdWidgetController {
 
 	@Override
 	public String getLabel(WbdWidget instance) throws WbdException
 	{
-		return "Labels and Badges";
+		return "ButtonDropdown Widget";
 	}
 
 	@Override
@@ -37,9 +36,11 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 	protected void init(WbdWidget instance) throws WbdException
 	{
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdRadioTextProperty("type", null, "Type",  "label,badge", "label"));
-		instance.defineProperty(new WbdStringProperty("labelText", null, "Label Text", ""));
-		instance.defineProperty(new WbdSelectProperty("subType", null, "Sub Type", "success,warning,important,info,inverse", ""));
+		instance.defineProperty(new WbdStringProperty("label", null, "Label", "default"));
+		instance.defineProperty(new WbdStringProperty("items", null, "Items", ""));
+		instance.defineProperty(new WbdSelectProperty("type", null, "Type", "primary,danger,warning,success,info,inverse", ""));
+		instance.defineProperty(new WbdRadioTextProperty("dropPosition", null, "Drop Position", "dropdown,dropup", "dropdown"));
+		instance.defineProperty(new WbdSelectProperty("sizes", null, "Sizes", "mini,small,large", ""));
 	}
 
 	@Override
@@ -68,7 +69,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css")
+					new StylesheetCodeInserter(generator, instance, "buttonDropdown_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -77,7 +78,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 			// Add code inserters for preview mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css")
+					new StylesheetCodeInserter(generator, instance, "buttonDropdown_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -86,7 +87,7 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css")
+					new StylesheetCodeInserter(generator, instance, "buttonDropdown_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -100,17 +101,48 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 	
 	private void renderWidget(WbdGenerator generator, WbdWidget instance, WbdRenderHelper buf) throws WbdException {
 		String elementId = instance.getFinalProperty(generator, "elementId");
-		String labelText = instance.getFinalProperty(generator, "labelText");
+		String label = instance.getFinalProperty(generator, "label");
+		String items = instance.getFinalProperty(generator, "items");
 		String type = instance.getFinalProperty(generator, "type");
-		String subType = instance.getFinalProperty(generator, "subType");
-		if (labelText==null | labelText.trim().equals("")) {
-			labelText = "Default";
+		String dropPosition = instance.getFinalProperty(generator, "dropPosition");
+		String sizes = instance.getFinalProperty(generator, "sizes");
+		
+		if (!elementId.equals("")) {
+			elementId = " id='" + elementId + "' ";
 		}
 		
-		if (!subType.equalsIgnoreCase("")) {
-			subType = " " + type + "-" + subType;
+		if (!type.equals("")) {
+			type = "btn-" + type;
 		}
-			
-		buf.append("<span id='" + elementId + "' class='" + type + subType + "'>" + XData.htmlString(labelText) + "</span>");
+		
+		String sizeClass = "";
+		switch (sizes) {
+			case "mini":
+				sizeClass = " btn-mini";
+				break;
+			case "small":
+				sizeClass = " btn-small";
+				break;
+			case "large":
+				sizeClass = " btn-large";
+				break;
+		}
+		
+		buf.append("<div" + elementId + " class='btn-group " + dropPosition + "'>\n");
+		buf.append("<button class='btn " + type + sizeClass + "'>" + label + "</button>\n");
+		buf.append(" <button class='btn dropdown-toggle " + type + sizeClass + "' data-toggle='dropdown' href='#'>\n");
+	    buf.append("   <span class='caret'></span>\n");
+	    buf.append(" </button>\n");
+	    buf.append("  <ul class='dropdown-menu'>\n");
+
+	    String[] itemList = items.split(",");
+		for (String item: itemList) {
+			buf.append("<li><a href='#'>" + item + "</a></li>\n");
+		}
+	    
+	    buf.append(" </ul>\n");
+	    buf.append("</div>\n");
+		
 	}
+	
 }
