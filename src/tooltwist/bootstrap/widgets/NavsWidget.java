@@ -16,7 +16,6 @@ import tooltwist.wbd.WbdWidgetController;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 
-
 public class NavsWidget extends WbdWidgetController {
 
 	@Override
