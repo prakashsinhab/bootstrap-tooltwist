@@ -16,6 +16,13 @@ import tooltwist.wbd.WbdWidgetController;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 
+
+/**
+ * Navs Widget
+ * @see https://github.com/aravindnaidu/bootstrap-tooltwist/wiki/Navs-%28tabs%2C-pill-buttons%29
+ * 
+ * @author richarddimalanta
+ */
 public class NavsWidget extends WbdWidgetController {
 
 	@Override
