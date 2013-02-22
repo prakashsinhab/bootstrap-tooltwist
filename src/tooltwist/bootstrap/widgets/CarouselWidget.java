@@ -23,7 +23,9 @@ import com.dinaa.ui.UimHelper;
 
 /**
  * Carousel Widget
+ * @see https://github.com/aravindnaidu/bootstrap-tooltwist/wiki/Carousel
  * 
+ * @author richarddimalanta
  */
 public class CarouselWidget extends ContainerWidget
 {

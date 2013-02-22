@@ -24,13 +24,19 @@
 		return {
 			
 			hide: function() {
-					var type = '%%elementType%%';
-					if (type == 'class') {
-						document.getElementsByClassName('%%elementName%%').style.display = 'none';
-					} else {
-						document.getElementById('%%elementName%%').style.display = 'none';
-					}
-					document.getElementById('%%elementId%%').style.display = 'none';
+				var type = '%%elementType%%';
+				if (type == 'class') {
+					var className = document.getElementsByClassName('%%elementName%%')
+	                
+					for(var i=0; i < className.length; i++)
+	                {
+	                    className.style.display = 'none';
+	                }
+					
+				} else {
+					document.getElementById('%%elementName%%').style.display = 'none';
+				}
+				document.getElementById('%%elementId%%').style.display = 'none';
 			}
 		};
 	}();
