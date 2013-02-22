@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.bootstrap.widgets.CarouselWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>Carousel Widget</label>
+  <description>Carousel Widget</description>
+</widget>
