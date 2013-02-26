@@ -4,6 +4,7 @@ import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.ContainerWidget;
 import tooltwist.wbd.JavascriptCodeInserter;
+import tooltwist.wbd.JavascriptLinkInserter;
 import tooltwist.wbd.PageImportCodeInserter;
 import tooltwist.wbd.SnippetParam;
 import tooltwist.wbd.StylesheetCodeInserter;
@@ -74,10 +75,11 @@ public class RowWidget extends ContainerWidget
 		}
 		else if (mode == GenerationMode.PRODUCTION || generator.getMode() == GenerationMode.CONTROLLER)
 		{
+			String jsUrl = "http://github.com/janl/mustache.js/raw/master/mustache.js";
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
-//				// Link to an external Javascript file
-//				new JavascriptLinkInserter(jsUrl),
+				// Link to an external Javascript file
+				new JavascriptLinkInserter(jsUrl),
 					
 //				// Link to an external stylesheet
 //				new StylesheetLinkInserter(cssUrl),
