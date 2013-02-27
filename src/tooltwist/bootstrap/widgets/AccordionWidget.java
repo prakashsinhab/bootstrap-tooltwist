@@ -11,6 +11,7 @@ import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.ContainerWidget;
 import tooltwist.wbd.DesignerHelper;
+import tooltwist.wbd.DesignerRole;
 import tooltwist.wbd.DesignerUIM;
 import tooltwist.wbd.JavascriptCodeInserter;
 import tooltwist.wbd.JavascriptLinkInserter;
@@ -53,9 +54,7 @@ public class AccordionWidget extends ContainerWidget
 	
 	Logger logger = Logger.getLogger(AccordionWidget.class);
 	
-	private static final String SNIPPET_PREVIEW = "accordion_preview.html";
-	private static final String SNIPPET_DESIGN = "accordion_design.html";
-	private static final String SNIPPET_PRODUCTION = "accordion_production.jsp";
+	private static final String ACCORDION_INDEX_PREFIX = "accordion-";
 	private static final boolean USE_PRODUCTION_HELPER = false;
 
 	@Override
@@ -69,7 +68,7 @@ public class AccordionWidget extends ContainerWidget
 		rowProperty.setEditable(false);
 		instance.defineProperty(rowProperty);
 		
-		instance.defineHiddenProperty(new WbdStringProperty("selectedRow", null, "Selected Row", "0"));
+		instance.defineDebugProperty(new WbdStringProperty("selectedRow", null, "Selected Row", "0"));
 		
 	}
 	
@@ -155,15 +154,13 @@ public class AccordionWidget extends ContainerWidget
 	@Override
 	public void renderForPreview(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException
 	{
-		rh.renderSnippetForStaticPage(generator, instance, SNIPPET_PREVIEW, getSnippetParams(generator, instance, ud));
+		render(generator, instance, ud, rh);
 	}
 	
 	@Override
 	public void renderForDesigner(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException
 	{
-		//rh.renderSnippetForStaticPage(generator, instance, SNIPPET_DESIGN, getSnippetParams(generator, instance, ud));
 		render(generator, instance, ud, rh);
-		//JavascriptCodeInserter javascriptCodeInserter = new JavascriptCodeInserter(generator, instance, "accordion_jsHeader.js");
 		
 	}
 	
@@ -171,43 +168,33 @@ public class AccordionWidget extends ContainerWidget
 	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper rh) throws Exception {
 		try {
 			
-//			rh.beforeProductionCode(generator, instance, null, false);
-			
-			
-			rh.append("<div class=\"accordion\" id=\"accordion2\">");
+			rh.append("<div class=\"accordion\" id=\"accordion2\">\n");
 
 			String rows = instance.getProperty("rows", null);
 			for (int row = 0; row < Integer.valueOf(rows); row++) {
+				
 				String indexPrefix = row + ",";
-				rh.append("<div class=\"accordion-group\">");
-				rh.append("	<div class=\"accordion-heading\">");
-				rh.append("		<a class=\"accordion-toggle collapsed\" data-toggle=\"collapse\" data-parent=\"#accordion2\" href=\"#collapse-" + row + "\"> Collapsible Group Item #" + row + " </a>");
-				rh.append("	</div>");
-				rh.append("	<div id=\"collapse-" + row + "\" class=\"accordion-body collapse\" style=\"height: 0px;\">");
-				rh.append(		"<div class=\"accordion-inner\">");
+				WbdChildIndex wbdChildIndex = new WbdChildIndex(ACCORDION_INDEX_PREFIX+row);
+				String title = instance.getProperty("title", wbdChildIndex);
+				
+				rh.append("	<div class=\"accordion-group\">\n");
+				rh.append("		<div class=\"accordion-heading\">\n");
+				rh.append("			<a class=\"accordion-toggle collapsed\" data-toggle=\"collapse\" data-parent=\"#accordion2\" href=\"#collapse-" + row + "\"> " + title + " </a>\n");
+				rh.append("		</div>\n");
+				rh.append("		<div id=\"collapse-" + row + "\" class=\"accordion-body collapse\" style=\"height: 0px;\">\n");
+				rh.append("			<div class=\"accordion-inner\">\n");
+				rh.append("				");
 				this.flowChildren_renderForJSP(generator, instance, ud, rh, indexPrefix);
-				rh.append("		</div>");
-				rh.append("	</div>");
-				rh.append("</div>");
+				rh.append("\n");
+				rh.append("			</div>\n");
+				rh.append("		</div>\n");
+				rh.append("	</div>\n");
 			}
-//
-			rh.append("</div>");
-//			rh.renderSnippetForProduction(generator, instance, SNIPPET_PRODUCTION);
-//			rh.afterProductionCode(generator, instance);
-
-			// String html = codeToInsert(generator, instance,
-			// SnippetLocation.PRIMITIVE_WIDGET, "accordion_production.jsp",
-			// null);
-
-			// String js = codeToInsert(generator, instance,
-			// SnippetLocation.PRIMITIVE_WIDGET, "accordion_jsHeader.js", null);
-
-			// rh.append(html);
-			// rh.append(js);
+			
+			rh.append("</div>\n");
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new WbdException("Error finding cell widget: " + e);
 		}
 	}
 	
@@ -226,7 +213,15 @@ public class AccordionWidget extends ContainerWidget
 		try {
 			
 			String rows = instance.getProperty("rows", null);
-			int selectedRow = Integer.valueOf(instance.getProperty("selectedRow", null));
+			Object tmp = instance.getProperty("selectedRow", null);
+			int selectedRow = Integer.valueOf(tmp == "" ? "0" : tmp.toString());
+			
+			if (selectedRow >= Integer.valueOf(rows)) {
+				selectedRow = 0;
+				instance.setProperty("selectedRow", null, "0");
+				instance.setPropertyWhileLoading("selectedRow", null, "0");
+			}
+			
 			String elementId = instance.getProperty("elementId", null);
 			
 			WidgetId accordionId = new WidgetId(instance);
@@ -239,10 +234,12 @@ public class AccordionWidget extends ContainerWidget
 				
 				String display = (selectedRow == row) ? "block" : "none";
 				String indexPrefix =  row + ",";
+				WbdChildIndex wbdChildIndex = new WbdChildIndex(ACCORDION_INDEX_PREFIX+row);
+				String title = instance.getProperty("title", wbdChildIndex);
 				
 				rh.append("	<div class=\"accordion-group\">");
-				rh.append("		<div class=\"accordion-heading\">");
-				rh.append("			<a class=\"accordion-toggle collapsed\" data-toggle=\"collapse\" data-parent=\"#accordion-"+elementId+"\" href=\"#collapse-"+elementId+"-"+row+"\"  onclick=\"TtAccordion.selectAccordion('"+accordionId.fullPath()+"', '"+row+"')\" > Collapsible Group Item #"+row+" </a>");
+				rh.append("		<div class=\"accordion-heading designer-properties\" id=\""+accordionId + "["+ACCORDION_INDEX_PREFIX+row+"]"+"\">");
+				rh.append("			<a class=\"accordion-toggle collapsed\" data-toggle=\"collapse\" data-parent=\"#accordion-"+elementId+"\" href=\"#collapse-"+elementId+"-"+row+"\" onclick=\"TtAccordion.selectAccordion('"+accordionId.fullPath()+"', '"+row+"')\"> "+title+" </a>"); 
 				rh.append("		</div>");
 				rh.append("		<div id=\"collapse-"+elementId+"-"+row+"\" class=\"accordion-body collapse\" style=\"height: auto;display: "+display+";\">");
 				rh.append("			<div class=\"accordion-inner\">");
@@ -254,9 +251,6 @@ public class AccordionWidget extends ContainerWidget
 				rh.append("	</div>");
 			}
 			
-			rh.append("  <span class=\"label label-success add-accordion\" style=\"float: right;\" onclick=\"TtAccordion.insertAccordion('"+accordionId.fullPath()+"');\">+</span>");
-			rh.append("  <span class=\"label label-important add-accordion\" style=\"float: right;\" onclick=\"TtAccordion.removeAccordion('"+accordionId.fullPath()+"');\">-</span>");
-			
 			rh.append("</div>");
 			rh.append("</div>");
 			
@@ -267,8 +261,8 @@ public class AccordionWidget extends ContainerWidget
 			rh.append("</script>");
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WbdException wbdException = new WbdException(e.toString());
+			wbdException.setStackTrace(e.getStackTrace());
 		}
 		
 	}
@@ -371,8 +365,12 @@ public class AccordionWidget extends ContainerWidget
 		// Add additional processing to run after the pane is loaded
 		html += "<script>\n";
 		html += helper.javascriptToSetUpLayoutEditorPane(generator, uh, root);
+//		html += "TtPane_layout.showPropertiesForElement('accordion"+instance.fullPath()  + "', false);";
+//		html += "TtPane_layout.hidePropertiesDialog();";
+		html += "TtPane_layout.showProperties('accordion!"+instance.fullPath() + "[" + ACCORDION_INDEX_PREFIX + selectedRow +"]');";
+		html += "jQuery(\"#id-designer-properties-div\").css({\"opacity\":\"1\"});";
 		html += "</script>\n";
-		
+//		
 		return uh.reply(html);
 	}
 	
@@ -381,38 +379,38 @@ public class AccordionWidget extends ContainerWidget
 	{
 		super.loadPropertiesFromXml(generator, widget, node);
 
-//		// Get the cells
-//		XNodes cells;
-//		try
-//		{
-//			cells = node.getNodes("./cell");
-//		}
-//		catch (XDataException e)
-//		{
-//			throw new WbdException("Error getting cells");
-//		}
-//		while (cells.next())
-//		{
-//			String indexStr = cells.getText("./index");
-//			String title = cells.getText("./title");
-//
-//			WbdChildIndex index = new WbdChildIndex(indexStr);
-//			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
-//
-//			try
-//			{
-//				XNodes widgetNode = cells.getNodes("./widget");
-//				if (widgetNode.next())
-//				{
-//					WbdWidget child = WbdWidget.loadBasicPropertiesFromXml(generator, widgetNode);
-//					child.setParent(widget, index);
-//				}
-//			}
-//			catch (XDataException e)
-//			{
-//				throw new WbdException("Error finding cell widget: " + e);
-//			}
-//		}
+		// Get the cells
+		XNodes cells;
+		try
+		{
+			cells = node.getNodes("./accordions");
+		}
+		catch (XDataException e)
+		{
+			throw new WbdException("Error getting cells");
+		}
+		while (cells.next())
+		{
+			String indexStr = cells.getText("./index");
+			String title = cells.getText("./title");
+
+			WbdChildIndex index = new WbdChildIndex(ACCORDION_INDEX_PREFIX + indexStr);
+			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
+
+			try
+			{
+				XNodes widgetNode = cells.getNodes("./widget");
+				if (widgetNode.next())
+				{
+					WbdWidget child = WbdWidget.loadBasicPropertiesFromXml(generator, widgetNode);
+					child.setParent(widget, index);
+				}
+			}
+			catch (XDataException e)
+			{
+				throw new WbdException("Error finding cell widget: " + e);
+			}
+		}
 	
 		
 		//for children
@@ -427,17 +425,21 @@ public class AccordionWidget extends ContainerWidget
 		
 		int rows = Integer.valueOf(instance.getProperty("rows", null));
 
-//		for (int r = 0; r < rows; r++) {
-//			WbdChildIndex index = new WbdChildIndex(r+"");
-//			pw.println(indentStr(indent) + "<cell>");
-//			pw.println(indentStr(indent + 1) + "<index>" + index.getIndexStr() + "</index>");
-//			pw.println(indentStr(indent + 1) + "<title>" + index.getIndexStr() + "</title>");
-//			instance.getProperties().writeProperties(pw, indent + 1, index);
-//			WbdWidget child = instance.findChildByIndex(index);
-//			if (child != null)
-//				child.saveToFile(generator, pw, indent + 1);
-//			pw.println(indentStr(indent) + "</cell>");
-//		}
+		for (int r = 0; r < rows; r++) {
+			WbdChildIndex index = new WbdChildIndex(ACCORDION_INDEX_PREFIX+r);
+			String title = instance.getProperty("title", index);
+			title = (title == null) ? "Title goes here..." : title;
+			pw.println(indentStr(indent) + "<accordions>");
+			pw.println(indentStr(indent + 1) + "<index>" + r + "</index>");
+			instance.getProperties().writeProperties(pw, indent + 1, index);
+			WbdWidget child = instance.findChildByIndex(index);
+			if (child != null)
+				child.saveToFile(generator, pw, indent + 1);
+			else {
+				instance.defineProperty(new WbdStringProperty("title", index, "Title", title));
+			}
+			pw.println(indentStr(indent) + "</accordions>");
+		}
 		
 		
 		this.flowChildren_writeProperties(generator, instance, pw, indent, null);
@@ -446,101 +448,42 @@ public class AccordionWidget extends ContainerWidget
 	
 	@Override
 	public void renderProperties(WbdGenerator generator, UimData ud, WbdRenderHelper rh, WbdWidget instance, WidgetId id, boolean displayOnly) throws WbdException {
-		// Render this differently, depending upon whether it's a child or the entire grid (ZIZ can that happen?)
-//		super.renderProperties(instance, generator, ud, rh, id);
-//		instance.renderProperties(generator, ud, rh, id);
-//		buf.renderPropertyWidgetSeparator();
-					
-//		WbdChildIndex index = id.getIndex();
-//		String indexStr = index.toString();
-//		if (indexStr.equals("[]")) {
-//			rh.append("Internal error 982773");
-//			return;
-//		}
-//		boolean showCellAsWellAsGrid = ! index.getIndexStr().equals("");
-//		int c = this.indexToCol(index);
-//		int r = this.indexToRow(index);
-		
-
-		// Work out how many rows and columns, including the expansion cracks
-//		int numCols = getCols(generator, instance);
-//		int numRows = getRows(generator, instance);
-		
-		// See if it is an empty column
-//		String emptyColumn = "Y";
-//		for (int tmpR = 0; tmpR < numRows; tmpR++)
-//		{
-//			WbdChildIndex tmpIndex = colRowToIndex(c, tmpR);
-//			WbdWidget tmpChild = instance.findChildByIndex(tmpIndex);
-//			if (tmpChild != null)
-//			{
-//				emptyColumn = "N";
-//				break;
-//			}
-//		}
-
-		// See if it is an empty row
-//		String emptyRow = "Y";
-//		for (int tmpC = 0; tmpC < numCols; tmpC++)
-//		{
-//			WbdChildIndex tmpIndex = colRowToIndex(tmpC, r);
-//			WbdWidget tmpChild = instance.findChildByIndex(tmpIndex);
-//			if (tmpChild != null)
-//			{
-//				emptyRow = "N";
-//				break;
-//			}
-//		}
-		
-		// See if the grid is empty
-//		String emptyGrid = (instance.numChildren() == 0) ? "Y" : "N";
-
 		
 		rh.renderPropertiesHeading(generator, ud, instance, id, this.getLabel(instance), -1);
 
 		rh.append("<table><tr>");
-//		if (showCellAsWellAsGrid) {
-////			// Render the properties for the grid
-////			rh.renderPropertiesHeading(generator, ud, instance, id, "Grid", -1);
-////			// Now render properties for the grid itself
-////			id.setIndex(null);
-////			rh.append("<div class=\"designer-properties-grid2\">");
-////			//rh.append("<label>Grid</label>");
-////			String[] ignoredPropertiesForGrid = { "_controller", "_widgetId", "cellDivs", "cols", "rows" };
-////			rh.renderProperties(generator, ud, instance, id, ignoredPropertiesForGrid);
-////			rh.append("</div>");
-////		} else {
-//			// Render the properties for the cell
-//			// Add the cell
-//			rh.append("<td id=\"id-designer-properties-grid1\">");
-//			rh.append("<label>Cell:</label>");
-//			String[] ignoredPropertiesForCell = {CELL_PROPERTY_LEFT, CELL_PROPERTY_TOP, "_initialized" };
-//			rh.renderProperties(generator, ud, instance, id, ignoredPropertiesForCell);
-//			rh.append("</td>");
-//		}
+		rh.append("<td id=\"id-designer-properties-accordion1\">");
+		rh.renderProperties(generator, ud, instance, id, new String[] {});
+		rh.append("</td>");
+		rh.append("</tr>");
+		
+		id.setIndex(null);
+		
+		rh.append("<tr>");
+		rh.append("<td id=\"id-designer-properties-accordion3\">");
+		String[] ignoredPropertiesForGrid = {"_controller", "_widgetId", "cellDivs", "rows", "selectedRow" };
+		rh.renderProperties(generator, ud, instance, id, ignoredPropertiesForGrid);
+		rh.append("<br>");
+		XpcSecurity credentials = ud.getCredentials();
+		boolean canChangeGrid = credentials.hasRole(DesignerRole.CHANGE_GRIDS.getRoleCode());
+		String index = id.fullPath();
+		
+		//Define Buttons on editable mode
+		if (instance.mayEdit(ud) && canChangeGrid) {
 			
-			// Now render properties for the grid itself
-//			id.setIndex(null);
-			rh.append("<td id=\"id-designer-properties-accordion2\">");
-//			if (showCellAsWellAsGrid)
-//				rh.append("<label>Grid:</label>");
-			String[] ignoredPropertiesForGrid = {"rows" };
-			rh.renderProperties(generator, ud, instance, id, ignoredPropertiesForGrid);
-			rh.append("<br/>");
-//			rh.append("<button id=\"id-designer-properties-grid-add\" location=\""+id+"\" index=\""+index+"\">+</button>");
-			XpcSecurity credentials = ud.getCredentials();
-//			boolean canChangeGrid = credentials.hasRole(DesignerRole.CHANGE_GRIDS.getRoleCode());
-//			if (instance.mayEdit(ud) && canChangeGrid) {
-//				rh.append("<button id=\"id-designer-properties-grid-delete\" "
-//						+ "location=\""+id+"\" "
-//						+ "index=\""+index+"\" "
-//						+ "emptycol=\""+emptyColumn+"\" "
-//						+ "emptyrow=\""+emptyRow+"\" "
-//						+ "emptygrid=\""+emptyGrid+"\" "
-//						+ ">delete...</button>");
-//			}
-			rh.append("</tr></table>");
-//			rh.append("<script>TtGrid.setupPropertyDialogButtons();</script>");
-//		}
+			rh.append("  <span class=\"button-accordion\" style=\"float: right;cursor: pointer;\" onclick=\"TtAccordion.removeAccordion('"+index+"');\" title=\"Decrease row count.\">&nbsp;-&nbsp;</span>");
+			rh.append("  <span class=\"button-accordion\" style=\"float: right;cursor: pointer;\" onclick=\"TtAccordion.insertAccordion('"+index+"');\" title=\"Increase row count.\">&nbsp;+&nbsp;</span>");
+			
+			rh.append("<span style=\"float: right;\" >&nbsp;&nbsp;</span>");
+			
+		}
+		
+		rh.append("  <span class=\"button-accordion\" style=\"float: right;cursor: pointer;\" onclick=\"TtAccordion.expandAll('"+index+"');\"  title=\"Expand all rows.\">&nbsp;&#8595;&nbsp;</span>");
+		rh.append("  <span class=\"button-accordion\" style=\"float: right;cursor: pointer;\" onclick=\"TtAccordion.collapseAll('"+index+"');\" title=\"Collapse all rows.\">&nbsp;&#8593;&nbsp;</span>");
+		
+		rh.append("</td>");
+		rh.append("</tr></table>");
+		rh.append("<script>jQuery(\".button-accordion\").button();</script>");
+		
 	}
 }

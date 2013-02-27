@@ -56,9 +56,9 @@
   border: 1px solid #d3d3d3;
 }
 
-.accordion .accordion-inner  {
-	background: url("/ttsvr/tooltwist/designer/images/ants.gif");  
-}
+/* .accordion .accordion-inner  { */
+/* 	background: url("/ttsvr/tooltwist/designer/images/ants.gif");   */
+/* } */
 
 .accordion .accordion-inner .designer-droppable {
 	height: 20px;
@@ -112,3 +112,8 @@ a.badge:focus {
 .badge-success[href] {
   background-color: #356635;
 }
+  
+  .ui-tooltip {
+  	width: 150px;
+  	z-index: 199401;
+  }

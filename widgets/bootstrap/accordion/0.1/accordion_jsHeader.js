@@ -3,16 +3,19 @@ var TtAccordion = function(){
 		
 		init: function() {
 			jQuery(".accordion-heading").unbind("click");
-			
+			jQuery( document ).tooltip();
 		},
 		
 		selectAccordion: function(accordionId, row) {
-			
-			return TtPane_layout.loadTheEditPane({
-				op: "selectAccordion",
-				index: row,
-				w: accordionId
-			});
+			TtPane_layout.hidePropertiesDialog();
+			setTimeout(function() {
+				return TtPane_layout.loadTheEditPane({
+					op: "selectAccordion",
+					index: row,
+					w: accordionId
+				});
+				
+			}, 100);
 		},
 		
 		insertAccordion: function(accordionId) {
@@ -27,6 +30,14 @@ var TtAccordion = function(){
 				op: "removeAccordion",
 				w: accordionId
 			});
+		},
+		
+		expandAll: function(accordionId) {
+			jQuery(".accordion-body.collapse").css({"height": "auto", "display": "block"});
+		},
+		
+		collapseAll: function(accordionId) {
+			jQuery(".accordion-body.collapse").css({"height": "0px", "display": "none"});
 		}
 	};
 }();
