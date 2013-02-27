@@ -172,7 +172,7 @@ public class HeroUnitWidget extends ContainerWidget
 
 
 			// Decide which style and style class to use (may be defined in frame.css)
-			String styleClass = "DivWidget";
+			String styleClass = "HeroUnitWidget";
 //			if ( !className.equals(""))
 //				styleClass += " " + className;
 ////			if ( !link.equals(""))

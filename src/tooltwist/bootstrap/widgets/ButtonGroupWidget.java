@@ -17,6 +17,12 @@ import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 
 
+/**
+ * @see https://github.com/aravindnaidu/bootstrap-tooltwist/wiki/Button-groups
+ * 
+ * @author richarddimalanta
+ */
+
 public class ButtonGroupWidget extends WbdWidgetController {
 
 	@Override
