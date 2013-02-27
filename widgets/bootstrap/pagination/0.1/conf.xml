@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.bootstrap.widgets.PaginationWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>Pagination</label>
+  <description>Pagination Widget</description>
+</widget>
