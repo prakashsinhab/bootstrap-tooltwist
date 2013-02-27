@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.bootstrap.widgets.NavBarWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>Navigation Bar</label>
+  <description>Navigation Bar</description>
+</widget>
