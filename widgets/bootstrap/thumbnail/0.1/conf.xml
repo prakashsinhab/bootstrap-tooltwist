@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.bootstrap.widgets.ThumbnailWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>Thumbnail</label>
+  <description>Thumbnail Widget</description>
+</widget>
