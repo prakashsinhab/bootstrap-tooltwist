@@ -7,7 +7,6 @@ import tooltwist.wbd.StylesheetCodeInserter;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
-import tooltwist.wbd.SnippetParam;
 import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSizeInfo;
@@ -20,10 +19,6 @@ import com.dinaa.ui.UimHelper;
 
 
 public class ProgressBarWidget extends WbdWidgetController {
-	
-	private static final String SNIPPET_PRODUCTION = "progressBar_production.jsp";
-	private static final String SNIPPET_PREVIEW = "progressBar_preview.html";
-	private static final boolean USE_PRODUCTION_HELPER = false;
 
 	@Override
 	public String getLabel(WbdWidget instance) throws WbdException
@@ -50,21 +45,19 @@ public class ProgressBarWidget extends WbdWidgetController {
 	@Override
 	public void renderForDesigner(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException
 	{
-		buf.renderSnippetForStaticPage(generator, instance, SNIPPET_PREVIEW, getSnippetParams(generator, instance, ud));
+		renderWidget(generator, instance, buf);
 	}
 	
 	@Override
 	public void renderForPreview(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException
 	{
-		buf.renderSnippetForStaticPage(generator, instance, SNIPPET_PREVIEW, getSnippetParams(generator, instance, ud));
+		renderWidget(generator, instance, buf);
 	}
 
 	@Override
 	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper buf) throws WbdException
 	{
-		buf.beforeProductionCode(generator, instance, getSnippetParams(generator, instance, ud), USE_PRODUCTION_HELPER);
-		buf.renderSnippetForProduction(generator, instance, SNIPPET_PRODUCTION);
-		buf.afterProductionCode(generator, instance);
+		renderWidget(generator, instance, buf);
 	}
 
 	@Override
@@ -93,7 +86,6 @@ public class ProgressBarWidget extends WbdWidgetController {
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "progressBar_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -105,7 +97,8 @@ public class ProgressBarWidget extends WbdWidgetController {
 		return true;
 	}
 	
-	private SnippetParam[] getSnippetParams(WbdGenerator generator, WbdWidget instance, UimData ud) throws WbdException {
+	public void renderWidget(WbdGenerator generator, WbdWidget instance, WbdRenderHelper buf) throws WbdException {
+		String elementId = instance.getFinalProperty(generator, "elementId");
 		String width = instance.getFinalProperty(generator, "width");
 		String subType = instance.getFinalProperty(generator, "subType");
 		String striped = instance.getFinalProperty(generator, "striped");
@@ -121,13 +114,11 @@ public class ProgressBarWidget extends WbdWidgetController {
 			activeClass = " active";
 		}
 		
-		SnippetParam[] params = {
-			new SnippetParam("width", width),	
-			new SnippetParam("subType", subType),	
-			new SnippetParam("active", activeClass),	
-			new SnippetParam("striped", stripedClass),	
-		};
-		return params;
+		String classes = String.format("progress progress-%s%s%s", subType, stripedClass, activeClass);
+		
+		buf.append("<div id='" + elementId + "' class='" + classes + "'>\n");
+		buf.append("<div class='bar' style='width: " + width + "px'>&nbsp;</div>\n");
+		buf.append("</div>\n");
 	}
 	
 }
