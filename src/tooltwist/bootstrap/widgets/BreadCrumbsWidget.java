@@ -120,7 +120,7 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 			}
 			buf.append("</ul>\n");
 		} else {
-			buf.append("<span><li><a href='#'>Select base navpoint</a></li></span>");
+			buf.append("<ul class='breadcrumb'><li><a href='#'>Select base navpoint</a></li></ul>");
 		}
 	}
 	
@@ -146,7 +146,7 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 			}
 			buf.append("</ul>\n");
 		} else {
-			buf.append("<span><li><a href='#'>Select base navpoint</a></li></span>");
+			buf.append("<ul class='breadcrumb'><li><a href='#'>Select base navpoint</a></li></ul>");
 		}
 	}
 	
