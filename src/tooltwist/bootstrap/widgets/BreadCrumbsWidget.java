@@ -42,7 +42,7 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 	protected void init(WbdWidget instance) throws WbdException
 	{
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdNavPointProperty("navpoint", null, "Navpoint", ""));
+		instance.defineProperty(new WbdNavPointProperty("navpoint", null, "Base Navpoint", ""));
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 			}
 			buf.append("</ul>\n");
 		} else {
-			buf.append("<ul class='breadcrumb'><li><a href='#'>Select base navpoint</a></li></ul>");
+			buf.append("<ul class='breadcrumb'><li><a href='#'>No child navpoints</a></li></ul>");
 		}
 	}
 	
@@ -146,7 +146,7 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 			}
 			buf.append("</ul>\n");
 		} else {
-			buf.append("<ul class='breadcrumb'><li><a href='#'>Select base navpoint</a></li></ul>");
+			buf.append("<ul class='breadcrumb'><li><a href='#'>No child Navpoints</a></li></ul>");
 		}
 	}
 	
