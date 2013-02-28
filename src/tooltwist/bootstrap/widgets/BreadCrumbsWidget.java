@@ -88,8 +88,6 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 		{
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
-				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "breadCrumbs_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
