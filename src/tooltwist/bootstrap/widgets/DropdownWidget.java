@@ -6,6 +6,7 @@ import tooltwist.wbd.StylesheetCodeInserter;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
+import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSizeInfo;
 import tooltwist.wbd.WbdStringProperty;
@@ -40,9 +41,8 @@ public class DropdownWidget extends WbdWidgetController {
 	protected void init(WbdWidget instance) throws WbdException
 	{
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdStringProperty("items", null, "Items", ""));
-		instance.defineProperty(new WbdStringProperty("subMenuLabel", null, "Sub Menu Label", ""));
-		instance.defineProperty(new WbdStringProperty("subMenuItems", null, "Sub Menu Items", ""));
+		instance.defineProperty(new WbdStringProperty("items", null, "Items [ SubItems]", "")); //sample format: Action[Save|Delete,Update], New, GoTo
+		instance.defineProperty(new WbdRadioTextProperty("visible", null, "Visible", "yes,no", "yes"));
 	}
 
 	@Override
@@ -104,32 +104,51 @@ public class DropdownWidget extends WbdWidgetController {
 	private void renderWidget(WbdGenerator generator, WbdWidget instance, WbdRenderHelper buf) throws WbdException {
 		String elementId = instance.getFinalProperty(generator, "elementId");
 		String items = instance.getFinalProperty(generator, "items");
-		String subMenuLabel = instance.getFinalProperty(generator, "subMenuLabel");
-		String subMenuItems = instance.getFinalProperty(generator, "subMenuItems");
+		String visible = instance.getFinalProperty(generator, "visible");
+		
+		String display = "";
+		if (visible.equals("yes")) {
+			display = "style='display:block; position: static; margin-bottom: 5px'";
+		} else {
+			display = "style='display:none;'";
+		}
+		
+		//format sample: Action[Save|Delete,Update], New, GoTo
+		String[] itemLists = items.split(",");
 		
 		if (!elementId.equals("")) {
 			elementId = " id='" + elementId + "' ";
 		}
 		
+		buf.append("<ul" + elementId + " class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu' " + display + ">\n");
 		
-		buf.append("<ul" + elementId + " class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu' style='display: block; position: static; margin-bottom: 5px;'>\n");
-		String[] itemList = items.split(",");
-		for (String item: itemList) {
-			buf.append("  <li><a tabindex='-1' href='#'>" + item + "</a></li>\n");
-		}
+		if (!items.equals("")) {
 		
-		if (!subMenuLabel.equals("")) {
-			buf.append("<li class='divider'></li>\n");
-			buf.append("<li class='dropdown-submenu'>\n");
-			buf.append("<a tabindex='-1' href='#'>" + subMenuLabel + "</a>\n");
-			buf.append(" <ul class='dropdown-menu'>\n");
-			
-			String[] menuItemList = subMenuItems.split(",");
-			for (String item: menuItemList) {
-				buf.append("  <li><a tabindex='-1' href='#'>" + item + "</a></li>\n");
+			for (String item: itemLists) {
+				int startBracket = item.indexOf("[") + 1;
+				if (startBracket == 0) {
+					//no sub items found
+					buf.append("  <li><a tabindex='-1' href='#'>" + item + "</a></li>\n");
+				} else {
+					String parentItem = item.substring(0, startBracket - 1).trim();
+					int endBracket = item.indexOf("]");
+					String subItems = item.substring(startBracket, endBracket);
+					String[] subItemList = subItems.split("\\|");
+					
+					buf.append("<li class='dropdown-submenu'>\n");
+					buf.append("<a tabindex='-1' href='#'>" + parentItem + "</a>\n");
+					buf.append(" <ul class='dropdown-menu'>\n");
+					
+					for (String subItem: subItemList) {
+						buf.append("  <li><a tabindex='-1' href='#'>" + subItem.trim() + "</a></li>\n");
+					}
+					buf.append(" </ul>\n");
+					buf.append("</li>\n");
+				}
 			}
-			buf.append(" </ul>\n");
-			buf.append("</li>\n");
+			
+		} else {
+			buf.append("<li><a tabindex='-1' href='#'>No items found</a></li>\n");
 		}
 		
 		buf.append("</ul>\n");
