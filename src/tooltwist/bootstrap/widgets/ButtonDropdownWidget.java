@@ -1,6 +1,8 @@
 package tooltwist.bootstrap.widgets;
 
 import tooltwist.bootstrap.properties.WbdSelectProperty;
+import tooltwist.ecommerce.AutomaticUrlParametersMode;
+import tooltwist.ecommerce.RoutingUIM;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.StylesheetCodeInserter;
@@ -43,8 +45,8 @@ public class ButtonDropdownWidget extends WbdWidgetController {
 	protected void init(WbdWidget instance) throws WbdException
 	{
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdStringProperty("label", null, "Label", "default"));
-		instance.defineProperty(new WbdStringProperty("items", null, "Items", ""));
+		instance.defineProperty(new WbdStringProperty("label", null, "Label", "My Button"));
+		instance.defineProperty(new WbdStringProperty("items", null, "Item | Navpoint", ""));
 		instance.defineProperty(new WbdSelectProperty("type", null, "Type", "primary,danger,warning,success,info,inverse", ""));
 		instance.defineProperty(new WbdRadioTextProperty("dropPosition", null, "Drop Position", "dropdown,dropup", "dropdown"));
 		instance.defineProperty(new WbdSelectProperty("sizes", null, "Sizes", "mini,small,large", ""));
@@ -53,19 +55,19 @@ public class ButtonDropdownWidget extends WbdWidgetController {
 	@Override
 	public void renderForDesigner(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException
 	{
-		renderWidget(generator, instance, buf);
+		renderDesigner(generator, ud, instance, buf);
 	}
 	
 	@Override
 	public void renderForPreview(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException
 	{
-		renderWidget(generator, instance, buf);
+		renderDesigner(generator, ud, instance, buf);
 	}
 
 	@Override
 	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper buf) throws WbdException
 	{
-		renderWidget(generator, instance, buf);
+		renderJSP(generator, ud, instance, buf);
 	}
 
 	@Override
@@ -94,7 +96,6 @@ public class ButtonDropdownWidget extends WbdWidgetController {
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "buttonDropdown_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -106,9 +107,48 @@ public class ButtonDropdownWidget extends WbdWidgetController {
 		return true;
 	}
 	
-	private void renderWidget(WbdGenerator generator, WbdWidget instance, WbdRenderHelper buf) throws WbdException {
+	private void renderDesigner(WbdGenerator generator, UimData ud, WbdWidget instance, WbdRenderHelper buf) throws WbdException {
+		
+		String buttonLabel = instance.getFinalProperty(generator, "label");
+		String items = instance.getFinalProperty(generator, "items");
+		
+		buf.append("	<div class='btn-group'>\n");
+		buf.append("<button class='btn'>" + buttonLabel + "</button>\n");
+		buf.append(" <button class='btn dropdown-toggle' data-toggle='dropdown' href='#'>\n");
+	    buf.append("   <span class='caret'></span>\n");
+	    buf.append(" </button>\n");
+	    buf.append("  <ul class='dropdown-menu'>\n");
+		
+		
+		if (!items.equals("")) {
+			
+		    String[] itemList = items.split(",");
+		    
+		    for (String item: itemList) {
+		    	
+		    	String[] itemContent = item.split("\\|");
+		    	String label = itemContent[0].trim();
+		    	String url = "#";
+		    	
+		    	//if item navpoint is defined.
+		    	if (itemContent.length == 2) {
+			    	String navpointId = itemContent[1].trim();
+					url = RoutingUIM.navpointUrl(ud.getCredentials(), navpointId, AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
+		    	}
+		    	
+		    	buf.append("<li><a href='" +  url + "'>" + label + "</a></li>\n");
+		    }
+		} else {
+			buf.append("<li><a href='#'>No items found</a></li>\n");
+		}
+	    
+	    buf.append(" </ul>\n");
+	    buf.append("</div>\n");
+	}
+	
+	private void renderJSP(WbdGenerator generator, UimData ud, WbdWidget instance, WbdRenderHelper buf) throws WbdException {
 		String elementId = instance.getFinalProperty(generator, "elementId");
-		String label = instance.getFinalProperty(generator, "label");
+		String buttonLabel = instance.getFinalProperty(generator, "label");
 		String items = instance.getFinalProperty(generator, "items");
 		String type = instance.getFinalProperty(generator, "type");
 		String dropPosition = instance.getFinalProperty(generator, "dropPosition");
@@ -136,20 +176,37 @@ public class ButtonDropdownWidget extends WbdWidgetController {
 		}
 		
 		buf.append("<div" + elementId + " class='btn-group " + dropPosition + "'>\n");
-		buf.append("<button class='btn " + type + sizeClass + "'>" + label + "</button>\n");
+		buf.append("<button class='btn " + type + sizeClass + "'>" + buttonLabel + "</button>\n");
 		buf.append(" <button class='btn dropdown-toggle " + type + sizeClass + "' data-toggle='dropdown' href='#'>\n");
 	    buf.append("   <span class='caret'></span>\n");
 	    buf.append(" </button>\n");
 	    buf.append("  <ul class='dropdown-menu'>\n");
-
-	    String[] itemList = items.split(",");
-		for (String item: itemList) {
-			buf.append("<li><a href='#'>" + item + "</a></li>\n");
+		
+		
+		if (!items.equals("")) {
+			
+		    String[] itemList = items.split(",");
+		    
+		    for (String item: itemList) {
+		    	
+		    	String[] itemContent = item.split("\\|");
+		    	String label = itemContent[0].trim();
+		    	String url = "#";
+		    	
+		    	//if item navpoint is defined.
+		    	if (itemContent.length == 2) {
+			    	String navpointId = itemContent[1].trim();
+					url = RoutingUIM.navpointUrl(ud.getCredentials(), navpointId, AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
+		    	}
+		    	
+		    	buf.append("<li><a href='" +  url + "'>" + label + "</a></li>\n");
+		    }
+		} else {
+			buf.append("No items found.");
 		}
 	    
 	    buf.append(" </ul>\n");
 	    buf.append("</div>\n");
-		
 	}
 	
 }
