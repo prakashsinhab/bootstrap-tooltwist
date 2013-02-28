@@ -1,5 +1,5 @@
 *.class
 .DS_Store
 .svn/
-/bin
 /bin/
+/target/
