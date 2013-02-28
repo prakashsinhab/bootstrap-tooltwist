@@ -128,15 +128,7 @@ public class ButtonDropdownWidget extends WbdWidgetController {
 		    	
 		    	String[] itemContent = item.split("\\|");
 		    	String label = itemContent[0].trim();
-		    	String url = "#";
-		    	
-		    	//if item navpoint is defined.
-		    	if (itemContent.length == 2) {
-			    	String navpointId = itemContent[1].trim();
-					url = RoutingUIM.navpointUrl(ud.getCredentials(), navpointId, AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
-		    	}
-		    	
-		    	buf.append("<li><a href='" +  url + "'>" + label + "</a></li>\n");
+		    	buf.append("<li><a href='#'>" + label + "</a></li>\n");
 		    }
 		} else {
 			buf.append("<li><a href='#'>No items found</a></li>\n");

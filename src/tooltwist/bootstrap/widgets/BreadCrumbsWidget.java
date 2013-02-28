@@ -48,19 +48,19 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 	@Override
 	public void renderForDesigner(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException
 	{
-		renderWidget(generator, instance, ud, buf);
+		renderDesigner(generator, instance, ud, buf);
 	}
 	
 	@Override
 	public void renderForPreview(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException
 	{
-		renderWidget(generator, instance, ud, buf);
+		renderDesigner(generator, instance, ud, buf);
 	}
 
 	@Override
 	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper buf) throws WbdException
 	{
-		renderWidget(generator, instance, ud, buf);
+		renderJSP(generator, instance, ud, buf);
 	}
 
 	@Override
@@ -99,7 +99,32 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 		return true;
 	}
 	
-	private void renderWidget(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException {
+	private void renderDesigner(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException {
+		List<WidgetNavpoint> navpointList = getNavpointList(instance, ud);
+		
+		if (navpointList.size() != 0) {
+			
+			buf.append("<ul class='breadcrumb'>\n");
+			
+			int size = navpointList.size();
+			for (int i = 0; i < size; i++) {
+				WidgetNavpoint widgetNavpoint = navpointList.get(i);
+				
+				buf.append("  <li><a href='#'>" + widgetNavpoint.getLabel() + "</a> \n");
+				
+				int lastIndex = size - 1;
+				if (i != lastIndex) {
+					buf.append("		<span class='divider'>/</span>");
+				}
+				buf.append("	  </li>\n");
+			}
+			buf.append("</ul>\n");
+		} else {
+			buf.append("<span><li><a href='#'>Select base navpoint</a></li></span>");
+		}
+	}
+	
+	private void renderJSP(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException {
 		
 		List<WidgetNavpoint> navpointList = getNavpointList(instance, ud);
 	
@@ -121,9 +146,11 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 			}
 			buf.append("</ul>\n");
 		} else {
-			buf.append("<span>Empty</span>");
+			buf.append("<span><li><a href='#'>Select base navpoint</a></li></span>");
 		}
 	}
+	
+	
 	
 	private List<WidgetNavpoint> getNavpointList(WbdWidget instance, UimData ud) throws WbdException {
 		List<WidgetNavpoint> navpointList = new ArrayList<WidgetNavpoint>();

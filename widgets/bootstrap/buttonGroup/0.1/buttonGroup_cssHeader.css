@@ -7,9 +7,9 @@
 }
 
 .btn-group-vertical > .btn {
-  display: block;
-  float: none;
-  max-width: 100%;
+  display: block !important;
+  float: none !important;
+  max-width: 100% !important;
   -webkit-border-radius: 0;
    -moz-border-radius: 0;
    border-radius: 0;
