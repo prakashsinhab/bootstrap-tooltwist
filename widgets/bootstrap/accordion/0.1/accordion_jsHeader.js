@@ -3,7 +3,7 @@ var TtAccordion = function(){
 		
 		init: function() {
 			jQuery(".accordion-heading").unbind("click");
-			jQuery( document ).tooltip();
+			//jQuery( document ).tooltip();
 		},
 		
 		selectAccordion: function(accordionId, row) {
