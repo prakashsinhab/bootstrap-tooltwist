@@ -35,8 +35,8 @@ public class ThumbnailWidget extends ContainerWidget
 	protected void init(WbdWidget instance) throws WbdException
 	{
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdStringProperty("width", null, "Width", ""));
-		instance.defineProperty(new WbdStringProperty("height", null, "Height", ""));
+		instance.defineProperty(new WbdStringProperty("width", null, "Width", "180"));
+		instance.defineProperty(new WbdStringProperty("height", null, "Height", "160"));
 		instance.defineProperty(new WbdStringProperty("image", null, "Image", ""));
 //		instance.defineProperty(new WbdNavPointProperty("navpoint", null, "Navpoint", ""));
 	}
