@@ -4,7 +4,7 @@ var NavBar = function() {
 		
 		init: function() {
 			jQuery(".accordion-heading").unbind("click");
-			jQuery( document ).tooltip();
+//			jQuery( document ).tooltip();
 		},
 		
 		selectNavBar: function(accordionId, row) {
