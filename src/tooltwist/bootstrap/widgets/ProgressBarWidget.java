@@ -36,7 +36,7 @@ public class ProgressBarWidget extends WbdWidgetController {
 	protected void init(WbdWidget instance) throws WbdException
 	{
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdStringProperty("width", null, "width", ""));
+		instance.defineProperty(new WbdStringProperty("width", null, "% complete", ""));
 		instance.defineProperty(new WbdSelectProperty("subType", null, "Sub Type", "info,success,warning,danger", ""));
 		instance.defineProperty(new WbdRadioTextProperty("striped", null, "Striped", "yes,no", "yes"));
 		instance.defineProperty(new WbdRadioTextProperty("active", null, "Active", "yes,no", "yes"));
@@ -117,7 +117,7 @@ public class ProgressBarWidget extends WbdWidgetController {
 		String classes = String.format("progress progress-%s%s%s", subType, stripedClass, activeClass);
 		
 		buf.append("<div id='" + elementId + "' class='" + classes + "'>\n");
-		buf.append("<div class='bar' style='width: " + width + "px'>&nbsp;</div>\n");
+		buf.append("<div class='bar' style='width: " + width + "%'>&nbsp;</div>\n");
 		buf.append("</div>\n");
 	}
 	
