@@ -1,0 +1,25 @@
+.btn-group .dropdown-toggle  {
+	display: none !important;
+}
+
+.btn-group .btn {
+	display: inline-block;
+	padding: 4px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	line-height: 20px;
+	color: #333333;
+	text-align: center;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	vertical-align: middle;
+	cursor: pointer;
+	float: left;
+}
+
+.btn-group .dropdown-menu {
+	list-style-type: none;
+	position: relative;
+	padding: 0px;
+	margin: 0px;
+	display: block !important;
+}

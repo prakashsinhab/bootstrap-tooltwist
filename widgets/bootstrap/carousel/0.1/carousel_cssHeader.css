@@ -1,14 +1,14 @@
-.carousel .item {
-	float: left;
+.carouselContainer .item {
 	border: 1px solid #aaa;
-	width: 200px;
+	width: 100px;
 	text-align: center;
 	vertical-align: middle;
 	background: #e6e6e6 url(images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x;
-	height: auto;
+	height: 50px;
+	margin: 10px;
 }
 
-.carousel .item img {
+.carouselContainer .item img {
 	width: 100%;
 	height: 50px;
 }
@@ -20,4 +20,8 @@
 .carousel .carousel-inner {
 	border: 1px solid #d3d3d3;
 	height: 30px;
+}
+
+.carouselContainer td {
+	margin: 0 5px;
 }

@@ -36,10 +36,15 @@ public class CarouselWidget extends ContainerWidget
 	@Override
 	protected void init(WbdWidget instance) throws WbdException
 	{
-		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", "myCarousel"));
+		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
 		instance.defineProperty(new WbdStringProperty("noOfItems", null, "No of Items", "3"));
-		instance.defineProperty(new WbdStringProperty("width", null, "width", ""));
 		instance.defineProperty(new WbdStringProperty("activeIndex", null, "Active Index", "0"));
+	}
+	
+	@Override
+	public WbdSizeInfo getSizeInfo(WbdGenerator generator, WbdWidget instance) throws WbdException
+	{
+	    return WbdSizeInfo.unknownSizeInfo();
 	}
 	
 	@Override
@@ -88,12 +93,6 @@ public class CarouselWidget extends ContainerWidget
 	}
 	
 	@Override
-	public WbdSizeInfo getSizeInfo(WbdGenerator generator, WbdWidget instance) throws WbdException
-	{
-		return WbdSizeInfo.unknownSizeInfo();
-	}
-	
-	@Override
 	public void renderForPreview(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException
 	{
 		render(generator, instance, ud, rh);
@@ -115,13 +114,12 @@ public class CarouselWidget extends ContainerWidget
 
 		String elementId = instance.getFinalProperty(generator, "elementId");
 		String noOfItems = instance.getFinalProperty(generator, "noOfItems");
-		String width = instance.getFinalProperty(generator, "width");
 		String activeIndexStr = instance.getFinalProperty(generator, "activeIndex");
 		int activeIndex = Integer.parseInt(activeIndexStr);
 		
 		int items = Integer.parseInt(noOfItems);
 		
-		rh.append("<div id='" + elementId + "' class='carousel slide' style='width:" + width + "'>\n");
+		rh.append("<div id='" + elementId + "' class='carousel slide'>\n");
 		rh.append("  <ol class='carousel-indicators'>\n");
 		for (int cnt = 0; cnt < items; cnt++) {
 			if (cnt == activeIndex) {
@@ -132,9 +130,9 @@ public class CarouselWidget extends ContainerWidget
 		}
 		rh.append("</ol>\n");	
 		rh.append(" <div class='carousel-inner'>\n");
-		
+
 		for (int cnt = 0; cnt < items; cnt++) {
-			String indexPrefix = "column-"+cnt+"-";
+			String indexPrefix = cnt +",";
 			
 			if (cnt == activeIndex) {
 				rh.append(" 	<div class='active item'>\n");
@@ -146,7 +144,6 @@ public class CarouselWidget extends ContainerWidget
 		}
 		
 		rh.append("</div>\n"); 
-		
 		rh.append("  <a class='carousel-control left' href='#" + elementId  + "' data-slide='prev'>&lsaquo;</a>\n");
 		rh.append("  <a class='carousel-control right' href='#" + elementId + "' data-slide='next'>&rsaquo;</a>\n");
 		rh.append("	</div>\n");
@@ -157,19 +154,16 @@ public class CarouselWidget extends ContainerWidget
 		String noOfItems = instance.getFinalProperty(generator, "noOfItems");
 		int items = Integer.parseInt(noOfItems);
 		
-		rh.append("<div class='carousel slide'>\n");
-		rh.append(" <div class='carousel-inner'>\n");
-		
-		
+		rh.append("<table class='carouselContainer' cellpadding='5' cellspacing='5'>");
+		rh.append("<tr>\n");
 		for (int cnt = 0; cnt < items; cnt++) {
-			String indexPrefix = "column-"+cnt+"-";
-			rh.append(" 	<div class='active item'>\n");
+			String indexPrefix = cnt +",";
+			rh.append("		<td class='item'>\n");
 			this.flowChildren_renderForDesigner(generator, instance, ud, rh, indexPrefix);
-			rh.append("     </div>\n");
+			rh.append("     </td>\n");
 		}
-		
-		rh.append(" </div>\n");
-		rh.append("</div> \n");
+		rh.append("</tr>\n");
+		rh.append("</table>");	
 		
 	}
 

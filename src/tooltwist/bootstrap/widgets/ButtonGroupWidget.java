@@ -1,5 +1,7 @@
 package tooltwist.bootstrap.widgets;
 
+import tooltwist.ecommerce.AutomaticUrlParametersMode;
+import tooltwist.ecommerce.RoutingUIM;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.StylesheetCodeInserter;
@@ -41,26 +43,26 @@ public class ButtonGroupWidget extends WbdWidgetController {
 	protected void init(WbdWidget instance) throws WbdException
 	{
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdStringProperty("items", null, "Items", ""));
+		instance.defineProperty(new WbdStringProperty("items", null, "Items | Navpoint", ""));
 		instance.defineProperty(new WbdRadioTextProperty("vertical", null, "Vertical", "yes,no", "no"));
 	}
 
 	@Override
 	public void renderForDesigner(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException
 	{
-		renderWidget(generator, instance, buf);
+		renderWidget(generator, ud, instance, buf, Render.DESIGNER);
 	}
 	
 	@Override
 	public void renderForPreview(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException
 	{
-		renderWidget(generator, instance, buf);
+		renderWidget(generator, ud, instance, buf, Render.DESIGNER);
 	}
 
 	@Override
 	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper buf) throws WbdException
 	{
-		renderWidget(generator, instance, buf);
+		renderWidget(generator, ud, instance, buf, Render.PRODUCTION);
 	}
 
 	@Override
@@ -89,7 +91,6 @@ public class ButtonGroupWidget extends WbdWidgetController {
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "buttonGroup_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
@@ -101,7 +102,7 @@ public class ButtonGroupWidget extends WbdWidgetController {
 		return true;
 	}
 	
-	private void renderWidget(WbdGenerator generator, WbdWidget instance, WbdRenderHelper buf) throws WbdException {
+	private void renderWidget(WbdGenerator generator, UimData ud, WbdWidget instance, WbdRenderHelper buf, Render render) throws WbdException {
 		String elementId = instance.getFinalProperty(generator, "elementId");
 		String items = instance.getFinalProperty(generator, "items");
 		String vertical = instance.getFinalProperty(generator, "vertical");
@@ -117,12 +118,34 @@ public class ButtonGroupWidget extends WbdWidgetController {
 		
 		buf.append("<div"+ elementId + " class='btn-group" + verticalClass + "'>\n");
 		
-		String[] itemList = items.split(",");
-		for (String item: itemList) {
-			buf.append("  <button class='btn'>" + item + "</button>\n");
+		if (!items.equals("")) {
+			
+		    String[] itemList = items.split(",");
+		    
+		    for (String item: itemList) {
+		    	
+		    	String[] itemContent = item.split("\\|");
+		    	String label = itemContent[0].trim();
+		    	String url = "#";
+		    	
+		    	if (render == Render.PRODUCTION) {
+		        	//if item navpoint is defined.
+			    	if (itemContent.length == 2) {
+				    	String navpointId = itemContent[1].trim();
+						url = RoutingUIM.navpointUrl(ud.getCredentials(), navpointId, AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
+			    	}
+		    	}
+		    	
+				buf.append("  <button class='btn'><a href='" + url + "'>" + label + "</a></button>\n");
+		    }
+		} else {
+			buf.append("<button class='btn'><a href='#'>Default</a></button>");
 		}
-		
 		buf.append("</div>\n");
+	}
+	
+	enum Render {
+		 DESIGNER, PRODUCTION;
 	}
 	
 }
