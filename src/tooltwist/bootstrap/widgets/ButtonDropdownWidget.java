@@ -52,7 +52,7 @@ import com.dinaa.xpc.XpcSecurity;
 public class ButtonDropdownWidget extends ContainerWidget
 {
 	
-	Logger logger = Logger.getLogger(NavBarWidget.class);
+	Logger logger = Logger.getLogger(ButtonDropdownWidget.class);
 	
 	private static final String BUTTONDROPDOWN_INDEX_PREFIX = "buttonDropDown-";
 	private static final boolean USE_PRODUCTION_HELPER = false;
