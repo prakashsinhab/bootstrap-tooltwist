@@ -198,6 +198,7 @@ public class ButtonGroupWidget extends ContainerWidget
 			verticalClass = " btn-group-vertical";
 		}
 		
+		rh.append("<span class='widgetProperty'>ButtonGroup Properties</span>\n");
 		rh.append("<div"+ elementId + " class='btn-group" + verticalClass + "'>\n");
 		
 		for(int row = 0; row < Integer.valueOf(rows); row++) {
@@ -424,6 +425,20 @@ public class ButtonGroupWidget extends ContainerWidget
 			rh.append("</td>");
 			rh.append("</tr>");
 			
+			rh.append("<tr>");
+			rh.append("<td id=\"id-designer-properties-buttonGroup3\">");//[elementId, rows, selectedRow, position, inverted, _widgetId, _controller, _linkedWidget]
+			rh.append("<br>");
+			XpcSecurity credentials = ud.getCredentials();
+			boolean canChangeGrid = credentials.hasRole(DesignerRole.CHANGE_GRIDS.getRoleCode());
+			if (instance.mayEdit(ud) && canChangeGrid) {
+				
+				rh.append("  <span class=\"button-Group\" style=\"float: right;cursor: pointer;\" onclick=\"ButtonGroup.removeItem('"+id.fullPath()+"');\" title=\"Remove Item.\">&nbsp;-&nbsp;</span>");
+				rh.append("  <span class=\"button-Group\" style=\"float: right;cursor: pointer;\" onclick=\"ButtonGroup.insertItem('"+id.fullPath()+"');\" title=\"Insert item.\">&nbsp;+&nbsp;</span>");
+			}
+			
+			rh.append("</td>");
+			rh.append("</tr>");
+			
 		}else {
 			
 			//custom property in dialog  when clicking an item.
@@ -435,20 +450,6 @@ public class ButtonGroupWidget extends ContainerWidget
 			rh.append("</td>");
 			rh.append("</tr>");
 		}
-		
-		rh.append("<tr>");
-		rh.append("<td id=\"id-designer-properties-buttonGroup3\">");//[elementId, rows, selectedRow, position, inverted, _widgetId, _controller, _linkedWidget]
-		rh.append("<br>");
-		XpcSecurity credentials = ud.getCredentials();
-		boolean canChangeGrid = credentials.hasRole(DesignerRole.CHANGE_GRIDS.getRoleCode());
-		if (instance.mayEdit(ud) && canChangeGrid) {
-			
-			rh.append("  <span class=\"button-Group\" style=\"float: right;cursor: pointer;\" onclick=\"ButtonGroup.removeItem('"+id.fullPath()+"');\" title=\"Remove Item.\">&nbsp;-&nbsp;</span>");
-			rh.append("  <span class=\"button-Group\" style=\"float: right;cursor: pointer;\" onclick=\"ButtonGroup.insertItem('"+id.fullPath()+"');\" title=\"Insert item.\">&nbsp;+&nbsp;</span>");
-		}
-		
-		rh.append("</td>");
-		rh.append("</tr>");
 		
 		rh.append("</table>");
 		rh.append("<script>jQuery(\".button-Group\").button();</script>");
