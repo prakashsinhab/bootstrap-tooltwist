@@ -88,8 +88,6 @@ public class DropdownWidget extends WbdWidgetController {
 		{
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
-				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "dropdown_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}

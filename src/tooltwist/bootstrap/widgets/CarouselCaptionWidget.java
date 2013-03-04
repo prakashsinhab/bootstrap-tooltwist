@@ -80,8 +80,7 @@ public class CarouselCaptionWidget extends WbdWidgetController {
 		{
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
-				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "carouselCaption_cssHeader.css")
+					
 			};
 			codeInserterList.add(arr);
 		}

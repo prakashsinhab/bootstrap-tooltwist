@@ -66,7 +66,7 @@ public class CarouselWidget extends ContainerWidget
 		{
 			// Add code inserters for preview mode
 			CodeInserter[] arr = {
-					
+					new StylesheetCodeInserter(generator, instance, "carousel_cssHeader.css"),
 			};
 			codeInserterList.add(arr);
 		}

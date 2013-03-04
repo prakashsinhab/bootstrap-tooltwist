@@ -86,7 +86,6 @@ public class LabelAndBadgeWidget extends WbdWidgetController {
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
 				// Include a CSS snippet
-					new StylesheetCodeInserter(generator, instance, "labelAndBadge_cssHeader.css")
 			};
 			codeInserterList.add(arr);
 		}
