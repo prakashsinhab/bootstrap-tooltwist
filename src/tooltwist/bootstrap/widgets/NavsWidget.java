@@ -121,19 +121,25 @@ public class NavsWidget extends ContainerWidget {
 		}
 		rh.append("<div class='tabbable " + tabDirection + "'>\n");
 		
-		rh.append("<ul " + elementId + "class='nav " + type + "'>\n");
+		StringBuffer tabNav = new StringBuffer();
+		tabNav.append("<ul " + elementId + "class='nav " + type + "'>\n");
 		String[] tabList = tabs.split(",");
 		for (String label: tabList) {
 			
 			if (label.equalsIgnoreCase(activeTab)) {
-				rh.append("  <li class='active'>\n");
+				tabNav.append("  <li class='active'>\n");
 			} else {
-				rh.append("  <li>\n");
+				tabNav.append("  <li>\n");
 			}
-			rh.append("   <a href='#" + label + "' data-toggle='tab'>" + label + "</a>\n");
-			rh.append("  </li>\n");
+			tabNav.append("   <a href='#" + label + "' data-toggle='tab'>" + label + "</a>\n");
+			tabNav.append("  </li>\n");
 		}
-		rh.append("</ul>\n");
+		tabNav.append("</ul>\n");
+		
+		
+		if (!tabDirection.equalsIgnoreCase("tabs-below")) {
+			rh.append(tabNav);
+		}
 		
 		int size = tabList.length;
 		rh.append("<table class='tabContainer' cellpadding='5' cellspacing='5'>");
@@ -146,6 +152,13 @@ public class NavsWidget extends ContainerWidget {
 		}
 		rh.append("</tr>\n");
 		rh.append("</table>");	
+		
+		if (tabDirection.equalsIgnoreCase("tabs-below")) {
+			rh.append(tabNav);
+		}
+		
+		rh.append("</div>\n");
+		
 	}
 	
 	private void renderJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper rh) throws Exception {
@@ -161,23 +174,27 @@ public class NavsWidget extends ContainerWidget {
 		}
 		
 		rh.append("<div class='tabbable " + tabDirection + "'>\n");
-		rh.append("<ul " + elementId + "class='nav " + type + "'>\n");
 		
+		StringBuffer tabNav = new StringBuffer();
+		tabNav.append("<ul " + elementId + "class='nav " + type + "'>\n");
 		String[] tabList = tabs.split(",");
 		for (String label: tabList) {
 			
 			if (label.equalsIgnoreCase(activeTab)) {
-				rh.append("  <li class='active'>\n");
+				tabNav.append("  <li class='active'>\n");
 			} else {
-				rh.append("  <li>\n");
+				tabNav.append("  <li>\n");
 			}
 			
 			String id = "#" + label.toLowerCase();
-			rh.append("   <a href='" + id + "' data-toggle='tab'>" + label + "</a>\n");
-			rh.append("  </li>\n");
+			tabNav.append("   <a href='" + id + "' data-toggle='tab'>" + label + "</a>\n");
+			tabNav.append("  </li>\n");
 		}
+		tabNav.append("  </ul>\n");
 		
-		rh.append("  </ul>\n");
+		if (!tabDirection.equalsIgnoreCase("tabs-below")) {
+			rh.append(tabNav);
+		}
 		
 		rh.append("  <div class='tab-content'>\n");
 		
@@ -195,8 +212,12 @@ public class NavsWidget extends ContainerWidget {
 			
 			rh.append(" 	</div>\n");
 		}
-		
 		rh.append("	  </div>\n");
+		
+		if (tabDirection.equalsIgnoreCase("tabs-below")) {
+			rh.append(tabNav);
+		}
+		
 		rh.append("	</div>\n");
 	}
 	
