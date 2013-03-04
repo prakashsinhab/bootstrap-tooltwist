@@ -32,9 +32,11 @@ public class AlertWidget extends WbdWidgetController
 	protected void init(WbdWidget instance) throws WbdException
 	{
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-//		instance.defineProperty(new WbdStringProperty("title", null, "Title", ""));
 		instance.defineProperty(new WbdStringProperty("message", null, "Message", "Your message here."));
 		instance.defineProperty(new WbdRadioTextProperty("type", null, "Type", "Warning:block,Error:error,Success:success,Info:info", "info"));
+		instance.defineProperty(new WbdRadioTextProperty("display", null, "Display", "Yes:block,No:none", "block"));
+		instance.defineProperty(new WbdRadioTextProperty("animate", null, "Animation", "Fade:fade,Slide:slide", ""));
+		instance.defineProperty(new WbdStringProperty("timeOut", null, "Time Out", "0"));
 		//instance.defineProperty(new WbdNavPointProperty("navpoint", null, "Navpoint", ""));
 	}
 	
@@ -50,6 +52,7 @@ public class AlertWidget extends WbdWidgetController
 
 				// Include a CSS snippet
 				new StylesheetCodeInserter(generator, instance, "alert_cssHeader.css"),
+				
 			};
 			codeInserterList.add(arr);
 		}
@@ -75,20 +78,8 @@ public class AlertWidget extends WbdWidgetController
 		{
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
-//				// Link to an external Javascript file
-//				new JavascriptLinkInserter(jsUrl),
-					
-//				// Link to an external stylesheet
-//				new StylesheetLinkInserter(cssUrl),
-					
-				// Include a javascript snippet 
-//				new JavascriptCodeInserter(generator, instance, "alert_jsHeader.js"),
-					
-				// Include a CSS snippet
-//				new StylesheetCodeInserter(generator, instance, "alert_cssHeader.css"),
-
-//				// Add import statements to the JSP
-//				new PageImportCodeInserter(XData.class.getName()),
+					// Include a JS snippet
+					new JavascriptCodeInserter(generator, instance, "alert_jsHeader.js")
 			};
 			codeInserterList.add(arr);
 
@@ -137,8 +128,14 @@ public class AlertWidget extends WbdWidgetController
 	private SnippetParam[] getSnippetParams(WbdGenerator generator, WbdWidget instance, UimData ud) throws WbdException {
 		String type = instance.getProperty("type", null);
 		String message = instance.getProperty("message", null);
+		String display = instance.getProperty("display", null);
+		String animate = instance.getProperty("animate", null);
+		String timeOut = instance.getProperty("timeOut", null);
 		SnippetParam[] params = {
 			new SnippetParam("type", type),
+			new SnippetParam("display", display),
+			new SnippetParam("animate", animate),
+			new SnippetParam("timeOut", timeOut),
 			new SnippetParam("message", message)
 		};
 		return params;
