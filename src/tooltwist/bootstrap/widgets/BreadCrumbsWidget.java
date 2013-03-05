@@ -22,6 +22,7 @@ import tooltwist.wbd.WbdWidgetController;
 
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
+import java.util.Collections;
 
 
 public class BreadCrumbsWidget extends WbdWidgetController {
@@ -42,7 +43,9 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 	protected void init(WbdWidget instance) throws WbdException
 	{
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdNavPointProperty("navpoint", null, "Base Navpoint", ""));
+		//top navpoint is an optional parameter
+		instance.defineProperty(new WbdNavPointProperty("topNavpoint", null, "Top Navpoint", ""));
+		instance.defineProperty(new WbdNavPointProperty("baseNavpoint", null, "Base Navpoint", ""));
 	}
 
 	@Override
@@ -120,7 +123,7 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 			}
 			buf.append("</ul>\n");
 		} else {
-			buf.append("<ul class='breadcrumb'><li><a href='#'>No child navpoints</a></li></ul>");
+			buf.append("<ul class='breadcrumb'><li><a href='#'>No Base Navpoint</a></li></ul>");
 		}
 	}
 	
@@ -146,7 +149,7 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 			}
 			buf.append("</ul>\n");
 		} else {
-			buf.append("<ul class='breadcrumb'><li><a href='#'>No child Navpoints</a></li></ul>");
+			buf.append("<ul class='breadcrumb'><li><a href='#'>No Base Navpoint</a></li></ul>");
 		}
 	}
 	
@@ -156,19 +159,48 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 		List<WidgetNavpoint> navpointList = new ArrayList<WidgetNavpoint>();
 		
 		//obtain the base navigation point
-		String navpointId = instance.getProperty("navpoint", null);
-		Navpoint navpoint = WbdCache.findNavPoint(navpointId, false);
-
-		if (navpoint != null) {
-			for (Navpoint child : navpoint.getChildren()) {
-				String label = child.getLabel();
-				String url = RoutingUIM.navpointUrl(ud.getCredentials(), child.getId(), AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
-				
-				WidgetNavpoint widgetNavpoint = new WidgetNavpoint(label, url);
-				navpointList.add(widgetNavpoint);	
+		String baseNavpointId = instance.getProperty("baseNavpoint", null);
+		if (!baseNavpointId.equals("")) {
+			Navpoint baseNavpoint = WbdCache.findNavPoint(baseNavpointId, false);
+			String baseUrl = RoutingUIM.navpointUrl(ud.getCredentials(), baseNavpoint.getId(), AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
+			navpointList.add(new WidgetNavpoint(baseNavpoint.getLabel(), baseUrl));
+			
+			String topNavId = "";
+			Navpoint root = null;
+			String topNavpointId = instance.getProperty("topNavpoint", null);
+			if (topNavpointId.equals("")) {
+				//set the root if no top navpoint found.
+				root = baseNavpoint.getRoot();
+				topNavId = root.getId();
+			} else {
+				//obtain top navpoint
+				Navpoint topNavpoint = WbdCache.findNavPoint(topNavpointId, false);
+				topNavId = topNavpoint.getId();
 			}
+			
+			//add all the navpoints from base to top
+			String navId = "";
+			Navpoint parentNav = null;
+			while (!topNavId.equals(navId) && !topNavId.equals(baseNavpointId)) {
+
+				if (parentNav == null) {
+					parentNav = baseNavpoint.getParent();
+				}
+				//set tmpNav as temporary holder for the parentNavpoint
+				Navpoint tmpNav = parentNav.getParent();
+				if (tmpNav == null) break;
+				
+				navId = parentNav.getId();
+				String url = RoutingUIM.navpointUrl(ud.getCredentials(), parentNav.getId(), AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
+				WidgetNavpoint widgetNavpoint = new WidgetNavpoint(parentNav.getLabel(), url);
+				navpointList.add(widgetNavpoint);	
+				
+				parentNav = tmpNav;
+			}
+			
+			//now reverse the order
+			Collections.reverse(navpointList);
 		}
-		
 		return navpointList;
 	}
 	
