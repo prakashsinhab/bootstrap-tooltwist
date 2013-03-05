@@ -9,7 +9,8 @@ var ButtonDropDown = function() {
 				return TtPane_layout.loadTheEditPane({
 					op: "selectItem",
 					index: row,
-					w: buttonDropDownId
+					w: buttonDropDownId,
+					currentState : getCurrentState()
 				});
 				
 			}, 100);
@@ -18,14 +19,16 @@ var ButtonDropDown = function() {
 		insertItem: function(accordionId) {
 			return TtPane_layout.loadTheEditPane({
 				op: "insertItem",
-				w: accordionId
+				w: accordionId,
+				currentState : getCurrentState()
 			});
 		},
 		
 		removeItem: function(accordionId) {
 			return TtPane_layout.loadTheEditPane({
 				op: "removeItem",
-				w: accordionId
+				w: accordionId,
+				currentState : getCurrentState()
 			});
 		}
 		

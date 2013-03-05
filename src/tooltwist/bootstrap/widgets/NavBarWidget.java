@@ -249,7 +249,7 @@ public class NavBarWidget extends ContainerWidget
 			
 			rh.append("<div class=\"navbar "+invertedClass+"\">\n" + 
 					"  <div class=\"navbar-inner\">\n" + 
-					"    <a class=\"brand\" href=\"#\">"+navTitle+"</a>\n" + 
+					"    <a class=\"brand\" href=\"\">"+navTitle+"</a>\n" + 
 					"    <ul class=\"nav\">\n"); 
 			 
 					
@@ -261,7 +261,7 @@ public class NavBarWidget extends ContainerWidget
 				WbdChildIndex wbdChildIndex = new WbdChildIndex(NAVBAR_INDEX_PREFIX+row);
 				String title = instance.getProperty("title", wbdChildIndex);
 				
-				rh.append("      <li class=\""+clazz+" designer-properties\"  id=\""+navBarId + "["+NAVBAR_INDEX_PREFIX+row+"]" +"\" onclick=\"NavBar.selectNavBar('"+navBarId.fullPath()+"','"+row+"')\"><a href=\"#\">"+title+"</a></li>\n");
+				rh.append("      <li class=\""+clazz+" designer-properties\"  id=\""+navBarId + "["+NAVBAR_INDEX_PREFIX+row+"]" +"\" onclick=\"NavBar.selectNavBar('"+navBarId.fullPath()+"','"+row+"')\"><a href=\"javascript:void(0);\">"+title+"</a></li>\n");
 				
 			}
 			

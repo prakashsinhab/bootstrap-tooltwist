@@ -222,7 +222,7 @@ public class ButtonDropdownWidget extends ContainerWidget
 			String title = instance.getProperty("title", wbdChildIndex);
 			
 			rh.append("      <li class=\"designer-properties\"  id=\""+buttonDropDownId + "["+BUTTONDROPDOWN_INDEX_PREFIX+row+"]" + 
-										"\" onclick=\"ButtonDropDown.selectItem('"+buttonDropDownId.fullPath()+"','"+row+"')\"><a href=\"#\">"+title+"</a></li>\n");
+										"\" onclick=\"ButtonDropDown.selectItem('"+buttonDropDownId.fullPath()+"','"+row+"')\"><a href=\"javascript:void(0);\">"+title+"</a></li>\n");
 			
 		}
 	    

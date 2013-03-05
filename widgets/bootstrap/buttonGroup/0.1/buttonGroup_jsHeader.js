@@ -9,7 +9,8 @@ var ButtonGroup = function() {
 				return TtPane_layout.loadTheEditPane({
 					op: "selectItem",
 					index: row,
-					w: buttonGroupId
+					w: buttonGroupId,
+					currentState : getCurrentState()
 				});
 				
 			}, 100);
@@ -18,14 +19,16 @@ var ButtonGroup = function() {
 		insertItem: function(buttonGroupId) {
 			return TtPane_layout.loadTheEditPane({
 				op: "insertItem",
-				w: buttonGroupId
+				w: buttonGroupId,
+				currentState : getCurrentState()
 			});
 		},
 		
 		removeItem: function(buttonGroupId) {
 			return TtPane_layout.loadTheEditPane({
 				op: "removeItem",
-				w: buttonGroupId
+				w: buttonGroupId,
+				currentState : getCurrentState()
 			});
 		}
 		
