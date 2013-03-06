@@ -45,9 +45,13 @@ import com.dinaa.ui.UimHelper;
 import com.dinaa.ui.UimResult;
 import com.dinaa.xpc.XpcSecurity;
 
+
 /**
- * ButtonGroupWidget Widget
+ * 
+ * @author richarddimalanta
+ *@see https://github.com/aravindnaidu/bootstrap-tooltwist/wiki/Button-groups
  */
+
 public class ButtonGroupWidget extends ContainerWidget
 {
 	
@@ -165,8 +169,7 @@ public class ButtonGroupWidget extends ContainerWidget
 				
 				navpointId = RoutingUIM.navpointUrl(ud, navpointId, AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
 				
-				rh.append("  <button id=\""+buttonDropDownId + "["+BUTTONGROUP_INDEX_PREFIX+row+"]\" class=\"btn designer-properties\" " +
-						"			onclick=\"ButtonGroup.selectItem('"+buttonDropDownId.fullPath()+"','"+row+"')\"><a href=\""+navpointId+"\">"+title+"</a></button>\n");
+				rh.append("  <button class=\"btn\"><a href=\""+navpointId+"\">"+title+"</a></button>\n");
 				
 			}
 			
@@ -364,7 +367,6 @@ public class ButtonGroupWidget extends ContainerWidget
 			}
 		}
 	
-		
 		//for children
 		this.flowChildren_loadPropertiesFromXml(generator, widget, node, null);
 

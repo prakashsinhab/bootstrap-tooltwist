@@ -24,6 +24,11 @@ import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 import java.util.Collections;
 
+/**
+ * 
+ * @author richarddimalanta
+ *@see https://github.com/aravindnaidu/bootstrap-tooltwist/wiki/Breadcrumbs
+ */
 
 public class BreadCrumbsWidget extends WbdWidgetController {
 

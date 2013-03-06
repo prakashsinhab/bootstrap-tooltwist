@@ -46,9 +46,13 @@ import com.dinaa.ui.UimHelper;
 import com.dinaa.ui.UimResult;
 import com.dinaa.xpc.XpcSecurity;
 
+
 /**
- * ButtonDropdownWidget Widget
+ * 
+ * @author richarddimalanta
+ * @see https://github.com/aravindnaidu/bootstrap-tooltwist/wiki/Button-Dropdowns
  */
+
 public class ButtonDropdownWidget extends ContainerWidget
 {
 	

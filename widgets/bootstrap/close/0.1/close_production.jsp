@@ -26,7 +26,7 @@
 			hide: function() {
 				var type = '%%elementType%%';
 				if (type == 'class') {
-					var className = document.getElementsByClassName('%%elementName%%')
+					var className = document.getElementsByClassName('%%elementName%%');
 	                
 					for(var i=0; i < className.length; i++)
 	                {

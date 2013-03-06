@@ -186,3 +186,13 @@
   padding-right: 20px;
   padding-left: 20px;
 }
+
+.widgetProperty {
+	float: left;
+	font-size: 12px;
+	margin-top: 16;
+	padding: 10;
+	border: 1px dashed;
+	margin: 27 10px;
+}
+

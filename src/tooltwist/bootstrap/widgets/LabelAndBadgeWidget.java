@@ -18,6 +18,11 @@ import com.dinaa.data.XData;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 
+/**
+ * 
+ * @author richarddimalanta
+ *@see https://github.com/aravindnaidu/bootstrap-tooltwist/wiki/Labels-and-badges
+ */
 
 public class LabelAndBadgeWidget extends WbdWidgetController {
 

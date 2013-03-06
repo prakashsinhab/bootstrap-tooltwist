@@ -17,6 +17,11 @@ import tooltwist.wbd.WbdWidgetController;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 
+/**
+ * 
+ * @author richarddimalanta
+ * @see https://github.com/aravindnaidu/bootstrap-tooltwist/wiki/Progress-bars
+ */
 
 public class ProgressBarWidget extends WbdWidgetController {
 
