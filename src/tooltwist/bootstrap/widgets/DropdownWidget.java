@@ -196,8 +196,16 @@ public class DropdownWidget extends ContainerWidget
 			WbdChildIndex wbdChildIndex = new WbdChildIndex( DROPDOWN_INDEX_PREFIX + submenuPrefix );
 			String title = instance.getProperty("title", wbdChildIndex);
 			String subRows = instance.getProperty("rows", wbdChildIndex);
+
+			//add a submenu class if a sub-item was added.
+			String withSubClass = "";
+			if (subRows != null) {
+				if (Integer.valueOf(subRows) >= 1) {
+					withSubClass = "dropdown-submenu";
+				}
+			}
 			
-			rh.append("<li class='designer-properties dropdown-submenu' id='"+dropDownId + "["+DROPDOWN_INDEX_PREFIX+submenuPrefix+"]'>\n");
+			rh.append("<li class='designer-properties " + withSubClass + "' id='"+dropDownId + "["+DROPDOWN_INDEX_PREFIX+submenuPrefix+"]'>\n");
 			rh.append("  <a tabindex='-1' href='javascript:void(0);' onclick=\"DropDown.selectItem('"+dropDownId.fullPath()+"','"+row+"');\">"+title+"</a>\n");
 			
 			if (subRows != null && !subRows.equals("") && Integer.valueOf(subRows) > 0) {
@@ -224,11 +232,19 @@ public class DropdownWidget extends ContainerWidget
 			WbdChildIndex wbdChildIndex = new WbdChildIndex( DROPDOWN_INDEX_PREFIX + submenuPrefix );
 			String title = instance.getProperty("title", wbdChildIndex);
 			String subRows = instance.getProperty("rows", wbdChildIndex);
-			String navpointId = instance.getProperty("navpoint", wbdChildIndex);
 			
+			//add a submenu class if a sub-item was added.
+			String withSubClass = "";
+			if (subRows != null) {
+				if (Integer.valueOf(subRows) >= 1) {
+					withSubClass = "dropdown-submenu";
+				}
+			}
+			
+			String navpointId = instance.getProperty("navpoint", wbdChildIndex);
 			navpointId = RoutingUIM.navpointUrl(ud, navpointId, AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
 			
-			rh.append("<li class='designer-properties dropdown-submenu'>\n");
+			rh.append("<li class='designer-properties " + withSubClass + "'>\n");
 			rh.append("  <a tabindex='-1' href='" + navpointId + "'>" + title + "</a>\n");
 			
 			if (subRows != null && !subRows.equals("") && Integer.valueOf(subRows) > 0) {
