@@ -199,10 +199,8 @@ public class DropdownWidget extends ContainerWidget
 
 			//add a submenu class if a sub-item was added.
 			String withSubClass = "";
-			if (subRows != null) {
-				if (Integer.valueOf(subRows) >= 1) {
+			if (subRows != null && !subRows.equals("") && Integer.valueOf(subRows) > 0) {
 					withSubClass = "dropdown-submenu";
-				}
 			}
 			
 			rh.append("<li class='designer-properties " + withSubClass + "' id='"+dropDownId + "["+DROPDOWN_INDEX_PREFIX+submenuPrefix+"]'>\n");
@@ -235,10 +233,8 @@ public class DropdownWidget extends ContainerWidget
 			
 			//add a submenu class if a sub-item was added.
 			String withSubClass = "";
-			if (subRows != null) {
-				if (Integer.valueOf(subRows) >= 1) {
-					withSubClass = "dropdown-submenu";
-				}
+			if (subRows != null && !subRows.equals("") && Integer.valueOf(subRows) > 0) {
+				withSubClass = "dropdown-submenu";
 			}
 			
 			String navpointId = instance.getProperty("navpoint", wbdChildIndex);
