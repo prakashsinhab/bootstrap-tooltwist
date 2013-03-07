@@ -26,7 +26,7 @@ public class CarouselCaptionWidget extends WbdWidgetController {
 	@Override
 	public WbdSizeInfo getSizeInfo(WbdGenerator generator, WbdWidget instance) throws WbdException
 	{
-	    return WbdSizeInfo.unknownSizeInfo();
+		return WbdSizeInfo.unknownSizeInfo();
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class CarouselCaptionWidget extends WbdWidgetController {
 	{
 		renderWidget(generator, instance, buf);
 	}
-	
+
 	@Override
 	public void renderForPreview(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException
 	{
@@ -62,7 +62,7 @@ public class CarouselCaptionWidget extends WbdWidgetController {
 		{
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
-				// Include a CSS snippet
+					// Include a CSS snippet
 					new StylesheetCodeInserter(generator, instance, "carouselCaption_cssHeader.css")
 			};
 			codeInserterList.add(arr);
@@ -71,7 +71,7 @@ public class CarouselCaptionWidget extends WbdWidgetController {
 		{
 			// Add code inserters for preview mode
 			CodeInserter[] arr = {
-				// Include a CSS snippet
+					// Include a CSS snippet
 					new StylesheetCodeInserter(generator, instance, "carouselCaption_cssHeader.css")
 			};
 			codeInserterList.add(arr);
@@ -80,7 +80,7 @@ public class CarouselCaptionWidget extends WbdWidgetController {
 		{
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
-					
+
 			};
 			codeInserterList.add(arr);
 		}
@@ -91,17 +91,17 @@ public class CarouselCaptionWidget extends WbdWidgetController {
 	{
 		return true;
 	}
-	
+
 	private void renderWidget(WbdGenerator generator, WbdWidget instance, WbdRenderHelper rh) throws WbdException {
 		String title = instance.getFinalProperty(generator, "title");
 		String description = instance.getFinalProperty(generator, "description");
-		
+
 		rh.append("<div class='carousel-caption'>\n");
 		rh.append("<h4>" + title + "</h4>\n");
 		rh.append("<p>" + description + "</p>\n");
 		rh.append(" </div>\n");
-		
-		
+
+
 	}
-	
+
 }

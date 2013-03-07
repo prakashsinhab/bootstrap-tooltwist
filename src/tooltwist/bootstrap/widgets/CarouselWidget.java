@@ -29,7 +29,7 @@ import com.dinaa.ui.UimHelper;
  */
 public class CarouselWidget extends ContainerWidget
 {
-	
+
 	Logger logger = Logger.getLogger(CarouselWidget.class);
 	private static final boolean USE_PRODUCTION_HELPER = false;
 
@@ -40,25 +40,25 @@ public class CarouselWidget extends ContainerWidget
 		instance.defineProperty(new WbdStringProperty("noOfItems", null, "No of Items", "3"));
 		instance.defineProperty(new WbdStringProperty("activeIndex", null, "Active Index", "0"));
 	}
-	
+
 	@Override
 	public WbdSizeInfo getSizeInfo(WbdGenerator generator, WbdWidget instance) throws WbdException
 	{
-	    return WbdSizeInfo.unknownSizeInfo();
+		return WbdSizeInfo.unknownSizeInfo();
 	}
-	
+
 	@Override
 	public void getCodeInserters(WbdGenerator generator, WbdWidget instance, UimData ud, CodeInserterList codeInserterList) throws WbdException
 	{
-//TODO: Uncomment this as required
+		//TODO: Uncomment this as required
 		GenerationMode mode = generator.getMode();
 		if (mode == GenerationMode.DESIGN)
 		{
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
 
-//				// Include a CSS snippet
-				new StylesheetCodeInserter(generator, instance, "carousel_cssHeader.css"),
+					//				// Include a CSS snippet
+					new StylesheetCodeInserter(generator, instance, "carousel_cssHeader.css"),
 			};
 			codeInserterList.add(arr);
 		}
@@ -74,7 +74,7 @@ public class CarouselWidget extends ContainerWidget
 		{
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
-					
+
 			};
 			codeInserterList.add(arr);
 
@@ -85,40 +85,40 @@ public class CarouselWidget extends ContainerWidget
 		}
 
 	}
-	
+
 	@Override
 	public String getLabel(WbdWidget instance) throws WbdException
 	{
 		return "Carousel";
 	}
-	
+
 	@Override
 	public void renderForPreview(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException
 	{
 		render(generator, instance, ud, rh);
 	}
-	
+
 	@Override
 	public void renderForDesigner(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException
 	{
 		render(generator, instance, ud, rh);
-		
+
 	}
-	
+
 	@Override
 	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper rh) throws Exception {	
 		renderJSP(generator, instance, ud, rh);
 	}
-	
+
 	private void renderJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper rh) throws Exception {
 
 		String elementId = instance.getFinalProperty(generator, "elementId");
 		String noOfItems = instance.getFinalProperty(generator, "noOfItems");
 		String activeIndexStr = instance.getFinalProperty(generator, "activeIndex");
 		int activeIndex = Integer.parseInt(activeIndexStr);
-		
+
 		int items = Integer.parseInt(noOfItems);
-		
+
 		rh.append("<div id='" + elementId + "' class='carousel slide'>\n");
 		rh.append("  <ol class='carousel-indicators'>\n");
 		for (int cnt = 0; cnt < items; cnt++) {
@@ -133,7 +133,7 @@ public class CarouselWidget extends ContainerWidget
 
 		for (int cnt = 0; cnt < items; cnt++) {
 			String indexPrefix = cnt +",";
-			
+
 			if (cnt == activeIndex) {
 				rh.append(" 	<div class='active item'>\n");
 			} else {
@@ -142,18 +142,18 @@ public class CarouselWidget extends ContainerWidget
 			this.flowChildren_renderForJSP(generator, instance, ud, rh, indexPrefix);
 			rh.append("     </div>\n");
 		}
-		
+
 		rh.append("</div>\n"); 
 		rh.append("  <a class='carousel-control left' href='#" + elementId  + "' data-slide='prev'>&lsaquo;</a>\n");
 		rh.append("  <a class='carousel-control right' href='#" + elementId + "' data-slide='next'>&rsaquo;</a>\n");
 		rh.append("	</div>\n");
 	}
-	
+
 	private void render(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException {
-		
+
 		String noOfItems = instance.getFinalProperty(generator, "noOfItems");
 		int items = Integer.parseInt(noOfItems);
-		
+
 		rh.append("<table class='carouselContainer' cellpadding='5' cellspacing='5'>");
 		rh.append("<tr>\n");
 		for (int cnt = 0; cnt < items; cnt++) {
@@ -164,7 +164,7 @@ public class CarouselWidget extends ContainerWidget
 		}
 		rh.append("</tr>\n");
 		rh.append("</table>");	
-		
+
 	}
 
 	@Override
@@ -180,5 +180,5 @@ public class CarouselWidget extends ContainerWidget
 		instance.getProperties().writeProperties(pw, indent, null);
 		this.flowChildren_writeProperties(generator, instance, pw, indent, null);
 	}
-	
+
 }

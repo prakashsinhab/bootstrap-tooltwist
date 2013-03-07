@@ -25,7 +25,7 @@ import com.dinaa.ui.UimHelper;
  */
 
 public class CloseWidget extends WbdWidgetController {
-	
+
 	private static final String SNIPPET_PRODUCTION = "close_production.jsp";
 	private static final boolean USE_PRODUCTION_HELPER = false;
 
@@ -38,7 +38,7 @@ public class CloseWidget extends WbdWidgetController {
 	@Override
 	public WbdSizeInfo getSizeInfo(WbdGenerator generator, WbdWidget instance) throws WbdException
 	{
-	    return WbdSizeInfo.unknownSizeInfo();
+		return WbdSizeInfo.unknownSizeInfo();
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class CloseWidget extends WbdWidgetController {
 	{
 		renderWidget(generator, instance, buf);
 	}
-	
+
 	@Override
 	public void renderForPreview(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException
 	{
@@ -76,7 +76,7 @@ public class CloseWidget extends WbdWidgetController {
 		{
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
-					
+
 			};
 			codeInserterList.add(arr);
 		}
@@ -84,7 +84,7 @@ public class CloseWidget extends WbdWidgetController {
 		{
 			// Add code inserters for preview mode
 			CodeInserter[] arr = {
-					
+
 			};
 			codeInserterList.add(arr);
 		}
@@ -92,7 +92,7 @@ public class CloseWidget extends WbdWidgetController {
 		{
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
-					
+
 			};
 			codeInserterList.add(arr);
 		}
@@ -103,12 +103,12 @@ public class CloseWidget extends WbdWidgetController {
 	{
 		return true;
 	}
-	
+
 	private void renderWidget(WbdGenerator generator, WbdWidget instance, WbdRenderHelper buf) throws WbdException {
-		
+
 		buf.append("<button class='close'>&times;</button>\n");
 	}
-	
+
 	private SnippetParam[] getSnippetParams(WbdGenerator generator, WbdWidget instance, UimData ud) throws WbdException {
 		String elementType = instance.getFinalProperty(generator, "elementType");
 		String elementName = instance.getFinalProperty(generator, "elementName");
@@ -118,5 +118,5 @@ public class CloseWidget extends WbdWidgetController {
 		};
 		return params;
 	}
-	
+
 }

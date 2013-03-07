@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.bootstrap.widgets.FooterWidget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>Footer</label>
+  <description>Page Footer</description>
+</widget>

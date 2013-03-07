@@ -17,6 +17,11 @@ import tooltwist.wbd.WbdWidgetController;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 
+/**
+ * 
+ * @author richarddimalanta
+ * @see https://github.com/aravindnaidu/bootstrap-tooltwist/wiki/Progress-bars
+ */
 
 public class ProgressBarWidget extends WbdWidgetController {
 
@@ -29,7 +34,7 @@ public class ProgressBarWidget extends WbdWidgetController {
 	@Override
 	public WbdSizeInfo getSizeInfo(WbdGenerator generator, WbdWidget instance) throws WbdException
 	{
-	    return WbdSizeInfo.unknownSizeInfo();
+		return WbdSizeInfo.unknownSizeInfo();
 	}
 
 	@Override
@@ -47,7 +52,7 @@ public class ProgressBarWidget extends WbdWidgetController {
 	{
 		renderWidget(generator, instance, buf);
 	}
-	
+
 	@Override
 	public void renderForPreview(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException
 	{
@@ -67,7 +72,7 @@ public class ProgressBarWidget extends WbdWidgetController {
 		{
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
-				// Include a CSS snippet
+					// Include a CSS snippet
 					new StylesheetCodeInserter(generator, instance, "progressBar_cssHeader.css")
 			};
 			codeInserterList.add(arr);
@@ -76,7 +81,7 @@ public class ProgressBarWidget extends WbdWidgetController {
 		{
 			// Add code inserters for preview mode
 			CodeInserter[] arr = {
-				// Include a CSS snippet
+					// Include a CSS snippet
 					new StylesheetCodeInserter(generator, instance, "progressBar_cssHeader.css")
 			};
 			codeInserterList.add(arr);
@@ -85,7 +90,7 @@ public class ProgressBarWidget extends WbdWidgetController {
 		{
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
-				// Include a CSS snippet
+					// Include a CSS snippet
 			};
 			codeInserterList.add(arr);
 		}
@@ -96,29 +101,29 @@ public class ProgressBarWidget extends WbdWidgetController {
 	{
 		return true;
 	}
-	
+
 	public void renderWidget(WbdGenerator generator, WbdWidget instance, WbdRenderHelper buf) throws WbdException {
 		String elementId = instance.getFinalProperty(generator, "elementId");
 		String width = instance.getFinalProperty(generator, "width");
 		String subType = instance.getFinalProperty(generator, "subType");
 		String striped = instance.getFinalProperty(generator, "striped");
 		String active = instance.getFinalProperty(generator, "active");
-		
+
 		String stripedClass = "";
 		if (striped.equalsIgnoreCase("yes")) {
 			stripedClass = " progress-striped";
 		}
-		
+
 		String activeClass = "";
 		if (active.equalsIgnoreCase("yes")) {
 			activeClass = " active";
 		}
-		
+
 		String classes = String.format("progress progress-%s%s%s", subType, stripedClass, activeClass);
-		
+
 		buf.append("<div id='" + elementId + "' class='" + classes + "'>\n");
 		buf.append("<div class='bar' style='width: " + width + "%'>&nbsp;</div>\n");
 		buf.append("</div>\n");
 	}
-	
+
 }

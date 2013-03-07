@@ -1,33 +1,35 @@
 
-var ButtonGroup = function() {
+var DropDown = function() {
 	
 	return {
 		
-		selectItem: function(buttonGroupId, row) {
-			TtPane_layout.hidePropertiesDialog();
+		selectItem: function(dropDownId, row) {
 			setTimeout(function() {
 				return TtPane_layout.loadTheEditPane({
 					op: "selectItem",
 					index: row,
-					w: buttonGroupId,
+					w: dropDownId,
 					currentState : getCurrentState()
 				});
 				
 			}, 100);
+			
 		},
 		
-		insertItem: function(buttonGroupId) {
+		insertItem: function(dropDownId, dropDownIndex) {
 			return TtPane_layout.loadTheEditPane({
 				op: "insertItem",
-				w: buttonGroupId,
+				w: dropDownId,
+				index: dropDownIndex,
 				currentState : getCurrentState()
 			});
 		},
 		
-		removeItem: function(buttonGroupId) {
+		removeItem: function(dropDownId, dropDownIndex) {
 			return TtPane_layout.loadTheEditPane({
 				op: "removeItem",
-				w: buttonGroupId,
+				w: dropDownId,
+				index: dropDownIndex,
 				currentState : getCurrentState()
 			});
 		}
