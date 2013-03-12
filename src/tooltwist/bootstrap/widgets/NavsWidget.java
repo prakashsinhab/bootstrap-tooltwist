@@ -178,6 +178,10 @@ public class NavsWidget extends ContainerWidget
 			}
 			tabNav.append("  </ul>\n");
 			
+			if (!tabDirection.equalsIgnoreCase("tabs-below")) {
+				rh.append(tabNav);
+			}
+			
 			rh.append("  <div class='tab-content'>\n");
 
 			int size = Integer.valueOf(rows);
