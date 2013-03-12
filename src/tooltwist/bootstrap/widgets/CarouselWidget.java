@@ -67,7 +67,6 @@ public class CarouselWidget extends ContainerWidget
 		instance.defineHiddenProperty(new WbdStringProperty("selectedRow", null, "Selected Row", "0"));
 
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", "myCarousel"));
-		instance.defineProperty(new WbdStringProperty("activeIndex", null, "Active Index", "0"));
 
 	}
 
@@ -138,19 +137,17 @@ public class CarouselWidget extends ContainerWidget
 	@Override
 	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper rh) throws Exception {
 		try {
-
-			String rows = instance.getProperty("rows", null);
+			final int FIRST_ITEM_INDEX = 0;
 			
+			String rows = instance.getProperty("rows", null);
 			String elementId = instance.getFinalProperty(generator, "elementId");
-			String activeIndexStr = instance.getFinalProperty(generator, "activeIndex");
-			int activeIndex = Integer.parseInt(activeIndexStr);
 
 			rh.append("<div id='" + elementId + "' class='carousel slide'>\n");
 			rh.append("  <ol class='carousel-indicators'>\n");
 
 			for(int row = 0; row < Integer.valueOf(rows); row++) {
 
-				if (row == activeIndex) {
+				if (row == FIRST_ITEM_INDEX) {
 					rh.append("    <li data-target='#" + elementId + "' data-slide-to='" + row + "' class='active'></li>\n");
 				} else {
 					rh.append("    <li data-target='#" + elementId + "' data-slide-to='" + row + "'></li>\n");
@@ -164,7 +161,7 @@ public class CarouselWidget extends ContainerWidget
 
 				String indexPrefix = row + ",";
 			
-				if (row == activeIndex) {
+				if (row == FIRST_ITEM_INDEX) {
 					rh.append(" 	<div class='active item'>\n");
 				} else {
 					rh.append(" 	<div class='item'>\n");
