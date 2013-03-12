@@ -71,7 +71,6 @@ public class NavsWidget extends ContainerWidget
 
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
 		instance.defineProperty(new WbdRadioTextProperty("type", null, "Type", "nav-tabs,nav-pills", "nav-tabs"));
-		instance.defineProperty(new WbdStringProperty("activeTab", null, "Active Tab", ""));
 		instance.defineProperty(new WbdSelectProperty("tabDirection", null, "Tabs Direction", "tabs-below,tabs-left,tabs-right", ""));
 
 	}
@@ -143,12 +142,12 @@ public class NavsWidget extends ContainerWidget
 	@Override
 	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper rh) throws Exception {
 		try {
-
+			final int FIRST_ITEM_INDEX = 0;
+			
 			String rows = instance.getProperty("rows", null);
 			
 			String elementId = instance.getFinalProperty(generator, "elementId");
 			String type = instance.getFinalProperty(generator, "type");
-			String activeTab = instance.getFinalProperty(generator, "activeTab");
 			String tabDirection = instance.getFinalProperty(generator, "tabDirection");
 
 			if (!elementId.equals("")) {
@@ -166,7 +165,8 @@ public class NavsWidget extends ContainerWidget
 
 				String title = instance.getProperty("title", wbdChildIndex);
 
-				if (title.equalsIgnoreCase(activeTab)) {
+				//set first item as active index
+				if (row == FIRST_ITEM_INDEX) {
 					tabNav.append("  <li class='active'>\n");
 				} else {
 					tabNav.append("  <li>\n");
@@ -191,11 +191,13 @@ public class NavsWidget extends ContainerWidget
 				WbdChildIndex wbdChildIndex = new WbdChildIndex(NAVS_INDEX_PREFIX+row);
 				String title = instance.getProperty("title", wbdChildIndex);
 
-				if (title.equalsIgnoreCase(activeTab)) {
+				//set first item as active index
+				if (row == FIRST_ITEM_INDEX) {
 					rh.append(" 	<div class='tab-pane active' id='" + title.toLowerCase() + "'>\n");
 				} else {
 					rh.append(" 	<div class='tab-pane' id='" + title.toLowerCase() + "'>\n");
 				}
+				
 				this.flowChildren_renderForJSP(generator, instance, ud, rh, indexPrefix);
 
 				rh.append(" 	</div>\n");
@@ -216,10 +218,10 @@ public class NavsWidget extends ContainerWidget
 	}
 
 	private void render(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException {
+		final int FIRST_ITEM_INDEX = 0;
 		
 		String elementId = instance.getFinalProperty(generator, "elementId");
 		String type = instance.getFinalProperty(generator, "type");
-		String activeTab = instance.getFinalProperty(generator, "activeTab");
 		String tabDirection = instance.getFinalProperty(generator, "tabDirection");
 		
 		String rows = instance.getProperty("rows", null);
@@ -237,11 +239,13 @@ public class NavsWidget extends ContainerWidget
 			WbdChildIndex wbdChildIndex = new WbdChildIndex(NAVS_INDEX_PREFIX+row);
 			String title = instance.getProperty("title", wbdChildIndex);
 			
-			if (title.equalsIgnoreCase(activeTab)) {
+			//set first item as active index
+			if (row == FIRST_ITEM_INDEX) {
 				tabNav.append("<li class=\"active designer-properties\"  id=\""+navsId + "["+NAVS_INDEX_PREFIX+row+"]\" onclick=\"Navs.selectItem('"+navsId.fullPath()+"','"+row+"')\">\n");
 			} else {
 				tabNav.append("<li class=\"designer-properties\"  id=\""+navsId + "["+NAVS_INDEX_PREFIX+row+"]\" onclick=\"Navs.selectItem('"+navsId.fullPath()+"','"+row+"')\">\n");
 			}
+			
 			tabNav.append("<a href=\"javascript:void(0);\">"+title+"</a></li>\n");
 		}
 
