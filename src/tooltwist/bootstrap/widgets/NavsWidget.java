@@ -455,8 +455,8 @@ public class NavsWidget extends ContainerWidget
 	@Override
 	public void renderProperties(WbdGenerator generator, UimData ud, WbdRenderHelper rh, WbdWidget instance, WidgetId id, boolean displayOnly) throws WbdException {
 
-		WidgetId buttonDropDownId = new WidgetId(instance);
-		buttonDropDownId.setPrefix("navs");
+		WidgetId navsId = new WidgetId(instance);
+		navsId.setPrefix("navs");
 
 		WbdChildIndex index = id.getIndex();
 		System.out.println(index.getIndexStr());
@@ -471,7 +471,7 @@ public class NavsWidget extends ContainerWidget
 			rh.append("<tr>");
 			rh.append("<td id=\"id-designer-properties-navs3\">");//[elementId, rows, selectedRow, position, inverted, _widgetId, _controller, _linkedWidget]
 			String[] ignoredPropertiesForGrid = {"_controller", "_widgetId", "cellDivs", "rows", "selectedRow", "_linkedWidget"};
-			rh.renderProperties(generator, ud, instance, buttonDropDownId, ignoredPropertiesForGrid);
+			rh.renderProperties(generator, ud, instance, navsId, ignoredPropertiesForGrid);
 			rh.append("</td>");
 			rh.append("</tr>");
 
@@ -495,7 +495,7 @@ public class NavsWidget extends ContainerWidget
 			rh.append("<tr>");
 			rh.append("<td id=\"id-designer-properties-navsDropDown1\">");
 			rh.append("<br>");
-			rh.append("<label>Link Property</label>");
+			rh.append("<label>Tab Property</label>");
 			rh.renderProperties(generator, ud, instance, id, new String[] {});
 			rh.append("</td>");
 			rh.append("</tr>");

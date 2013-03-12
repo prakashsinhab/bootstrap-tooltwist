@@ -25,3 +25,8 @@
 .carouselContainer td {
 	margin: 0 5px;
 }
+
+.carousel-caption p {
+	font-size: 11px;
+	width: 200px;
+}
