@@ -70,7 +70,6 @@ public class NavsWidget extends ContainerWidget
 		instance.defineHiddenProperty(new WbdStringProperty("selectedRow", null, "Selected Row", "0"));
 
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdStringProperty("tabs", null, "Tabs", ""));
 		instance.defineProperty(new WbdRadioTextProperty("type", null, "Type", "nav-tabs,nav-pills", "nav-tabs"));
 		instance.defineProperty(new WbdStringProperty("activeTab", null, "Active Tab", ""));
 		instance.defineProperty(new WbdSelectProperty("tabDirection", null, "Tabs Direction", "tabs-below,tabs-left,tabs-right", ""));
@@ -178,10 +177,6 @@ public class NavsWidget extends ContainerWidget
 				tabNav.append("  </li>\n");
 			}
 			tabNav.append("  </ul>\n");
-			
-			if (!tabDirection.equalsIgnoreCase("tabs-below")) {
-				rh.append(tabNav);
-			}
 			
 			rh.append("  <div class='tab-content'>\n");
 
@@ -419,8 +414,7 @@ public class NavsWidget extends ContainerWidget
 				throw new WbdException("Error finding cell widget: " + e);
 			}
 		}
-
-
+		
 		//for children
 		this.flowChildren_loadPropertiesFromXml(generator, widget, node, null);
 
@@ -437,7 +431,7 @@ public class NavsWidget extends ContainerWidget
 			WbdChildIndex index = new WbdChildIndex(NAVS_INDEX_PREFIX+row);
 			String title = instance.getProperty("title", index);
 			title = (title == null) ? "Title" : title;
-			
+
 			title = (title == null) ? "" : title;
 
 			pw.println(indentStr(indent) + "<navs>");
@@ -453,6 +447,8 @@ public class NavsWidget extends ContainerWidget
 				instance.defineProperty(new WbdStringProperty("title", index, "Title", title));
 			}
 		}
+		
+		this.flowChildren_writeProperties(generator, instance, pw, indent, null);
 
 	}
 
