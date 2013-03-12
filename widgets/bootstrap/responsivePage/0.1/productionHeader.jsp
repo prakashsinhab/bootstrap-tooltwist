@@ -6,6 +6,32 @@
 <%@page import="tooltwist.ecommerce.AutomaticUrlParametersMode"%>
 <%@page import="tooltwist.ecommerce.RoutingUIM"%>
 <%@page import="tooltwist.wbd.WbdSession"%>
+
+<%@page errorPage="../tooltwist/basic/error.jsp"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="tooltwist.misc.DateUtils"%>
+<%@page import="tooltwist.misc.JspHelper"%>
+<%@page import="tooltwist.ecommerce.RoutingUIM"%>
+
+<%@page import="java.io.FileReader"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.Properties"%>
+
+<%@page import="com.dinaa.data.XData"%>
+<%@page import="com.dinaa.ui.UimData"%>
+<%@page import="com.dinaa.xpc.XpcSecurity"%>
+
+<%@page import="tooltwist.ecommerce.RoutingUIM"%>
+<%@page import="tooltwist.wbd.SnippetParam"%>
+<%@page import="tooltwist.wbd.WbdException"%>
+<%@page import="tooltwist.wbd.WbdRadioTextProperty"%>
+<%@page import="tooltwist.wbd.WbdRenderHelper"%>
+<%@page import="tooltwist.wbd.WbdSizeInfo"%>
+<%@page import="tooltwist.wbd.WbdStringProperty"%>
+<%@page import="tooltwist.wbd.WbdSession"%>
+<%@page import="tooltwist.wbd.WbdProductionHelper"%>
+<%@page import="tooltwist.wbd.WbdCache"%>
 %%importCode%%
 <%
 	String jspName = "%%navpointId%%";
@@ -24,6 +50,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="%%URL(/ttsvr/bootstrap/css/bootstrap.min.css)%%" rel="stylesheet" media="screen">
+	<link href="%%URL(/ttsvr/bootstrap/css/bootstrap-responsive.css)%%" rel="stylesheet">
   </head>
   <body>
 %%topCode%%
