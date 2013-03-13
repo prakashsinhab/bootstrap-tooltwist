@@ -110,6 +110,8 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 	private void renderDesigner(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException {
 		List<WidgetNavpoint> navpointList = getNavpointList(instance, ud);
 
+		String baseNavpointId = instance.getProperty("baseNavpoint", null);
+		
 		if (navpointList.size() != 0) {
 
 			buf.append("<ul class='breadcrumb'>\n");
@@ -118,7 +120,11 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 			for (int i = 0; i < size; i++) {
 				WidgetNavpoint widgetNavpoint = navpointList.get(i);
 
-				buf.append("  <li><a href='#'>" + widgetNavpoint.getLabel() + "</a> \n");
+				if (widgetNavpoint.getNavpointId().equalsIgnoreCase(baseNavpointId)) {
+					buf.append("  <li class='active'>" + widgetNavpoint.getLabel() + "\n");
+				} else {
+					buf.append("  <li><a href='#'>" + widgetNavpoint.getLabel() + "</a> \n");
+				}
 
 				int lastIndex = size - 1;
 				if (i != lastIndex) {
@@ -135,6 +141,7 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 	private void renderJSP(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException {
 
 		List<WidgetNavpoint> navpointList = getNavpointList(instance, ud);
+		String baseNavpointId = instance.getProperty("baseNavpoint", null);
 
 		if (navpointList.size() != 0) {
 
@@ -143,8 +150,13 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 			int size = navpointList.size();
 			for (int i = 0; i < size; i++) {
 				WidgetNavpoint widgetNavpoint = navpointList.get(i);
+				
+				if (widgetNavpoint.getNavpointId().equalsIgnoreCase(baseNavpointId)) {
+					buf.append("  <li class='active'>" + widgetNavpoint.getLabel() + "\n");
+				} else {
+					buf.append("  <li><a href='" + widgetNavpoint.getUrl() + "'>" + widgetNavpoint.getLabel() + "</a> \n");
+				}
 
-				buf.append("  <li><a href='" + widgetNavpoint.getUrl() + "'>" + widgetNavpoint.getLabel() + "</a> \n");
 
 				int lastIndex = size - 1;
 				if (i != lastIndex) {
@@ -168,7 +180,7 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 		if (!baseNavpointId.equals("")) {
 			Navpoint baseNavpoint = WbdCache.findNavPoint(baseNavpointId, false);
 			String baseUrl = RoutingUIM.navpointUrl(ud.getCredentials(), baseNavpoint.getId(), AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
-			navpointList.add(new WidgetNavpoint(baseNavpoint.getLabel(), baseUrl));
+			navpointList.add(new WidgetNavpoint(baseNavpoint.getLabel(), baseUrl, baseNavpointId));
 
 			String topNavId = "";
 			Navpoint root = null;
@@ -199,7 +211,7 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 
 				navId = parentNav.getId();
 				String url = RoutingUIM.navpointUrl(ud.getCredentials(), parentNav.getId(), AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
-				WidgetNavpoint widgetNavpoint = new WidgetNavpoint(parentNav.getLabel(), url);
+				WidgetNavpoint widgetNavpoint = new WidgetNavpoint(parentNav.getLabel(), url, navId);
 				navpointList.add(widgetNavpoint);	
 
 				parentNav = tmpNav;
@@ -216,10 +228,12 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 
 		private String label;
 		private String url;
+		private String navpointId;
 
-		public WidgetNavpoint(String label, String url) {
+		public WidgetNavpoint(String label, String url, String navpointId) {
 			this.label = label;
 			this.url = url;
+			this.navpointId = navpointId;
 		}
 
 		public String getLabel() {
@@ -235,6 +249,15 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 		public void setUrl(String url) {
 			this.url = url;
 		}	
+		
+		public String getNavpointId() {
+			return navpointId;
+		}
+		
+		public void setNavpointId(String navpointId) {
+			this.navpointId = navpointId;
+		}
+		
 	}
 
 }
