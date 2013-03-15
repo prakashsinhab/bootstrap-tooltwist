@@ -1,0 +1,7 @@
+	<widget>
+		<name>bootstrap.alert</name>
+		<description>
+			A fixed position error message, with consistent appearance, that can be used to display errors, alerts, warnings, information, etc.
+			In production, the widget is normally hidden, and may be reveiled when required. This widget provides a nice alternative to the tradition popup dialogs for error messages.
+		</description>
+	</widget>

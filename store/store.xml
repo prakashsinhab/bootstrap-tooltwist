@@ -1,0 +1,11 @@
+<project>
+	<name>Bootstrap</name>
+	<description>This project provides the functionality of Twitter's bootstrap project as an easy to use set of widgets.</description>
+	
+	<category>Layout Widgets</category>
+	<website>github.com/aravindnaidu/bootstrap-tooltwist</website>
+	<licensing>MIT</licensing>
+	<price>free</price>
+	<requires></requires>
+	<languages>N/A</languages>
+</project>

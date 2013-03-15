@@ -1,0 +1,7 @@
+	<widget>
+		<name>bootstrap.breadcrumbs</name>
+		<description>
+			A user interface component that gives the user an indication of where they are located within the website. This is particularly useful
+			in websites with multiple hierarchical levels. 
+		</description>
+	</widget>
