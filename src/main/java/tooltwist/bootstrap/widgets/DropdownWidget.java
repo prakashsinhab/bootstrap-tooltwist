@@ -5,7 +5,8 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import tooltwist.ecommerce.AutomaticUrlParametersMode;
 import tooltwist.ecommerce.RoutingUIM;
@@ -54,7 +55,7 @@ import com.dinaa.xpc.XpcSecurity;
 public class DropdownWidget extends ContainerWidget
 {
 
-	Logger logger = Logger.getLogger(DropdownWidget.class);
+	private static final Logger logger = LoggerFactory.getLogger(DropdownWidget.class);
 
 	private static final String DROPDOWN_INDEX_PREFIX = "dropDown-";
 	private static final boolean USE_PRODUCTION_HELPER = false;

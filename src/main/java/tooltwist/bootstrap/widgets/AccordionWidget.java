@@ -5,7 +5,8 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
@@ -13,13 +14,7 @@ import tooltwist.wbd.ContainerWidget;
 import tooltwist.wbd.DesignerHelper;
 import tooltwist.wbd.DesignerRole;
 import tooltwist.wbd.DesignerUIM;
-import tooltwist.wbd.JavascriptCodeInserter;
-import tooltwist.wbd.JavascriptLinkInserter;
 import tooltwist.wbd.Snippet;
-import tooltwist.wbd.WbdAlignProperty;
-import tooltwist.wbd.WbdLabelProperty;
-import tooltwist.wbd.WbdValignProperty;
-import tooltwist.wbd.WbdWrapProperty;
 import tooltwist.wbd.Snippet.SnippetLocation;
 import tooltwist.wbd.SnippetParam;
 import tooltwist.wbd.SnippetParamList;
@@ -51,8 +46,7 @@ import com.dinaa.xpc.XpcSecurity;
  */
 public class AccordionWidget extends ContainerWidget
 {
-	
-	Logger logger = Logger.getLogger(AccordionWidget.class);
+	private static final Logger logger = LoggerFactory.getLogger(AccordionWidget.class);
 	
 	private static final String ACCORDION_INDEX_PREFIX = "accordion-";
 	private static final boolean USE_PRODUCTION_HELPER = false;

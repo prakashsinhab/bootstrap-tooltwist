@@ -5,7 +5,8 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import tooltwist.ecommerce.AutomaticUrlParametersMode;
 import tooltwist.ecommerce.RoutingUIM;
@@ -50,8 +51,7 @@ import com.dinaa.xpc.XpcSecurity;
  */
 public class NavBarWidget extends ContainerWidget
 {
-	
-	Logger logger = Logger.getLogger(NavBarWidget.class);
+	private static final Logger logger = LoggerFactory.getLogger(NavBarWidget.class);
 	
 	private static final String NAVBAR_INDEX_PREFIX = "navbar-";
 	private static final boolean USE_PRODUCTION_HELPER = false;

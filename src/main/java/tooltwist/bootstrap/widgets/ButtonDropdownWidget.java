@@ -5,7 +5,8 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import tooltwist.bootstrap.properties.WbdSelectProperty;
 import tooltwist.ecommerce.AutomaticUrlParametersMode;
@@ -56,7 +57,7 @@ import com.dinaa.xpc.XpcSecurity;
 public class ButtonDropdownWidget extends ContainerWidget
 {
 
-	Logger logger = Logger.getLogger(ButtonDropdownWidget.class);
+	private static final Logger logger = LoggerFactory.getLogger(ButtonDropdownWidget.class);
 
 	private static final String BUTTONDROPDOWN_INDEX_PREFIX = "buttonDropDown-";
 	private static final boolean USE_PRODUCTION_HELPER = false;

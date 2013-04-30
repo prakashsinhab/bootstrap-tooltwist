@@ -5,7 +5,8 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import tooltwist.ecommerce.AutomaticUrlParametersMode;
 import tooltwist.ecommerce.RoutingUIM;
@@ -55,7 +56,7 @@ import com.dinaa.xpc.XpcSecurity;
 public class ButtonGroupWidget extends ContainerWidget
 {
 
-	Logger logger = Logger.getLogger(ButtonGroupWidget.class);
+	private static final Logger logger = LoggerFactory.getLogger(ButtonGroupWidget.class);
 
 	private static final String BUTTONGROUP_INDEX_PREFIX = "buttonGroup-";
 	private static final boolean USE_PRODUCTION_HELPER = false;

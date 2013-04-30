@@ -5,7 +5,8 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
@@ -51,7 +52,7 @@ import com.dinaa.xpc.XpcSecurity;
 public class CarouselWidget extends ContainerWidget
 {
 
-	Logger logger = Logger.getLogger(CarouselWidget.class);
+	private static final Logger logger = LoggerFactory.getLogger(CarouselWidget.class);
 
 	private static final String CAROUSEL_INDEX_PREFIX = "carousel-";
 	private static final boolean USE_PRODUCTION_HELPER = false;
