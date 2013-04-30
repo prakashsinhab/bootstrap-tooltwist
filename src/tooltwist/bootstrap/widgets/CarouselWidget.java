@@ -468,6 +468,7 @@ public class CarouselWidget extends ContainerWidget
 			rh.renderProperties(generator, ud, instance, id, new String[] {});
 			rh.append("</td>");
 			rh.append("</tr>");
+		
 		}
 
 		rh.append("</table>");

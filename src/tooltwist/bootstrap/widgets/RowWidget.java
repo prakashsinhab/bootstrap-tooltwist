@@ -1,5 +1,7 @@
 package tooltwist.bootstrap.widgets;
 
+import java.io.PrintWriter;
+
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.ContainerWidget;
@@ -18,6 +20,7 @@ import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WbdWidgetController;
 import tooltwist.wbd.WbdProductionHelper;
+import com.dinaa.data.XNodes;
 //import tooltwist.bootstrap.productionHelpers.RowProductionHelper;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
@@ -193,5 +196,25 @@ public class RowWidget extends ContainerWidget
 //			new SnippetParam("myNavpoint", myNavpoint)
 		};
 		return params;
+	}
+	
+	@Override
+	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XNodes node) throws WbdException
+	{
+		// Read the properties of this widget
+		super.loadPropertiesFromXml(generator, widget, node);
+
+		// Get the child, if there is one.
+		flowChildren_loadPropertiesFromXml(generator, widget, node, null);
+	}
+
+	@Override
+	protected void writeProperties(WbdGenerator generator, WbdWidget instance, PrintWriter pw, int indent) throws WbdException
+	{
+		// Write the properties of this widget.
+		instance.getProperties().writeProperties(pw, indent, null);
+		
+		// Save the children.
+		flowChildren_writeProperties(generator, instance, pw, indent, null);
 	}
 }
