@@ -5,8 +5,11 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import tooltwist.ecommerce.AutomaticUrlParametersMode;
+import tooltwist.ecommerce.RoutingUIM;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.ContainerWidget;
@@ -24,8 +27,10 @@ import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
 import tooltwist.wbd.WbdLibrary;
+import tooltwist.wbd.WbdNavPointProperty;
 import tooltwist.wbd.WbdProperty;
 import tooltwist.wbd.WbdProperty.DisplayMode;
+import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSizeInfo;
 import tooltwist.wbd.WbdStringProperty;
@@ -45,28 +50,28 @@ import com.dinaa.xpc.XpcSecurity;
 /**
  * 
  * @author richarddimalanta
- * @see https://github.com/aravindnaidu/bootstrap-tooltwist/wiki/Carousel
+ *@see https://github.com/aravindnaidu/bootstrap-tooltwist/wiki/Button-groups
  */
 
-public class CarouselWidget extends ContainerWidget
+public class ButtonGroupWidget extends ContainerWidget
 {
 
-	Logger logger = Logger.getLogger(CarouselWidget.class);
+	private static final Logger logger = LoggerFactory.getLogger(ButtonGroupWidget.class);
 
-	private static final String CAROUSEL_INDEX_PREFIX = "carousel-";
+	private static final String BUTTONGROUP_INDEX_PREFIX = "buttonGroup-";
 	private static final boolean USE_PRODUCTION_HELPER = false;
 
 	@Override
 	protected void init(WbdWidget instance) throws WbdException
 	{
 
+		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
 		WbdProperty rowProperty = new WbdStringProperty("rows", null, "Rows", "1");
 		rowProperty.setDisplayMode(DisplayMode.DEBUG_ONLY);
 		rowProperty.setEditable(false);
 		instance.defineProperty(rowProperty);
 		instance.defineHiddenProperty(new WbdStringProperty("selectedRow", null, "Selected Row", "0"));
-
-		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", "myCarousel"));
+		instance.defineProperty(new WbdRadioTextProperty("vertical", null, "Vertical", "yes,no", "no"));
 
 	}
 
@@ -79,8 +84,8 @@ public class CarouselWidget extends ContainerWidget
 		{
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
-					new StylesheetCodeInserter(generator, instance, "carousel_cssHeader.css"),
-					new JavascriptCodeInserter(generator, instance, "carousel_jsHeader.js")
+					new StylesheetCodeInserter(generator, instance, "buttonGroup_cssHeader.css"),
+					new JavascriptCodeInserter(generator, instance, "buttonGroup_jsHeader.js")
 			};
 			codeInserterList.add(arr);
 		}
@@ -88,8 +93,8 @@ public class CarouselWidget extends ContainerWidget
 		{
 			// Add code inserters for preview mode
 			CodeInserter[] arr = {
-					new StylesheetCodeInserter(generator, instance, "carousel_cssHeader.css"),
-					new JavascriptCodeInserter(generator, instance, "carousel_jsHeader.js")
+					new StylesheetCodeInserter(generator, instance, "buttonGroup_cssHeader.css"),
+					new JavascriptCodeInserter(generator, instance, "buttonGroup_jsHeader.js")
 			};
 			codeInserterList.add(arr);
 		}
@@ -112,7 +117,7 @@ public class CarouselWidget extends ContainerWidget
 	@Override
 	public String getLabel(WbdWidget instance) throws WbdException
 	{
-		return "Carousel Widget";
+		return "ButtonGroup Widget";
 	}
 
 	@Override
@@ -137,53 +142,39 @@ public class CarouselWidget extends ContainerWidget
 	@Override
 	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper rh) throws Exception {
 		try {
-			final int FIRST_ITEM_INDEX = 0;
-			
+
 			String rows = instance.getProperty("rows", null);
 			String elementId = instance.getFinalProperty(generator, "elementId");
+			String vertical = instance.getFinalProperty(generator, "vertical");
 
-			rh.append("<div id='" + elementId + "' class='carousel slide'>\n");
-			rh.append("  <ol class='carousel-indicators'>\n");
+			WidgetId buttonDropDownId = new WidgetId(instance);
+			buttonDropDownId.setPrefix("buttonGroup");
+
+			if (!elementId.equals("")) {
+				elementId = " id='" + elementId + "'";
+			}
+
+			String verticalClass = "";
+			if (vertical.equalsIgnoreCase("yes")) {
+				verticalClass = " btn-group-vertical";
+			}
+
+			rh.append("<div"+ elementId + " class='btn-group" + verticalClass + "'>\n");
 
 			for(int row = 0; row < Integer.valueOf(rows); row++) {
 
-				if (row == FIRST_ITEM_INDEX) {
-					rh.append("    <li data-target='#" + elementId + "' data-slide-to='" + row + "' class='active'></li>\n");
-				} else {
-					rh.append("    <li data-target='#" + elementId + "' data-slide-to='" + row + "'></li>\n");
-				}
-			}
-			rh.append("</ol>\n");	
-			rh.append(" <div class='carousel-inner'>\n");
-			
-			int size = Integer.valueOf(rows);
-			for (int row = 0; row < size; row++) {
+				WbdChildIndex wbdChildIndex = new WbdChildIndex(BUTTONGROUP_INDEX_PREFIX+row);
 
-				String indexPrefix = row + ",";
-			
-				if (row == FIRST_ITEM_INDEX) {
-					rh.append(" 	<div class='active item'>\n");
-				} else {
-					rh.append(" 	<div class='item'>\n");
-				}
-				this.flowChildren_renderForJSP(generator, instance, ud, rh, indexPrefix);
-				
-				WbdChildIndex wbdChildIndex = new WbdChildIndex(CAROUSEL_INDEX_PREFIX+row);
 				String title = instance.getProperty("title", wbdChildIndex);
-				String description = instance.getProperty("description", wbdChildIndex);
-				
-				rh.append("			<div class='carousel-caption'>\n");
-				rh.append(" 					<h4>" + title + "</h4>\n");
-				rh.append(" 					<p>" + description + "</p>\n");
-				rh.append("			</div>\n");
-				
-				rh.append("     </div>\n");
+				String navpointId = instance.getProperty("navpoint", wbdChildIndex);
+
+				navpointId = RoutingUIM.navpointUrl(ud, navpointId, AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
+
+				rh.append("  <button class=\"btn\"><a href=\""+navpointId+"\">"+title+"</a></button>\n");
+
 			}
-			
-			rh.append("</div>\n"); 
-			rh.append("  <a class='carousel-control left' href='#" + elementId  + "' data-slide='prev'>&lsaquo;</a>\n");
-			rh.append("  <a class='carousel-control right' href='#" + elementId + "' data-slide='next'>&rsaquo;</a>\n");
-			rh.append("	</div>\n");
+
+			rh.append("</div>\n");
 
 
 		} catch (Exception e) {
@@ -193,44 +184,39 @@ public class CarouselWidget extends ContainerWidget
 	}
 
 	private void render(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException {
-		
+
 		String rows = instance.getProperty("rows", null);
-		WidgetId carouselId = new WidgetId(instance);
-		carouselId.setPrefix("carousel");
-		
+		String elementId = instance.getFinalProperty(generator, "elementId");
+		String vertical = instance.getFinalProperty(generator, "vertical");
 
-		rh.append("<table id='"+ carouselId.fullPath() + "' class='carouselContainer' cellpadding='5' cellspacing='5'>");
-		
-		rh.append("<tr>\n");
-		for(int row = 0; row < Integer.valueOf(rows); row++) {
 
-			String indexPrefix = row +",";
-			rh.append("		<td class=\"item designer-properties\"  id=\""+carouselId + "["+CAROUSEL_INDEX_PREFIX+row+"]\" onclick=\"Navs.selectItem('"+carouselId.fullPath()+"','"+row+"')\">\n");
-			this.flowChildren_renderForDesigner(generator, instance, ud, rh, indexPrefix);
-			rh.append("     </td>\n");
+		WidgetId buttonDropDownId = new WidgetId(instance);
+		buttonDropDownId.setPrefix("buttonGroup");
+
+		if (!elementId.equals("")) {
+			elementId = " id='" + elementId + "'";
 		}
-		rh.append("</tr>\n");
-		
-		//Carousel Caption
-		rh.append("<tr>\n");
+
+		String verticalClass = "";
+		if (vertical.equalsIgnoreCase("yes")) {
+			verticalClass = " btn-group-vertical";
+		}
+
+		rh.append("<span class='widgetProperty'>ButtonGroup Properties</span>\n");
+		rh.append("<div"+ elementId + " class='btn-group" + verticalClass + "'>\n");
+
 		for(int row = 0; row < Integer.valueOf(rows); row++) {
-			
-			WbdChildIndex wbdChildIndex = new WbdChildIndex(CAROUSEL_INDEX_PREFIX+row);
+
+			WbdChildIndex wbdChildIndex = new WbdChildIndex(BUTTONGROUP_INDEX_PREFIX+row);
 			String title = instance.getProperty("title", wbdChildIndex);
-			String description = instance.getProperty("description", wbdChildIndex);
-			
-			rh.append("	<td>\n");
-			rh.append("			<div class='carousel-caption'>\n");
-			rh.append(" 					<h4>" + title + "</h4>\n");
-			rh.append(" 					<p>" + description + "</p>\n");
-			rh.append("			</div>\n");
-			rh.append("	</td>\n");
-		}
-		rh.append("</tr>\n");
-		
-		rh.append("</table>");
 
-		String js = codeToInsert(generator, instance, SnippetLocation.PRIMITIVE_WIDGET, "carousel_jsHeader.js", null);
+			rh.append("  <button id=\""+buttonDropDownId + "["+BUTTONGROUP_INDEX_PREFIX+row+"]\" class=\"btn designer-properties\"" +
+					"			onclick=\"ButtonGroup.selectItem('"+buttonDropDownId.fullPath()+"','"+row+"')\">"+ title +"</button>\n");
+		}
+
+		rh.append("</div>\n");
+
+		String js = codeToInsert(generator, instance, SnippetLocation.PRIMITIVE_WIDGET, "buttonGroup_jsHeader.js", null);
 		rh.append("<script>");
 		rh.append(js);
 		rh.append("</script>");
@@ -336,7 +322,7 @@ public class CarouselWidget extends ContainerWidget
 		// Add additional processing to run after the pane is loaded
 		html += "<script>\n";
 		html += helper.javascriptToSetUpLayoutEditorPane(generator, uh, root);
-		html += "TtPane_layout.showProperties('carousel!"+instance.fullPath() + "["+CAROUSEL_INDEX_PREFIX + selectedRow +"]');";
+		html += "TtPane_layout.showProperties('buttonGroup!"+instance.fullPath() + "["+BUTTONGROUP_INDEX_PREFIX + selectedRow +"]');";
 		html += "jQuery(\"#id-designer-properties-div\").css({\"opacity\":\"1\"});";
 		html += "</script>\n";
 		//		
@@ -352,7 +338,7 @@ public class CarouselWidget extends ContainerWidget
 		XNodes cells;
 		try
 		{
-			cells = node.getNodes("./carousel");
+			cells = node.getNodes("./buttonGroup");
 		}
 		catch (XDataException e)
 		{
@@ -362,11 +348,11 @@ public class CarouselWidget extends ContainerWidget
 		{
 			String indexStr = cells.getText("./index");
 			String title = cells.getText("./title");
-			String description = cells.getText("./description");
+			String navpoint = cells.getText("./navpoint");
 
-			WbdChildIndex index = new WbdChildIndex(CAROUSEL_INDEX_PREFIX + indexStr);
+			WbdChildIndex index = new WbdChildIndex(BUTTONGROUP_INDEX_PREFIX + indexStr);
 			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
-			widget.defineProperty(new WbdStringProperty("description", index, "Description", description));
+			widget.defineProperty(new WbdNavPointProperty("navpoint", index, "Navpoint", navpoint));
 			try
 			{
 				XNodes widgetNode = cells.getNodes("./widget");
@@ -381,7 +367,7 @@ public class CarouselWidget extends ContainerWidget
 				throw new WbdException("Error finding cell widget: " + e);
 			}
 		}
-		
+
 		//for children
 		this.flowChildren_loadPropertiesFromXml(generator, widget, node, null);
 
@@ -395,17 +381,17 @@ public class CarouselWidget extends ContainerWidget
 		int rows = Integer.valueOf(instance.getProperty("rows", null));
 
 		for (int row = 0; row < rows; row++) {
-			WbdChildIndex index = new WbdChildIndex(CAROUSEL_INDEX_PREFIX+row);
+			WbdChildIndex index = new WbdChildIndex(BUTTONGROUP_INDEX_PREFIX+row);
 			String title = instance.getProperty("title", index);
-			title = (title == null) ? "Title" : title;
-			
-			String description = instance.getProperty("description", index);
-			description = (description == null) ? "description" : description;
+			title = (title == null) ? "Link" : title;
 
-			pw.println(indentStr(indent) + "<carousel>");
+			String navpoint = instance.getProperty("navpoint", index);
+			title = (title == null) ? "" : title;
+
+			pw.println(indentStr(indent) + "<buttonGroup>");
 			pw.println(indentStr(indent + 1) + "<index>" + row + "</index>");
 			instance.getProperties().writeProperties(pw, indent + 1, index);
-			pw.println(indentStr(indent) + "</carousel>");
+			pw.println(indentStr(indent) + "</buttonGroup>");
 
 
 			WbdWidget child = instance.findChildByIndex(index);
@@ -413,19 +399,17 @@ public class CarouselWidget extends ContainerWidget
 				child.saveToFile(generator, pw, indent + 1);
 			else {
 				instance.defineProperty(new WbdStringProperty("title", index, "Title", title));
-				instance.defineProperty(new WbdStringProperty("description", index, "Description", description));
+				instance.defineProperty(new WbdNavPointProperty("navpoint", index, "Navpoint", navpoint));
 			}
 		}
-		
-		this.flowChildren_writeProperties(generator, instance, pw, indent, null);
 
 	}
 
 	@Override
 	public void renderProperties(WbdGenerator generator, UimData ud, WbdRenderHelper rh, WbdWidget instance, WidgetId id, boolean displayOnly) throws WbdException {
 
-		WidgetId carouselId = new WidgetId(instance);
-		carouselId.setPrefix("carousel");
+		WidgetId buttonDropDownId = new WidgetId(instance);
+		buttonDropDownId.setPrefix("buttonGroup");
 
 		WbdChildIndex index = id.getIndex();
 		System.out.println(index.getIndexStr());
@@ -438,21 +422,21 @@ public class CarouselWidget extends ContainerWidget
 		if (id.getIndex().getIndexStr().equals("")) {
 
 			rh.append("<tr>");
-			rh.append("<td id=\"id-designer-properties-carousel3\">");//[elementId, rows, selectedRow, position, inverted, _widgetId, _controller, _linkedWidget]
+			rh.append("<td id=\"id-designer-properties-buttonGroup3\">");//[elementId, rows, selectedRow, position, inverted, _widgetId, _controller, _linkedWidget]
 			String[] ignoredPropertiesForGrid = {"_controller", "_widgetId", "cellDivs", "rows", "selectedRow", "_linkedWidget"};
-			rh.renderProperties(generator, ud, instance, carouselId, ignoredPropertiesForGrid);
+			rh.renderProperties(generator, ud, instance, buttonDropDownId, ignoredPropertiesForGrid);
 			rh.append("</td>");
 			rh.append("</tr>");
 
 			rh.append("<tr>");
-			rh.append("<td id=\"id-designer-properties-carousel3\">");//[elementId, rows, selectedRow, position, inverted, _widgetId, _controller, _linkedWidget]
+			rh.append("<td id=\"id-designer-properties-buttonGroup3\">");//[elementId, rows, selectedRow, position, inverted, _widgetId, _controller, _linkedWidget]
 			rh.append("<br>");
 			XpcSecurity credentials = ud.getCredentials();
 			boolean canChangeGrid = credentials.hasRole(DesignerRole.CHANGE_GRIDS.getRoleCode());
 			if (instance.mayEdit(ud) && canChangeGrid) {
 
-				rh.append("  <span class=\"button-Carousel\" style=\"float: right;cursor: pointer;\" onclick=\"Carousel.removeItem('"+id.fullPath()+"');\" title=\"Remove Item.\">&nbsp;-&nbsp;</span>");
-				rh.append("  <span class=\"button-Carousel\" style=\"float: right;cursor: pointer;\" onclick=\"Carousel.insertItem('"+id.fullPath()+"');\" title=\"Insert item.\">&nbsp;+&nbsp;</span>");
+				rh.append("  <span class=\"button-Group\" style=\"float: right;cursor: pointer;\" onclick=\"ButtonGroup.removeItem('"+id.fullPath()+"');\" title=\"Remove Item.\">&nbsp;-&nbsp;</span>");
+				rh.append("  <span class=\"button-Group\" style=\"float: right;cursor: pointer;\" onclick=\"ButtonGroup.insertItem('"+id.fullPath()+"');\" title=\"Insert item.\">&nbsp;+&nbsp;</span>");
 			}
 
 			rh.append("</td>");
@@ -462,17 +446,16 @@ public class CarouselWidget extends ContainerWidget
 
 			//custom property in dialog  when clicking an item.
 			rh.append("<tr>");
-			rh.append("<td id=\"id-designer-properties-carousel1\">");
+			rh.append("<td id=\"id-designer-properties-buttonGroup1\">");
 			rh.append("<br>");
-			rh.append("<label>Tab Property</label>");
+			rh.append("<label>Link Property</label>");
 			rh.renderProperties(generator, ud, instance, id, new String[] {});
 			rh.append("</td>");
 			rh.append("</tr>");
-		
 		}
 
 		rh.append("</table>");
-		rh.append("<script>jQuery(\".button-Carousel\").button();</script>");
+		rh.append("<script>jQuery(\".button-Group\").button();</script>");
 
 	}
 }

@@ -5,11 +5,9 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import tooltwist.bootstrap.properties.WbdSelectProperty;
-import tooltwist.ecommerce.AutomaticUrlParametersMode;
-import tooltwist.ecommerce.RoutingUIM;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.ContainerWidget;
@@ -27,10 +25,8 @@ import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
 import tooltwist.wbd.WbdLibrary;
-import tooltwist.wbd.WbdNavPointProperty;
 import tooltwist.wbd.WbdProperty;
 import tooltwist.wbd.WbdProperty.DisplayMode;
-import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSizeInfo;
 import tooltwist.wbd.WbdStringProperty;
@@ -50,32 +46,28 @@ import com.dinaa.xpc.XpcSecurity;
 /**
  * 
  * @author richarddimalanta
- * @see https://github.com/aravindnaidu/bootstrap-tooltwist/wiki/Button-Dropdowns
+ * @see https://github.com/aravindnaidu/bootstrap-tooltwist/wiki/Carousel
  */
 
-public class ButtonDropdownWidget extends ContainerWidget
+public class CarouselWidget extends ContainerWidget
 {
 
-	Logger logger = Logger.getLogger(ButtonDropdownWidget.class);
+	private static final Logger logger = LoggerFactory.getLogger(CarouselWidget.class);
 
-	private static final String BUTTONDROPDOWN_INDEX_PREFIX = "buttonDropDown-";
+	private static final String CAROUSEL_INDEX_PREFIX = "carousel-";
 	private static final boolean USE_PRODUCTION_HELPER = false;
 
 	@Override
 	protected void init(WbdWidget instance) throws WbdException
 	{
 
-		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
 		WbdProperty rowProperty = new WbdStringProperty("rows", null, "Rows", "1");
 		rowProperty.setDisplayMode(DisplayMode.DEBUG_ONLY);
 		rowProperty.setEditable(false);
 		instance.defineProperty(rowProperty);
 		instance.defineHiddenProperty(new WbdStringProperty("selectedRow", null, "Selected Row", "0"));
 
-		instance.defineProperty(new WbdStringProperty("label", null, "Label", "My Button"));
-		instance.defineProperty(new WbdSelectProperty("type", null, "Type", "primary,danger,warning,success,info,inverse", ""));
-		instance.defineProperty(new WbdRadioTextProperty("dropPosition", null, "Orientation", "dropdown,dropup", "dropdown"));
-		instance.defineProperty(new WbdSelectProperty("sizes", null, "Sizes", "mini,small,large", ""));
+		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", "myCarousel"));
 
 	}
 
@@ -88,8 +80,8 @@ public class ButtonDropdownWidget extends ContainerWidget
 		{
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
-					new StylesheetCodeInserter(generator, instance, "buttonDropdown_cssHeader.css"),
-					new JavascriptCodeInserter(generator, instance, "buttonDropdown_jsHeader.js")
+					new StylesheetCodeInserter(generator, instance, "carousel_cssHeader.css"),
+					new JavascriptCodeInserter(generator, instance, "carousel_jsHeader.js")
 			};
 			codeInserterList.add(arr);
 		}
@@ -97,8 +89,8 @@ public class ButtonDropdownWidget extends ContainerWidget
 		{
 			// Add code inserters for preview mode
 			CodeInserter[] arr = {
-					new StylesheetCodeInserter(generator, instance, "buttonDropdown_cssHeader.css"),
-					new JavascriptCodeInserter(generator, instance, "buttonDropdown_jsHeader.js")
+					new StylesheetCodeInserter(generator, instance, "carousel_cssHeader.css"),
+					new JavascriptCodeInserter(generator, instance, "carousel_jsHeader.js")
 			};
 			codeInserterList.add(arr);
 		}
@@ -121,7 +113,7 @@ public class ButtonDropdownWidget extends ContainerWidget
 	@Override
 	public String getLabel(WbdWidget instance) throws WbdException
 	{
-		return "Button Dropdown";
+		return "Carousel Widget";
 	}
 
 	@Override
@@ -146,57 +138,53 @@ public class ButtonDropdownWidget extends ContainerWidget
 	@Override
 	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper rh) throws Exception {
 		try {
-
-			String elementId = instance.getFinalProperty(generator, "elementId");
+			final int FIRST_ITEM_INDEX = 0;
+			
 			String rows = instance.getProperty("rows", null);
-			String label = instance.getFinalProperty(generator, "label");
-			String type = instance.getFinalProperty(generator, "type");
-			String dropPosition = instance.getFinalProperty(generator, "dropPosition");
-			String sizes = instance.getFinalProperty(generator, "sizes");
+			String elementId = instance.getFinalProperty(generator, "elementId");
 
-			if (!elementId.equals("")) {
-				elementId = " id='" + elementId + "' ";
-			}
-
-			if (!type.equals("")) {
-				type = "btn-" + type;
-			}
-
-			String sizeClass = "";
-			switch (sizes) {
-			case "mini":
-				sizeClass = " btn-mini";
-				break;
-			case "small":
-				sizeClass = " btn-small";
-				break;
-			case "large":
-				sizeClass = " btn-large";
-				break;
-			}
-
-			rh.append("<div" + elementId + " class='btn-group " + dropPosition + "'>\n");
-			rh.append("<button class='btn " + type + sizeClass + "'>" + label + "</button>\n");
-			rh.append(" <button class='btn dropdown-toggle " + type + sizeClass + "' data-toggle='dropdown' href='#'>\n");
-			rh.append("   <span class='caret'></span>\n");
-			rh.append(" </button>\n");
-			rh.append("  <ul class='dropdown-menu'>\n");
+			rh.append("<div id='" + elementId + "' class='carousel slide'>\n");
+			rh.append("  <ol class='carousel-indicators'>\n");
 
 			for(int row = 0; row < Integer.valueOf(rows); row++) {
 
-				WbdChildIndex wbdChildIndex = new WbdChildIndex(BUTTONDROPDOWN_INDEX_PREFIX+row);
-
-				String title = instance.getProperty("title", wbdChildIndex);
-				String navpointId = instance.getProperty("navpoint", wbdChildIndex);
-
-				navpointId = RoutingUIM.navpointUrl(ud, navpointId, AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
-
-				rh.append("      <li><a href=\""+navpointId+"\">"+title+"</a></li>\n");
-
+				if (row == FIRST_ITEM_INDEX) {
+					rh.append("    <li data-target='#" + elementId + "' data-slide-to='" + row + "' class='active'></li>\n");
+				} else {
+					rh.append("    <li data-target='#" + elementId + "' data-slide-to='" + row + "'></li>\n");
+				}
 			}
+			rh.append("</ol>\n");	
+			rh.append(" <div class='carousel-inner'>\n");
+			
+			int size = Integer.valueOf(rows);
+			for (int row = 0; row < size; row++) {
 
-			rh.append(" </ul>\n");
-			rh.append("</div>\n");
+				String indexPrefix = row + ",";
+			
+				if (row == FIRST_ITEM_INDEX) {
+					rh.append(" 	<div class='active item'>\n");
+				} else {
+					rh.append(" 	<div class='item'>\n");
+				}
+				this.flowChildren_renderForJSP(generator, instance, ud, rh, indexPrefix);
+				
+				WbdChildIndex wbdChildIndex = new WbdChildIndex(CAROUSEL_INDEX_PREFIX+row);
+				String title = instance.getProperty("title", wbdChildIndex);
+				String description = instance.getProperty("description", wbdChildIndex);
+				
+				rh.append("			<div class='carousel-caption'>\n");
+				rh.append(" 					<h4>" + title + "</h4>\n");
+				rh.append(" 					<p>" + description + "</p>\n");
+				rh.append("			</div>\n");
+				
+				rh.append("     </div>\n");
+			}
+			
+			rh.append("</div>\n"); 
+			rh.append("  <a class='carousel-control left' href='#" + elementId  + "' data-slide='prev'>&lsaquo;</a>\n");
+			rh.append("  <a class='carousel-control right' href='#" + elementId + "' data-slide='next'>&rsaquo;</a>\n");
+			rh.append("	</div>\n");
 
 
 		} catch (Exception e) {
@@ -206,34 +194,44 @@ public class ButtonDropdownWidget extends ContainerWidget
 	}
 
 	private void render(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException {
-
+		
 		String rows = instance.getProperty("rows", null);
-		String buttonLabel = instance.getFinalProperty(generator, "label");
+		WidgetId carouselId = new WidgetId(instance);
+		carouselId.setPrefix("carousel");
+		
 
-		WidgetId buttonDropDownId = new WidgetId(instance);
-		buttonDropDownId.setPrefix("buttonDropDown");
-
-		rh.append("	<div id='"+ buttonDropDownId.fullPath() + "' class='btn-group'>\n");
-		rh.append("<button class='btn'>" + buttonLabel + "</button>\n");
-		rh.append(" <button class='btn dropdown-toggle' data-toggle='dropdown' href='#'>\n");
-		rh.append("   <span class='caret'></span>\n");
-		rh.append(" </button>\n");
-		rh.append("  <ul class='dropdown-menu'>\n");
-
+		rh.append("<table id='"+ carouselId.fullPath() + "' class='carouselContainer' cellpadding='5' cellspacing='5'>");
+		
+		rh.append("<tr>\n");
 		for(int row = 0; row < Integer.valueOf(rows); row++) {
 
-			WbdChildIndex wbdChildIndex = new WbdChildIndex(BUTTONDROPDOWN_INDEX_PREFIX+row);
-			String title = instance.getProperty("title", wbdChildIndex);
-
-			rh.append("      <li class=\"designer-properties\"  id=\""+buttonDropDownId + "["+BUTTONDROPDOWN_INDEX_PREFIX+row+"]" + 
-					"\" onclick=\"ButtonDropDown.selectItem('"+buttonDropDownId.fullPath()+"','"+row+"')\"><a href=\"javascript:void(0);\">"+title+"</a></li>\n");
-
+			String indexPrefix = row +",";
+			rh.append("		<td class=\"item designer-properties\"  id=\""+carouselId + "["+CAROUSEL_INDEX_PREFIX+row+"]\" onclick=\"Navs.selectItem('"+carouselId.fullPath()+"','"+row+"')\">\n");
+			this.flowChildren_renderForDesigner(generator, instance, ud, rh, indexPrefix);
+			rh.append("     </td>\n");
 		}
+		rh.append("</tr>\n");
+		
+		//Carousel Caption
+		rh.append("<tr>\n");
+		for(int row = 0; row < Integer.valueOf(rows); row++) {
+			
+			WbdChildIndex wbdChildIndex = new WbdChildIndex(CAROUSEL_INDEX_PREFIX+row);
+			String title = instance.getProperty("title", wbdChildIndex);
+			String description = instance.getProperty("description", wbdChildIndex);
+			
+			rh.append("	<td>\n");
+			rh.append("			<div class='carousel-caption'>\n");
+			rh.append(" 					<h4>" + title + "</h4>\n");
+			rh.append(" 					<p>" + description + "</p>\n");
+			rh.append("			</div>\n");
+			rh.append("	</td>\n");
+		}
+		rh.append("</tr>\n");
+		
+		rh.append("</table>");
 
-		rh.append(" </ul>\n");
-		rh.append("</div>\n");
-
-		String js = codeToInsert(generator, instance, SnippetLocation.PRIMITIVE_WIDGET, "buttonDropdown_jsHeader.js", null);
+		String js = codeToInsert(generator, instance, SnippetLocation.PRIMITIVE_WIDGET, "carousel_jsHeader.js", null);
 		rh.append("<script>");
 		rh.append(js);
 		rh.append("</script>");
@@ -339,7 +337,7 @@ public class ButtonDropdownWidget extends ContainerWidget
 		// Add additional processing to run after the pane is loaded
 		html += "<script>\n";
 		html += helper.javascriptToSetUpLayoutEditorPane(generator, uh, root);
-		html += "TtPane_layout.showProperties('buttonDropDown!"+instance.fullPath() + "["+BUTTONDROPDOWN_INDEX_PREFIX + selectedRow +"]');";
+		html += "TtPane_layout.showProperties('carousel!"+instance.fullPath() + "["+CAROUSEL_INDEX_PREFIX + selectedRow +"]');";
 		html += "jQuery(\"#id-designer-properties-div\").css({\"opacity\":\"1\"});";
 		html += "</script>\n";
 		//		
@@ -355,7 +353,7 @@ public class ButtonDropdownWidget extends ContainerWidget
 		XNodes cells;
 		try
 		{
-			cells = node.getNodes("./buttonDropDowns");
+			cells = node.getNodes("./carousel");
 		}
 		catch (XDataException e)
 		{
@@ -365,11 +363,11 @@ public class ButtonDropdownWidget extends ContainerWidget
 		{
 			String indexStr = cells.getText("./index");
 			String title = cells.getText("./title");
-			String navpoint = cells.getText("./navpoint");
+			String description = cells.getText("./description");
 
-			WbdChildIndex index = new WbdChildIndex(BUTTONDROPDOWN_INDEX_PREFIX + indexStr);
+			WbdChildIndex index = new WbdChildIndex(CAROUSEL_INDEX_PREFIX + indexStr);
 			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
-			widget.defineProperty(new WbdNavPointProperty("navpoint", index, "Navpoint", navpoint));
+			widget.defineProperty(new WbdStringProperty("description", index, "Description", description));
 			try
 			{
 				XNodes widgetNode = cells.getNodes("./widget");
@@ -384,8 +382,7 @@ public class ButtonDropdownWidget extends ContainerWidget
 				throw new WbdException("Error finding cell widget: " + e);
 			}
 		}
-
-
+		
 		//for children
 		this.flowChildren_loadPropertiesFromXml(generator, widget, node, null);
 
@@ -399,17 +396,17 @@ public class ButtonDropdownWidget extends ContainerWidget
 		int rows = Integer.valueOf(instance.getProperty("rows", null));
 
 		for (int row = 0; row < rows; row++) {
-			WbdChildIndex index = new WbdChildIndex(BUTTONDROPDOWN_INDEX_PREFIX+row);
+			WbdChildIndex index = new WbdChildIndex(CAROUSEL_INDEX_PREFIX+row);
 			String title = instance.getProperty("title", index);
-			title = (title == null) ? "Link" : title;
+			title = (title == null) ? "Title" : title;
+			
+			String description = instance.getProperty("description", index);
+			description = (description == null) ? "description" : description;
 
-			String navpoint = instance.getProperty("navpoint", index);
-			title = (title == null) ? "" : title;
-
-			pw.println(indentStr(indent) + "<buttonDropDowns>");
+			pw.println(indentStr(indent) + "<carousel>");
 			pw.println(indentStr(indent + 1) + "<index>" + row + "</index>");
 			instance.getProperties().writeProperties(pw, indent + 1, index);
-			pw.println(indentStr(indent) + "</buttonDropDowns>");
+			pw.println(indentStr(indent) + "</carousel>");
 
 
 			WbdWidget child = instance.findChildByIndex(index);
@@ -417,17 +414,19 @@ public class ButtonDropdownWidget extends ContainerWidget
 				child.saveToFile(generator, pw, indent + 1);
 			else {
 				instance.defineProperty(new WbdStringProperty("title", index, "Title", title));
-				instance.defineProperty(new WbdNavPointProperty("navpoint", index, "Navpoint", navpoint));
+				instance.defineProperty(new WbdStringProperty("description", index, "Description", description));
 			}
 		}
+		
+		this.flowChildren_writeProperties(generator, instance, pw, indent, null);
 
 	}
 
 	@Override
 	public void renderProperties(WbdGenerator generator, UimData ud, WbdRenderHelper rh, WbdWidget instance, WidgetId id, boolean displayOnly) throws WbdException {
 
-		WidgetId buttonDropDownId = new WidgetId(instance);
-		buttonDropDownId.setPrefix("buttonDropDown");
+		WidgetId carouselId = new WidgetId(instance);
+		carouselId.setPrefix("carousel");
 
 		WbdChildIndex index = id.getIndex();
 		System.out.println(index.getIndexStr());
@@ -440,21 +439,21 @@ public class ButtonDropdownWidget extends ContainerWidget
 		if (id.getIndex().getIndexStr().equals("")) {
 
 			rh.append("<tr>");
-			rh.append("<td id=\"id-designer-properties-buttonDropDown3\">");//[elementId, rows, selectedRow, position, inverted, _widgetId, _controller, _linkedWidget]
+			rh.append("<td id=\"id-designer-properties-carousel3\">");//[elementId, rows, selectedRow, position, inverted, _widgetId, _controller, _linkedWidget]
 			String[] ignoredPropertiesForGrid = {"_controller", "_widgetId", "cellDivs", "rows", "selectedRow", "_linkedWidget"};
-			rh.renderProperties(generator, ud, instance, buttonDropDownId, ignoredPropertiesForGrid);
+			rh.renderProperties(generator, ud, instance, carouselId, ignoredPropertiesForGrid);
 			rh.append("</td>");
 			rh.append("</tr>");
 
 			rh.append("<tr>");
-			rh.append("<td id=\"id-designer-properties-buttonDropDown3\">");//[elementId, rows, selectedRow, position, inverted, _widgetId, _controller, _linkedWidget]
+			rh.append("<td id=\"id-designer-properties-carousel3\">");//[elementId, rows, selectedRow, position, inverted, _widgetId, _controller, _linkedWidget]
 			rh.append("<br>");
 			XpcSecurity credentials = ud.getCredentials();
 			boolean canChangeGrid = credentials.hasRole(DesignerRole.CHANGE_GRIDS.getRoleCode());
 			if (instance.mayEdit(ud) && canChangeGrid) {
 
-				rh.append("  <span class=\"button-ButtonDropDown\" style=\"float: right;cursor: pointer;\" onclick=\"ButtonDropDown.removeItem('"+id.fullPath()+"');\" title=\"Remove Item.\">&nbsp;-&nbsp;</span>");
-				rh.append("  <span class=\"button-ButtonDropDown\" style=\"float: right;cursor: pointer;\" onclick=\"ButtonDropDown.insertItem('"+id.fullPath()+"');\" title=\"Insert item.\">&nbsp;+&nbsp;</span>");
+				rh.append("  <span class=\"button-Carousel\" style=\"float: right;cursor: pointer;\" onclick=\"Carousel.removeItem('"+id.fullPath()+"');\" title=\"Remove Item.\">&nbsp;-&nbsp;</span>");
+				rh.append("  <span class=\"button-Carousel\" style=\"float: right;cursor: pointer;\" onclick=\"Carousel.insertItem('"+id.fullPath()+"');\" title=\"Insert item.\">&nbsp;+&nbsp;</span>");
 			}
 
 			rh.append("</td>");
@@ -464,16 +463,17 @@ public class ButtonDropdownWidget extends ContainerWidget
 
 			//custom property in dialog  when clicking an item.
 			rh.append("<tr>");
-			rh.append("<td id=\"id-designer-properties-buttonDropDown1\">");
+			rh.append("<td id=\"id-designer-properties-carousel1\">");
 			rh.append("<br>");
-			rh.append("<label>Link Property</label>");
+			rh.append("<label>Tab Property</label>");
 			rh.renderProperties(generator, ud, instance, id, new String[] {});
 			rh.append("</td>");
 			rh.append("</tr>");
+		
 		}
 
 		rh.append("</table>");
-		rh.append("<script>jQuery(\".button-ButtonDropDown\").button();</script>");
+		rh.append("<script>jQuery(\".button-Carousel\").button();</script>");
 
 	}
 }

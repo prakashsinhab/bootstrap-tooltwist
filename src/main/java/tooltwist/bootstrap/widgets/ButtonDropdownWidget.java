@@ -5,9 +5,12 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import tooltwist.bootstrap.properties.WbdSelectProperty;
+import tooltwist.ecommerce.AutomaticUrlParametersMode;
+import tooltwist.ecommerce.RoutingUIM;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.ContainerWidget;
@@ -25,6 +28,7 @@ import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
 import tooltwist.wbd.WbdLibrary;
+import tooltwist.wbd.WbdNavPointProperty;
 import tooltwist.wbd.WbdProperty;
 import tooltwist.wbd.WbdProperty.DisplayMode;
 import tooltwist.wbd.WbdRadioTextProperty;
@@ -47,15 +51,15 @@ import com.dinaa.xpc.XpcSecurity;
 /**
  * 
  * @author richarddimalanta
- * @see https://github.com/aravindnaidu/bootstrap-tooltwist/wiki/Navs-%28tabs%2C-pill-buttons%29
+ * @see https://github.com/aravindnaidu/bootstrap-tooltwist/wiki/Button-Dropdowns
  */
 
-public class NavsWidget extends ContainerWidget
+public class ButtonDropdownWidget extends ContainerWidget
 {
 
-	Logger logger = Logger.getLogger(ButtonDropdownWidget.class);
+	private static final Logger logger = LoggerFactory.getLogger(ButtonDropdownWidget.class);
 
-	private static final String NAVS_INDEX_PREFIX = "navs-";
+	private static final String BUTTONDROPDOWN_INDEX_PREFIX = "buttonDropDown-";
 	private static final boolean USE_PRODUCTION_HELPER = false;
 
 	@Override
@@ -69,9 +73,10 @@ public class NavsWidget extends ContainerWidget
 		instance.defineProperty(rowProperty);
 		instance.defineHiddenProperty(new WbdStringProperty("selectedRow", null, "Selected Row", "0"));
 
-		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdRadioTextProperty("type", null, "Type", "nav-tabs,nav-pills", "nav-tabs"));
-		instance.defineProperty(new WbdSelectProperty("tabDirection", null, "Tabs Direction", "tabs-below,tabs-left,tabs-right", ""));
+		instance.defineProperty(new WbdStringProperty("label", null, "Label", "My Button"));
+		instance.defineProperty(new WbdSelectProperty("type", null, "Type", "primary,danger,warning,success,info,inverse", ""));
+		instance.defineProperty(new WbdRadioTextProperty("dropPosition", null, "Orientation", "dropdown,dropup", "dropdown"));
+		instance.defineProperty(new WbdSelectProperty("sizes", null, "Sizes", "mini,small,large", ""));
 
 	}
 
@@ -84,8 +89,8 @@ public class NavsWidget extends ContainerWidget
 		{
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
-					new StylesheetCodeInserter(generator, instance, "navs_cssHeader.css"),
-					new JavascriptCodeInserter(generator, instance, "navs_jsHeader.js")
+					new StylesheetCodeInserter(generator, instance, "buttonDropdown_cssHeader.css"),
+					new JavascriptCodeInserter(generator, instance, "buttonDropdown_jsHeader.js")
 			};
 			codeInserterList.add(arr);
 		}
@@ -93,8 +98,8 @@ public class NavsWidget extends ContainerWidget
 		{
 			// Add code inserters for preview mode
 			CodeInserter[] arr = {
-					new StylesheetCodeInserter(generator, instance, "navs_cssHeader.css"),
-					new JavascriptCodeInserter(generator, instance, "navs_jsHeader.js")
+					new StylesheetCodeInserter(generator, instance, "buttonDropdown_cssHeader.css"),
+					new JavascriptCodeInserter(generator, instance, "buttonDropdown_jsHeader.js")
 			};
 			codeInserterList.add(arr);
 		}
@@ -117,7 +122,7 @@ public class NavsWidget extends ContainerWidget
 	@Override
 	public String getLabel(WbdWidget instance) throws WbdException
 	{
-		return "Navs Widget";
+		return "Button Dropdown";
 	}
 
 	@Override
@@ -142,73 +147,57 @@ public class NavsWidget extends ContainerWidget
 	@Override
 	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper rh) throws Exception {
 		try {
-			final int FIRST_ITEM_INDEX = 0;
-			
-			String rows = instance.getProperty("rows", null);
-			
+
 			String elementId = instance.getFinalProperty(generator, "elementId");
+			String rows = instance.getProperty("rows", null);
+			String label = instance.getFinalProperty(generator, "label");
 			String type = instance.getFinalProperty(generator, "type");
-			String tabDirection = instance.getFinalProperty(generator, "tabDirection");
+			String dropPosition = instance.getFinalProperty(generator, "dropPosition");
+			String sizes = instance.getFinalProperty(generator, "sizes");
 
 			if (!elementId.equals("")) {
-				elementId = "id='" + elementId + "' ";
+				elementId = " id='" + elementId + "' ";
 			}
 
-			rh.append("<div class='tabbable " + tabDirection + "'>\n");
+			if (!type.equals("")) {
+				type = "btn-" + type;
+			}
 
-			StringBuffer tabNav = new StringBuffer();
-			tabNav.append("<ul " + elementId + "class='nav " + type + "'>\n");
+			String sizeClass = "";
+			switch (sizes) {
+			case "mini":
+				sizeClass = " btn-mini";
+				break;
+			case "small":
+				sizeClass = " btn-small";
+				break;
+			case "large":
+				sizeClass = " btn-large";
+				break;
+			}
+
+			rh.append("<div" + elementId + " class='btn-group " + dropPosition + "'>\n");
+			rh.append("<button class='btn " + type + sizeClass + "'>" + label + "</button>\n");
+			rh.append(" <button class='btn dropdown-toggle " + type + sizeClass + "' data-toggle='dropdown' href='#'>\n");
+			rh.append("   <span class='caret'></span>\n");
+			rh.append(" </button>\n");
+			rh.append("  <ul class='dropdown-menu'>\n");
 
 			for(int row = 0; row < Integer.valueOf(rows); row++) {
 
-				WbdChildIndex wbdChildIndex = new WbdChildIndex(NAVS_INDEX_PREFIX+row);
+				WbdChildIndex wbdChildIndex = new WbdChildIndex(BUTTONDROPDOWN_INDEX_PREFIX+row);
 
 				String title = instance.getProperty("title", wbdChildIndex);
+				String navpointId = instance.getProperty("navpoint", wbdChildIndex);
 
-				//set first item as active index
-				if (row == FIRST_ITEM_INDEX) {
-					tabNav.append("  <li class='active'>\n");
-				} else {
-					tabNav.append("  <li>\n");
-				}
+				navpointId = RoutingUIM.navpointUrl(ud, navpointId, AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
 
-				String id = "#" + title.toLowerCase();
-				tabNav.append("   <a href='" + id + "' data-toggle='tab'>" + title + "</a>\n");
-				tabNav.append("  </li>\n");
-			}
-			tabNav.append("  </ul>\n");
-			
-			if (!tabDirection.equalsIgnoreCase("tabs-below")) {
-				rh.append(tabNav);
-			}
-			
-			rh.append("  <div class='tab-content'>\n");
+				rh.append("      <li><a href=\""+navpointId+"\">"+title+"</a></li>\n");
 
-			int size = Integer.valueOf(rows);
-			for (int row = 0; row < size; row++) {
-
-				String indexPrefix = row + ",";
-				WbdChildIndex wbdChildIndex = new WbdChildIndex(NAVS_INDEX_PREFIX+row);
-				String title = instance.getProperty("title", wbdChildIndex);
-
-				//set first item as active index
-				if (row == FIRST_ITEM_INDEX) {
-					rh.append(" 	<div class='tab-pane active' id='" + title.toLowerCase() + "'>\n");
-				} else {
-					rh.append(" 	<div class='tab-pane' id='" + title.toLowerCase() + "'>\n");
-				}
-				
-				this.flowChildren_renderForJSP(generator, instance, ud, rh, indexPrefix);
-
-				rh.append(" 	</div>\n");
-			}
-			rh.append("	  </div>\n");
-
-			if (tabDirection.equalsIgnoreCase("tabs-below")) {
-				rh.append(tabNav);
 			}
 
-			rh.append("	</div>\n");
+			rh.append(" </ul>\n");
+			rh.append("</div>\n");
 
 
 		} catch (Exception e) {
@@ -218,62 +207,34 @@ public class NavsWidget extends ContainerWidget
 	}
 
 	private void render(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException {
-		final int FIRST_ITEM_INDEX = 0;
-		
-		String elementId = instance.getFinalProperty(generator, "elementId");
-		String type = instance.getFinalProperty(generator, "type");
-		String tabDirection = instance.getFinalProperty(generator, "tabDirection");
-		
+
 		String rows = instance.getProperty("rows", null);
+		String buttonLabel = instance.getFinalProperty(generator, "label");
 
-		WidgetId navsId = new WidgetId(instance);
-		navsId.setPrefix("navs");
+		WidgetId buttonDropDownId = new WidgetId(instance);
+		buttonDropDownId.setPrefix("buttonDropDown");
 
-		rh.append("<div id='"+ navsId.fullPath() + "' class='tabbable " + tabDirection + "'>\n");
-		
-		StringBuffer tabNav = new StringBuffer();
-		tabNav.append("<ul " + elementId + "class='nav " + type + "'>\n");
+		rh.append("	<div id='"+ buttonDropDownId.fullPath() + "' class='btn-group'>\n");
+		rh.append("<button class='btn'>" + buttonLabel + "</button>\n");
+		rh.append(" <button class='btn dropdown-toggle' data-toggle='dropdown' href='#'>\n");
+		rh.append("   <span class='caret'></span>\n");
+		rh.append(" </button>\n");
+		rh.append("  <ul class='dropdown-menu'>\n");
 
 		for(int row = 0; row < Integer.valueOf(rows); row++) {
 
-			WbdChildIndex wbdChildIndex = new WbdChildIndex(NAVS_INDEX_PREFIX+row);
+			WbdChildIndex wbdChildIndex = new WbdChildIndex(BUTTONDROPDOWN_INDEX_PREFIX+row);
 			String title = instance.getProperty("title", wbdChildIndex);
-			
-			//set first item as active index
-			if (row == FIRST_ITEM_INDEX) {
-				tabNav.append("<li class=\"active designer-properties\"  id=\""+navsId + "["+NAVS_INDEX_PREFIX+row+"]\" onclick=\"Navs.selectItem('"+navsId.fullPath()+"','"+row+"')\">\n");
-			} else {
-				tabNav.append("<li class=\"designer-properties\"  id=\""+navsId + "["+NAVS_INDEX_PREFIX+row+"]\" onclick=\"Navs.selectItem('"+navsId.fullPath()+"','"+row+"')\">\n");
-			}
-			
-			tabNav.append("<a href=\"javascript:void(0);\">"+title+"</a></li>\n");
+
+			rh.append("      <li class=\"designer-properties\"  id=\""+buttonDropDownId + "["+BUTTONDROPDOWN_INDEX_PREFIX+row+"]" + 
+					"\" onclick=\"ButtonDropDown.selectItem('"+buttonDropDownId.fullPath()+"','"+row+"')\"><a href=\"javascript:void(0);\">"+title+"</a></li>\n");
+
 		}
 
-		tabNav.append("</ul>\n");
-		
-		if (!tabDirection.equalsIgnoreCase("tabs-below")) {
-			rh.append(tabNav);
-		}
-
-		int size = Integer.valueOf(rows);
-		rh.append("<table class='tabContainer' cellpadding='5' cellspacing='5'>");
-		rh.append("<tr>\n");
-		for (int cnt = 0; cnt < size; cnt++) {
-			String indexPrefix = cnt +",";
-			rh.append("		<td class='item'>\n");
-			this.flowChildren_renderForDesigner(generator, instance, ud, rh, indexPrefix);
-			rh.append("     </td>\n");
-		}
-		rh.append("</tr>\n");
-		rh.append("</table>");	
-
-		if (tabDirection.equalsIgnoreCase("tabs-below")) {
-			rh.append(tabNav);
-		}
-
+		rh.append(" </ul>\n");
 		rh.append("</div>\n");
 
-		String js = codeToInsert(generator, instance, SnippetLocation.PRIMITIVE_WIDGET, "navs_jsHeader.js", null);
+		String js = codeToInsert(generator, instance, SnippetLocation.PRIMITIVE_WIDGET, "buttonDropdown_jsHeader.js", null);
 		rh.append("<script>");
 		rh.append(js);
 		rh.append("</script>");
@@ -379,7 +340,7 @@ public class NavsWidget extends ContainerWidget
 		// Add additional processing to run after the pane is loaded
 		html += "<script>\n";
 		html += helper.javascriptToSetUpLayoutEditorPane(generator, uh, root);
-		html += "TtPane_layout.showProperties('navs!"+instance.fullPath() + "["+NAVS_INDEX_PREFIX + selectedRow +"]');";
+		html += "TtPane_layout.showProperties('buttonDropDown!"+instance.fullPath() + "["+BUTTONDROPDOWN_INDEX_PREFIX + selectedRow +"]');";
 		html += "jQuery(\"#id-designer-properties-div\").css({\"opacity\":\"1\"});";
 		html += "</script>\n";
 		//		
@@ -395,7 +356,7 @@ public class NavsWidget extends ContainerWidget
 		XNodes cells;
 		try
 		{
-			cells = node.getNodes("./navs");
+			cells = node.getNodes("./buttonDropDowns");
 		}
 		catch (XDataException e)
 		{
@@ -405,9 +366,11 @@ public class NavsWidget extends ContainerWidget
 		{
 			String indexStr = cells.getText("./index");
 			String title = cells.getText("./title");
+			String navpoint = cells.getText("./navpoint");
 
-			WbdChildIndex index = new WbdChildIndex(NAVS_INDEX_PREFIX + indexStr);
+			WbdChildIndex index = new WbdChildIndex(BUTTONDROPDOWN_INDEX_PREFIX + indexStr);
 			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
+			widget.defineProperty(new WbdNavPointProperty("navpoint", index, "Navpoint", navpoint));
 			try
 			{
 				XNodes widgetNode = cells.getNodes("./widget");
@@ -422,7 +385,8 @@ public class NavsWidget extends ContainerWidget
 				throw new WbdException("Error finding cell widget: " + e);
 			}
 		}
-		
+
+
 		//for children
 		this.flowChildren_loadPropertiesFromXml(generator, widget, node, null);
 
@@ -436,16 +400,17 @@ public class NavsWidget extends ContainerWidget
 		int rows = Integer.valueOf(instance.getProperty("rows", null));
 
 		for (int row = 0; row < rows; row++) {
-			WbdChildIndex index = new WbdChildIndex(NAVS_INDEX_PREFIX+row);
+			WbdChildIndex index = new WbdChildIndex(BUTTONDROPDOWN_INDEX_PREFIX+row);
 			String title = instance.getProperty("title", index);
-			title = (title == null) ? "Title" : title;
+			title = (title == null) ? "Link" : title;
 
+			String navpoint = instance.getProperty("navpoint", index);
 			title = (title == null) ? "" : title;
 
-			pw.println(indentStr(indent) + "<navs>");
+			pw.println(indentStr(indent) + "<buttonDropDowns>");
 			pw.println(indentStr(indent + 1) + "<index>" + row + "</index>");
 			instance.getProperties().writeProperties(pw, indent + 1, index);
-			pw.println(indentStr(indent) + "</navs>");
+			pw.println(indentStr(indent) + "</buttonDropDowns>");
 
 
 			WbdWidget child = instance.findChildByIndex(index);
@@ -453,18 +418,17 @@ public class NavsWidget extends ContainerWidget
 				child.saveToFile(generator, pw, indent + 1);
 			else {
 				instance.defineProperty(new WbdStringProperty("title", index, "Title", title));
+				instance.defineProperty(new WbdNavPointProperty("navpoint", index, "Navpoint", navpoint));
 			}
 		}
-		
-		this.flowChildren_writeProperties(generator, instance, pw, indent, null);
 
 	}
 
 	@Override
 	public void renderProperties(WbdGenerator generator, UimData ud, WbdRenderHelper rh, WbdWidget instance, WidgetId id, boolean displayOnly) throws WbdException {
 
-		WidgetId navsId = new WidgetId(instance);
-		navsId.setPrefix("navs");
+		WidgetId buttonDropDownId = new WidgetId(instance);
+		buttonDropDownId.setPrefix("buttonDropDown");
 
 		WbdChildIndex index = id.getIndex();
 		System.out.println(index.getIndexStr());
@@ -477,21 +441,21 @@ public class NavsWidget extends ContainerWidget
 		if (id.getIndex().getIndexStr().equals("")) {
 
 			rh.append("<tr>");
-			rh.append("<td id=\"id-designer-properties-navs3\">");//[elementId, rows, selectedRow, position, inverted, _widgetId, _controller, _linkedWidget]
+			rh.append("<td id=\"id-designer-properties-buttonDropDown3\">");//[elementId, rows, selectedRow, position, inverted, _widgetId, _controller, _linkedWidget]
 			String[] ignoredPropertiesForGrid = {"_controller", "_widgetId", "cellDivs", "rows", "selectedRow", "_linkedWidget"};
-			rh.renderProperties(generator, ud, instance, navsId, ignoredPropertiesForGrid);
+			rh.renderProperties(generator, ud, instance, buttonDropDownId, ignoredPropertiesForGrid);
 			rh.append("</td>");
 			rh.append("</tr>");
 
 			rh.append("<tr>");
-			rh.append("<td id=\"id-designer-properties-navs3\">");//[elementId, rows, selectedRow, position, inverted, _widgetId, _controller, _linkedWidget]
+			rh.append("<td id=\"id-designer-properties-buttonDropDown3\">");//[elementId, rows, selectedRow, position, inverted, _widgetId, _controller, _linkedWidget]
 			rh.append("<br>");
 			XpcSecurity credentials = ud.getCredentials();
 			boolean canChangeGrid = credentials.hasRole(DesignerRole.CHANGE_GRIDS.getRoleCode());
 			if (instance.mayEdit(ud) && canChangeGrid) {
 
-				rh.append("  <span class=\"button-Navs\" style=\"float: right;cursor: pointer;\" onclick=\"Navs.removeItem('"+id.fullPath()+"');\" title=\"Remove Item.\">&nbsp;-&nbsp;</span>");
-				rh.append("  <span class=\"button-Navs\" style=\"float: right;cursor: pointer;\" onclick=\"Navs.insertItem('"+id.fullPath()+"');\" title=\"Insert item.\">&nbsp;+&nbsp;</span>");
+				rh.append("  <span class=\"button-ButtonDropDown\" style=\"float: right;cursor: pointer;\" onclick=\"ButtonDropDown.removeItem('"+id.fullPath()+"');\" title=\"Remove Item.\">&nbsp;-&nbsp;</span>");
+				rh.append("  <span class=\"button-ButtonDropDown\" style=\"float: right;cursor: pointer;\" onclick=\"ButtonDropDown.insertItem('"+id.fullPath()+"');\" title=\"Insert item.\">&nbsp;+&nbsp;</span>");
 			}
 
 			rh.append("</td>");
@@ -501,16 +465,16 @@ public class NavsWidget extends ContainerWidget
 
 			//custom property in dialog  when clicking an item.
 			rh.append("<tr>");
-			rh.append("<td id=\"id-designer-properties-navsDropDown1\">");
+			rh.append("<td id=\"id-designer-properties-buttonDropDown1\">");
 			rh.append("<br>");
-			rh.append("<label>Tab Property</label>");
+			rh.append("<label>Link Property</label>");
 			rh.renderProperties(generator, ud, instance, id, new String[] {});
 			rh.append("</td>");
 			rh.append("</tr>");
 		}
 
 		rh.append("</table>");
-		rh.append("<script>jQuery(\".button-Navs\").button();</script>");
+		rh.append("<script>jQuery(\".button-ButtonDropDown\").button();</script>");
 
 	}
 }
