@@ -13,6 +13,7 @@
   *display: inline;
   text-shadow: 0 1px 0 #ffffff;
   *zoom: 1;
+  font-size: 12px;
 }
 
 .breadcrumb > li > .divider {
@@ -22,4 +23,11 @@
 
 .breadcrumb > .active {
   color: #999999;
+  font-size: 12px;
+}
+
+.breadcrumb a {
+	color: #08C !important;
+	text-decoration: none;
+	 font-size: 12px;
 }
