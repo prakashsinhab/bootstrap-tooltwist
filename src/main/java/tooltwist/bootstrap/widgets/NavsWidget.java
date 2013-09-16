@@ -58,6 +58,7 @@ public class NavsWidget extends ContainerWidget
 
 	private static final String NAVS_INDEX_PREFIX = "navs-";
 	private static final boolean USE_PRODUCTION_HELPER = false;
+	private static final String TOOLBOX_ICON = "/ttsvr/tooltwist/wbd/toolbox_icons/default_icon.png";
 
 	@Override
 	protected void init(WbdWidget instance) throws WbdException
@@ -261,7 +262,7 @@ public class NavsWidget extends ContainerWidget
 		rh.append("<tr>\n");
 		for (int cnt = 0; cnt < size; cnt++) {
 			String indexPrefix = cnt +",";
-			rh.append("		<td class='item'>\n");
+			rh.append("		<td class='item' width='300px'>\n");
 			this.flowChildren_renderForDesigner(generator, instance, ud, rh, indexPrefix);
 			rh.append("     </td>\n");
 		}
