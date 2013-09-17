@@ -1,6 +1,30 @@
 <widget>
+  <toolboxCategory></toolboxCategory>
   <widgetClass>tooltwist.bootstrap.widgets.CarouselWidget</widgetClass>
+  <viewHelper>tooltwist.bootstrap.viewHelpers.CarouselViewHelper</viewHelper>
   <idWithinRootWidget>0</idWithinRootWidget>
-  <label>Carousel Widget</label>
-  <description>Carousel Widget</description>
+  <imageFile>/ttsvr/mall/widgetti/icons/bookmark.png</imageFile>
+  <sampleImage>/ttsvr/mall/widgetti/icons/bookmark.png</sampleImage>
+  <label>Carousel</label>
+  <description>Carousel templates</description>
+  <tab>
+  	<label>Help</label>
+  	<url>https://docs.google.com/document/pub?id=1pWmetrLPe7oa4vS4jwpWtv7SBHuUUVx5TH0j8vL2PLQ&amp;embedded=true</url>
+  </tab>
+	<editableSnippet>
+		<name>conf.xml</name>
+	</editableSnippet>
+   <editableSnippet>
+		<name>cssHeader.css</name>
+	</editableSnippet>
+	<editableSnippet>
+		<name>jsHeader.js</name>
+	</editableSnippet>
+	<editableSnippet>
+		<name>input.json</name>
+	</editableSnippet>
+	<editableSnippet>
+		<name>template.mustache</name>
+		<theme>project</theme>
+	</editableSnippet>
 </widget>

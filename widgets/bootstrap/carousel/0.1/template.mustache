@@ -1,0 +1,27 @@
+<div id="carousel-example-generic" class="carousel slide">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+   [[#imageList]]
+	    <li data-target="#carousel-example-generic" data-slide-to="[[index]]" class="[[#active]]active[[/active]]"></li>
+    [[/imageList]]
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+          
+    [[#imageList]]
+			<div class="item [[#active]]active[[/active]]">
+				<a href="#"><img src="[[image]]" alt="Banner"></a>
+			</div>
+   [[/imageList]]
+   
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+    <span class="icon-prev"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+    <span class="icon-next"></span>
+  </a>
+</div>
