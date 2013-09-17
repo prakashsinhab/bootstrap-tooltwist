@@ -72,7 +72,8 @@ public class NavsWidget extends ContainerWidget
 		instance.defineHiddenProperty(new WbdStringProperty("selectedRow", null, "Selected Row", "0"));
 
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdRadioTextProperty("type", null, "Type", "nav-tabs,nav-pills", "nav-tabs"));
+		instance.defineProperty(new WbdRadioTextProperty("type", null, "Type", "nav-tabs,nav-pills,nav-stacked", "nav-tabs"));
+		instance.defineProperty(new WbdRadioTextProperty("justified", null, "Justified", "true,false","false"));
 		instance.defineProperty(new WbdSelectProperty("tabDirection", null, "Tabs Direction", "tabs-below,tabs-left,tabs-right", ""));
 
 	}
@@ -151,6 +152,12 @@ public class NavsWidget extends ContainerWidget
 			String elementId = instance.getFinalProperty(generator, "elementId");
 			String type = instance.getFinalProperty(generator, "type");
 			String tabDirection = instance.getFinalProperty(generator, "tabDirection");
+			String justified = instance.getFinalProperty(generator, "justified");
+			
+			String justifiedClass = "";
+			if (justified.equals("true")) {
+				justifiedClass = " nav-justified";
+			}
 
 			if (!elementId.equals("")) {
 				elementId = "id='" + elementId + "' ";
@@ -159,7 +166,7 @@ public class NavsWidget extends ContainerWidget
 			rh.append("<div class='tabbable " + tabDirection + "'>\n");
 
 			StringBuffer tabNav = new StringBuffer();
-			tabNav.append("<ul " + elementId + "class='nav " + type + "'>\n");
+			tabNav.append("<ul " + elementId + "class='nav " + type + justifiedClass + "'>\n");
 
 			for(int row = 0; row < Integer.valueOf(rows); row++) {
 
@@ -264,6 +271,7 @@ public class NavsWidget extends ContainerWidget
 			String indexPrefix = cnt +",";
 			rh.append("		<td class='item' width='300px'>\n");
 			this.flowChildren_renderForDesigner(generator, instance, ud, rh, indexPrefix);
+			rh.append("<img src='" + TOOLBOX_ICON + "'");
 			rh.append("     </td>\n");
 		}
 		rh.append("</tr>\n");
