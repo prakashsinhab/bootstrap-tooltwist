@@ -219,75 +219,133 @@ public class NavsWidget extends ContainerWidget
 
 			rh.append("	</div>\n");
 
-
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	private void render(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException {
-		final int FIRST_ITEM_INDEX = 0;
+//	private void render(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException {
+//		final int FIRST_ITEM_INDEX = 0;
+//		
+//		String elementId = instance.getFinalProperty(generator, "elementId");
+//		String type = instance.getFinalProperty(generator, "type");
+//		String tabDirection = instance.getFinalProperty(generator, "tabDirection");
+//		
+//		String rows = instance.getProperty("rows", null);
+//
+//		WidgetId navsId = new WidgetId(instance);
+//		navsId.setPrefix("navs");
+//
+//		rh.append("<div id='"+ navsId.fullPath() + "' class='tabbable " + tabDirection + "'>\n");
+//		
+//		StringBuffer tabNav = new StringBuffer();
+//		tabNav.append("<ul " + elementId + "class='nav " + type + "'>\n");
+//
+//		for(int row = 0; row < Integer.valueOf(rows); row++) {
+//
+//			WbdChildIndex wbdChildIndex = new WbdChildIndex(NAVS_INDEX_PREFIX+row);
+//			String title = instance.getProperty("title", wbdChildIndex);
+//			
+//			//set first item as active index
+//			if (row == FIRST_ITEM_INDEX) {
+//				tabNav.append("<li class=\"active designer-properties\"  id=\""+navsId + "["+NAVS_INDEX_PREFIX+row+"]\" onclick=\"Navs.selectItem('"+navsId.fullPath()+"','"+row+"')\">\n");
+//			} else {
+//				tabNav.append("<li class=\"designer-properties\"  id=\""+navsId + "["+NAVS_INDEX_PREFIX+row+"]\" onclick=\"Navs.selectItem('"+navsId.fullPath()+"','"+row+"')\">\n");
+//			}
+//			
+//			tabNav.append("<a href=\"javascript:void(0);\">"+title+"</a></li>\n");
+//		}
+//
+//		tabNav.append("</ul>\n");
+//		
+//		if (!tabDirection.equalsIgnoreCase("tabs-below")) {
+//			rh.append(tabNav);
+//		}
+//
+//		int size = Integer.valueOf(rows);
+//		rh.append("<table class='tabContainer' cellpadding='5' cellspacing='5'>");
+//		rh.append("<tr>\n");
+//		for (int cnt = 0; cnt < size; cnt++) {
+//			String indexPrefix = cnt +",";
+//			rh.append("		<td class='item' width='300px'>\n");
+//			this.flowChildren_renderForDesigner(generator, instance, ud, rh, indexPrefix);
+//			rh.append("<img src='" + TOOLBOX_ICON + "'");
+//			rh.append("     </td>\n");
+//		}
+//		rh.append("</tr>\n");
+//		rh.append("</table>");	
+//
+//		if (tabDirection.equalsIgnoreCase("tabs-below")) {
+//			rh.append(tabNav);
+//		}
+//
+//		rh.append("</div>\n");
+//
+//		String js = codeToInsert(generator, instance, SnippetLocation.PRIMITIVE_WIDGET, "navs_jsHeader.js", null);
+//		rh.append("<script>");
+//		rh.append(js);
+//		rh.append("</script>");
+//
+//	}
+	
+	private void render(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) {
 		
-		String elementId = instance.getFinalProperty(generator, "elementId");
-		String type = instance.getFinalProperty(generator, "type");
-		String tabDirection = instance.getFinalProperty(generator, "tabDirection");
-		
-		String rows = instance.getProperty("rows", null);
-
-		WidgetId navsId = new WidgetId(instance);
-		navsId.setPrefix("navs");
-
-		rh.append("<div id='"+ navsId.fullPath() + "' class='tabbable " + tabDirection + "'>\n");
-		
-		StringBuffer tabNav = new StringBuffer();
-		tabNav.append("<ul " + elementId + "class='nav " + type + "'>\n");
-
-		for(int row = 0; row < Integer.valueOf(rows); row++) {
-
-			WbdChildIndex wbdChildIndex = new WbdChildIndex(NAVS_INDEX_PREFIX+row);
-			String title = instance.getProperty("title", wbdChildIndex);
+		try {
 			
-			//set first item as active index
-			if (row == FIRST_ITEM_INDEX) {
-				tabNav.append("<li class=\"active designer-properties\"  id=\""+navsId + "["+NAVS_INDEX_PREFIX+row+"]\" onclick=\"Navs.selectItem('"+navsId.fullPath()+"','"+row+"')\">\n");
-			} else {
-				tabNav.append("<li class=\"designer-properties\"  id=\""+navsId + "["+NAVS_INDEX_PREFIX+row+"]\" onclick=\"Navs.selectItem('"+navsId.fullPath()+"','"+row+"')\">\n");
+			String rows = instance.getProperty("rows", null);
+			Object tmp = instance.getProperty("selectedRow", null);
+			int selectedRow = Integer.valueOf(tmp == "" ? "0" : tmp.toString());
+			
+			if (selectedRow >= Integer.valueOf(rows)) {
+				selectedRow = 0;
+				instance.setProperty("selectedRow", null, "0");
+				instance.setPropertyWhileLoading("selectedRow", null, "0");
 			}
 			
-			tabNav.append("<a href=\"javascript:void(0);\">"+title+"</a></li>\n");
+			String elementId = instance.getProperty("elementId", null);
+			
+			WidgetId navId = new WidgetId(instance);
+			navId.setPrefix("navs");
+			
+			rh.append("<div id=\""+navId.fullPath()+"\">");
+			rh.append("<div class=\"navs\" id=\"navs-"+elementId+"\">");
+			
+			for(int row = 0; row < Integer.valueOf(rows); row++) {
+				
+				String display = (selectedRow == row) ? "block" : "none";
+				String indexPrefix =  row + ",";
+				WbdChildIndex wbdChildIndex = new WbdChildIndex(NAVS_INDEX_PREFIX+row);
+				String title = instance.getProperty("title", wbdChildIndex);
+				
+				rh.append("	<div class=\"navs-group\">");
+				rh.append("		<div class=\"navs-heading designer-properties\" id=\""+navId + "["+NAVS_INDEX_PREFIX+row+"]"+"\">");
+				rh.append("			<a class=\"navs-toggle collapsed\" data-toggle=\"collapse\" data-parent=\"#navs-"+elementId+"\" href=\"#collapse-"+elementId+"-"+row+"\" onclick=\"Navs.selectItem('"+navId.fullPath()+"', '"+row+"')\"> "+title+" </a>"); 
+				rh.append("		</div>");
+				rh.append("		<div id=\"collapse-"+elementId+"-"+row+"\" class=\"navs-body collapse\" style=\"height: auto;display: "+display+";\">");
+				rh.append("			<div class=\"navs-inner\">");
+				rh.append("				<div class=\"navs-container\">");
+				this.flowChildren_renderForDesigner(generator, instance, ud, rh, indexPrefix);
+				rh.append("			   </div>");
+				rh.append("			</div>");
+				rh.append("		</div>");
+				rh.append("	</div>");
+			}
+			
+			rh.append("</div>");
+			rh.append("</div>");
+			
+			String js = codeToInsert(generator, instance, SnippetLocation.PRIMITIVE_WIDGET, "navs_jsHeader.js", null);
+			
+			rh.append("<script>");
+			rh.append(js);
+			rh.append("</script>");
+			
+		} catch (Exception e) {
+			WbdException wbdException = new WbdException(e.toString());
+			wbdException.setStackTrace(e.getStackTrace());
 		}
-
-		tabNav.append("</ul>\n");
 		
-		if (!tabDirection.equalsIgnoreCase("tabs-below")) {
-			rh.append(tabNav);
-		}
-
-		int size = Integer.valueOf(rows);
-		rh.append("<table class='tabContainer' cellpadding='5' cellspacing='5'>");
-		rh.append("<tr>\n");
-		for (int cnt = 0; cnt < size; cnt++) {
-			String indexPrefix = cnt +",";
-			rh.append("		<td class='item' width='300px'>\n");
-			this.flowChildren_renderForDesigner(generator, instance, ud, rh, indexPrefix);
-			rh.append("<img src='" + TOOLBOX_ICON + "'");
-			rh.append("     </td>\n");
-		}
-		rh.append("</tr>\n");
-		rh.append("</table>");	
-
-		if (tabDirection.equalsIgnoreCase("tabs-below")) {
-			rh.append(tabNav);
-		}
-
-		rh.append("</div>\n");
-
-		String js = codeToInsert(generator, instance, SnippetLocation.PRIMITIVE_WIDGET, "navs_jsHeader.js", null);
-		rh.append("<script>");
-		rh.append(js);
-		rh.append("</script>");
-
 	}
 
 	private String codeToInsert(WbdGenerator generator, WbdWidget instance, SnippetLocation location, String templateName, SnippetParam[] params) throws WbdException {

@@ -3,6 +3,11 @@ var Navs = function() {
 	
 	return {
 		
+		init: function() {
+			jQuery(".navs-heading").unbind("click");
+			//jQuery( document ).tooltip();
+		},
+		
 		selectItem: function(navsId, row) {
 			TtPane_layout.hidePropertiesDialog();
 			setTimeout(function() {
@@ -30,7 +35,16 @@ var Navs = function() {
 				w: navsId,
 				currentState : getCurrentState()
 			});
+		},
+		
+		expandAll: function(accordionId) {
+			jQuery(".navs-body.collapse").css({"height": "auto", "display": "block"});
+		},
+		
+		collapseAll: function(accordionId) {
+			jQuery(".navs-body.collapse").css({"height": "0px", "display": "none"});
 		}
 		
 	};
 }();
+jQuery(Navs.init());
