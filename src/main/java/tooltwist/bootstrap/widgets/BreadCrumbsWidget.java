@@ -114,7 +114,7 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 		
 		if (navpointList.size() != 0) {
 
-			buf.append("<ul class='breadcrumb'>\n");
+			buf.append("<ol class='breadcrumb'>\n");
 
 			int size = navpointList.size();
 			for (int i = 0; i < size; i++) {
@@ -132,9 +132,9 @@ public class BreadCrumbsWidget extends WbdWidgetController {
 				}
 				buf.append("	  </li>\n");
 			}
-			buf.append("</ul>\n");
+			buf.append("</ol>\n");
 		} else {
-			buf.append("<ul class='breadcrumb'><li><a href='javascript:void(0);'>No Base Navpoint Selected</a></li></ul>");
+			buf.append("<ol class='breadcrumb'><li><a href='javascript:void(0);'>No Base Navpoint Selected</a></li></ol>");
 		}
 	}
 
