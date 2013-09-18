@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import tooltwist.bootstrap.properties.WbdSelectProperty;
 import tooltwist.ecommerce.AutomaticUrlParametersMode;
 import tooltwist.ecommerce.RoutingUIM;
 import tooltwist.wbd.CodeInserter;
@@ -54,7 +55,7 @@ public class NavBarWidget extends ContainerWidget
 	private static final Logger logger = LoggerFactory.getLogger(NavBarWidget.class);
 	
 	private static final String NAVBAR_INDEX_PREFIX = "navbar-";
-	private static final boolean USE_PRODUCTION_HELPER = false;
+	private static final boolean USE_PRODUCTION_HELPER = false; 
 
 	@Override
 	protected void init(WbdWidget instance) throws WbdException
@@ -68,8 +69,10 @@ public class NavBarWidget extends ContainerWidget
 		instance.defineProperty(rowProperty);
 		
 		instance.defineHiddenProperty(new WbdStringProperty("selectedRow", null, "Selected Row", "0"));
-		instance.defineProperty(new WbdStringProperty("title", null, "Title", ""));
-		instance.defineProperty(new WbdRadioTextProperty("position", null, "Position", "Fixed Top:top,Fixed Bottom:bottom", ""));
+		instance.defineProperty(new WbdRadioTextProperty("brandType", null, "Brand Type", "Label,Image", ""));
+		instance.defineProperty(new WbdStringProperty("titleImagePath", null, "Title / Image Path", ""));
+		instance.defineProperty(new WbdNavPointProperty("brandNavpoint", null, "Navpoint", ""));
+		instance.defineProperty(new WbdRadioTextProperty("verticalPosition", null, "Position", "Fixed Top:top,Fixed Bottom:bottom", ""));
 		instance.defineProperty(new WbdRadioTextProperty("inverted", null, "Inverted Variation", "True:true,False:false", "false"));
 		
 	}
@@ -163,7 +166,6 @@ public class NavBarWidget extends ContainerWidget
 	public void renderForDesigner(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException
 	{
 		render(generator, instance, ud, rh);
-		
 	}
 	
 	@Override
@@ -171,47 +173,133 @@ public class NavBarWidget extends ContainerWidget
 		try {
 
 			String rows = instance.getProperty("rows", null);
-			String navTitle = instance.getProperty("title", null);
+			String brandType = instance.getProperty("brandType", null).toLowerCase();
+			String titleImagePath = instance.getProperty("titleImagePath", null);
+			String brandNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("brandNavpoint", null), null);
 			String elementId = instance.getProperty("elementId", null);
-			String position = instance.getProperty("position", null);
+			String verticalPosition = instance.getProperty("verticalPosition", null);
 			
-			if (position != null && !position.equals("")) {
-				position = "navbar-fixed-" + position;
+			if (verticalPosition != null && !verticalPosition.equals("")) {
+				verticalPosition = "navbar-fixed-" + verticalPosition;
 			}
 			else {
-				position = "";
+				verticalPosition = "";
 			}
 			
 			String inverted = instance.getProperty("inverted", null);
 			String invertedClass = "";
-			if (Boolean.valueOf(inverted))
+			if (Boolean.valueOf(inverted)) {
 				invertedClass = "navbar-inverse";
-			
+			} else {
+				invertedClass = "navbar-default";
+			}
+				
 			String currentNavpointId = WbdSession.getNavpointId(ud.getCredentials());
 			
-			rh.append("<div class=\"navbar "+position+" "+invertedClass+"\" id=\""+elementId+"\">\n"); 
-			rh.append(		"  <div class=\"navbar-inner\">\n");
-			rh.append(		"    <a class=\"brand\" href=\"#\">"+navTitle+"</a>\n" ); 
-			rh.append("    <ul class=\"nav\">\n"); 
-					
+			rh.append("  <nav class=\"navbar "+verticalPosition+" "+invertedClass+"\" role=\"navigation\" id=\""+elementId+"\">\n"); 
+			rh.append("    <div class=\"container\">\n");
+			rh.append(	"      <div class=\"navbar-header\">\n");
 			
-			for(int row = 0; row < Integer.valueOf(rows); row++) {
+			if (Integer.valueOf(rows) > 1) {
+				rh.append("        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n"); 
 				
-				WbdChildIndex wbdChildIndex = new WbdChildIndex(NAVBAR_INDEX_PREFIX+row);
+				for(int row = 1; row < Integer.valueOf(rows); row++) {
+					rh.append("          <span class=\"icon-bar\"></span>\n");
+				}
 				
-				String title = instance.getProperty("title", wbdChildIndex);
-				String navpointId = instance.getProperty("navpoint", wbdChildIndex);
-				String clazz = (currentNavpointId.equals(navpointId)) ? "active" : "";
-				
-				navpointId = RoutingUIM.navpointUrl(ud, navpointId, AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
-				
-				rh.append("      <li class=\""+clazz+"\"><a href=\""+navpointId+"\">"+title+"</a></li>\n");
-				
+				rh.append("        </button>\n"); 
 			}
 			
-			rh.append("    </ul>\n" + 
-				    "  </div>\n" +
-				    "</div>");
+			if ((brandType != null && brandType.equals("")) || brandType.equals("label")) {
+				rh.append(	"        <a class=\"navbar-brand\" href=\""+brandNavpoint+"\">"+titleImagePath+"</a>\n"); 
+			} else {
+				rh.append("        <a class=\"navbar-brand\" href=\""+brandNavpoint+"\"><img src=\""+titleImagePath+"\"/></a>\n"); 
+			}
+			
+			rh.append("      </div>\n");
+			rh.append(	"      <div class=\"collapse navbar-collapse\">\n");
+			
+			String lastType = "";
+			String type = "";
+			for(int row = 0; row < Integer.valueOf(rows); row++) {
+				WbdChildIndex wbdChildIndex = new WbdChildIndex(NAVBAR_INDEX_PREFIX+row);
+				type = instance.getProperty("type", wbdChildIndex);
+				
+				String horizontalPosition = instance.getProperty("horizontalPosition", wbdChildIndex);
+				String horizontalPositionClass = "";
+				if (!horizontalPosition.equals("")) {
+					horizontalPositionClass = "navbar-"+horizontalPosition;
+				} else {
+					horizontalPositionClass = "";
+				}
+				
+				if (lastType.equals("")) {
+					lastType = type;
+					
+					if (type.equals("Link")) {
+						rh.append("        <ul class=\"nav navbar-nav "+horizontalPositionClass+"\">\n");
+					}
+				}
+				
+				if (!lastType.equals(type)) {
+					lastType = type;
+					
+					if (type.equals("Link")) {
+						rh.append("        <ul class=\"nav navbar-nav "+horizontalPositionClass+"\">\n");
+					} else if (type.equals("Button")) {
+						rh.append("        </ul>\n");
+					}
+				}
+				
+				String title = instance.getProperty("title", wbdChildIndex);
+				String linkNavpoint = instance.getProperty("linkNavpoint", wbdChildIndex);
+				
+				if (type.equals("Link")) {
+					String clazz = (currentNavpointId.equals(linkNavpoint)) ? "active" : "";
+					
+//					linkNavpoint = RoutingUIM.navpointUrl(ud, linkNavpoint, AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
+					linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
+					
+					rh.append("          <li class=\""+clazz+"\"><a href=\""+linkNavpoint+"\">"+title+"</a></li>\n");
+				} else if (type.equals("Button")) {
+					String buttonType = instance.getProperty("buttonType", wbdChildIndex);
+					String buttonTypeClass = "";
+					if (buttonType != null && !buttonType.equals("")) {
+						buttonTypeClass = "btn-"+buttonType;
+					}
+					else {
+						buttonTypeClass = "btn-default";
+					}
+					
+					String buttonSize = instance.getProperty("buttonSize", wbdChildIndex);
+					String buttonSizeClass = "";
+					if (buttonSize != null && !buttonSize.equals("")) {
+						buttonSizeClass = "btn-"+buttonSize;
+					}
+					else {
+						buttonSizeClass = "";
+					}
+					
+					String buttonGlyphicon = instance.getProperty("buttonGlyphicon", wbdChildIndex);
+					String buttonGlyphiconClass = "";
+					if (buttonGlyphicon != null && !buttonGlyphicon.equals("")) {
+						buttonGlyphiconClass = "glyphicon-"+buttonGlyphicon;
+					}
+					else {
+						buttonGlyphiconClass = "";
+					}
+					
+					rh.append("        <form class=\"navbar-form "+horizontalPositionClass+"\"><button type=\"button\" class=\"btn "+buttonTypeClass+" "+buttonSizeClass+"\"><span class=\"glyphicon "+buttonGlyphiconClass+"\"></span> "+title+"</button></form>\n");
+				}
+			}
+			
+			if (type.equals("Link")) {
+				rh.append("        </ul>\n");
+			}
+			
+			rh.append("      </div>\n" +
+				    		"    </div>\n" +
+				    		"  </nav>");
 			
 
 		} catch (Exception e) {
@@ -225,13 +313,17 @@ public class NavBarWidget extends ContainerWidget
 		try {
 			
 			String rows = instance.getProperty("rows", null);
-			String navTitle = instance.getProperty("title", null);
+			String brandType = instance.getProperty("brandType", null).toLowerCase();
+			String titleImagePath = instance.getProperty("titleImagePath", null);
 			String inverted = instance.getProperty("inverted", null);
 			Object tmp = instance.getProperty("selectedRow", null);
 			int selectedRow = Integer.valueOf(tmp == "" ? "0" : tmp.toString());
 			String invertedClass = "";
-			if (Boolean.valueOf(inverted))
+			if (Boolean.valueOf(inverted)) {
 				invertedClass = "navbar-inverse";
+			} else {
+				invertedClass = "navbar-default";
+			}
 			
 			if (selectedRow >= Integer.valueOf(rows)) {
 				selectedRow = 0;
@@ -243,31 +335,47 @@ public class NavBarWidget extends ContainerWidget
 			navBarId.setPrefix("navBar");
 			
 			//outer div
-			rh.append("<div id=\""+navBarId.fullPath()+"\">");
+			rh.append("  <div id=\""+navBarId.fullPath()+"\">\n");
 			
-			rh.append("<div class=\"navbar "+invertedClass+"\">\n" + 
-					"  <div class=\"navbar-inner\">\n" + 
-					"    <a class=\"brand\" href=\"javascript:void(0);\">"+navTitle+"</a>\n" + 
-					"    <ul class=\"nav\">\n"); 
-			 
-					
+			rh.append("    <nav class=\"navbar "+invertedClass+"\" role=\"navigation\">\n");
+			rh.append("      <div class=\"navbar-header\">\n");
 			
+			if (Integer.valueOf(rows) > 1) {
+				rh.append("        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n"); 
+				
+				for(int row = 1; row < Integer.valueOf(rows); row++) {
+					rh.append("          <span class=\"icon-bar\"></span>\n");
+				}
+				
+				rh.append("        </button>\n"); 
+			}
+			
+			if ((brandType != null && brandType.equals("")) || brandType.equals("label")) {
+				rh.append("        <a class=\"navbar-brand\" href=\"javascript:void(0);\">"+titleImagePath+"</a>\n"); 
+			} else {
+				rh.append("        <a class=\"navbar-brand\" href=\"javascript:void(0);\"><img src=\""+titleImagePath+"\"/></a>\n"); 
+			}
+			
+			rh.append("      </div>\n");
+			rh.append("      <div class=\"collapse navbar-collapse\">\n");
+			rh.append("        <ul class=\"nav\">\n");
+
 			for(int row = 0; row < Integer.valueOf(rows); row++) {
 				
 				String clazz = (selectedRow == row) ? "active" : "";
 				WbdChildIndex wbdChildIndex = new WbdChildIndex(NAVBAR_INDEX_PREFIX+row);
 				String title = instance.getProperty("title", wbdChildIndex);
 				
-				rh.append("      <li class=\""+clazz+" designer-properties\"  id=\""+navBarId + "["+NAVBAR_INDEX_PREFIX+row+"]" +"\" onclick=\"NavBar.selectNavBar('"+navBarId.fullPath()+"','"+row+"')\"><a href=\"javascript:void(0);\">"+title+"</a></li>\n");
+				rh.append("          <li class=\""+clazz+" designer-properties\"  id=\""+navBarId + "["+NAVBAR_INDEX_PREFIX+row+"]" +"\" onclick=\"NavBar.selectNavBar('"+navBarId.fullPath()+"','"+row+"')\"><a href=\"javascript:void(0);\">"+title+"</a></li>\n");
 				
 			}
 			
-			rh.append("    </ul>\n" + 
-				    "  </div>\n" + 
-					"</div>");
+			rh.append("        </ul>\n" + 
+				      "      </div>\n" + 
+					  "    </nav>\n");
 			
 			//outer div
-			rh.append("</div>");
+			rh.append("  </div>");
 			
 			String js = codeToInsert(generator, instance, SnippetLocation.PRIMITIVE_WIDGET, "navBar_jsHeader.js", null);
 			
@@ -417,12 +525,23 @@ public class NavBarWidget extends ContainerWidget
 		while (cells.next())
 		{
 			String indexStr = cells.getText("./index");
+			String type = cells.getText("./type");
 			String title = cells.getText("./title");
-			String navpoint = cells.getText("./navpoint");
+			String linkNavpoint = cells.getText("./linkNavpoint");
+			String horizontalPosition = cells.getText("./horizontalPosition");
+			String buttonType = cells.getText("./buttonType");
+			String buttonSize = cells.getText("./buttonSize");
+			String buttonGlyphicon = cells.getText("./buttonGlyphicon");
 
 			WbdChildIndex index = new WbdChildIndex(NAVBAR_INDEX_PREFIX + indexStr);
+			widget.defineProperty(new WbdRadioTextProperty("type", index, "Type", "Link,Button", type));
 			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
-			widget.defineProperty(new WbdNavPointProperty("navpoint", index, "Navpoint", navpoint));
+			widget.defineProperty(new WbdRadioTextProperty("horizontalPosition", index, "Position", "left,right", horizontalPosition));
+			widget.defineProperty(new WbdNavPointProperty("linkNavpoint", index, "Link Navpoint", linkNavpoint));
+			widget.defineProperty(new WbdSelectProperty("buttonType", index, "Button Type", "primary,success,info,warning,danger", buttonType));
+			widget.defineProperty(new WbdRadioTextProperty("buttonSize", index, "Button Size", "Large:lg,Small:sm,Extra Small:xs", buttonSize));
+			widget.defineProperty(new WbdStringProperty("buttonGlyphicon", index, "Button Glyphicon", buttonGlyphicon));
+			
 			try
 			{
 				XNodes widgetNode = cells.getNodes("./widget");
@@ -453,10 +572,17 @@ public class NavBarWidget extends ContainerWidget
 
 		for (int row = 0; row < rows; row++) {
 			WbdChildIndex index = new WbdChildIndex(NAVBAR_INDEX_PREFIX+row);
+			String type = instance.getProperty("type", index);
 			String title = instance.getProperty("title", index);
-			title = (title == null) ? "Link" : title;
+			if ((type != null && type.equals("")) || type.equals("Link")) {
+				title = (title == null) ? "Link" : title;
+			}
 			
-			String navpoint = instance.getProperty("navpoint", index);
+			String linkNavpoint = instance.getProperty("linkNavpoint", index);
+			String horizontalPosition = instance.getProperty("horizontalPosition", index);
+			String buttonType = instance.getProperty("buttonType", index);
+			String buttonSize = instance.getProperty("buttonSize", index);
+			String buttonGlyphicon = instance.getProperty("buttonGlyphicon", index);
 			title = (title == null) ? "" : title;
 			
 			pw.println(indentStr(indent) + "<navBars>");
@@ -464,13 +590,17 @@ public class NavBarWidget extends ContainerWidget
 			instance.getProperties().writeProperties(pw, indent + 1, index);
 			pw.println(indentStr(indent) + "</navBars>");
 			
-			
 			WbdWidget child = instance.findChildByIndex(index);
 			if (child != null)
 				child.saveToFile(generator, pw, indent + 1);
 			else {
+				instance.defineProperty(new WbdRadioTextProperty("type", index, "Type", "Link,Button", type));
 				instance.defineProperty(new WbdStringProperty("title", index, "Title", title));
-				instance.defineProperty(new WbdNavPointProperty("navpoint", index, "Navpoint", navpoint));
+				instance.defineProperty(new WbdRadioTextProperty("horizontalPosition", index, "Position", "left,right", horizontalPosition));
+				instance.defineProperty(new WbdNavPointProperty("linkNavpoint", index, "Link Navpoint", linkNavpoint));
+				instance.defineProperty(new WbdSelectProperty("buttonType", index, "Button Type", "primary,success,info,warning,danger", buttonType));
+				instance.defineProperty(new WbdRadioTextProperty("buttonSize", index, "Button Size", "Large:lg,Small:sm,Extra Small:xs", buttonSize));
+				instance.defineProperty(new WbdStringProperty("buttonGlyphicon", index, "Button Glyphicon", buttonGlyphicon));
 			}
 		}
 
@@ -501,7 +631,7 @@ public class NavBarWidget extends ContainerWidget
 			rh.append("<tr>");
 			rh.append("<td id=\"id-designer-properties-navBar1\">");
 			rh.append("<br>");
-			rh.append("<label>Link Property</label>");
+			rh.append("<label>Row Property</label>");
 			rh.renderProperties(generator, ud, instance, id, new String[] {});
 			rh.append("</td>");
 			rh.append("</tr>");
@@ -509,7 +639,7 @@ public class NavBarWidget extends ContainerWidget
 		
 		rh.append("<tr>");
 		rh.append("<td id=\"id-designer-properties-navBar3\">");//[elementId, rows, selectedRow, position, inverted, _widgetId, _controller, _linkedWidget]
-		String[] _linkedWidgetOnly = {"elementId", "rows", "selectedRow", "position", "inverted", "_widgetId", "_controller", "_controller", "_widgetId", "cellDivs", "rows", "selectedRow", "title"};
+		String[] _linkedWidgetOnly = {"elementId", "rows", "selectedRow", "brandType", "titleImagePath", "brandNavpoint", "verticalPosition", "inverted", "_widgetId", "_controller", "_controller", "_widgetId", "cellDivs", "rows", "selectedRow", "title"};
 		
 		rh.renderProperties(generator, ud, instance, navBarId, _linkedWidgetOnly);
 		
