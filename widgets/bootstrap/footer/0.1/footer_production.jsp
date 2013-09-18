@@ -5,9 +5,7 @@
 <body>
 <!--START-->
 
-      <footer>
-        <p>%%text%%</p>
-      </footer>
+      <p class="%%lead%% %%position%% %%emphasis%%">%%glyphicon%%%%text%% %%link%%</p>
 
 <!--END-->
 </body>
