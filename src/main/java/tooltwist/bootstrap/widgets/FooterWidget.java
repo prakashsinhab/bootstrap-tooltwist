@@ -1,21 +1,20 @@
 package tooltwist.bootstrap.widgets;
 
+import tooltwist.bootstrap.properties.WbdSelectProperty;
+import tooltwist.ecommerce.RoutingUIM;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
-import tooltwist.wbd.JavascriptCodeInserter;
-import tooltwist.wbd.PageImportCodeInserter;
 import tooltwist.wbd.SnippetParam;
-import tooltwist.wbd.StylesheetCodeInserter;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
 import tooltwist.wbd.WbdNavPointProperty;
+import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSizeInfo;
 import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WbdWidgetController;
-import tooltwist.wbd.WbdProductionHelper;
 import com.dinaa.data.XData;
 //import tooltwist.bootstrap.productionHelpers.FooterProductionHelper;
 import com.dinaa.ui.UimData;
@@ -35,8 +34,13 @@ public class FooterWidget extends WbdWidgetController
 	protected void init(WbdWidget instance) throws WbdException
 	{
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
-		instance.defineProperty(new WbdStringProperty("text", null, "Text", ""));
-//		instance.defineProperty(new WbdNavPointProperty("navpoint", null, "Navpoint", ""));
+		instance.defineProperty(new WbdStringProperty("glyphicon", null, "Glyphicon", "copyright-mark"));
+		instance.defineProperty(new WbdStringProperty("text", null, "Text", "TEXT HERE"));
+		instance.defineProperty(new WbdNavPointProperty("navpoint", null, "Navpoint", ""));
+		instance.defineProperty(new WbdStringProperty("linkText", null, "Link Text", "LINK HERE"));
+		instance.defineProperty(new WbdRadioTextProperty("lead", null, "Lead", "True:true,False:false", "false"));
+		instance.defineProperty(new WbdRadioTextProperty("position", null, "Position", "Left:left,Center:center,Right:right", ""));
+		instance.defineProperty(new WbdSelectProperty("emphasis", null, "Emphasis", "muted,primary,success,info,warning,danger", ""));
 	}
 	
 	@Override
@@ -136,12 +140,47 @@ public class FooterWidget extends WbdWidgetController
 	}
 	
 	private SnippetParam[] getSnippetParams(WbdGenerator generator, WbdWidget instance, UimData ud) throws WbdException {
+		String glyphicon = instance.getProperty("glyphicon", null);
+		if (glyphicon != null && !glyphicon.equals("")) {
+			glyphicon = "<span class='glyphicon glyphicon-"+glyphicon+"'></span>";
+		} else {
+			glyphicon = "";
+		}
+		
 		String text = instance.getProperty("text", null);
-		String html = XData.htmlString(text);
-//		String myNavpoint = instance.getProperty("myNavpoint", null);
+		String navpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("navpoint", null), null);
+		String linkText = instance.getProperty("linkText", null);
+		String link = "<a href='"+navpoint+"'>"+linkText+"</a>";
+		
+		String lead = instance.getProperty("lead", null);
+		if (Boolean.valueOf(lead)) {
+			lead = "lead";
+		} else {
+			lead = "";
+		}
+		
+		String position = instance.getProperty("position", null);
+		if (position != null && !position.equals("")) {
+			position = " text-"+position;
+		} else {
+			position = "";
+		}
+		
+		String emphasis = instance.getProperty("emphasis", null);
+		if (emphasis != null && !emphasis.equals("")) {
+			emphasis = " text-"+emphasis;
+		} else {
+			emphasis = "";
+		}
+		
 		SnippetParam[] params = {
+			new SnippetParam("glyphicon", glyphicon),
 			new SnippetParam("text", XData.htmlString(text), true),
-//			new SnippetParam("myNavpoint", myNavpoint)
+			new SnippetParam("link", link),
+			new SnippetParam("linkText", linkText),
+			new SnippetParam("lead", lead),
+			new SnippetParam("position", position),
+			new SnippetParam("emphasis", emphasis)
 		};
 		return params;
 	}

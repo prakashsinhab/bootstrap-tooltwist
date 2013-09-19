@@ -32,7 +32,11 @@ public class WbdSelectProperty extends WbdProperty
 		String[] options = getOptions().split(",");
 		for (int i = 0; i < options.length; i++) {
 			String checked = (options[i].equals(getValue()) ? "selected" : "");
-			html.append("<option value=\"" + XData.htmlString(options[i]) + "\" " + checked + ">" + XData.htmlString(options[i]) + "</option>\n");
+			if (options[i].contains(":")) {
+				html.append("<option value=\"" + XData.htmlString(options[i].split(":")[1]) + "\" " + checked + ">" + XData.htmlString(options[i].split(":")[0]) + "</option>\n");
+			} else {
+				html.append("<option value=\"" + XData.htmlString(options[i]) + "\" " + checked + ">" + XData.htmlString(options[i]) + "</option>\n");
+			}
 		}
 		html.append("</select>\n");
 		rh.renderPropertyRow(this.getLabel(), html.toString());
