@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import tooltwist.bootstrap.properties.WbdSelectProperty;
 import tooltwist.ecommerce.AutomaticUrlParametersMode;
 import tooltwist.ecommerce.RoutingUIM;
+import tooltwist.repository.ToolTwist;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.ContainerWidget;
@@ -30,6 +31,7 @@ import tooltwist.wbd.WbdLibrary;
 import tooltwist.wbd.WbdNavPointProperty;
 import tooltwist.wbd.WbdProperty;
 import tooltwist.wbd.WbdProperty.DisplayMode;
+import tooltwist.wbd.StylesheetLinkInserter;
 import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSession;
@@ -89,6 +91,7 @@ public class NavBarWidget extends ContainerWidget
 
 //				// Include a CSS snippet
 				new StylesheetCodeInserter(generator, instance, "navBar_cssHeader.css"),
+				new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css"),
 //					new StylesheetLinkInserter("/ttsvr/bootstrap/css/bootstrap.min.css"),
 //					new JavascriptCodeInserter(generator, instance, "navBar_jsHeader.js"),
 //					new JavascriptLinkInserter("/ttsvr/bootstrap/js/bootstrap.min.js")
@@ -197,7 +200,7 @@ public class NavBarWidget extends ContainerWidget
 			String currentNavpointId = WbdSession.getNavpointId(ud.getCredentials());
 			
 			rh.append("  <nav class=\"navbar "+verticalPosition+" "+invertedClass+"\" role=\"navigation\" id=\""+elementId+"\">\n"); 
-			rh.append("    <div class=\"container\">\n");
+			//rh.append("    <div class=\"container\">\n");
 			rh.append(	"      <div class=\"navbar-header\">\n");
 			
 			if (Integer.valueOf(rows) > 1) {
@@ -298,7 +301,7 @@ public class NavBarWidget extends ContainerWidget
 			}
 			
 			rh.append("      </div>\n" +
-				    		"    </div>\n" +
+			//	    		"    </div>\n" +
 				    		"  </nav>");
 			
 

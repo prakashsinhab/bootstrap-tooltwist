@@ -9,18 +9,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import tooltwist.bootstrap.properties.WbdSelectProperty;
+import tooltwist.repository.ToolTwist;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
+import tooltwist.wbd.CodeInsertionPosition;
 import tooltwist.wbd.ContainerWidget;
 import tooltwist.wbd.DesignerHelper;
 import tooltwist.wbd.DesignerRole;
 import tooltwist.wbd.DesignerUIM;
 import tooltwist.wbd.JavascriptCodeInserter;
+import tooltwist.wbd.JavascriptLinkInserter;
 import tooltwist.wbd.Snippet;
 import tooltwist.wbd.Snippet.SnippetLocation;
 import tooltwist.wbd.SnippetParam;
 import tooltwist.wbd.SnippetParamList;
 import tooltwist.wbd.StylesheetCodeInserter;
+import tooltwist.wbd.StylesheetLinkInserter;
 import tooltwist.wbd.WbdChildIndex;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
@@ -88,7 +92,8 @@ public class NavsWidget extends ContainerWidget
 			// Add code inserters for design mode
 			CodeInserter[] arr = {
 					new StylesheetCodeInserter(generator, instance, "navs_cssHeader.css"),
-					new JavascriptCodeInserter(generator, instance, "navs_jsHeader.js")
+					new JavascriptCodeInserter(generator, instance, "navs_jsHeader.js"),
+					new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css"),
 			};
 			codeInserterList.add(arr);
 		}
