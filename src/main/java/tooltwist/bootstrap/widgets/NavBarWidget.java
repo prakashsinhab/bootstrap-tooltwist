@@ -200,7 +200,7 @@ public class NavBarWidget extends ContainerWidget
 			String currentNavpointId = WbdSession.getNavpointId(ud.getCredentials());
 			
 			rh.append("  <nav class=\"navbar "+verticalPosition+" "+invertedClass+"\" role=\"navigation\" id=\""+elementId+"\">\n"); 
-			//rh.append("    <div class=\"container\">\n");
+			rh.append("    <div class=\"container\">\n");
 			rh.append(	"      <div class=\"navbar-header\">\n");
 			
 			if (Integer.valueOf(rows) > 1) {
@@ -301,7 +301,7 @@ public class NavBarWidget extends ContainerWidget
 			}
 			
 			rh.append("      </div>\n" +
-			//	    		"    </div>\n" +
+				    		"    </div>\n" +
 				    		"  </nav>");
 			
 
