@@ -2,23 +2,18 @@ package tooltwist.bootstrap.widgets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import tooltwist.bootstrap.properties.WbdSelectProperty;
 import tooltwist.repository.ToolTwist;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
-import tooltwist.wbd.CodeInsertionPosition;
 import tooltwist.wbd.ContainerWidget;
 import tooltwist.wbd.DesignerHelper;
 import tooltwist.wbd.DesignerRole;
 import tooltwist.wbd.DesignerUIM;
 import tooltwist.wbd.JavascriptCodeInserter;
-import tooltwist.wbd.JavascriptLinkInserter;
 import tooltwist.wbd.Snippet;
 import tooltwist.wbd.Snippet.SnippetLocation;
 import tooltwist.wbd.SnippetParam;
@@ -39,7 +34,6 @@ import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdVersionSelector;
 import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WidgetId;
-
 import com.dinaa.DinaaException;
 import com.dinaa.data.XDataException;
 import com.dinaa.data.XNodes;
@@ -176,14 +170,14 @@ public class NavsWidget extends ContainerWidget
 			for(int row = 0; row < Integer.valueOf(rows); row++) {
 
 				WbdChildIndex wbdChildIndex = new WbdChildIndex(NAVS_INDEX_PREFIX+row);
-
+				String classId = instance.getProperty("class", wbdChildIndex);
 				String title = instance.getProperty("title", wbdChildIndex);
 
 				//set first item as active index
 				if (row == FIRST_ITEM_INDEX) {
-					tabNav.append("  <li class='active'>\n");
+					tabNav.append("  <li class='active " + classId + "'>\n");
 				} else {
-					tabNav.append("  <li>\n");
+					tabNav.append("  <li class='" + classId + "'>\n");
 				}
 
 				String id = "#" + title.toLowerCase();
@@ -413,9 +407,11 @@ public class NavsWidget extends ContainerWidget
 		while (cells.next())
 		{
 			String indexStr = cells.getText("./index");
+			String classId = cells.getText("./class");
 			String title = cells.getText("./title");
 
 			WbdChildIndex index = new WbdChildIndex(NAVS_INDEX_PREFIX + indexStr);
+			widget.defineProperty(new WbdStringProperty("class", index, "Class", classId));
 			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
 			try
 			{
@@ -446,9 +442,10 @@ public class NavsWidget extends ContainerWidget
 
 		for (int row = 0; row < rows; row++) {
 			WbdChildIndex index = new WbdChildIndex(NAVS_INDEX_PREFIX+row);
+			String classId = instance.getProperty("class", index);
+			classId = (classId == null) ? "" : classId;
 			String title = instance.getProperty("title", index);
 			title = (title == null) ? "Title" : title;
-
 			title = (title == null) ? "" : title;
 
 			pw.println(indentStr(indent) + "<navs>");
@@ -461,6 +458,7 @@ public class NavsWidget extends ContainerWidget
 			if (child != null)
 				child.saveToFile(generator, pw, indent + 1);
 			else {
+				instance.defineProperty(new WbdStringProperty("class", index, "Class", classId));
 				instance.defineProperty(new WbdStringProperty("title", index, "Title", title));
 			}
 		}
