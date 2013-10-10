@@ -41,18 +41,24 @@ public class CarouselViewHelper extends ViewHelper
 			  xpc.attrib("pageDataSection", pageDataSection);
 			  XData pageData = xpc.run();
 		      imageList = new ArrayList<Carousel>();
-	    	  XNodes nodes = pageData.getNodes("imagePath");
-	    	  
+	    	  //XNodes nodes = pageData.getNodes("imagePath");
+		      XNodes nodes = pageData.getNodes("banner");
+	    	  	    	  
 	    	  int index = 0;
 	    	  for (nodes.first(); nodes.next();) {
+	    		  
+	    		  XNodes imageNode = nodes.getNodes("imagePath");
+	    		  XNodes linkNode = nodes.getNodes("bannerLink");
 	    		 
 	    		    boolean status = false;
 	    		  
-		    		String imagePath = nodes.getText();
+		    		//String imagePath = nodes.getText();
+		    		String imagePath = imageNode.getText();
+		    		String linkPath = linkNode.getText();
 		    		
 		    		Carousel carousel = new Carousel();
 		    		carousel.setImage(imagePath);
-		    		
+		    		carousel.setUrl(linkPath);
 		    		if (index == 0) {
 		    			status = true;
 		    			carousel.setActive(status);
@@ -79,6 +85,7 @@ public class CarouselViewHelper extends ViewHelper
 	class Carousel {
 		
 		private String image = "";
+		private String url = "";
 		private boolean active = false;
 		private int index = 0;
 		
@@ -87,6 +94,12 @@ public class CarouselViewHelper extends ViewHelper
 		}
 		public void setImage(String image) {
 			this.image = image;
+		}
+		public String getUrl() {
+			return url;
+		}
+		public void setUrl(String url) {
+			this.url = url;
 		}
 		public boolean isActive() {
 			return active;
