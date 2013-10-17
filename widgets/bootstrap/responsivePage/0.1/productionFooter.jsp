@@ -13,6 +13,7 @@
 
     </div> <!-- /container -->
 	<!-- footer for responsivePage -->
+
     <script src="/ttsvr/bootstrap/js/jquery-1.10.2.min.js"></script>
     <script src="/ttsvr/bootstrap/js/bootstrap.min.js"></script>
   %%bottomCode%%</body>
