@@ -578,15 +578,21 @@ public class NavBarWidget extends ContainerWidget
 			WbdChildIndex index = new WbdChildIndex(NAVBAR_INDEX_PREFIX+row);
 			String type = instance.getProperty("type", index);
 			String title = instance.getProperty("title", index);
-			if ((type != null && type.equals("")) || type.equals("Link")) {
-				title = (title == null) ? "Link" : title;
+			if (type == null) {
+				type = "Link";
 			}
 			
-			String linkNavpoint = instance.getProperty("linkNavpoint", index);
-			String horizontalPosition = instance.getProperty("horizontalPosition", index);
-			String buttonType = instance.getProperty("buttonType", index);
-			String buttonSize = instance.getProperty("buttonSize", index);
-			String buttonGlyphicon = instance.getProperty("buttonGlyphicon", index);
+			if ((type != null && type.equals("")) || type.equals("Link")) {
+				title = (title == null) ? "Link" : title;
+			} else if ((type != null && type.equals("")) || type.equals("Button")) {
+				title = (title == null) ? "Button" : title;
+			}
+			
+			String linkNavpoint = (instance.getProperty("linkNavpoint", index) == null) ? "" : instance.getProperty("linkNavpoint", index);
+			String horizontalPosition = (instance.getProperty("horizontalPosition", index) == null) ? "" : instance.getProperty("horizontalPosition", index);
+			String buttonType = (instance.getProperty("buttonType", index) == null) ? "" : instance.getProperty("buttonType", index);
+			String buttonSize = (instance.getProperty("buttonSize", index) == null) ? "" : instance.getProperty("buttonSize", index);
+			String buttonGlyphicon = (instance.getProperty("buttonGlyphicon", index) == null) ? "" : instance.getProperty("buttonGlyphicon", index);
 			title = (title == null) ? "" : title;
 			
 			pw.println(indentStr(indent) + "<navBars>");
