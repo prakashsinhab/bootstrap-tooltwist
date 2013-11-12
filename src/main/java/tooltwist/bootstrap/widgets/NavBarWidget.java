@@ -293,7 +293,7 @@ public class NavBarWidget extends ContainerWidget
 					}
 					
 					linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
-					rh.append("        <form class=\"navbar-form "+horizontalPositionClass+"\"><button type=\"button\" class=\"btn "+buttonTypeClass+" "+buttonSizeClass+"\"><span class=\"glyphicon "+buttonGlyphiconClass+"\"></span><a href="+linkNavpoint+">"+title+"</a></button></form>\n");
+					rh.append("        <form class=\"navbar-form "+horizontalPositionClass+"\"><button type=\"button\" class=\"btn "+buttonTypeClass+" "+buttonSizeClass+"\"><span class=\"glyphicon "+buttonGlyphiconClass+"\"></span><a href="+linkNavpoint+">&nbsp;"+title+"</a></button></form>\n");
 				}
 			}
 			
