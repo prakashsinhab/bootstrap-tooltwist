@@ -51,10 +51,6 @@
     <!-- Bootstrap -->
     <link href="%%URL(/ttsvr/bootstrap/css/bootstrap.min.css)%%" rel="stylesheet" media="screen">
     
-    <!-- playing arround with LESS
-    	<link rel="stylesheet/less" type="text/css" href="/ttsvr/cloudmall/css/less/cm.qnet.less" />
-     -->
-     
 	<!-- <link href="%%URL(/ttsvr/bootstrap/css/bootstrap-responsive.css)%%" rel="stylesheet"> -->
   </head>
   <body>

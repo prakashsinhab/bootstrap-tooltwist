@@ -18,9 +18,6 @@
     <script src="/ttsvr/bootstrap/js/bootstrap.min.js"></script>
     <script src="/ttsvr/bootstrap/js/less-1.5.0.min.js"></script>
     
-    <script>
-		
-    </script>
   %%bottomCode%%</body>
 </html>
 <!--END-->
