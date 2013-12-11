@@ -42,6 +42,7 @@
 <html lang="en">
   <head>
     <title>%%pageTitle%%</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="%%descriptionMetatag%%">
 	<meta name="keywords" content="%%keywordMetatag%%">
 	<meta name="generator" content="ToolTwist" />
