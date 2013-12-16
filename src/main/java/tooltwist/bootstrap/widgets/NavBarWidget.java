@@ -162,13 +162,15 @@ public class NavBarWidget extends ContainerWidget
 	@Override
 	public void renderForPreview(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException
 	{
-		render(generator, instance, ud, rh);
+//		render(generator, instance, ud, rh);
+		rh.append("<img src='/ttsvr/cloudmall/images/qnet/designer/admin-menu.png'></img>");
 	}
 	
 	@Override
 	public void renderForDesigner(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException
 	{
-		render(generator, instance, ud, rh);
+//		render(generator, instance, ud, rh);
+		rh.append("<img src='/ttsvr/cloudmall/images/qnet/designer/admin-menu.png'></img>");
 	}
 	
 	@Override
@@ -669,4 +671,5 @@ public class NavBarWidget extends ContainerWidget
 		rh.append("<script>jQuery(\".button-navBar\").button();</script>");
 //		}
 	}
+	
 }

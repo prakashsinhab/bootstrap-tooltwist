@@ -6,6 +6,7 @@ import tooltwist.wbd.GenericMustacheWidget;
 import tooltwist.wbd.UsesPageData;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
+import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSession;
 import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdWidget;
@@ -49,5 +50,10 @@ public class CarouselWidget extends GenericMustacheWidget implements UsesPageDat
 		
 		return properties;
 	}
-
+	
+	@Override
+	public void renderForDesigner(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException {
+		buf.append("<img src='/ttsvr/cloudmall/images/qnet/designer/carousel.png'></img>");
+	}
+	
 }

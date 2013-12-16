@@ -32,6 +32,7 @@
 <%@page import="tooltwist.wbd.WbdSession"%>
 <%@page import="tooltwist.wbd.WbdProductionHelper"%>
 <%@page import="tooltwist.wbd.WbdCache"%>
+<%@page contentType="text/html; charset=UTF-8" %>
 %%importCode%%
 <%
 	String jspName = "%%navpointId%%";
@@ -42,7 +43,6 @@
 <html lang="en">
   <head>
     <title>%%pageTitle%%</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="%%descriptionMetatag%%">
 	<meta name="keywords" content="%%keywordMetatag%%">
 	<meta name="generator" content="ToolTwist" />
