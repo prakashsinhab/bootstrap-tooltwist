@@ -258,14 +258,14 @@ public class NavBarWidget extends ContainerWidget
 				
 				String title = instance.getProperty("title", wbdChildIndex);
 				String linkNavpoint = instance.getProperty("linkNavpoint", wbdChildIndex);
+				String parameters = instance.getProperty("parameters", wbdChildIndex);
 				
 				if (type.equals("Link")) {
 					String clazz = (currentNavpointId.equals(linkNavpoint)) ? "active" : "";
 					
-//					linkNavpoint = RoutingUIM.navpointUrl(ud, linkNavpoint, AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
 					linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
 					
-					rh.append("          <li class=\""+clazz+"\"><a href=\""+linkNavpoint+"\">"+title+"</a></li>\n");
+					rh.append("          <li class=\""+clazz+"\"><a href=\""+linkNavpoint + parameters+"\">"+title+"</a></li>\n");
 				} else if (type.equals("Button")) {
 					String buttonType = instance.getProperty("buttonType", wbdChildIndex);
 					String buttonTypeClass = "";
@@ -295,7 +295,7 @@ public class NavBarWidget extends ContainerWidget
 					}
 					
 					linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
-					rh.append("        <form class=\"navbar-form "+horizontalPositionClass+"\"><button type=\"button\" class=\"btn "+buttonTypeClass+" "+buttonSizeClass+"\"><span class=\"glyphicon "+buttonGlyphiconClass+"\"></span><a href="+linkNavpoint+">&nbsp;"+title+"</a></button></form>\n");
+					rh.append("        <form class=\"navbar-form "+horizontalPositionClass+"\"><button type=\"button\" class=\"btn "+buttonTypeClass+" "+buttonSizeClass+"\"><span class=\"glyphicon "+buttonGlyphiconClass+"\"></span><a href="+linkNavpoint + parameters+">&nbsp;"+title+"</a></button></form>\n");
 				}
 			}
 			
@@ -504,8 +504,6 @@ public class NavBarWidget extends ContainerWidget
 		// Add additional processing to run after the pane is loaded
 		html += "<script>\n";
 		html += helper.javascriptToSetUpLayoutEditorPane(generator, uh, root);
-//		html += "TtPane_layout.showPropertiesForElement('navBar"+instance.fullPath()  + "', false);";
-//		html += "TtPane_layout.hidePropertiesDialog();";
 		html += "TtPane_layout.showProperties('navBar!"+instance.fullPath() + "["+NAVBAR_INDEX_PREFIX + selectedRow +"]');";
 		html += "jQuery(\"#id-designer-properties-div\").css({\"opacity\":\"1\"});";
 		html += "</script>\n";
@@ -534,6 +532,7 @@ public class NavBarWidget extends ContainerWidget
 			String type = cells.getText("./type");
 			String title = cells.getText("./title");
 			String linkNavpoint = cells.getText("./linkNavpoint");
+			String parameters = cells.getText("./parameters");
 			String horizontalPosition = cells.getText("./horizontalPosition");
 			String buttonType = cells.getText("./buttonType");
 			String buttonSize = cells.getText("./buttonSize");
@@ -544,6 +543,7 @@ public class NavBarWidget extends ContainerWidget
 			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
 			widget.defineProperty(new WbdRadioTextProperty("horizontalPosition", index, "Position", "left,right", horizontalPosition));
 			widget.defineProperty(new WbdNavPointProperty("linkNavpoint", index, "Link Navpoint", linkNavpoint));
+			widget.defineProperty(new WbdStringProperty("parameters", index, "Parameters", parameters));
 			widget.defineProperty(new WbdSelectProperty("buttonType", index, "Button Type", "primary,success,info,warning,danger", buttonType));
 			widget.defineProperty(new WbdRadioTextProperty("buttonSize", index, "Button Size", "Large:lg,Small:sm,Extra Small:xs", buttonSize));
 			widget.defineProperty(new WbdStringProperty("buttonGlyphicon", index, "Button Glyphicon", buttonGlyphicon));
@@ -591,6 +591,7 @@ public class NavBarWidget extends ContainerWidget
 			}
 			
 			String linkNavpoint = (instance.getProperty("linkNavpoint", index) == null) ? "" : instance.getProperty("linkNavpoint", index);
+			String parameters = (instance.getProperty("parameters", index) == null) ? "" : instance.getProperty("parameters", index);
 			String horizontalPosition = (instance.getProperty("horizontalPosition", index) == null) ? "" : instance.getProperty("horizontalPosition", index);
 			String buttonType = (instance.getProperty("buttonType", index) == null) ? "" : instance.getProperty("buttonType", index);
 			String buttonSize = (instance.getProperty("buttonSize", index) == null) ? "" : instance.getProperty("buttonSize", index);
@@ -610,6 +611,7 @@ public class NavBarWidget extends ContainerWidget
 				instance.defineProperty(new WbdStringProperty("title", index, "Title", title));
 				instance.defineProperty(new WbdRadioTextProperty("horizontalPosition", index, "Position", "left,right", horizontalPosition));
 				instance.defineProperty(new WbdNavPointProperty("linkNavpoint", index, "Link Navpoint", linkNavpoint));
+				instance.defineProperty(new WbdStringProperty("parameters", index, "Parameters", parameters));
 				instance.defineProperty(new WbdSelectProperty("buttonType", index, "Button Type", "primary,success,info,warning,danger", buttonType));
 				instance.defineProperty(new WbdRadioTextProperty("buttonSize", index, "Button Size", "Large:lg,Small:sm,Extra Small:xs", buttonSize));
 				instance.defineProperty(new WbdStringProperty("buttonGlyphicon", index, "Button Glyphicon", buttonGlyphicon));
