@@ -162,15 +162,15 @@ public class NavBarWidget extends ContainerWidget
 	@Override
 	public void renderForPreview(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException
 	{
-//		render(generator, instance, ud, rh);
-		rh.append("<img src='/ttsvr/cloudmall/images/qnet/designer/admin-menu.png'></img>");
+		render(generator, instance, ud, rh);
+//		rh.append("<img src='/ttsvr/cloudmall/images/qnet/designer/admin-menu.png'></img>");
 	}
 	
 	@Override
 	public void renderForDesigner(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException
 	{
-//		render(generator, instance, ud, rh);
-		rh.append("<img src='/ttsvr/cloudmall/images/qnet/designer/admin-menu.png'></img>");
+		render(generator, instance, ud, rh);
+//		rh.append("<img src='/ttsvr/cloudmall/images/qnet/designer/admin-menu.png'></img>");
 	}
 	
 	@Override
@@ -265,7 +265,7 @@ public class NavBarWidget extends ContainerWidget
 					
 					linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
 					
-					rh.append("          <li class=\""+clazz+"\"><a href=\""+linkNavpoint + parameters+"\">"+title+"</a></li>\n");
+					rh.append("          <li id=\""+title.toLowerCase().replace(" ", "")+"\" class=\""+clazz+"\"><a href=\""+linkNavpoint + parameters+"\">"+title+"</a></li>\n");
 				} else if (type.equals("Button")) {
 					String buttonType = instance.getProperty("buttonType", wbdChildIndex);
 					String buttonTypeClass = "";
