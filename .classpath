@@ -31,5 +31,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/cloudmall"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -2,13 +2,18 @@ package tooltwist.bootstrap.widgets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import tooltwist.bootstrap.properties.WbdSelectProperty;
+import tooltwist.cloudmall.utils.WebUtils;
+import tooltwist.cloudmall.utils.WebUtils.SESSION_VARIABLE;
 import tooltwist.ecommerce.AutomaticUrlParametersMode;
 import tooltwist.ecommerce.RoutingUIM;
 import tooltwist.repository.ToolTwist;
@@ -18,6 +23,7 @@ import tooltwist.wbd.ContainerWidget;
 import tooltwist.wbd.DesignerHelper;
 import tooltwist.wbd.DesignerRole;
 import tooltwist.wbd.DesignerUIM;
+import tooltwist.wbd.Navpoint;
 import tooltwist.wbd.Snippet;
 import tooltwist.wbd.Snippet.SnippetLocation;
 import tooltwist.wbd.SnippetParam;
@@ -32,6 +38,7 @@ import tooltwist.wbd.WbdNavPointProperty;
 import tooltwist.wbd.WbdProperty;
 import tooltwist.wbd.WbdProperty.DisplayMode;
 import tooltwist.wbd.StylesheetLinkInserter;
+import tooltwist.wbd.WbdCache;
 import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSession;
@@ -176,6 +183,11 @@ public class NavBarWidget extends ContainerWidget
 	@Override
 	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper rh) throws Exception {
 		try {
+			
+			rh.append("<%@page import=\"java.util.Arrays\"%>");
+			rh.append("<%@page import=\"java.util.List\"%>");
+			rh.append("<%@page import=\"tooltwist.cloudmall.utils.WebUtils\"%>");
+			rh.append("<%@page import=\"tooltwist.cloudmall.utils.WebUtils.SESSION_VARIABLE\"%>");
 
 			String rows = instance.getProperty("rows", null);
 			String brandType = instance.getProperty("brandType", null).toLowerCase();
@@ -260,12 +272,18 @@ public class NavBarWidget extends ContainerWidget
 				String linkNavpoint = instance.getProperty("linkNavpoint", wbdChildIndex);
 				String parameters = instance.getProperty("parameters", wbdChildIndex);
 				
+				Navpoint navpoint = WbdCache.findNavPoint(linkNavpoint, false);
+				
 				if (type.equals("Link")) {
-					String clazz = (currentNavpointId.equals(linkNavpoint)) ? "active" : "";
 					
-					linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
+					rh.append("<% if (\""+ navpoint.getNotes() +"\".contains(WebUtils.getAttributes(request, SESSION_VARIABLE.ROLE_ID, \"\"))) { %>");
+						rh.append("");
+					rh.append("<% } else { %>");
+						String clazz = (currentNavpointId.equals(linkNavpoint)) ? "active" : "";
+						linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
+						rh.append("<li class=\""+clazz+"\"><a href=\""+linkNavpoint + parameters+"\">"+title+"</a></li>");
+					rh.append("<% } %>");
 					
-					rh.append("          <li id=\""+title.toLowerCase().replace(" ", "")+"\" class=\""+clazz+"\"><a href=\""+linkNavpoint + parameters+"\">"+title+"</a></li>\n");
 				} else if (type.equals("Button")) {
 					String buttonType = instance.getProperty("buttonType", wbdChildIndex);
 					String buttonTypeClass = "";
