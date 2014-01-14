@@ -1,5 +1,7 @@
 <!--START-->
 <!-- header for responsivePage -->
+<%@page import="com.dinaa.misc.AltLang"%>
+<%@page import="tooltwist.cloudmall.utils.WebUtils"%>
 <%@page import="tooltwist.wbd.WbdProductionHelper"%>
 <%@page import="com.dinaa.data.XData"%>
 <%@page import="tooltwist.misc.JspHelper"%>
@@ -38,6 +40,8 @@
 	String jspName = "%%navpointId%%";
 	JspHelper jh = JspHelper.getJspHelper(pageContext, jspName);
 %%preFetchCode%%
+
+AltLang lang=WebUtils.getAltLang(jh);
 %>
 <!DOCTYPE html>
 <html lang="en">
