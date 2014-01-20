@@ -1,5 +1,6 @@
 <!--START-->
 <!-- header for responsivePage -->
+<%@page import="tooltwist.wbd.Navpoint"%>
 <%@page import="com.dinaa.misc.AltLang"%>
 <%@page import="tooltwist.cloudmall.utils.WebUtils"%>
 <%@page import="tooltwist.wbd.WbdProductionHelper"%>
@@ -58,6 +59,22 @@ AltLang lang=WebUtils.getAltLang(jh);
     <link rel="icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
 	<link rel="shortcut icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
 	<!-- <link href="%%URL(/ttsvr/bootstrap/css/bootstrap-responsive.css)%%" rel="stylesheet"> -->
+	<%
+	Navpoint navpoint = WbdCache.findNavPoint(jspName, true);
+	boolean requiresLogin = navpoint.requiresLogin();
+	
+	if (!requiresLogin) {
+	%>
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		  ga('create', '<%=WbdCache.getProperty("uaCode")%>', '<%=WbdCache.getProperty("domainName")%>');
+		  ga('send', 'pageview');
+		
+		</script>		
+	<% } %>
   </head>
   <body>
 %%topCode%%
