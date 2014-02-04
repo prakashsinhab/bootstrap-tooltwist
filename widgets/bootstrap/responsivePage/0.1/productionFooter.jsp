@@ -18,6 +18,7 @@
     <script src="/ttsvr/bootstrap/js/bootstrap.min.js"></script>
     <script src="/ttsvr/bootstrap/js/respond.js"></script>
     <script src="/ttsvr/bootstrap/js/less-1.5.0.min.js"></script>
+    <script src="/ttsvr/cloudmall/js/frontend.config.js"></script>
     
   %%bottomCode%%</body>
 </html>
