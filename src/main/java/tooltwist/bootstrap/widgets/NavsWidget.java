@@ -87,7 +87,7 @@ public class NavsWidget extends ContainerWidget
 			CodeInserter[] arr = {
 					new StylesheetCodeInserter(generator, instance, "navs_cssHeader.css"),
 					new JavascriptCodeInserter(generator, instance, "navs_jsHeader.js"),
-					new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css"),
+					new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css?v=3.0.0"),
 			};
 			codeInserterList.add(arr);
 		}

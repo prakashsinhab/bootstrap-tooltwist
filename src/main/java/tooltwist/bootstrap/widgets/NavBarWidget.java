@@ -98,7 +98,7 @@ public class NavBarWidget extends ContainerWidget
 
 //				// Include a CSS snippet
 				new StylesheetCodeInserter(generator, instance, "navBar_cssHeader.css"),
-				new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css"),
+				new StylesheetLinkInserter(ToolTwist.getWebapp() + "/bootstrap/css/bootstrap.min.css?v=3.0.0"),
 //					new StylesheetLinkInserter("/ttsvr/bootstrap/css/bootstrap.min.css"),
 //					new JavascriptCodeInserter(generator, instance, "navBar_jsHeader.js"),
 //					new JavascriptLinkInserter("/ttsvr/bootstrap/js/bootstrap.min.js")
