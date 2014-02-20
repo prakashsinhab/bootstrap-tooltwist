@@ -2,19 +2,13 @@ package tooltwist.bootstrap.widgets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import tooltwist.bootstrap.properties.WbdSelectProperty;
-import tooltwist.cloudmall.utils.WebUtils;
-import tooltwist.cloudmall.utils.WebUtils.SESSION_VARIABLE;
-import tooltwist.ecommerce.AutomaticUrlParametersMode;
 import tooltwist.ecommerce.RoutingUIM;
 import tooltwist.repository.ToolTwist;
 import tooltwist.wbd.CodeInserter;
@@ -29,6 +23,8 @@ import tooltwist.wbd.Snippet.SnippetLocation;
 import tooltwist.wbd.SnippetParam;
 import tooltwist.wbd.SnippetParamList;
 import tooltwist.wbd.StylesheetCodeInserter;
+import tooltwist.wbd.StylesheetLinkInserter;
+import tooltwist.wbd.WbdCache;
 import tooltwist.wbd.WbdChildIndex;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
@@ -37,8 +33,6 @@ import tooltwist.wbd.WbdLibrary;
 import tooltwist.wbd.WbdNavPointProperty;
 import tooltwist.wbd.WbdProperty;
 import tooltwist.wbd.WbdProperty.DisplayMode;
-import tooltwist.wbd.StylesheetLinkInserter;
-import tooltwist.wbd.WbdCache;
 import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSession;
@@ -177,18 +171,12 @@ public class NavBarWidget extends ContainerWidget
 	public void renderForDesigner(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) throws WbdException
 	{
 		render(generator, instance, ud, rh);
-//		rh.append("<img src='/ttsvr/cloudmall/images/qnet/designer/admin-menu.png'></img>");
 	}
 	
 	@Override
 	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper rh) throws Exception {
 		try {
 			
-			rh.append("<%@page import=\"java.util.Arrays\"%>");
-			rh.append("<%@page import=\"java.util.List\"%>");
-			rh.append("<%@page import=\"tooltwist.cloudmall.utils.WebUtils\"%>");
-			rh.append("<%@page import=\"tooltwist.cloudmall.utils.WebUtils.SESSION_VARIABLE\"%>");
-
 			String rows = instance.getProperty("rows", null);
 			String brandType = instance.getProperty("brandType", null).toLowerCase();
 			String titleImagePath = instance.getProperty("titleImagePath", null);
@@ -276,13 +264,9 @@ public class NavBarWidget extends ContainerWidget
 				
 				if (type.equals("Link")) {
 					
-					rh.append("<% if (\""+ navpoint.getNotes() +"\".contains(WebUtils.getAttributes(request, SESSION_VARIABLE.ROLE_ID, \"\"))) { %>");
-						rh.append("");
-					rh.append("<% } else { %>");
 						String clazz = (currentNavpointId.equals(linkNavpoint)) ? "active" : "";
 						linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
 						rh.append("<li class=\""+clazz+"\"><a href=\""+linkNavpoint + parameters+"\">"+title+"</a></li>");
-					rh.append("<% } %>");
 					
 				} else if (type.equals("Button")) {
 					String buttonType = instance.getProperty("buttonType", wbdChildIndex);

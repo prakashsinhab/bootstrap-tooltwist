@@ -1,0 +1,95 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+group = 'com.tooltwist'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = 1.7
+
+repositories {
+ivy {
+    url "file:/${localRepo}"
+    layout "maven"
+}
+mavenCentral()
+}
+
+//----------------------------------------------------------------------
+// Gradle lacks the "provided" dependency so we'll have to add it.
+// http://blog.codeaholics.org/2012/emulating-mavens-provided-scope-in-gradle/
+configurations {
+provided
+}
+sourceSets {
+    main.compileClasspath += configurations.provided
+    test.compileClasspath += configurations.provided
+    test.runtimeClasspath += configurations.provided
+}
+//eclipse.classpath.plusConfigurations += configurations.provided
+
+//----------------------------------------------------------------------
+dependencies {
+
+    /* Dependencies if you have ToolTwist source code installed. */
+    compile project(':tooltwist')
+    compile project(':ttWbd')
+    compile project(':ttStd')
+    compile project(':xdata')
+    compile project(':filemap')
+
+    /* ToolTwist Dependencies */
+    compile 'com.tooltwist:tooltwist:8.3-SNAPSHOT'  
+    compile 'com.tooltwist:ttStd:8.3-SNAPSHOT'  
+    compile 'com.tooltwist:ttWbd:8.3-SNAPSHOT'  
+	
+	//Dependencies
+	/*
+	compile group: 'net.sourceforge.htmlcleaner', name: 'htmlcleaner', version: '2.2'
+	compile group: 'org.xhtmlrenderer', name: 'core-renderer', version: 'R8pre2'
+	compile group: 'org.json', name: 'json', version: '20140107'
+	compile group: 'net.sf.ehcache', name: 'ehcache-core', version: '2.6.0'
+	compile group: 'javax.xml', name: 'jaxrpc', version: '1.1'
+	compile group: 'org.apache.axis2', name: 'axis2', version: '1.5.4'
+	compile group: 'commons-discovery', name: 'commons-discovery', version: '0.2' */
+
+    // This jar contains stubs used only while compiling. At runtime the
+    // web server (e.g. Tomcat) provides the real implementation of the API.
+    provided 'javax:javaee-api:6.0'
+    provided 'javax:javaee-api:6.0'
+
+    // Used only during unit testing
+    testCompile group: 'junit', name: 'junit', version: '4.8.2'
+}
+
+
+//----------------------------------------------------------------------
+//  Copy extra resources into the jar file
+//
+processResources {
+}
+processResources.dependsOn("copyWebContent")
+processResources.dependsOn("copyConfig")
+processResources.dependsOn("copyWidgets")
+task copyWebContent(type: Copy) {
+    from('WebContent')
+    into 'build/classes/main/META-INF/resources'
+}
+task copyConfig(type: Copy) {
+    from('config')
+    into 'build/classes/main/META-INF/bootstrap/config'
+}
+task copyWidgets(type: Copy) {
+    from('widgets')
+    into 'build/classes/main/META-INF/bootstrap/widgets'
+}
+
+//----------------------------------------------------------------------
+//  Upload the jar file to the repo
+//
+uploadArchives {
+    repositories {
+    ivy {
+        url "file:/${localRepo}"
+        layout "maven"
+    }
+    }
+}
