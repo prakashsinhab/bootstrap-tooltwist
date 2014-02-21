@@ -18,6 +18,7 @@
     <script src="/ttsvr/bootstrap/js/bootstrap.min.js?v=3.0.0"></script>
     <script src="/ttsvr/cloudmall/js/cloudmall.js?v=1.0.0"></script>
     <script src="/ttsvr/cloudmall/js/frontend.config.js?v=1.0.0"></script>
+    <script src="/ttsvr/cloudmall/js/ckeditor/ckeditor.js"></script>
     <!--
     <script src="/ttsvr/bootstrap/js/bootstrap-v1.0.0.js?v=1.0.0"></script>
     <script src="/ttsvr/bootstrap/js/respond.js"></script>
