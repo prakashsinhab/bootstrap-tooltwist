@@ -42,10 +42,7 @@
 	JspHelper jh = JspHelper.getJspHelper(pageContext, jspName);
 %%preFetchCode%%
 
-<<<<<<< HEAD
-=======
 AltLang lang=WebUtils.getAltLang(jh);
->>>>>>> master
 
 %>
 <!DOCTYPE html>
