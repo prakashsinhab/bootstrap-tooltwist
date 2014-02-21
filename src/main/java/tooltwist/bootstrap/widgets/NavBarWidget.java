@@ -184,6 +184,14 @@ public class NavBarWidget extends ContainerWidget
 	public void renderForJSP(WbdGenerator generator, WbdWidget instance, UimHelper ud, WbdRenderHelper rh) throws Exception {
 		try {
 			
+<<<<<<< HEAD
+=======
+			rh.append("<%@page import=\"java.util.Arrays\"%>");
+			rh.append("<%@page import=\"java.util.List\"%>");
+			rh.append("<%@page import=\"tooltwist.cloudmall.utils.WebUtils\"%>");
+			rh.append("<%@page import=\"tooltwist.cloudmall.utils.WebUtils.SESSION_VARIABLE\"%>");
+			
+>>>>>>> master
 			String rows = instance.getProperty("rows", null);
 			String brandType = instance.getProperty("brandType", null).toLowerCase();
 			String titleImagePath = instance.getProperty("titleImagePath", null);
@@ -269,9 +277,19 @@ public class NavBarWidget extends ContainerWidget
 				
 				if (type.equals("Link")) {
 					
+<<<<<<< HEAD
 					String clazz = (currentNavpointId.equals(linkNavpoint)) ? "active" : "";
 					linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
 					rh.append("<li class=\""+clazz+"\"><a href=\""+linkNavpoint + parameters+"\">"+title+"</a></li>");
+=======
+					rh.append("<% if (\""+ navpoint.getNotes() +"\".contains(WebUtils.getAttributes(request, SESSION_VARIABLE.ROLE_ID, \"\"))) { %>");
+					rh.append("");
+					rh.append("<% } else { %>");
+					String clazz = (currentNavpointId.equals(linkNavpoint)) ? "active" : "";
+					linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
+					rh.append("<li class=\""+clazz+"\"><a href=\""+linkNavpoint + parameters+"\">"+title+"</a></li>");
+					rh.append("<% } %>");
+>>>>>>> master
 					
 				} else if (type.equals("Button")) {
 					String buttonType = instance.getProperty("buttonType", wbdChildIndex);
