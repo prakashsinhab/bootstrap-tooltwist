@@ -16,7 +16,7 @@
 
     <script src="/ttsvr/bootstrap/js/jquery-1.10.2.min.js?v=1.10.2"></script>
     <script src="/ttsvr/bootstrap/js/bootstrap.min.js?v=3.0.0"></script>
-    <script src="/ttsvr/cloudmall/js/cloudmall-1.0.0.js?v=1.0.0"></script>
+    <script src="/ttsvr/cloudmall/js/cloudmall-v1.0.0.js?v=1.0.0"></script>
     <script src="/ttsvr/cloudmall/js/frontend.config.js?v=1.0.0"></script>
     <script src="/ttsvr/cloudmall/js/ckeditor/ckeditor.js"></script>
     <!--
