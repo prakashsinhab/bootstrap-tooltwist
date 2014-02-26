@@ -277,11 +277,11 @@ public class NavBarWidget extends ContainerWidget
 				if (type.equals("Link")) {
 					
 					rh.append("<% if (\""+ navpoint.getNotes() +"\".contains(WebUtils.getAttributes(request, SESSION_VARIABLE.ROLE_ID, \"\"))) { %>");
-					rh.append("");
-					rh.append("<% } else { %>");
 					String clazz = (currentNavpointId.equals(linkNavpoint)) ? "active" : "";
 					linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
 					rh.append("<li class=\""+clazz+"\"><a href=\""+linkNavpoint + parameters+"\">"+title+"</a></li>");
+					rh.append("<% } else { %>");
+					rh.append("");
 					rh.append("<% } %>");
 					
 				} else if (type.equals("Button")) {
