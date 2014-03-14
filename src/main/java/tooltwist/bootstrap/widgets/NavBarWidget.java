@@ -271,6 +271,7 @@ public class NavBarWidget extends ContainerWidget
 				String title = instance.getProperty("title", wbdChildIndex);
 				String linkNavpoint = instance.getProperty("linkNavpoint", wbdChildIndex);
 				String parameters = instance.getProperty("parameters", wbdChildIndex);
+				String display = instance.getProperty("display", wbdChildIndex) != null && instance.getProperty("display", wbdChildIndex).equalsIgnoreCase("show") ? "" : "display:none";
 				
 				Navpoint navpoint = WbdCache.findNavPoint(linkNavpoint, false);
 				
@@ -279,7 +280,7 @@ public class NavBarWidget extends ContainerWidget
 					rh.append("<% if (\""+ navpoint.getNotes() +"\".contains(WebUtils.getAttributes(request, SESSION_VARIABLE.ROLE_ID, \"\"))) { %>");
 					String clazz = (currentNavpointId.equals(linkNavpoint)) ? "active" : "";
 					linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
-					rh.append("<li class=\""+clazz+"\"><a href=\""+linkNavpoint + parameters+"\">"+title+"</a></li>");
+					rh.append("<li class=\""+clazz+"\" style=\""+display+"\"><a href=\""+linkNavpoint + parameters+"\">"+title+"</a></li>");
 					rh.append("<% } else { %>");
 					rh.append("");
 					rh.append("<% } %>");
@@ -313,7 +314,7 @@ public class NavBarWidget extends ContainerWidget
 					}
 					
 					linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
-					rh.append("        <a href="+linkNavpoint + parameters+"><form class=\"navbar-form "+horizontalPositionClass+"\"><button type=\"button\" class=\"btn "+buttonTypeClass+" "+buttonSizeClass+"\"><span class=\"glyphicon "+buttonGlyphiconClass+"\"></span>&nbsp;"+title+"</button></form></a>\n");
+					rh.append("        <a href="+linkNavpoint + parameters+"><form class=\"navbar-form "+horizontalPositionClass+"\"><button type=\"button\" class=\"btn "+buttonTypeClass+" "+buttonSizeClass+"\" style=\""+display+"\"><span class=\"glyphicon "+buttonGlyphiconClass+"\"></span>&nbsp;"+title+"</button></form></a>\n");
 				}
 			}
 			
@@ -547,6 +548,7 @@ public class NavBarWidget extends ContainerWidget
 		while (cells.next())
 		{
 			String indexStr = cells.getText("./index");
+			String display = cells.getText("./display");
 			String type = cells.getText("./type");
 			String title = cells.getText("./title");
 			String linkNavpoint = cells.getText("./linkNavpoint");
@@ -557,6 +559,7 @@ public class NavBarWidget extends ContainerWidget
 			String buttonGlyphicon = cells.getText("./buttonGlyphicon");
 
 			WbdChildIndex index = new WbdChildIndex(NAVBAR_INDEX_PREFIX + indexStr);
+			widget.defineProperty(new WbdRadioTextProperty("display", index, "Display", "Show,Hide", display));
 			widget.defineProperty(new WbdRadioTextProperty("type", index, "Type", "Link,Button", type));
 			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
 			widget.defineProperty(new WbdRadioTextProperty("horizontalPosition", index, "Position", "left,right", horizontalPosition));
@@ -645,7 +648,6 @@ public class NavBarWidget extends ContainerWidget
 		navBarId.setPrefix("navBar");
 		
 		WbdChildIndex index = id.getIndex();
-		System.out.println(index.getIndexStr());
 		
 		rh.renderPropertiesHeading(generator, ud, instance, id, this.getLabel(instance), -1);
 		
