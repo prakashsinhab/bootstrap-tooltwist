@@ -14,8 +14,8 @@
     </div> <!-- /container -->
 	<!-- footer for responsivePage -->
 
-    <script src="/ttsvr/bootstrap/js/jquery-1.10.2.min.js?v=1.10.2"></script>
-    <script src="/ttsvr/bootstrap/js/bootstrap.min.js?v=3.0.0"></script>
+    <script src="/ttsvr/cloudmall/js/jquery-1.11.0.min.js?v=1.11.0"></script>
+    <script src="/ttsvr/bootstrap/js/bootstrap.min.js?v=3.1.1"></script>
     <script src="/ttsvr/cloudmall/js/cloudmall-v1.0.2.js?v=1.0.2"></script>
     <script src="/ttsvr/cloudmall/js/frontend.config.js"></script>
     <script src="/ttsvr/cloudmall/js/ckeditor/ckeditor.js"></script>
