@@ -48,6 +48,8 @@ AltLang lang=WebUtils.getAltLang(jh);
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  	<meta name="google-site-verification" content="AhLcdFsg980gnZh8k4dzSkYUiLzwgnDapP8c80WM_-A" />
+  	<meta name="msvalidate.01" content="4017B989E703CFA096F76AF5F42A2293" />
     <title>%%pageTitle%%</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="description" content="%%descriptionMetatag%%">
