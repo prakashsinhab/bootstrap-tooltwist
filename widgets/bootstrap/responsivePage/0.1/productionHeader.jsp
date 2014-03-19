@@ -40,16 +40,13 @@
 <%
 	String jspName = "%%navpointId%%";
 	JspHelper jh = JspHelper.getJspHelper(pageContext, jspName);
-%%preFetchCode%%
+	%%preFetchCode%%
 
-AltLang lang=WebUtils.getAltLang(jh);
-
+	AltLang lang=WebUtils.getAltLang(jh);
 %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  	<meta name="google-site-verification" content="AhLcdFsg980gnZh8k4dzSkYUiLzwgnDapP8c80WM_-A" />
-  	<meta name="msvalidate.01" content="4017B989E703CFA096F76AF5F42A2293" />
     <title>%%pageTitle%%</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="description" content="%%descriptionMetatag%%">
@@ -66,19 +63,25 @@ AltLang lang=WebUtils.getAltLang(jh);
 	<%
 	Navpoint navpoint = WbdCache.findNavPoint(jspName, true);
 	boolean requiresLogin = navpoint.requiresLogin();
-	
-	if (!requiresLogin) {
 	%>
+	
+	<% if (!navpoint.getParent().getId().equals("noah-176")) { %>
 		<script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		  ga('create', '<%=WbdCache.getProperty("uaCode")%>', '<%=WbdCache.getProperty("uaDomainName")%>');
-		  ga('require', 'linkid', 'linkid.js');
-		  ga('send', 'pageview');
+		  	<% if (navpoint.getLabel().equalsIgnoreCase("home")) { %>
+			  	<meta name="google-site-verification" content="AhLcdFsg980gnZh8k4dzSkYUiLzwgnDapP8c80WM_-A" />
+			  	<meta name="msvalidate.01" content="4017B989E703CFA096F76AF5F42A2293" />
+		  	<% } %>
+		  	
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', '<%=WbdCache.getProperty("uaCode")%>', '<%=WbdCache.getProperty("uaDomainName")%>');
+			ga('require', 'linkid', 'linkid.js');
+			ga('send', 'pageview');
 		</script>	
 	<% } %>
+	
   </head>
   <body>
 %%topCode%%
