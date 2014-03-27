@@ -180,7 +180,7 @@ public class NavsWidget extends ContainerWidget
 					tabNav.append("  <li class='" + classId + "'>\n");
 				}
 
-				String id = "#" + title.toLowerCase();
+				String id = "#" + title.toLowerCase().replace(" ", "_");;
 				tabNav.append("   <a href='" + id + "' data-toggle='tab'>" + title + "</a>\n");
 				tabNav.append("  </li>\n");
 			}
@@ -201,9 +201,9 @@ public class NavsWidget extends ContainerWidget
 
 				//set first item as active index
 				if (row == FIRST_ITEM_INDEX) {
-					rh.append(" 	<div class='tab-pane active' id='" + title.toLowerCase() + "'>\n");
+					rh.append(" 	<div class='tab-pane active' id='" + title.toLowerCase().replace(" ", "_") + "'>\n");
 				} else {
-					rh.append(" 	<div class='tab-pane' id='" + title.toLowerCase() + "'>\n");
+					rh.append(" 	<div class='tab-pane' id='" + title.toLowerCase().replace(" ", "_") + "'>\n");
 				}
 				
 				this.flowChildren_renderForJSP(generator, instance, ud, rh, indexPrefix);
