@@ -217,10 +217,21 @@ public class NavBarWidget extends ContainerWidget
 			rh.append("    <div class=\"container\">\n");
 			rh.append(	"      <div class=\"navbar-header\">\n");
 			
+			// ICON-BAR
+//			if (Integer.valueOf(rows) > 1) {
+//				rh.append("        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n"); 
+//				
+//				for(int row = 1; row < Integer.valueOf(rows); row++) {
+//					rh.append("          <span class=\"icon-bar\"></span>\n");
+//				}
+//				
+//				rh.append("        </button>\n"); 
+//			}
+			
 			if (Integer.valueOf(rows) > 1) {
 				rh.append("        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n"); 
 				
-				for(int row = 1; row < Integer.valueOf(rows); row++) {
+				for(int row = 0; row < 3; row++) {
 					rh.append("          <span class=\"icon-bar\"></span>\n");
 				}
 				
@@ -365,10 +376,21 @@ public class NavBarWidget extends ContainerWidget
 			rh.append("    <nav class=\"navbar "+invertedClass+"\" role=\"navigation\">\n");
 			rh.append("      <div class=\"navbar-header\">\n");
 			
+			// ICON-BAR
+//			if (Integer.valueOf(rows) > 1) {
+//				rh.append("        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n"); 
+//				
+//				for(int row = 1; row < Integer.valueOf(rows); row++) {
+//					rh.append("          <span class=\"icon-bar\"></span>\n");
+//				}
+//				
+//				rh.append("        </button>\n"); 
+//			}
+			
 			if (Integer.valueOf(rows) > 1) {
 				rh.append("        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n"); 
 				
-				for(int row = 1; row < Integer.valueOf(rows); row++) {
+				for(int row = 0; row < 3; row++) {
 					rh.append("          <span class=\"icon-bar\"></span>\n");
 				}
 				
