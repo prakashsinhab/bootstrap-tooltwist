@@ -51,9 +51,4 @@ public class CarouselWidget extends GenericMustacheWidget implements UsesPageDat
 		return properties;
 	}
 	
-	@Override
-	public void renderForDesigner(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper buf) throws WbdException {
-		buf.append("<img src='/ttsvr/cloudmall/images/qnet/designer/carousel.png'></img>");
-	}
-	
 }
