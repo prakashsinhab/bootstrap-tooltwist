@@ -49,6 +49,25 @@
 	<meta name="description" content="%%descriptionMetatag%%">
 	<meta name="keywords" content="%%keywordMetatag%%">
 	<meta name="generator" content="ToolTwist" />
+	
+<!--[if lte IE 9]>
+    <script src="/ttsvr/skypepi/scripts/jquery/1.11.0/jquery-1.11.0.min.js"></script>
+<![endif]-->
+<!--[if gt IE 9]><!-->
+    <script src="/ttsvr/skypepi/scripts/jquery/2.1.0/jquery-2.1.0.min.js"></script>
+<!--<![endif]-->
+
+<!-- Respond.js proxy on external server -->
+    <link href="http://externalcdn.com/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+
+    <!-- Respond.js redirect location on local server -->
+    <link href="/path/to/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+
+    <!-- Respond.js proxy script on local server -->
+    <script src="/path/to/respond.proxy.js"></script>
+
+<script src="/ttsvr/skypepi/scripts/jquery.simplemodal.1.4.4.min.js"></script>
+<link type="text/css" rel="stylesheet" href="/ttsvr/skypepi/stylesheet/dialog/confirm.css" media="screen" />
 
 %%headerCode%%
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,7 +77,7 @@
 	<link rel="shortcut icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
 	<!-- <link href="%%URL(/ttsvr/bootstrap/css/bootstrap-responsive.css)%%" rel="stylesheet"> -->
 	<%
-	Navpoint navpoint = WbdCache.findNavPoint(jspName, true);
+	Navpoint navpoint = WbdCache.findNavpointInAnyLoadedProject(jspName, true);
 	boolean requiresLogin = navpoint.requiresLogin();
 	
 	if (!requiresLogin) {
