@@ -208,9 +208,11 @@ public class NavBarWidget extends ContainerWidget
 			if (Integer.valueOf(rows) > 1) {
 				rh.append("        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n"); 
 				
-				for(int row = 1; row < Integer.valueOf(rows); row++) {
+				//for(int row = 1; row < Integer.valueOf(rows); row++) {
 					rh.append("          <span class=\"icon-bar\"></span>\n");
-				}
+					rh.append("          <span class=\"icon-bar\"></span>\n");
+					rh.append("          <span class=\"icon-bar\"></span>\n");
+				//}
 				
 				rh.append("        </button>\n"); 
 			}
@@ -260,7 +262,7 @@ public class NavBarWidget extends ContainerWidget
 				String linkNavpoint = instance.getProperty("linkNavpoint", wbdChildIndex);
 				String parameters = instance.getProperty("parameters", wbdChildIndex);
 				
-				Navpoint navpoint = WbdCache.findNavPoint(linkNavpoint, false);
+				Navpoint navpoint = WbdCache.findNavpointInAnyLoadedProject(linkNavpoint, false);
 				
 				if (type.equals("Link")) {
 					
