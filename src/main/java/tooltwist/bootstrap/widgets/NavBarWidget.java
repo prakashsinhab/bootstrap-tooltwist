@@ -2,19 +2,13 @@ package tooltwist.bootstrap.widgets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import tooltwist.bootstrap.properties.WbdSelectProperty;
-import tooltwist.cloudmall.utils.WebUtils;
-import tooltwist.cloudmall.utils.WebUtils.SESSION_VARIABLE;
-import tooltwist.ecommerce.AutomaticUrlParametersMode;
 import tooltwist.ecommerce.RoutingUIM;
 import tooltwist.repository.ToolTwist;
 import tooltwist.wbd.CodeInserter;
@@ -29,6 +23,8 @@ import tooltwist.wbd.Snippet.SnippetLocation;
 import tooltwist.wbd.SnippetParam;
 import tooltwist.wbd.SnippetParamList;
 import tooltwist.wbd.StylesheetCodeInserter;
+import tooltwist.wbd.StylesheetLinkInserter;
+import tooltwist.wbd.WbdCache;
 import tooltwist.wbd.WbdChildIndex;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
@@ -37,8 +33,6 @@ import tooltwist.wbd.WbdLibrary;
 import tooltwist.wbd.WbdNavPointProperty;
 import tooltwist.wbd.WbdProperty;
 import tooltwist.wbd.WbdProperty.DisplayMode;
-import tooltwist.wbd.StylesheetLinkInserter;
-import tooltwist.wbd.WbdCache;
 import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSession;
@@ -280,16 +274,18 @@ public class NavBarWidget extends ContainerWidget
 				String title = instance.getProperty("title", wbdChildIndex);
 				String linkNavpoint = instance.getProperty("linkNavpoint", wbdChildIndex);
 				String parameters = instance.getProperty("parameters", wbdChildIndex);
-				String display = instance.getProperty("display", wbdChildIndex) != null && instance.getProperty("display", wbdChildIndex).equalsIgnoreCase("show") ? "" : "display:none";
+				boolean isDisplay = instance.getProperty("display", wbdChildIndex) != null && instance.getProperty("display", wbdChildIndex).equalsIgnoreCase("show") ? true : false;
 				
 				Navpoint navpoint = WbdCache.findNavPoint(linkNavpoint, false);
 				
 				if (type.equals("Link")) {
 					
 					rh.append("<% if (\""+ navpoint.getNotes() +"\".contains(WebUtils.getAttributes(request, SESSION_VARIABLE.ROLE_ID, \"\"))) { %>");
-					String clazz = (currentNavpointId.equals(linkNavpoint)) ? "active" : "";
-					linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
-					rh.append("<li class=\""+clazz+"\" style=\""+display+"\"><a href=\""+linkNavpoint + parameters+"\">"+title+"</a></li>");
+					if (isDisplay) {
+						String clazz = (currentNavpointId.equals(linkNavpoint)) ? "active" : "";
+						linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
+						rh.append("<li class=\""+clazz+"\"><a href=\""+linkNavpoint + parameters+"\">"+title+"</a></li>");
+					}
 					rh.append("<% } else { %>");
 					rh.append("");
 					rh.append("<% } %>");
@@ -323,7 +319,10 @@ public class NavBarWidget extends ContainerWidget
 					}
 					
 					linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
-					rh.append("        <a href="+linkNavpoint + parameters+"><form class=\"navbar-form "+horizontalPositionClass+"\"><button type=\"button\" class=\"btn "+buttonTypeClass+" "+buttonSizeClass+"\" style=\""+display+"\"><span class=\"glyphicon "+buttonGlyphiconClass+"\"></span>&nbsp;"+title+"</button></form></a>\n");
+					
+					if (isDisplay) {
+						rh.append("        <a href="+linkNavpoint + parameters+"><form class=\"navbar-form "+horizontalPositionClass+"\"><button type=\"button\" class=\"btn "+buttonTypeClass+" "+buttonSizeClass+"\"><span class=\"glyphicon "+buttonGlyphiconClass+"\"></span>&nbsp;"+title+"</button></form></a>\n");
+					}
 				}
 			}
 			
@@ -631,6 +630,7 @@ public class NavBarWidget extends ContainerWidget
 				title = (title == null) ? "Button" : title;
 			}
 			
+			String display = (instance.getProperty("display", index) == null) ? "" : instance.getProperty("display", index);
 			String linkNavpoint = (instance.getProperty("linkNavpoint", index) == null) ? "" : instance.getProperty("linkNavpoint", index);
 			String parameters = (instance.getProperty("parameters", index) == null) ? "" : instance.getProperty("parameters", index);
 			String horizontalPosition = (instance.getProperty("horizontalPosition", index) == null) ? "" : instance.getProperty("horizontalPosition", index);
@@ -648,6 +648,7 @@ public class NavBarWidget extends ContainerWidget
 			if (child != null)
 				child.saveToFile(generator, pw, indent + 1);
 			else {
+				instance.defineProperty(new WbdRadioTextProperty("display", index, "Display", "Show,Hide", display));
 				instance.defineProperty(new WbdRadioTextProperty("type", index, "Type", "Link,Button", type));
 				instance.defineProperty(new WbdStringProperty("title", index, "Title", title));
 				instance.defineProperty(new WbdRadioTextProperty("horizontalPosition", index, "Position", "left,right", horizontalPosition));
