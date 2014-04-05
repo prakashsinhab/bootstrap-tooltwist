@@ -62,6 +62,7 @@ dependencies {
 
 //----------------------------------------------------------------------
 //  Copy extra resources into the jar file
+//  Note that files are copied into META-INF/tooltwist, not META-INF/<projectName>
 //
 processResources {
 }
@@ -74,11 +75,11 @@ task copyWebContent(type: Copy) {
 }
 task copyConfig(type: Copy) {
     from('config')
-    into 'build/classes/main/META-INF/bootstrap/config'
+    into 'build/classes/main/META-INF/tooltwist/config'
 }
 task copyWidgets(type: Copy) {
     from('widgets')
-    into 'build/classes/main/META-INF/bootstrap/widgets'
+    into 'build/classes/main/META-INF/tooltwist/widgets'
 }
 
 //----------------------------------------------------------------------
