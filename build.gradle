@@ -54,7 +54,6 @@ dependencies {
     // This jar contains stubs used only while compiling. At runtime the
     // web server (e.g. Tomcat) provides the real implementation of the API.
     provided 'javax:javaee-api:6.0'
-    provided 'javax:javaee-api:6.0'
 
     // Used only during unit testing
     testCompile group: 'junit', name: 'junit', version: '4.8.2'
