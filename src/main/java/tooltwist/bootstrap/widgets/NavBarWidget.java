@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import tooltwist.bootstrap.properties.WbdSelectProperty;
+import tooltwist.ecommerce.AutomaticUrlParametersMode;
 import tooltwist.ecommerce.RoutingUIM;
 import tooltwist.repository.ToolTwist;
 import tooltwist.wbd.CodeInserter;
@@ -276,14 +277,16 @@ public class NavBarWidget extends ContainerWidget
 				String parameters = instance.getProperty("parameters", wbdChildIndex);
 				boolean isDisplay = instance.getProperty("display", wbdChildIndex) != null && instance.getProperty("display", wbdChildIndex).equalsIgnoreCase("show") ? true : false;
 				
-				Navpoint navpoint = WbdCache.findNavPoint(linkNavpoint, false);
+				Navpoint navpoint = WbdCache.findNavPoint(currentNavpointId, false);
+				
+				RoutingUIM.navpointUrl(ud, currentNavpointId, AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
 				
 				if (type.equals("Link")) {
 					
 					rh.append("<% if (\""+ navpoint.getNotes() +"\".contains(WebUtils.getAttributes(request, SESSION_VARIABLE.ROLE_ID, \"\"))) { %>");
 					if (isDisplay) {
 						String clazz = (currentNavpointId.equals(linkNavpoint)) ? "active" : "";
-						linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
+//						linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
 						rh.append("<li class=\""+clazz+"\"><a href=\""+linkNavpoint + parameters+"\">"+title+"</a></li>");
 					}
 					rh.append("<% } else { %>");
@@ -318,7 +321,7 @@ public class NavBarWidget extends ContainerWidget
 						buttonGlyphiconClass = "";
 					}
 					
-					linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
+//					linkNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("linkNavpoint", wbdChildIndex), null);
 					
 					if (isDisplay) {
 						rh.append("        <a href="+linkNavpoint + parameters+"><form class=\"navbar-form "+horizontalPositionClass+"\"><button type=\"button\" class=\"btn "+buttonTypeClass+" "+buttonSizeClass+"\"><span class=\"glyphicon "+buttonGlyphiconClass+"\"></span>&nbsp;"+title+"</button></form></a>\n");
@@ -582,7 +585,7 @@ public class NavBarWidget extends ContainerWidget
 			widget.defineProperty(new WbdRadioTextProperty("type", index, "Type", "Link,Button", type));
 			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
 			widget.defineProperty(new WbdRadioTextProperty("horizontalPosition", index, "Position", "left,right", horizontalPosition));
-			widget.defineProperty(new WbdNavPointProperty("linkNavpoint", index, "Link Navpoint", linkNavpoint));
+			widget.defineProperty(new WbdStringProperty("linkNavpoint", index, "Link Navpoint", linkNavpoint));
 			widget.defineProperty(new WbdStringProperty("parameters", index, "Parameters", parameters));
 			widget.defineProperty(new WbdSelectProperty("buttonType", index, "Button Type", "primary,success,info,warning,danger", buttonType));
 			widget.defineProperty(new WbdRadioTextProperty("buttonSize", index, "Button Size", "Large:lg,Small:sm,Extra Small:xs", buttonSize));
@@ -652,7 +655,7 @@ public class NavBarWidget extends ContainerWidget
 				instance.defineProperty(new WbdRadioTextProperty("type", index, "Type", "Link,Button", type));
 				instance.defineProperty(new WbdStringProperty("title", index, "Title", title));
 				instance.defineProperty(new WbdRadioTextProperty("horizontalPosition", index, "Position", "left,right", horizontalPosition));
-				instance.defineProperty(new WbdNavPointProperty("linkNavpoint", index, "Link Navpoint", linkNavpoint));
+				instance.defineProperty(new WbdStringProperty("linkNavpoint", index, "Link Navpoint", linkNavpoint));
 				instance.defineProperty(new WbdStringProperty("parameters", index, "Parameters", parameters));
 				instance.defineProperty(new WbdSelectProperty("buttonType", index, "Button Type", "primary,success,info,warning,danger", buttonType));
 				instance.defineProperty(new WbdRadioTextProperty("buttonSize", index, "Button Size", "Large:lg,Small:sm,Extra Small:xs", buttonSize));
