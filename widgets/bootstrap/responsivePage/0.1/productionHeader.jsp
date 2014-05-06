@@ -78,6 +78,7 @@
 			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 			ga('create', '<%=WbdCache.getProperty("uaCode")%>', '<%=WbdCache.getProperty("uaDomainName")%>');
 			ga('require', 'linkid', 'linkid.js');
+			ga('require', 'displayfeatures');
 			ga('send', 'pageview');
 		</script>	
 	<% } %>
