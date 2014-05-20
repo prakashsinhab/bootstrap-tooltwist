@@ -22,6 +22,7 @@
     <script src="/ttsvr/cloudmall/js/ckeditor/ckeditor.js"></script>
     
     <script src="/ttsvr/bootstrap/js/respond.js"></script> <!-- This enables the bootstrap GRID on IE  -->
+    <script src="/ttsvr/bootstrap/js/jquery.browser.js"></script> <!-- detect browser version | https://github.com/gabceb/jquery-browser-plugin.git | https://github.com/gabceb/jquery-browser-plugin -->
     <!--
     <script src="/ttsvr/bootstrap/js/bootstrap-v1.0.0.js?v=1.0.0"></script>
     <script src="/ttsvr/bootstrap/js/less-1.5.0.min.js"></script>
