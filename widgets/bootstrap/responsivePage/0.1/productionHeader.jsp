@@ -1,8 +1,6 @@
 <!--START-->
 <!-- header for responsivePage -->
 <%@page import="tooltwist.wbd.Navpoint"%>
-<%@page import="com.dinaa.misc.AltLang"%>
-<%@page import="tooltwist.cloudmall.utils.WebUtils"%>
 <%@page import="tooltwist.wbd.WbdProductionHelper"%>
 <%@page import="com.dinaa.data.XData"%>
 <%@page import="tooltwist.misc.JspHelper"%>
@@ -42,7 +40,6 @@
 	JspHelper jh = JspHelper.getJspHelper(pageContext, jspName);
 	%%preFetchCode%%
 
-	AltLang lang=WebUtils.getAltLang(jh);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,31 +54,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="%%URL(/ttsvr/bootstrap/css/bootstrap.min.css?v=3.0.0)%%" rel="stylesheet" media="screen">
-    <link rel="icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
-	<link rel="shortcut icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
 	<!-- <link href="%%URL(/ttsvr/bootstrap/css/bootstrap-responsive.css)%%" rel="stylesheet"> -->
-	<%
-	Navpoint navpoint = WbdCache.findNavPoint(jspName, true);
-	boolean requiresLogin = navpoint.requiresLogin();
-	%>
-	
-	<% if (!navpoint.getParent().getId().equals("noah-176")) { %>
-		  	<% if (navpoint.getLabel().equalsIgnoreCase("home")) { %>
-			  	<meta name="google-site-verification" content="AhLcdFsg980gnZh8k4dzSkYUiLzwgnDapP8c80WM_-A" />
-			  	<meta name="msvalidate.01" content="4017B989E703CFA096F76AF5F42A2293" />
-		  	<% } %>
-		  	
-	  	<script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-			ga('create', '<%=WbdCache.getProperty("uaCode")%>', '<%=WbdCache.getProperty("uaDomainName")%>');
-			ga('require', 'linkid', 'linkid.js');
-			ga('require', 'displayfeatures');
-			ga('send', 'pageview');
-		</script>	
-	<% } %>
 	
   </head>
   <body>

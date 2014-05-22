@@ -734,6 +734,9 @@ pre code {
   overflow-y: scroll;
 }
 .container {
+    width: 100%;
+  }
+/* .container {
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -753,7 +756,7 @@ pre code {
   .container {
     width: 1170px;
   }
-}
+} */
 .container-fluid {
   padding-right: 15px;
   padding-left: 15px;
@@ -1649,7 +1652,8 @@ legend {
 label {
   display: inline-block;
   margin-bottom: 5px;
-  font-weight: bold;
+  /* font-weight: bold; */
+  font-weight: normal;
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;
