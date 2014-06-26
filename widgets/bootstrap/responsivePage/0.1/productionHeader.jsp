@@ -1,5 +1,9 @@
 <!--START-->
 <!-- header for responsivePage -->
+<%@page import="org.apache.commons.lang.WordUtils"%>
+<%@page import="org.apache.commons.lang.StringUtils"%>
+<%@page import="tooltwist.cloudmall.utils.StringUtil"%>
+<%@page import="tooltwist.cloudmall.utils.CloudMallUtils"%>
 <%@page import="tooltwist.wbd.Navpoint"%>
 <%@page import="com.dinaa.misc.AltLang"%>
 <%@page import="tooltwist.cloudmall.utils.WebUtils"%>
@@ -47,7 +51,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>%%pageTitle%%</title>
+  <%
+  String categoryName = jh.getRequest().getParameter("categoryName");
+  String domainName = jh.getRequest().getLocalName();
+  if (StringUtil.isNullOrEmpty(categoryName)) {
+	  categoryName = "%%pageTitle%%" + " - " + domainName;
+  } else {
+	  if(StringUtils.contains(categoryName, "/")){
+		categoryName = StringUtil.substringAfterLast(categoryName, "/");
+	  } 
+	  categoryName = "%%pageTitle%%" + " " + WordUtils.capitalize((StringUtil.replaceAll(categoryName, "-", " "))) + " - " + domainName;
+  }
+  %>
+    <title><%=categoryName %></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="description" content="%%descriptionMetatag%%">
 	<meta name="keywords" content="%%keywordMetatag%%">
