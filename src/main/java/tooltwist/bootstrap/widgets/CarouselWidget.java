@@ -6,7 +6,6 @@ import tooltwist.wbd.GenericMustacheWidget;
 import tooltwist.wbd.UsesPageData;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
-import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSession;
 import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdWidget;
@@ -28,7 +27,10 @@ public class CarouselWidget extends GenericMustacheWidget implements UsesPageDat
 	public XData getInitialPageData(WbdWidget instance) {
 		 StringBuffer xml = new StringBuffer();
 		    xml.append("<pageData>\n");
-		    xml.append("  <imagePath>/ttsvr/n/cloudmall/images/banner1.jpg</imagePath>\n");
+		    xml.append("  <banner>\n");
+		    xml.append("  	<imagePath>/ttsvr/n/cloudmall/images/banner1.jpg</imagePath>\n");
+		    xml.append("  	<bannerLink>#</bannerLink>\n");
+		    xml.append("  </banner>\n");
 		    xml.append("</pageData>");     
 		    return new XData(xml);
 	}
