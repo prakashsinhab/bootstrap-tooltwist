@@ -1,21 +1,38 @@
 <div id="carousel-example-generic" class="carousel slide">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-   [[#imageList]]
-	    <li data-target="#carousel-example-generic" data-slide-to="[[index]]" class="[[#active]]active[[/active]]"></li>
-    [[/imageList]]
+   {{#imageList}}
+	    <li data-target="#carousel-example-generic" data-slide-to="{{index}}" class="{{#active}}active{{/active}}"></li>
+    {{/imageList}}
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
           
-    [[#imageList]]
-			<div class="item [[#active]]active[[/active]]">
-				<a href="[[url]]"><img src="[[image]]" alt="Banner"></a>
+    {{#imageList}}
+			<div class="item {{#active}}active{{/active}}">
+				<a href="{{url}}"><img src="{{image}}" alt="Banner"></a>
 			</div>
-   [[/imageList]]
+    {{/imageList}}
    
   </div>
+  
+  {{#isNutra}}
+	<div class="callToAction">
+		<a href="">
+			<img src="/ttsvr/cloudmall/images/nutraorganics/button-grow.svg" alt="Nutra Grow" />
+		</a>
+		<a href="">
+			<img src="/ttsvr/cloudmall/images/nutraorganics/button-fitness.svg" alt="Nutra Fitness" />
+		</a>
+		<a href="">
+			<img src="/ttsvr/cloudmall/images/nutraorganics/button-beauty.svg" alt="Nutra Beauty" />
+		</a>
+		<a href="">
+			<img src="/ttsvr/cloudmall/images/nutraorganics/button-kidz.svg" alt="Nutra Kidz" />
+		</a>
+	</div>
+{{/isNutra}}
 
   <!-- Controls -->
   <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
