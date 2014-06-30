@@ -53,7 +53,7 @@
   <head>
   <%
   String categoryName = jh.getRequest().getParameter("categoryName");
-  String domainName = jh.getRequest().getLocalName();
+  String domainName = jh.getRequest().getServerName();
   if (StringUtil.isNullOrEmpty(categoryName)) {
 	  categoryName = "%%pageTitle%%" + " - " + domainName;
   } else {
