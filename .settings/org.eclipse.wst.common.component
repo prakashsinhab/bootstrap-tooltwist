@@ -2,6 +2,5 @@
     <wb-module deploy-name="bootstrap">
         <wb-resource deploy-path="/META-INF/resources" source-path="/WebContent"/>
         <wb-resource deploy-path="/" source-path="/src/main/java"/>
-        <wb-resource deploy-path="/" source-path="/src/test/java"/>
     </wb-module>
 </project-modules>

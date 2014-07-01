@@ -1,66 +1,253 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
-		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/test/java"/>
-	<classpathentry exported="true" kind="src" path="/tooltwist"/>
-	<classpathentry exported="true" kind="src" path="/ttWbd"/>
-	<classpathentry exported="true" kind="src" path="/ttStd"/>
-	<classpathentry exported="true" kind="src" path="/xdata"/>
-	<classpathentry exported="true" kind="src" path="/filemap"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/Development/ToolTwist-8.3.1/tooltwist/build/libs/tooltwist-8.3.1-20140404.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/Development/ToolTwist-8.3.1/ttWbd/build/libs/ttWbd-8.3.1-20140404.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/Development/ToolTwist-8.3.1/ttStd/build/libs/ttStd-8.3.1-20140404.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/junit/junit/4.8.2/c94f54227b08100974c36170dcb53329435fe5ad/junit-4.8.2.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/junit/junit/4.8.2/cccca612a66b8387c399be31d69daf000de2ac9e/junit-4.8.2-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/xml-apis/xml-apis/1.3.04/90b215f48fe42776c8c7f6e3509ec54e84fd65ef/xml-apis-1.3.04.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/xml-apis/xml-apis/1.3.04/d89105ccbe3fd823865330fd964233baf2b53e88/xml-apis-1.3.04-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/xalan/serializer/2.7.1/4b4b18df434451249bb65a63f2fb69e215a6a020/serializer-2.7.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/xalan/xalan/2.7.1/75f1d83ce27bab5f29fff034fc74aa9f7266f22a/xalan-2.7.1.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/xalan/xalan/2.7.1/b1f9b407f3593c99ae2b137bb0733761fcee6595/xalan-2.7.1-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/Development/ToolTwist-8.3.1/xdata/build/libs/xdata-8.3.1-20140404.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/Development/ToolTwist-8.3.1/filemap/build/libs/filemap-8.3.1-20140404.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.apache.lucene/lucene-core/2.2.0/47b6eee2e17bd68911e7045896a1c09de0b2dda8/lucene-core-2.2.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/jfree/jcommon/1.0.15/6495e4f3777a24fd34c1544a8606243a600365c3/jcommon-1.0.15.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/jfree/jfreechart/1.0.12/47e8a2e9e052d292e416a6fd5292a77b54c48fac/jfreechart-1.0.12.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/commons-fileupload/commons-fileupload/1.2.2/1e48256a2341047e7d729217adeec8217f6e3a1a/commons-fileupload-1.2.2.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/commons-fileupload/commons-fileupload/1.2.2/8c269e2558e16ae7bab69df299d51f291a09eea0/commons-fileupload-1.2.2-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.2/397f4731a9f9b6eb1907e224911c77ea3aa27a8b/commons-codec-1.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.1.1/5043bfebc3db072ed80fbd362e7caf00e885d8ae/commons-logging-1.1.1.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.1.1/f3f156cbff0e0fb0d64bfce31a352cce4a33bc19/commons-logging-1.1.1-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/commons-httpclient/commons-httpclient/3.1/964cd74171f427720480efdec40a7c7f6e58426a/commons-httpclient-3.1.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/commons-httpclient/commons-httpclient/3.1/c6d6ea83d0cf16d3ed9c1b7e600fa0f60b9d3159/commons-httpclient-3.1-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch/0.1.44-1/2e9ae08de5a71bd0e0d3ba2558598181bfa71d4e/jsch-0.1.44-1.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch/0.1.44-1/e528f593b19b04d500992606f58b87fcfded8883/jsch-0.1.44-1-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.eclipse.jgit/org.eclipse.jgit/2.2.0.201212191850-r/97d0761b9dd618d1f9f6c16c35c3ddf045ba536c/org.eclipse.jgit-2.2.0.201212191850-r.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.eclipse.jgit/org.eclipse.jgit/2.2.0.201212191850-r/8dcf9546f4d61e1b8a50df5da5513006023b64b/org.eclipse.jgit-2.2.0.201212191850-r-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/commons-beanutils/commons-beanutils/1.8.0/c651d5103c649c12b20d53731643e5fffceb536/commons-beanutils-1.8.0.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/commons-beanutils/commons-beanutils/1.8.0/2818502bbb50bbcbd3f57e92a2bfe4d496f37688/commons-beanutils-1.8.0-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/commons-collections/commons-collections/3.2.1/761ea405b9b37ced573d2df0d1e3a4e0f9edc668/commons-collections-3.2.1.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/commons-collections/commons-collections/3.2.1/fa095ef874374e5b2a11f8b06c26a5d68c7cb3a4/commons-collections-3.2.1-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/commons-digester/commons-digester/1.8.1/3dec9b9c7ea9342d4dbe8c38560080d85b44a015/commons-digester-1.8.1.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/commons-digester/commons-digester/1.8.1/3165d0f4fec8cd6836e7a3bc2986b3ff2bd101d/commons-digester-1.8.1-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/bouncycastle/bcmail-jdk14/136/c827665814f98ee119f57f711e624e2a015ea575/bcmail-jdk14-136.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/bouncycastle/bcprov-jdk14/136/fd984c39603845556a8721a91f591a4610c6c960/bcprov-jdk14-136.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/bouncycastle/bcprov-jdk14/136/5b2780e7591b8575963bf9953c3941e1431d3ab2/bcprov-jdk14-136-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/com.lowagie/itext/2.1.0/f7e66a415c37a953ceeddd562319ccec715fa9c4/itext-2.1.0.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/com.lowagie/itext/2.1.0/ee8428d63efe10b668ae7d61fb97312e15a61be0/itext-2.1.0-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/eclipse/jdtcore/3.1.0/c5e3e72ae7220118c3da808628ec7016d4d8aef2/jdtcore-3.1.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/jasperreports/jasperreports/3.5.3/373e51d7e6d4095a6b6f13facb7f9c51a4e3a408/jasperreports-3.5.3.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/jasperreports/jasperreports/3.5.3/baf29fa68864ab1b960bf0a812bd7a743d65d9d6/jasperreports-3.5.3-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.6.2/8619e95939167fb37245b5670135e4feb0ec7d50/slf4j-api-1.6.2.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.6.2/6b5f6572792e2192ecf714ea12ae894b0fbcf750/slf4j-api-1.6.2-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.apache.wicket/wicket/1.4.9/d32101c4cd9b6a1df371a2038b7cf29925d70e97/wicket-1.4.9.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.apache.wicket/wicket/1.4.9/a2e12a92d14ebd5fc05e15db83f0e9f465081b32/wicket-1.4.9-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.wicketstuff/jasper-reports/1.4.9.1/a5d87baeae1fffe422f62261d47d55ca3add08af/jasper-reports-1.4.9.1.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.wicketstuff/jasper-reports/1.4.9.1/86eb92b5b524b91662a9759cb3e6fbcfb5263b1b/jasper-reports-1.4.9.1-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1/e6cb541461c2834bdea3eb920f1884d1eb508b50/activation-1.1.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1/3697e9f67a2ed7ac5f589cff30f21173299440/activation-1.1-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4.6/383bdbd7b4bc3e7960370db219f883b4062fc1ca/mail-1.4.6.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4.6/8ddcd26291a284821bc93a342733bea80cc65db7/mail-1.4.6-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/c3p0/c3p0/0.9.1.1/302704f30c6e7abb7a0457f7771739e03c973e80/c3p0-0.9.1.1.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/c3p0/c3p0/0.9.1.1/5a069468419fe3910c80d13a8971fd50ff2c77a6/c3p0-0.9.1.1-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.quartz-scheduler/quartz/2.1.6/437f496e3e06677ce0da705996c98595718c0979/quartz-2.1.6.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.quartz-scheduler/quartz/2.1.6/8201df2b4b575d658672b931d7d97b817ec41250/quartz-2.1.6-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/batik/batik/1.5/961f15f9e62d169de8e1dbba36b352ae7166f022/batik-1.5.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/net.sourceforge.jexcelapi/jxl/2.6/74e55eae5ef7d003167a459965b99239ac6e6b02/jxl-2.6.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/0.9.30/38099654319cb6c81f8390465a7a5bb8c26fd979/logback-core-0.9.30.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/0.9.30/bc928078b39f33373c41c00ab11ceab994f3d417/logback-core-0.9.30-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/0.9.30/3dc754111cfa4cb622a973cd8244378a4bf56612/logback-classic-0.9.30.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/0.9.30/449fc54aa4863fbe4657d724e5d1f77ba2a2b369/logback-classic-0.9.30-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.24/a7d599d73b86a928303909b9be7573a4ea0ed28e/mysql-connector-java-5.1.24.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.2.1/66f13681add50ca9e4546ffabafaaac7645db3cf/commons-lang3-3.2.1.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.2.1/77e5da73ecc389bda26f9953fd91e9b53b571a6f/commons-lang3-3.2.1-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.apache.axis/axis/1.4/94a9ce681a42d0352b3ad22659f67835e560d107/axis-1.4.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.apache.axis/axis/1.4/442ab1fe3e66b6d5c916ae3f203fbfa618515f1c/axis-1.4-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/gov.nih.imagej/imagej/1.46/96877e826235ed1f3d5987a6b4c1f4ef568ac527/imagej-1.46.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/gov.nih.imagej/imagej/1.46/6ca6d25dd881c58932fa1b2b209ef96bc8910b77/imagej-1.46-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/b1b6ea3b7e4aa4f492509a4952029cd8e48019ad/commons-io-2.4.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/f2d8698c46d1167ff24b06a840a87d91a02db891/commons-io-2.4-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/13.0.1/d6f22b1e60a2f1ef99e22c9f5fde270b2088365/guava-13.0.1.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/13.0.1/ea42e17f75a65e72d12cd311b7d1e7d6356bbb3f/guava-13.0.1-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/com.github.spullara.mustache.java/compiler/0.8.13/f92c71c9bf324fcb66fa07a0fc9c2729d67b8919/compiler-0.8.13.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/com.github.spullara.mustache.java/compiler/0.8.13/55ed64b30924dd6ace195bd46137f909684d21f7/compiler-0.8.13-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-core-asl/1.9.2/8493982bba1727106d767034bd0d8e77bc1931a9/jackson-core-asl-1.9.2.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-core-asl/1.9.2/11fb8a4f12be3b4a342fd65b5448273b8c32a2bd/jackson-core-asl-1.9.2-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.2/95400a7922ce75383866eb72f6ef4a7897923945/jackson-mapper-asl-1.9.2.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.2/f033b16b4df1e2790b3027f59dcbac55fbf62585/jackson-mapper-asl-1.9.2-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/com.github.spullara.mustache.java/core/0.6.3/a57ec0cd9a4329725b91007a3b44abd02acfcfcf/core-0.6.3.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/com.github.spullara.mustache.java/core/0.6.3/9fbdc0cf71c720a9e5c9198cb6d45c4a0878c4b/core-0.6.3-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/com.github.spullara.mustache.java/jackson-support/0.6.3/fde0537496f58ef71c33a9deea7cd658fa3efcbe/jackson-support-0.6.3.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/com.github.spullara.mustache.java/jackson-support/0.6.3/aefb8892a819bf8a9bc4acf28a59ac08922abb82/jackson-support-0.6.3-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.1.3/f6c3aed1cdfa21b5c1737c915186ea93a95a58bd/jackson-core-2.1.3.jar" sourcepath="/Users/philipcallender/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.1.3/d313b1839906da7422387b180a124c81e13e65a2/jackson-core-2.1.3-sources.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/localhost"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/Development/gradle-repo/com/tooltwist/tooltwist/8.3.1-20140404/tooltwist-8.3.1-20140404.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/Development/gradle-repo/com/tooltwist/ttStd/8.3.1-20140404/ttStd-8.3.1-20140404.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/Development/gradle-repo/com/tooltwist/ttWbd/8.3.1-20140404/ttWbd-8.3.1-20140404.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/junit/junit/4.8.2/c94f54227b08100974c36170dcb53329435fe5ad/junit-4.8.2.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/junit/junit/4.8.2/cccca612a66b8387c399be31d69daf000de2ac9e/junit-4.8.2-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/xml-apis/xml-apis/1.3.04/90b215f48fe42776c8c7f6e3509ec54e84fd65ef/xml-apis-1.3.04.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/xml-apis/xml-apis/1.3.04/d89105ccbe3fd823865330fd964233baf2b53e88/xml-apis-1.3.04-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/xalan/serializer/2.7.1/4b4b18df434451249bb65a63f2fb69e215a6a020/serializer-2.7.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/xalan/xalan/2.7.1/75f1d83ce27bab5f29fff034fc74aa9f7266f22a/xalan-2.7.1.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/xalan/xalan/2.7.1/b1f9b407f3593c99ae2b137bb0733761fcee6595/xalan-2.7.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/Development/gradle-repo/com/tooltwist/xdata/8.3.1-20140404/xdata-8.3.1-20140404.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/Development/gradle-repo/com/tooltwist/filemap/8.3.1-20140404/filemap-8.3.1-20140404.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.apache.lucene/lucene-core/2.2.0/47b6eee2e17bd68911e7045896a1c09de0b2dda8/lucene-core-2.2.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/jfree/jcommon/1.0.15/6495e4f3777a24fd34c1544a8606243a600365c3/jcommon-1.0.15.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/jfree/jfreechart/1.0.12/47e8a2e9e052d292e416a6fd5292a77b54c48fac/jfreechart-1.0.12.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/commons-fileupload/commons-fileupload/1.2.2/1e48256a2341047e7d729217adeec8217f6e3a1a/commons-fileupload-1.2.2.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/commons-fileupload/commons-fileupload/1.2.2/8c269e2558e16ae7bab69df299d51f291a09eea0/commons-fileupload-1.2.2-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.2/397f4731a9f9b6eb1907e224911c77ea3aa27a8b/commons-codec-1.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.1.1/5043bfebc3db072ed80fbd362e7caf00e885d8ae/commons-logging-1.1.1.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.1.1/f3f156cbff0e0fb0d64bfce31a352cce4a33bc19/commons-logging-1.1.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/commons-httpclient/commons-httpclient/3.1/964cd74171f427720480efdec40a7c7f6e58426a/commons-httpclient-3.1.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/commons-httpclient/commons-httpclient/3.1/c6d6ea83d0cf16d3ed9c1b7e600fa0f60b9d3159/commons-httpclient-3.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch/0.1.44-1/2e9ae08de5a71bd0e0d3ba2558598181bfa71d4e/jsch-0.1.44-1.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch/0.1.44-1/e528f593b19b04d500992606f58b87fcfded8883/jsch-0.1.44-1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.eclipse.jgit/org.eclipse.jgit/2.2.0.201212191850-r/97d0761b9dd618d1f9f6c16c35c3ddf045ba536c/org.eclipse.jgit-2.2.0.201212191850-r.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.eclipse.jgit/org.eclipse.jgit/2.2.0.201212191850-r/8dcf9546f4d61e1b8a50df5da5513006023b64b/org.eclipse.jgit-2.2.0.201212191850-r-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/commons-beanutils/commons-beanutils/1.8.0/c651d5103c649c12b20d53731643e5fffceb536/commons-beanutils-1.8.0.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/commons-beanutils/commons-beanutils/1.8.0/2818502bbb50bbcbd3f57e92a2bfe4d496f37688/commons-beanutils-1.8.0-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/commons-collections/commons-collections/3.2.1/761ea405b9b37ced573d2df0d1e3a4e0f9edc668/commons-collections-3.2.1.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/commons-collections/commons-collections/3.2.1/fa095ef874374e5b2a11f8b06c26a5d68c7cb3a4/commons-collections-3.2.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/commons-digester/commons-digester/1.8.1/3dec9b9c7ea9342d4dbe8c38560080d85b44a015/commons-digester-1.8.1.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/commons-digester/commons-digester/1.8.1/3165d0f4fec8cd6836e7a3bc2986b3ff2bd101d/commons-digester-1.8.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/bouncycastle/bcmail-jdk14/136/c827665814f98ee119f57f711e624e2a015ea575/bcmail-jdk14-136.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/bouncycastle/bcprov-jdk14/136/fd984c39603845556a8721a91f591a4610c6c960/bcprov-jdk14-136.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/bouncycastle/bcprov-jdk14/136/5b2780e7591b8575963bf9953c3941e1431d3ab2/bcprov-jdk14-136-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/com.lowagie/itext/2.1.0/f7e66a415c37a953ceeddd562319ccec715fa9c4/itext-2.1.0.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/com.lowagie/itext/2.1.0/ee8428d63efe10b668ae7d61fb97312e15a61be0/itext-2.1.0-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/eclipse/jdtcore/3.1.0/c5e3e72ae7220118c3da808628ec7016d4d8aef2/jdtcore-3.1.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/jasperreports/jasperreports/3.5.3/373e51d7e6d4095a6b6f13facb7f9c51a4e3a408/jasperreports-3.5.3.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/jasperreports/jasperreports/3.5.3/baf29fa68864ab1b960bf0a812bd7a743d65d9d6/jasperreports-3.5.3-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.6.2/8619e95939167fb37245b5670135e4feb0ec7d50/slf4j-api-1.6.2.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.6.2/6b5f6572792e2192ecf714ea12ae894b0fbcf750/slf4j-api-1.6.2-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.apache.wicket/wicket/1.4.9/d32101c4cd9b6a1df371a2038b7cf29925d70e97/wicket-1.4.9.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.apache.wicket/wicket/1.4.9/a2e12a92d14ebd5fc05e15db83f0e9f465081b32/wicket-1.4.9-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.wicketstuff/jasper-reports/1.4.9.1/a5d87baeae1fffe422f62261d47d55ca3add08af/jasper-reports-1.4.9.1.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.wicketstuff/jasper-reports/1.4.9.1/86eb92b5b524b91662a9759cb3e6fbcfb5263b1b/jasper-reports-1.4.9.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1/e6cb541461c2834bdea3eb920f1884d1eb508b50/activation-1.1.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1/3697e9f67a2ed7ac5f589cff30f21173299440/activation-1.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4.6/383bdbd7b4bc3e7960370db219f883b4062fc1ca/mail-1.4.6.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4.6/8ddcd26291a284821bc93a342733bea80cc65db7/mail-1.4.6-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/c3p0/c3p0/0.9.1.1/302704f30c6e7abb7a0457f7771739e03c973e80/c3p0-0.9.1.1.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/c3p0/c3p0/0.9.1.1/5a069468419fe3910c80d13a8971fd50ff2c77a6/c3p0-0.9.1.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.quartz-scheduler/quartz/2.1.6/437f496e3e06677ce0da705996c98595718c0979/quartz-2.1.6.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.quartz-scheduler/quartz/2.1.6/8201df2b4b575d658672b931d7d97b817ec41250/quartz-2.1.6-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/batik/batik/1.5/961f15f9e62d169de8e1dbba36b352ae7166f022/batik-1.5.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/net.sourceforge.jexcelapi/jxl/2.6/74e55eae5ef7d003167a459965b99239ac6e6b02/jxl-2.6.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/0.9.30/38099654319cb6c81f8390465a7a5bb8c26fd979/logback-core-0.9.30.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/0.9.30/bc928078b39f33373c41c00ab11ceab994f3d417/logback-core-0.9.30-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/0.9.30/3dc754111cfa4cb622a973cd8244378a4bf56612/logback-classic-0.9.30.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/0.9.30/449fc54aa4863fbe4657d724e5d1f77ba2a2b369/logback-classic-0.9.30-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.24/a7d599d73b86a928303909b9be7573a4ea0ed28e/mysql-connector-java-5.1.24.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.2.1/66f13681add50ca9e4546ffabafaaac7645db3cf/commons-lang3-3.2.1.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.2.1/77e5da73ecc389bda26f9953fd91e9b53b571a6f/commons-lang3-3.2.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.apache.axis/axis/1.4/94a9ce681a42d0352b3ad22659f67835e560d107/axis-1.4.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.apache.axis/axis/1.4/442ab1fe3e66b6d5c916ae3f203fbfa618515f1c/axis-1.4-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/gov.nih.imagej/imagej/1.46/96877e826235ed1f3d5987a6b4c1f4ef568ac527/imagej-1.46.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/gov.nih.imagej/imagej/1.46/6ca6d25dd881c58932fa1b2b209ef96bc8910b77/imagej-1.46-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/b1b6ea3b7e4aa4f492509a4952029cd8e48019ad/commons-io-2.4.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/f2d8698c46d1167ff24b06a840a87d91a02db891/commons-io-2.4-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/13.0.1/d6f22b1e60a2f1ef99e22c9f5fde270b2088365/guava-13.0.1.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/13.0.1/ea42e17f75a65e72d12cd311b7d1e7d6356bbb3f/guava-13.0.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/com.github.spullara.mustache.java/compiler/0.8.13/f92c71c9bf324fcb66fa07a0fc9c2729d67b8919/compiler-0.8.13.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/com.github.spullara.mustache.java/compiler/0.8.13/55ed64b30924dd6ace195bd46137f909684d21f7/compiler-0.8.13-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-core-asl/1.9.2/8493982bba1727106d767034bd0d8e77bc1931a9/jackson-core-asl-1.9.2.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-core-asl/1.9.2/11fb8a4f12be3b4a342fd65b5448273b8c32a2bd/jackson-core-asl-1.9.2-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.2/95400a7922ce75383866eb72f6ef4a7897923945/jackson-mapper-asl-1.9.2.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.2/f033b16b4df1e2790b3027f59dcbac55fbf62585/jackson-mapper-asl-1.9.2-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/com.github.spullara.mustache.java/core/0.6.3/a57ec0cd9a4329725b91007a3b44abd02acfcfcf/core-0.6.3.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/com.github.spullara.mustache.java/core/0.6.3/9fbdc0cf71c720a9e5c9198cb6d45c4a0878c4b/core-0.6.3-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/com.github.spullara.mustache.java/jackson-support/0.6.3/fde0537496f58ef71c33a9deea7cd658fa3efcbe/jackson-support-0.6.3.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/com.github.spullara.mustache.java/jackson-support/0.6.3/aefb8892a819bf8a9bc4acf28a59ac08922abb82/jackson-support-0.6.3-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.1.3/f6c3aed1cdfa21b5c1737c915186ea93a95a58bd/jackson-core-2.1.3.jar" sourcepath="/Users/rodanluzuriaga/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.1.3/d313b1839906da7422387b180a124c81e13e65a2/jackson-core-2.1.3-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
