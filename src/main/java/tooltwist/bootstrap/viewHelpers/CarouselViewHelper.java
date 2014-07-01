@@ -23,7 +23,7 @@ public class CarouselViewHelper extends ViewHelper
 	private static final Logger logger = LoggerFactory.getLogger(CarouselViewHelper.class);
 	private String navpointId = "";
 	private String pageDataSection = "";
-	private boolean isNutra = false;
+	// private boolean isNutra = false;
 
 	public CarouselViewHelper(Properties prop)
 	{
@@ -80,6 +80,7 @@ public class CarouselViewHelper extends ViewHelper
 		return imageList;
 	}
 
+	/* 
 	@Override
 	public XData preFetch(UimData ud) throws Exception {
 		
@@ -95,7 +96,8 @@ public class CarouselViewHelper extends ViewHelper
 	public void setIsNutra(boolean isNutra) {
 		this.isNutra = isNutra;
 	}
-
+	*/
+	
 	class Carousel {
 		
 		private String image = "";

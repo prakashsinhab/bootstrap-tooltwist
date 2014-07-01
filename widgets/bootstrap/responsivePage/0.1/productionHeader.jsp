@@ -46,18 +46,19 @@
 <html lang="en">
   <head>
     <title>%%pageTitle%%</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="description" content="%%descriptionMetatag%%">
 	<meta name="keywords" content="%%keywordMetatag%%">
 	<meta name="generator" content="ToolTwist" />
-    <link href="%%URL(/ttsvr/bootstrap/css/font-awesome.min.css)%%" rel="stylesheet" media="screen">
 	
 %%headerCode%%
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="%%URL(/ttsvr/bootstrap/css/bootstrap.min.css?v=3.0.0)%%" rel="stylesheet" media="screen">
+    <link href="%%URL(/ttsvr/bootstrap/css/font-awesome.min.css)%%" rel="stylesheet" media="screen">
     <link rel="icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
 	<link rel="shortcut icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
-<!-- 	<link href="%%URL(/ttsvr/bootstrap/css/bootstrap-responsive.css)%%" rel="stylesheet"> -->
+	<!-- <link href="%%URL(/ttsvr/bootstrap/css/bootstrap-responsive.css)%%" rel="stylesheet"> -->
 	<%
 	Navpoint navpoint = WbdCache.findNavpointInAnyLoadedProject(jspName, true);
 	boolean requiresLogin = navpoint.requiresLogin();
