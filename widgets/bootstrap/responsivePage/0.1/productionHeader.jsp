@@ -77,6 +77,12 @@
 		  ga('send', 'pageview');
 		</script>	
 	<% } %>
+	
+	<style type="text/css">
+		body {
+			padding-bottom: 0;
+		}
+	</style>
   </head>
   <body>
 %%topCode%%
