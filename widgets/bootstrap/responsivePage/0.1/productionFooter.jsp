@@ -18,6 +18,7 @@
     <script src="/ttsvr/bootstrap/js/jquery.validate.min.js"></script>
     <script src="/ttsvr/bootstrap/js/respond.js"></script>
     <script src="/ttsvr/bootstrap/js/bootstrap.file-input.js"></script>
+    <script src="/ttsvr/bootstrap/js/jquery.cookie.js"></script>
     
     <script type="text/javascript">
     	//bootstrap input type file
