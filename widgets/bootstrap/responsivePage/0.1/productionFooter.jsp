@@ -21,10 +21,7 @@
     <script src="/ttsvr/bootstrap/js/bootstrap.file-input.js"></script>
     <script src="/ttsvr/bootstrap/js/jasny-bootstrap.js"></script>
     
-<!--     <script type="text/javascript"> -->
-//     	//bootstrap input type file
-//     	jQuery("input[type='file']").bootstrapFileInput();
-<!--     </script> -->
+
 
   %%bottomCode%%</body>
 </html>
