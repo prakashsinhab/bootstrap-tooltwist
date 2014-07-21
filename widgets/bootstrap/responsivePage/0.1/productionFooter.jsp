@@ -20,6 +20,11 @@
     <script src="/ttsvr/bootstrap/js/respond.js"></script>
     <script src="/ttsvr/bootstrap/js/bootstrap.file-input.js"></script>
     <script src="/ttsvr/bootstrap/js/jasny-bootstrap.js"></script>
+    <script src="/ttsvr/bootstrap/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+      api_key: 75hd696f0s1xxh
+      authorize: true
+    </script>
     
 
 
