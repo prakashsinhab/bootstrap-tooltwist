@@ -52,8 +52,9 @@
 	<meta name="generator" content="ToolTwist" />
 	
 %%headerCode%%
-
+	<!-- 
 	<script src="%%URL(/bootstrap/js/mustache.js)%%" type="text/javascript"></script>
+	-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="%%URL(/ttsvr/bootstrap/css/bootstrap.min.css?v=3.0.0)%%" rel="stylesheet" media="screen">

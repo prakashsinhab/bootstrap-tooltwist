@@ -347,19 +347,19 @@
                 content = '<a href="' + self.uploadUrl + '" class="' + self.uploadClass + '"' + status + '>' + self.uploadIcon + self.uploadLabel + '</a>';
             }
             return content;
-        },
-    }
+        }
+    };
 
     $.fn.fileinput = function (options) {
         return this.each(function () {
-            var $this = $(this), data = $this.data('fileinput')
+            var $this = $(this), data = $this.data('fileinput');
             if (!data) {
-                $this.data('fileinput', (data = new FileInput(this, options)))
+                $this.data('fileinput', (data = new FileInput(this, options)));
             }
             if (typeof options == 'string') {
-                data[options]()
+                data[options]();
             }
-        })
+        });
     };
 
     //FileInput plugin definition
