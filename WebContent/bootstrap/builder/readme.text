@@ -1,0 +1,18 @@
+=======================
+[ How to use Builders ]
+=======================
+
+Usage "compressjs.sh"
+
+Files you want to compress and add to the resulting file are separated with spaces. Run next command in terminal:
+
+$ ./compressjs.sh jquery-ui-1.8.16.custom.min.js chat-widget.js templ.min.js
+Sure you can use wildcards in file names:
+
+$ ./compressjs.sh scripts/*.js
+
+
+
+
+
+
