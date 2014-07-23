@@ -6,7 +6,7 @@
 	
 	<script src="/ttsvr/bootstrap/js/jquery-1.10.2.min.js"></script>
 	
-	<script src="/ttsvr/bootstrap/js/build/c220714.js"></script>
+	<script src="/ttsvr/bootstrap/js/build/c230714.js"></script>
     
     <script type="text/javascript" src="http://platform.linkedin.com/in.js">
       api_key: 75hd696f0s1xxh

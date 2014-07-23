@@ -6,7 +6,7 @@ var Carousel = function() {
 				  interval: 5000
 			});
 			
-		},
+		}
 	};
 }();
 jQuery(Carousel.init());

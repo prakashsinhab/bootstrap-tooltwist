@@ -6,7 +6,7 @@
 
 var config = (function() {
   // variables
-  var abc = 123;
+  //var abc = 123;
 
   // object
   return {
@@ -33,13 +33,13 @@ var config = (function() {
     animateNav : function () {
       
       jQuery(window).on("scroll", function() {
+    	  
         if ( jQuery(this).scrollTop() > 0 ) {
           jQuery(".navbar-brand img, .navbar-nav>li>a, .navbar-toggle").addClass("animate");
         } else {
           jQuery(".navbar-brand img, .navbar-nav>li>a, .navbar-toggle").removeClass("animate");
         }
         
-        console.log(jQuery(this).scrollTop())
       });
       
     },
