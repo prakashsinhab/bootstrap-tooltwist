@@ -62,7 +62,7 @@
     <link href="%%URL(/ttsvr/bootstrap/css/build/font-awesome.min.css)%%" rel="stylesheet" media="screen">
     <link rel="icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
 	<link rel="shortcut icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
-	<!-- <link href="%%URL(/ttsvr/bootstrap/css/bootstrap-responsive.css)%%" rel="stylesheet"> -->
+	
 	<%
 	Navpoint navpoint = WbdCache.findNavpointInAnyLoadedProject(jspName, true);
 	boolean requiresLogin = navpoint.requiresLogin();
