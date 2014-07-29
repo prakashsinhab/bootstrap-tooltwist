@@ -35,9 +35,9 @@ var config = (function() {
       jQuery(window).on("scroll", function() {
     	  
         if ( jQuery(this).scrollTop() > 0 ) {
-          jQuery(".navbar-brand img, .navbar-nav>li>a, .navbar-toggle").addClass("animate");
+          jQuery(".navbar-brand img, .navbar-nav>li>a, .navbar-toggle, .sub-nav").addClass("animate");
         } else {
-          jQuery(".navbar-brand img, .navbar-nav>li>a, .navbar-toggle").removeClass("animate");
+          jQuery(".navbar-brand img, .navbar-nav>li>a, .navbar-toggle, .sub-nav").removeClass("animate");
         }
         
       });
