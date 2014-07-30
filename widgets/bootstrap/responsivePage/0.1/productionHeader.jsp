@@ -68,20 +68,27 @@
 	<meta name="description" content="%%descriptionMetatag%%">
 	<meta name="keywords" content="%%keywordMetatag%%">
 	<meta name="generator" content="ToolTwist" />
-
-%%headerCode%%
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="%%URL(/ttsvr/bootstrap/css/bootstrap.min.css?v=3.0.0)%%" rel="stylesheet" media="screen">
-    <link href="%%URL(/ttsvr/bootstrap/css/font-awesome.min.css)%%" rel="stylesheet" media="screen">
+    
+    <!-- [ CSS from cssContainer widget ] -->
+	%%headerCode%%
+	<!-- [ CSS from cssContainer widget END ] -->
+    
+    <!-- [ Cloudmall Essentials - Bootstrap and Font Awesome ] -->
+	<link href="%%URL(/ttsvr/bootstrap/css/build/cloudmall.essential.300714.css)%%" rel="stylesheet" media="screen">
+	<!-- [ Cloudmall Essentials END ] -->
+    
+    <!-- [ Favicon ] -->
     <link rel="icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
 	<link rel="shortcut icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
-	<!-- <link href="%%URL(/ttsvr/bootstrap/css/bootstrap-responsive.css)%%" rel="stylesheet"> -->
+	<!-- [ Favicon END ] -->
+	
 	<%
 	Navpoint navpoint = WbdCache.findNavPoint(jspName, true);
 	boolean requiresLogin = navpoint.requiresLogin();
 	%>
 	
+	<!-- [ Google Analytics ] -->
 	<% if (!navpoint.getParent().getId().equals("noah-176")) { %>
 		  	<% if (navpoint.getLabel().equalsIgnoreCase("home")) { %>
 			  	<meta name="google-site-verification" content="AhLcdFsg980gnZh8k4dzSkYUiLzwgnDapP8c80WM_-A" />
@@ -99,6 +106,7 @@
 			ga('send', 'pageview');
 		</script>	
 	<% } %>
+	<!-- [ Google Analytics END ] -->
 	
   </head>
   <body>
