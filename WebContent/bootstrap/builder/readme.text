@@ -12,6 +12,15 @@ $ ./compressjs.sh scripts/*.js
 ===================================================================================================================
 
 
+Use shrinker - 'cause less is more.
+Use this app to merge and compress your CSS- and JavaScript-files.
+
+http://www.shrinker.ch/
+
+
+===================================================================================================================
+
+
 Usage: java -jar yuicompressor-2.4.8.jar [options] [input file]
 
 Global Options
