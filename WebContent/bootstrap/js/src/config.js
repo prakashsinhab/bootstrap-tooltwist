@@ -14,6 +14,7 @@ var config = (function() {
       
       config.animateNav();
       config.fitBannerToScreenHeight();
+      //config.flowType();
       
     },
     
@@ -42,6 +43,15 @@ var config = (function() {
         
       });
       
+    },
+    
+    flowType : function () {
+    	$('body').flowtype({
+			maximum   : 1170,
+	        minimum   : 480,
+	        maxFont   : 160,
+	        minFont   : 14
+    	});
     },
 
     //--------
