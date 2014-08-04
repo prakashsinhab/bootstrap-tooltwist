@@ -16,6 +16,8 @@ var config = (function() {
       config.fitBannerToScreenHeight();
       //config.flowType();
       
+      config.registrationTooltip();
+      
     },
     
     fitBannerToScreenHeight : function () {
@@ -52,6 +54,12 @@ var config = (function() {
 	        maxFont   : 160,
 	        minFont   : 14
     	});
+    },
+    
+    registrationTooltip : function () {
+    	jQuery("[data-toggle='tooltip']").tooltip({
+      	  "placement" : "top"
+        });
     },
 
     //--------
