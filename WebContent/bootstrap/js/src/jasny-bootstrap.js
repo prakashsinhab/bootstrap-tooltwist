@@ -912,7 +912,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Jasny Bootstrap\'s JavaScr
         $img[0].src = re.target.result
         files[0].result = re.target.result
         
-        element.find('.fileinput-filename').text(file.name)
+        element.find('.fileinput-filename').text(ellipsis(file.name))
         
         // if parent has max-height, using `(max-)height: 100%` on child doesn't take padding and border into account
         if (preview.css('max-height') != 'none') $img.css('max-height', parseInt(preview.css('max-height'), 10) - parseInt(preview.css('padding-top'), 10) - parseInt(preview.css('padding-bottom'), 10)  - parseInt(preview.css('border-top'), 10) - parseInt(preview.css('border-bottom'), 10))
@@ -925,8 +925,8 @@ if (typeof jQuery === 'undefined') { throw new Error('Jasny Bootstrap\'s JavaScr
 
       reader.readAsDataURL(file)
     } else {
-      this.$element.find('.fileinput-filename').text(file.name)
-      this.$preview.text(file.name)
+      this.$element.find('.fileinput-filename').text(ellipsis(file.name))
+      this.$preview.text(ellipsis(file.name))
       
       this.$element.addClass('fileinput-exists').removeClass('fileinput-new')
       
@@ -1020,5 +1020,13 @@ if (typeof jQuery === 'undefined') { throw new Error('Jasny Bootstrap\'s JavaScr
       $target.trigger('click.bs.fileinput')
     }
   })
-
+  
+	function ellipsis(str) {
+	  	console.log(str);
+		if (str.length > 20) {
+			return str.substr(0, 9) + '...' + str.substr(str.length-11, str.length);
+		}
+		return str;
+	}
+  
 }(window.jQuery);
