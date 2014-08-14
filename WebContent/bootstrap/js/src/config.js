@@ -21,16 +21,22 @@ var config = (function() {
     },
     
     fitBannerToScreenHeight : function () {
-      jQuery(window).on("resize load", function() {
-        var winHeight = jQuery(window.top).height() - jQuery(".navbar").height();
-        var winWidth = jQuery(window).width();
-        var bannerHeight = jQuery(".carousel-inner>.item.active img").height();
-        if ( winWidth < 1290 ) {
-          jQuery(".carousel-inner").height(bannerHeight);
-        } else {
-          jQuery(".carousel-inner").height(winHeight);
-        }
-      });
+    	jQuery(window).on("resize load", function() {
+			var winHeight = jQuery(window.top).height() - jQuery(".navbar").height();
+			var winWidth = jQuery(window).width();
+			var bannerHeight = jQuery(".carousel-inner>.item.active img").height();
+			if ( winWidth < 1290 ) {
+				jQuery(".carousel-inner").height(bannerHeight);
+			} else {
+				jQuery(".carousel-inner").height(winHeight);
+			}
+	        
+			if ( winWidth < 1290 ) {
+				jQuery(".banner-wrap").css("height", "auto");
+			} else {
+				jQuery(".banner-wrap").css("height", winHeight);
+			}
+    	});
     },
     
     animateNav : function () {
