@@ -1,94 +1,209 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'artifactory'
+apply plugin: 'maven' // so a POM file can be uploaded to repo
 
-group = 'com.tooltwist'
-version = '1.0-SNAPSHOT'
-sourceCompatibility = 1.7
 
-repositories {
-ivy {
-    url "file:/${localRepo}"
-    layout "maven"
-}
-mavenCentral()
-}
 
-//----------------------------------------------------------------------
-// Gradle lacks the "provided" dependency so we'll have to add it.
-// http://blog.codeaholics.org/2012/emulating-mavens-provided-scope-in-gradle/
+/*  
+ *	Gradle lacks a "provided" dependency like Maven, so we have to
+ *	add it. For example, we wish to specify that the J2EE API is
+ *	provided by the runtime, so the mock API jar we use here is
+ *	used for compiling but is not carried forward as a dependency
+ *	through into production.  
+ *
+ *	See http://blog.codeaholics.org/2012/emulating-mavens-provided-scope-in-gradle/  
+ */  
 configurations {
-provided
+	provided
+        published
 }
 sourceSets {
     main.compileClasspath += configurations.provided
     test.compileClasspath += configurations.provided
     test.runtimeClasspath += configurations.provided
+    main { resources { srcDir 'src' } }
 }
-//eclipse.classpath.plusConfigurations += configurations.provided
 
-//----------------------------------------------------------------------
+
+/*
+ *	This section contains you project dependencies.
+ */
 dependencies {
+	/* Dependencies if you have ToolTwist source code installed.
+	compile project(':xdata')
+	*/
+	/* ToolTwist Dependencies
+	*/
+	compile 'com.tooltwist:ttWbd:8.3.3-SNAPSHOT'  
 
-    /* Dependencies if you have ToolTwist source code installed. 
-    compile project(':tooltwist')
-    compile project(':ttWbd')
-    compile project(':ttStd')
-    compile project(':xdata')
-    compile project(':filemap')*/
+	// Hack - extras, to ensure they end up in ttsvr
+	compile 'com.tooltwist:ttStdZ:8.3.2'  
+	compile 'com.tooltwist:ttsec-standaloneDesigner:8.3.2'  
 
-    /* ToolTwist Dependencies */
-    compile 'com.tooltwist:tooltwist:8.3.1-20140404'
-    compile 'com.tooltwist:ttStd:8.3.1-20140404'
-    compile 'com.tooltwist:ttWbd:8.3.1-20140404'
+	// This jar contains stubs used only while compiling. At runtime the
+	// web server (e.g. Tomcat) provides the real implementation of the API.
+	provided 'javax:javaee-api:6.0'
 	
-	//Dependencies
-	/*
-	compile group: 'net.sourceforge.htmlcleaner', name: 'htmlcleaner', version: '2.2'
-	compile group: 'org.xhtmlrenderer', name: 'core-renderer', version: 'R8pre2'
-	compile group: 'org.json', name: 'json', version: '20140107'
-	compile group: 'net.sf.ehcache', name: 'ehcache-core', version: '2.6.0'
-	compile group: 'javax.xml', name: 'jaxrpc', version: '1.1'
-	compile group: 'org.apache.axis2', name: 'axis2', version: '1.5.4'
-	compile group: 'commons-discovery', name: 'commons-discovery', version: '0.2' */
-
-    // This jar contains stubs used only while compiling. At runtime the
-    // web server (e.g. Tomcat) provides the real implementation of the API.
-    provided 'javax:javaee-api:6.0'
-
-    // Used only during unit testing
-    testCompile group: 'junit', name: 'junit', version: '4.8.2'
+	// Used only during unit testing
+	testCompile group: 'junit', name: 'junit', version: '4.8.2'
 }
 
 
-//----------------------------------------------------------------------
-//  Copy extra resources into the jar file
-//
-processResources {
+/**************************************************************************************************
+ *
+ *	NOTE: Standard code from here on down.
+ *
+ *	Values defined in ../gradle.properties:
+ *		PUNDIT_GROUP, PUNDIT_SOURCE_COMPATIBILITY, PUNDIT_VERSION, PUNDIT_REPO
+ *
+ *	Values defined in ~/.gradle/gradle.properties:
+ *		artifactory_user, artifactory_password, artifactory_repo
+ */
+group = PUNDIT_GROUP
+version = PUNDIT_VERSION
+sourceCompatibility = PUNDIT_SOURCE_COMPATIBILITY
+
+
+
+/*  
+ *	Save a source code jar file when publishing into the repo.  
+ */  
+task sourceJar(type: Jar) {  
+	classifier = 'sources'  
+	from sourceSets.main.allSource  
+}  
+artifacts {  
+	archives sourceJar  
+}  
+
+
+
+/*  
+ *  Define dependencies to be used by Gradle (not the project).  
+ *  In particular, include the jar for artifactory.  
+ */  
+buildscript {
+    repositories {
+        maven {
+            url TOOLTWIST_ARTIFACTORY_CONTEXTURL + TOOLTWIST_ARTIFACTORY_REPO
+            credentials {
+                username = "${TOOLTWIST_ARTIFACTORY_USER}"
+                password = "${TOOLTWIST_ARTIFACTORY_PASSWORD}"
+            }
+	}
+	mavenCentral()
+    }
+    dependencies {
+        classpath(group: 'org.jfrog.buildinfo', name: 'build-info-extractor-gradle', version: '2.0.9')
+    }
 }
-processResources.dependsOn("copyWebContent")
-processResources.dependsOn("copyConfig")
-processResources.dependsOn("copyWidgets")
+
+
+
+/*  
+ *	Tell the artifactory plugin where to find jars when building, and where to
+ *	publish them.  
+ *
+ *	See https://www.jfrog.com/confluence/display/RTF/Gradle+Artifactory+Plugin  
+ */  
+project.ext.isSnapshot = version.endsWith("-SNAPSHOT")
+artifactory {
+    publish {
+        repository {
+	    contextUrl = "${PUNDIT_PUBLISH_ARTIFACTORY_CONTEXTURL}"
+	    repoKey = isSnapshot ? "${PUNDIT_PUBLISH_SNAPSHOT_REPO}" : "${PUNDIT_PUBLISH_RELEASE_REPO}"
+            username = "${PUNDIT_PUBLISH_USER}"
+            password = "${PUNDIT_PUBLISH_PASSWORD}"
+            maven = true
+	    ivy { 
+	      ivyLayout = '[organization]/[module]/ivy-[revision].xml' 
+	      artifactLayout = '[organization]/[module]/[revision]/[module]-[revision](-[classifier]).[ext]' 
+	      mavenCompatible = true
+	    } 
+        }
+	defaults {
+	    publishConfigs('archives', 'published')
+	    properties = ['build.status': "$it.project.status".toString()]
+	}
+    }
+    resolve {
+        repository {
+	    contextUrl = "${RESOLVE_ARTIFACTORY_CONTEXTURL}"
+            repoKey = "${RESOLVE_ARTIFACTORY_REPO}"
+            username = "${RESOLVE_ARTIFACTORY_USER}"
+            password = "${RESOLVE_ARTIFACTORY_PASSWORD}"
+            maven = true
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '1.12'
+}
+
+/*
+ *      If we're reconfiguring Eclipse, take the opportunity to fix the
+ *	occasional problem where 'Deployment Assembly' is missing from the
+ *	properties dialog, preventing dependency jars from being added to
+ *	the War and Tomcat classpath.
+ *
+ *      http://forums.gradle.org/gradle/topics/my_war_in_eclipse_doesnt_see_jars_in_other_projects
+ */
+eclipse {
+    project {
+        natures 'org.eclipse.wst.common.modulecore.ModuleCoreNature'
+    }
+}
+
+/****************************************************************************
+ *
+ *      Copy various resources into the jar file or into separate zip files.
+ */
 task copyWebContent(type: Copy) {
-    from('WebContent')
-    into 'build/classes/main/META-INF/resources'
+        from('WebContent')
+        into 'build/classes/main/META-INF/resources'
 }
 task copyConfig(type: Copy) {
-    from('config')
-    into 'build/classes/main/META-INF/bootstrap/config'
+        from('config')
+        into 'build/classes/main/META-INF/tooltwist/config'
 }
 task copyWidgets(type: Copy) {
-    from('widgets')
-    into 'build/classes/main/META-INF/bootstrap/widgets'
+        from('widgets')
+        into 'build/classes/main/META-INF/tooltwist/widgets'
 }
+task configZip(type: Zip) {
+        from 'config'
+        classifier = "tooltwist-config"
+}
+task widgetsZip(type: Zip) {
+        from 'widgets'
+        classifier = "tooltwist-widgets"
+}
+task webcontentZip(type: Zip) {
+        from 'WebContent'
+        classifier = "tooltwist-webcontent"
+}
+processResources {
+        // Maybe place resources directly inside the jar file.
+        if (project.hasProperty('PROJECT_DIRECTORIES_IN_JAR')
+			&& PROJECT_DIRECTORIES_IN_JAR.toBoolean()) {
+                processResources.dependsOn("copyWebContent")
+                processResources.dependsOn("copyConfig")
+                processResources.dependsOn("copyWidgets")
+        }
 
-//----------------------------------------------------------------------
-//  Upload the jar file to the repo
-//
-uploadArchives {
-    repositories {
-    ivy {
-        url "file:/${localRepo}"
-        layout "maven"
-    }
-    }
+        // Create zip files for config, widget and WebContent.
+        if (file('config').isDirectory()) {
+            processResources.dependsOn("configZip")
+            project.artifacts { archives configZip }
+        }
+        if (file('widgets').isDirectory()) {
+            processResources.dependsOn("widgetsZip")
+            project.artifacts { archives widgetsZip }
+        }
+        if (file('WebContent').isDirectory()) {
+            processResources.dependsOn("webcontentZip")
+            project.artifacts { archives webcontentZip }
+        }
 }
