@@ -38,7 +38,7 @@ dependencies {
 	compile 'com.tooltwist:ttWbd:8.3.3-SNAPSHOT'  
 
 	// Hack - extras, to ensure they end up in ttsvr
-	compile 'com.tooltwist:ttStdZ:8.3.2'  
+	compile 'com.tooltwist:ttStd:8.3.2'  
 	compile 'com.tooltwist:ttsec-standaloneDesigner:8.3.2'  
 
 	// This jar contains stubs used only while compiling. At runtime the
