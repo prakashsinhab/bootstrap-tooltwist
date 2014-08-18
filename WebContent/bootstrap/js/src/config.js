@@ -40,16 +40,29 @@ var config = (function() {
     },
     
     animateNav : function () {
-      
-      jQuery(window).on("scroll", function() {
-    	  
-        if ( jQuery(this).scrollTop() > 0 ) {
-          jQuery(".navbar-brand img, .navbar-nav>li>a, .navbar-toggle, .sub-nav").addClass("animate");
-        } else {
-          jQuery(".navbar-brand img, .navbar-nav>li>a, .navbar-toggle, .sub-nav").removeClass("animate");
-        }
-        
-      });
+  
+    	//var fs = jQuery(".navbar-nav>li>a").css("font-size");
+		jQuery(window).on("scroll", function() {
+			//var top = jQuery(this).scrollTop();
+			//console.log( top );
+			
+			if ( jQuery(this).scrollTop() > 0 ) {
+				jQuery(".navbar-brand img, .navbar-nav>li>a, .navbar-toggle, .sub-nav").addClass("animate");
+			} else {
+				jQuery(".navbar-brand img, .navbar-nav>li>a, .navbar-toggle, .sub-nav").removeClass("animate");
+			}
+			
+			/*
+			console.log(fs);
+			if ( top > 0 && top <= 100 ) {
+				var dividend = top * .04;
+				jQuery(".navbar-nav>li>a").css({
+					"font-size" : (parseInt(fs) - dividend)+"px"
+				});
+			}
+			*/
+			
+		});
       
     },
     
