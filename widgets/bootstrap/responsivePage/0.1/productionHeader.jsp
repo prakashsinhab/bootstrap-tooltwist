@@ -57,6 +57,7 @@
 	
     <!-- [ Bootstrap ] -->
     <link href="%%URL(/ttsvr/bootstrap/css/build/pundit.essential.310714.css)%%" rel="stylesheet" media="screen">
+    <link href="%%URL(/ttsvr/bootstrap/css/jquery-ui.css)%%" rel="stylesheet" media="screen">
     
     <!-- [ Favicon ] -->
     <link rel="icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
