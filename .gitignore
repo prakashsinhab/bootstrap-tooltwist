@@ -1,13 +1,5 @@
-*.class
-*.swp
-.DS_Store
-.svn/
-/bin/
-/target/
+/bin
 /build
-.gradle
-/.settings/
+/.settings
+/.gradle
 /.classpath
-/.project
-/build.gradle
-/.gitignore
