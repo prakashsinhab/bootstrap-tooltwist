@@ -86,10 +86,10 @@ artifacts {
 buildscript {
     repositories {
         maven {
-            url TOOLTWIST_ARTIFACTORY_CONTEXTURL + TOOLTWIST_ARTIFACTORY_REPO
+            url RESOLVE_ARTIFACTORY_CONTEXTURL + RESOLVE_ARTIFACTORY_REPO
             credentials {
-                username = "${TOOLTWIST_ARTIFACTORY_USER}"
-                password = "${TOOLTWIST_ARTIFACTORY_PASSWORD}"
+                username = "${RESOLVE_ARTIFACTORY_USER}"
+                password = "${RESOLVE_ARTIFACTORY_PASSWORD}"
             }
 	}
 	mavenCentral()
@@ -113,8 +113,8 @@ artifactory {
         repository {
 	    contextUrl = "${PUNDIT_PUBLISH_ARTIFACTORY_CONTEXTURL}"
 	    repoKey = isSnapshot ? "${PUNDIT_PUBLISH_SNAPSHOT_REPO}" : "${PUNDIT_PUBLISH_RELEASE_REPO}"
-            username = "${PUNDIT_PUBLISH_USER}"
-            password = "${PUNDIT_PUBLISH_PASSWORD}"
+            username = "${PUNDIT_PUBLISH_ARTIFACTORY_USER}"
+            password = "${PUNDIT_PUBLISH_ARTIFACTORY_PASSWORD}"
             maven = true
 	    ivy { 
 	      ivyLayout = '[organization]/[module]/ivy-[revision].xml' 
