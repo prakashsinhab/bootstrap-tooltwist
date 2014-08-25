@@ -1,8 +1,5 @@
-.gitignore
-bin/
-target/
-build/
-.gradle
-build.gradle
-*.swp
-.DS_Store
+/bin
+/build
+/.settings
+/.gradle
+/.classpath
