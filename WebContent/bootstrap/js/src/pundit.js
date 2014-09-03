@@ -10,7 +10,9 @@ $.validator.addMethod('completeUrl', function(value, element, param) {
 
 var util = {
   getProfilePhoto: function(profilePhoto) {
-    if (!_.str.startsWith(profilePhoto, 'http')) {
+    if (_.isNull(profilePhoto)) {
+      profilePhoto = '';
+    } else if (!_.str.startsWith(profilePhoto, 'http')) {
       var serverUrl = $('input[name="serverUrl"]').val();
       profilePhoto = serverUrl + profilePhoto;
     }
