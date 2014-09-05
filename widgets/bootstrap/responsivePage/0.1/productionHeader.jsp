@@ -58,33 +58,13 @@
     <!-- [ Bootstrap ] -->
     <link href="%%URL(/ttsvr/bootstrap/css/build/pundit.essential.310714.css)%%" rel="stylesheet" media="screen">
     <link href="%%URL(/ttsvr/bootstrap/css/jquery-ui.css)%%" rel="stylesheet" media="screen">
-    
-    <!-- [ Favicon ] -->
-    <link rel="icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
-	<link rel="shortcut icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
-	
-	<%
-	Navpoint navpoint = WbdCache.findNavpointInAnyLoadedProject(jspName, true);
-	boolean requiresLogin = navpoint.requiresLogin();
-	
-	if (!requiresLogin) {
-	%>
-		<script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		  ga('create', '<%=WbdCache.getProperty("uaCode")%>', '<%=WbdCache.getProperty("uaDomainName")%>');
-		  ga('require', 'linkid', 'linkid.js');
-		  ga('send', 'pageview');
-		</script>	
-	<% } %>
   </head>
   <body>
 %%topCode%%
 
 <!--  Provides a common fixed-width (and optionally responsive) layout with only <div class="container"> required. -->
  <div class="container">
+   <input type="hidden" name="serverUrl" value="<%=WbdCache.getProperty("server.url")%>">
  
  <!--  Create a fluid-->
  <!-- <div class="container-fluid" -->
