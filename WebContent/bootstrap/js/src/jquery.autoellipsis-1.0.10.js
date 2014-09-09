@@ -451,5 +451,7 @@ jQuery(window).on("load resize", function () {
 	jQuery('.ellipsis').ellipsis();
 });
 jQuery(".btnSwGrid, .btnSwList").click(function() {
-	jQuery('.ellipsis').ellipsis();
+	setTimeout(function() {
+		jQuery('.ellipsis').ellipsis();
+	},150);
 });
