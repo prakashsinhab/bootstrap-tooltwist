@@ -22,15 +22,38 @@ $.validator.addMethod('greaterInt', function(value, element, param) {
   return (_.str.toNumber(param) <= _.str.toNumber(value)); 
 }, 'Must be greater than {0} value.');
 
+$.validator.addMethod('requireMemberNum', function(value, element, param) {
+  if (!_.str.contains(param[0].value, 'Not a member')) {
+    return (value.length > 0);
+  }
+  return true; 
+}, 'You need to enter your membership number.');
+
 var util = {
-  getProfilePhoto: function(profilePhoto) {
-    if (_.isNull(profilePhoto)) {
-      profilePhoto = '';
-    } else if (!_.str.startsWith(profilePhoto, 'http')) {
+  getPhoto: function(photo) {
+    if (_.isNull(photo)) {
+      photo = '';
+    } else if (!_.str.startsWith(photo, 'http')) {
       var serverUrl = $('input[name="serverUrl"]').val();
-      profilePhoto = serverUrl + profilePhoto;
+      photo = serverUrl.concat(photo);
     }
     
-    return profilePhoto;
+    return photo;
+  },
+  
+  getParam: function(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  },
+  
+  formatDate: function(input) {
+    var pattern = /(.*?)\/(.*?)\/(.*?)$/;
+    var result = input.replace(pattern,function(match, p1, p2, p3) {
+      var months = ['January','February','March','April','May','June','July','August','September','October','November','Dececember'];
+      return months[(p1 - 1)] + " " + (p2<10?+p2:p2) + ", " + p3;
+    });
+    return result;
   }
 };
