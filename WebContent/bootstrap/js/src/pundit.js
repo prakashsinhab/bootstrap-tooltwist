@@ -22,6 +22,13 @@ $.validator.addMethod('greaterInt', function(value, element, param) {
   return (_.str.toNumber(param) <= _.str.toNumber(value)); 
 }, 'Must be greater than {0} value.');
 
+$.validator.addMethod('requireMemberNum', function(value, element, param) {
+  if (!_.str.contains(param[0].value, 'Not a member')) {
+    return (value.length > 0);
+  }
+  return true; 
+}, 'You need to enter your membership number.');
+
 var util = {
   getPhoto: function(photo) {
     if (_.isNull(photo)) {
