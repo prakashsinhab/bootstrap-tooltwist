@@ -227,7 +227,13 @@ textarea{
   font-size: 14px !important;
   font-weight: bold !important;
 }
-
+.free{
+	color: #2399DA;
+	font-weight: 600;
+}
+.mandatory{
+	border-left: #2399DA solid 5px;
+}
 
 /*--------------------
   Header / Navigation
