@@ -919,35 +919,57 @@ section.sign-up h5 {
 ------------------------------------------------------------------------------------------------------------------------*/
 
 .show{
-  display: block !important;
+	display: block !important;
 }
 .hide{
-  display: none !important;
+	display: none !important;
 }
 .error {
-  color: #b94a48;
-  font-size: 13px;
-  font-weight: 400;
+	color: #B94A48;
+	font-size: 13px;
+	font-weight: 400;
 }
 .valid{
-  display: none !important;
+	display: none !important;
 }
 .price {
-  color: #55B0FF;
-  font-style: italic;
+	color: #55B0FF;
+	font-style: italic;
+}
+.blue{
+	color: #55B0FF;
+}
+.red{
+	color: #B94A48;
+}
+.link{
+	text-decoration: none;
 }
 .note{
-  font-size: 10px !important;
-  letter-spacing: 1px;
-  color: #ACACAC;
-  line-height: 16px;
-  padding-top: 10px;
+	font-size: 10px !important;
+	letter-spacing: 1px;
+	color: #ACACAC;
+	line-height: 16px;
+	padding-top: 10px;
 }
 .done{
   color: #5cb85c !important;
 }
+.img-center{
+	display: block;
+	margin: 0px auto;
+}
 .center{
   text-align: center;
+}
+.left{
+  text-align: left;
+}
+.right{
+  text-align: right;
+}
+.justify{
+  text-align: justify;
 }
 .headerBreak{
   border-top: 5px solid #E7E7E7;
@@ -1117,6 +1139,12 @@ input[type="date"] {
 #expand-all .fa , #hide-all .fa{
   font-size:15px !important;
 }
+.pending{
+  color: orange;
+}
+.activated{
+  color: #353535;
+}
 
 /* ============================ accountLogin ============================ */
 .loginForm .form-control {
@@ -1136,23 +1164,9 @@ input[type="date"] {
 }
 
 /* ============================ activeJobView ============================ */
-#activeJobView .header{
-  min-height: 50px;
-}
-#activeJobView .note{
-  color: #ACACAC;
-  line-height: 16px;
-  padding-top: 10px;
-}
-#activeJobView .name{
-  margin: -8px 0 20px 0;
-}
-#activeJobView .placeBid{
-  margin-bottom: 10px !important;
-}
-#activeJobView #buttons .viewProfile{
-  margin-bottom: 5px;
-}
+/* #activeJobView .header{ */
+/*   min-height: 50px; */
+/* } */
 #activeJobView img{
   display: block;
   margin: 0 auto;
@@ -1161,12 +1175,7 @@ input[type="date"] {
   font-size: 50px;
   text-align: center;
 }
-.pending{
-  color: orange;
-}
-.activated{
-  color: #353535;
-}
+
 
 /* ============================ activeJobViewCustomer ============================ */
 #activeJobView .header{
