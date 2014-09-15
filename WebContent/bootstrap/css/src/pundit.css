@@ -967,6 +967,7 @@ section.sign-up h5 {
 .empty-list{
   padding: 20px;
   color: #ABABAB;
+  font-size: 14px !important;
 }
 .move-right{
   float: right;
@@ -1112,6 +1113,9 @@ input[type="date"] {
 }
 .cover{
 	display: none;
+}
+#expand-all .fa , #hide-all .fa{
+  font-size:15px !important;
 }
 
 /* ============================ accountLogin ============================ */
@@ -1271,12 +1275,7 @@ input[type="date"] {
 #adviserView .toggleButton{
   margin: -10px 10px 0 0;
 }
-#adviserView .fa{
-  font-size: 25px !important;
-}
-#expandAll .fa , #hideAll .fa{
-  font-size:15px !important;
-}
+
 
 /* ============================ applicantList ============================= */
 #applicantLists img {
@@ -1461,9 +1460,6 @@ input[type="date"] {
 }
 #customerView .toggleButton{
   margin: -10px 10px 0 0;
-}
-#customerView .fa{
-  font-size: 25px !important;
 }
 
 /* ============================ forgot password =============================== */
