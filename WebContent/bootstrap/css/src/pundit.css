@@ -241,10 +241,9 @@ textarea{
 .menu-wrap {
   
 }
-.nav-logout, .nav-login, .nav-register, .dashboard, .home, .register {
+.nav-logout, .nav-login, .nav-register, .dashboard, .home, .register, .reg-account, .switch-account {
   display: none !important;
 }
-
 .navbar-brand {
   height: auto !important;
 }
@@ -658,6 +657,9 @@ footer.misc * {
     /*--------------------
       Testimonials Section
     ----------------------*/
+    .testimonials{
+      background-color: #FAFAFA;
+    }    
     .testimonials .testi p {
       font-size: 18pt;
     }
@@ -683,7 +685,7 @@ footer.misc * {
     }
     .companies img {
       max-width: 100%;
-      padding-bottom: 20px;pull
+      padding-bottom: 20px;
     }
     .companies .logo {
       height: 100px;
@@ -962,7 +964,7 @@ section.sign-up h5 {
 .bold{
   font-weight: bold;
 }
-.emptyList{
+.empty-list{
   padding: 20px;
   color: #ABABAB;
 }
@@ -994,14 +996,113 @@ input[type="date"] {
   margin-bottom: 20px;
   border-bottom: 5px dotted #AEAEAE;
 }
-.pull-top{
-  margin: -8px 0 20px 0;
+.small{
+	font-size: 12px !important;
+}
+.no-margin{
+	margin: 0px !important;
+}
+.pull-top-5{
+  margin-top: -5px;
+}
+.pull-top-10{
+  margin-top: -10px;
+}
+.pull-top-15{
+  margin-top: -15px;
+}
+.pull-top-20{
+  margin-top: -20px;
+}
+.push-top-5{
+  margin-top: 5px;
+}
+.push-top-10{
+  margin-top: 10px;
+}
+.push-top-15{
+  margin-top: 15px;
+}
+.push-top-20{
+  margin-top: 20px;
+}
+.pull-down-5{
+  margin-bottom: -5px;
+}
+.pull-down-10{
+  margin-bottom: -10px;
+}
+.pull-down-15{
+  margin-bottom: -15px;
+}
+.pull-down-20{
+  margin-bottom: -20px;
+}
+.push-down-5{
+  margin-bottom: 5px;
+}
+.push-down-10{
+  margin-bottom: 10px;
+}
+.push-down-15{
+  margin-bottom: 15px;
+}
+.push-down-20{
+  margin-bottom: 20px;
+}
+.pull-left-5{
+  margin-left: -5px;
+}
+.pull-left-10{
+  margin-left: -10px;
+}
+.pull-left-15{
+  margin-left: -15px;
+}
+.pull-left-20{
+  margin-left: -20px;
+}
+.push-left-5{
+  margin-left: 5px;
+}
+.push-left-10{
+  margin-left: 10px;
+}
+.push-left-15{
+  margin-left: 15px;
+}
+.push-left-20{
+  margin-left: 20px;
+}
+.pull-right-5{
+  margin-right: -5px;
+}
+.pull-right-10{
+  margin-right: -10px;
+}
+.pull-right-15{
+  margin-right: -15px;
+}
+.pull-right-20{
+  margin-right: -20px;
+}
+.push-right-5{
+  margin-right: 5px;
+}
+.push-right-10{
+  margin-right: 10px;
+}
+.push-right-15{
+  margin-right: 15px;
+}
+.push-right-20{
+  margin-right: 20px;
 }
 .push-top{
   margin-top: 10px;
 }
 .push-down{
-  margin-down: 10px;
+  margin-bottom: 10px;
 }
 .push-left{
   margin-left: 10px;
@@ -1009,11 +1110,8 @@ input[type="date"] {
 .push-right{
   margin-right: 10px;
 }
-.small{
-	font-size: 12px !important;
-}
-.no-margin{
-	margin: 0px !important;
+.cover{
+	display: none;
 }
 
 /* ============================ accountLogin ============================ */
