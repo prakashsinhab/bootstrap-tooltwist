@@ -785,6 +785,16 @@ section.sign-up .fa.adviser {
 .tooltip-red + .tooltip > .tooltip-arrow {
   border-top-color: #27aae1 !important;
 }
+.tooltip-white + .tooltip > .tooltip-inner {
+  background-color: #FFF;
+  font-weight: 400;
+  padding:10px;
+  color: #525252;
+  max-width: 400px;
+}
+.tooltip-white + .tooltip > .tooltip-arrow {
+  border-top-color: #FFF !important;
+}
 section.sign-up h5 {
   margin-left: -41px;
   margin-right: -40px;
@@ -944,6 +954,10 @@ section.sign-up h5 {
 }
 .link{
 	text-decoration: none;
+}
+.link:hover{
+	text-decoration: none !important;
+	font-weight: bold;
 }
 .note{
 	font-size: 10px !important;
@@ -1132,6 +1146,18 @@ input[type="date"] {
 }
 .push-right{
   margin-right: 10px;
+}
+.fa-small{
+	font-size: 15px !important;
+}
+.fa-medium{
+	font-size: 25px !important;
+}
+.fa-large{
+	font-size: 35px !important;
+}
+.fa-x-large{
+	font-size: 55px !important;
 }
 .cover{
 	display: none;
