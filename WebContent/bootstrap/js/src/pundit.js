@@ -55,5 +55,9 @@ var util = {
       return months[(p1 - 1)] + " " + (p2<10?+p2:p2) + ", " + p3;
     });
     return result;
+  },
+  
+  formatCurrency : function(n, currency) {
+    return currency + " " + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
   }
 };
