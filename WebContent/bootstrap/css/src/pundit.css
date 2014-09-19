@@ -251,12 +251,7 @@ textarea {
 	text-align: center !important;
 	font-size: 18px !important;
 	color: #51b1e3 !important;
-	padding-top: 20px !important;
-}
-
-.errMessage {
-	margin-top: 10px !important;
-	color: #fa4945 !important;
+	padding-top: 5px !important;
 }
 
 .progress {
@@ -872,6 +867,13 @@ section.sign-up .fa.adviser {
 	padding: 0 15px;
 }
 
+.form-forgot-password, .form-update-password {
+	margin-top: -50px;
+	width: 550px;
+	max-width: 100%;
+	padding: 0 15px;
+}
+
 .form-adviser-registration,.form-adviser-profile,.form-customer-registration
 	{
 	margin-top: -50px;
@@ -1132,6 +1134,9 @@ section.sign-up h5 {
 }
 .red {
 	color: #B94A48;
+}
+.black{
+	color: #3C3C3C !important;
 }
 .link {
 	text-decoration: none;
@@ -1565,13 +1570,6 @@ input[type="date"] {
 	color: #a0a0a0;
 }
 
-#messageLog {
-	text-align: center;
-	font-size: 18px;
-	color: #51b1e3;
-	padding-top: 5px;
-}
-
 .messageNotice {
 	margin-top: 15px;
 	color: #6A6A6A !important;
@@ -1851,14 +1849,6 @@ input[type="date"] {
 .forgotPasswordForm {
 	padding-top: 5px;
 	margin: 0 auto;
-}
-
-.forgotPasswordForm .forgotPasswordForm {
-	z-index: 2;
-}
-
-.forgotPasswordForm input[type="email"] {
-	margin-bottom: 10px;
 }
 
 .forgotPasswordForm #emailAddress {
@@ -2514,7 +2504,7 @@ p span {
 	background-repeat: no-repeat;
 }
 
-.createNewPasswordForm .form-control {
+.createNewPasswordForm .form-control, .forgotPasswordForm .form-control  {
 	padding: 10px 10px 10px 40px !important;
 }
 
@@ -2522,13 +2512,6 @@ p span {
 	font-size: 12px !important;
 	color: #BDBDBD;
 	margin: 5px 0 10px 0;
-}
-
-#messageLog {
-	text-align: center;
-	font-size: 18px;
-	color: #51b1e3;
-	padding-top: 5px;
 }
 
 .message {
