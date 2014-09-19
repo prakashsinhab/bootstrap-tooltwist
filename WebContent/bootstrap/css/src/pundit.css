@@ -166,8 +166,10 @@ textarea.form-control {
 }
 
 select.form-control {
-	height: 34px;
+	height: 45px;
 	padding: 0px 12px;
+	border-radius: 0 !important;
+	-webkit-appearance: initial;
 }
 
 .title {
@@ -2197,6 +2199,12 @@ p span {
 }
 
 @media ( max-width :480px) {
+	.navbar-fixed-top,.navbar-fixed-bottom {
+	z-index: 1030 !important;
+	}
+	.tooltip-white{
+		display: none;
+	}
 	#sidebar-nav .nav>li.nav-profile {
 		padding: 15px 0 20px 10px;
 		color: #333;
