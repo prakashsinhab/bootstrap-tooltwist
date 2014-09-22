@@ -1471,6 +1471,10 @@ input[type="date"] {
 .activated {
 	color: #353535;
 }
+.homepageLink {
+	line-height: 50px;
+	color: #55B0FF !important;
+}
 
 /* ============================ accountLogin ============================ */
 .loginForm .form-control {
@@ -1588,10 +1592,7 @@ input[type="date"] {
 	text-decoration: none;
 }
 
-.homepageLink {
-	line-height: 50px;
-	color: #55B0FF !important;
-}
+
 
 .toggleWraps label {
 	position: absolute;
@@ -2800,12 +2801,12 @@ p span {
 	.move-right {
 		float: left !important;
 	}
-	.move-right b {
-		display: none;
-	}
-	.pull-right b {
-		display: none;
-	}
+/* 	.move-right b { */
+/* 		display: none; */
+/* 	} */
+/* 	.pull-right b { */
+/* 		display: none; */
+/* 	} */
 	.title-block {
 		padding: 20px 0px !important;
 		border-bottom: 1px dotted #aeaeae;
@@ -2836,13 +2837,13 @@ p span {
 	}
 	.move-right {
 		float: left !important;
-	}
-	.move-right b {
-		display: none;
-	}
-	.pull-right b {
-		display: none;
-	}
+/* 	} */
+/* 	.move-right b { */
+/* 		display: none; */
+/* 	} */
+/* 	.pull-right b { */
+/* 		display: none; */
+/* 	} */
 	.title-block {
 		padding: 20px 0px !important;
 		border-bottom: 1px dotted #aeaeae;
@@ -2919,12 +2920,15 @@ p span {
 	.move-right {
 		float: left !important;
 	}
-	.move-right b {
-		display: none;
+	.move-right{
+	 margin: 10px 0;
 	}
-	.pull-right b {
-		display: none;
-	}
+/* 	.move-right b { */
+/* 		display: none; */
+/* 	} */
+/* 	.pull-right b { */
+/* 		display: none; */
+/* 	} */
 	.title-block {
 		padding: 20px 0px !important;
 		border-bottom: 1px dotted #aeaeae;
