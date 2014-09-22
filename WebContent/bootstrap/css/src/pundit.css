@@ -255,6 +255,12 @@ textarea {
 	color: #51b1e3 !important;
 	padding-top: 5px !important;
 }
+#message-adviser, #message-customer {
+	text-align: center !important;
+	font-size: 18px !important;
+	color: #51b1e3 !important;
+	padding-top: 5px !important;
+}
 
 .progress {
 	-webkit-border-radius: 0 !important;
@@ -1475,7 +1481,12 @@ input[type="date"] {
 	line-height: 50px;
 	color: #55B0FF !important;
 }
-
+#switchCustomer, #switchAdviser{
+	cursor: pointer;
+}
+.account-selected{
+	opacity: .5;
+}
 /* ============================ accountLogin ============================ */
 .loginForm .form-control {
 	font-size: 16px;
