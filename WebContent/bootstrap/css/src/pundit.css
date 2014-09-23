@@ -166,8 +166,10 @@ textarea.form-control {
 }
 
 select.form-control {
-	height: 34px;
+	height: 45px;
 	padding: 0px 12px;
+	border-radius: 0 !important;
+	-webkit-appearance: initial;
 }
 
 .title {
@@ -248,6 +250,12 @@ textarea {
 }
 
 #messageLog {
+	text-align: center !important;
+	font-size: 18px !important;
+	color: #51b1e3 !important;
+	padding-top: 5px !important;
+}
+#message-adviser, #message-customer {
 	text-align: center !important;
 	font-size: 18px !important;
 	color: #51b1e3 !important;
@@ -1469,7 +1477,16 @@ input[type="date"] {
 .activated {
 	color: #353535;
 }
-
+.homepageLink {
+	line-height: 50px;
+	color: #55B0FF !important;
+}
+#switchCustomer, #switchAdviser{
+	cursor: pointer;
+}
+.account-selected{
+	opacity: .5;
+}
 /* ============================ accountLogin ============================ */
 .loginForm .form-control {
 	font-size: 16px;
@@ -1586,10 +1603,7 @@ input[type="date"] {
 	text-decoration: none;
 }
 
-.homepageLink {
-	line-height: 50px;
-	color: #55B0FF !important;
-}
+
 
 .toggleWraps label {
 	position: absolute;
@@ -2197,6 +2211,12 @@ p span {
 }
 
 @media ( max-width :480px) {
+	.navbar-fixed-top,.navbar-fixed-bottom {
+	z-index: 1030 !important;
+	}
+	.tooltip-white{
+		display: none;
+	}
 	#sidebar-nav .nav>li.nav-profile {
 		padding: 15px 0 20px 10px;
 		color: #333;
@@ -2792,12 +2812,12 @@ p span {
 	.move-right {
 		float: left !important;
 	}
-	.move-right b {
-		display: none;
-	}
-	.pull-right b {
-		display: none;
-	}
+/* 	.move-right b { */
+/* 		display: none; */
+/* 	} */
+/* 	.pull-right b { */
+/* 		display: none; */
+/* 	} */
 	.title-block {
 		padding: 20px 0px !important;
 		border-bottom: 1px dotted #aeaeae;
@@ -2828,13 +2848,13 @@ p span {
 	}
 	.move-right {
 		float: left !important;
-	}
-	.move-right b {
-		display: none;
-	}
-	.pull-right b {
-		display: none;
-	}
+/* 	} */
+/* 	.move-right b { */
+/* 		display: none; */
+/* 	} */
+/* 	.pull-right b { */
+/* 		display: none; */
+/* 	} */
 	.title-block {
 		padding: 20px 0px !important;
 		border-bottom: 1px dotted #aeaeae;
@@ -2911,12 +2931,15 @@ p span {
 	.move-right {
 		float: left !important;
 	}
-	.move-right b {
-		display: none;
+	.move-right{
+	 margin: 10px 0;
 	}
-	.pull-right b {
-		display: none;
-	}
+/* 	.move-right b { */
+/* 		display: none; */
+/* 	} */
+/* 	.pull-right b { */
+/* 		display: none; */
+/* 	} */
 	.title-block {
 		padding: 20px 0px !important;
 		border-bottom: 1px dotted #aeaeae;
