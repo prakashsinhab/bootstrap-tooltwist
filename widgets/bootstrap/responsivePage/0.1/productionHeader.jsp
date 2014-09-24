@@ -51,7 +51,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <%
+  <%-- <%
   String categoryName = jh.getRequest().getParameter("categoryName");
   String domainName = jh.getRequest().getServerName();
   if (StringUtil.isNullOrEmpty(categoryName)) {
@@ -63,7 +63,9 @@
 	  categoryName = "%%pageTitle%%" + " " + WordUtils.capitalize((StringUtil.replaceAll(categoryName, "-", " "))) + " - " + domainName;
   }
   %>
-    <title><%=categoryName %></title>
+    <title><%=categoryName %></title> --%>
+    
+    <title>%%pageTitle%%</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="description" content="%%descriptionMetatag%%">
 	<meta name="keywords" content="%%keywordMetatag%%">
