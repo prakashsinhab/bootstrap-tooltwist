@@ -1487,6 +1487,14 @@ input[type="date"] {
 .account-selected{
 	opacity: .5;
 }
+.title-dashboard-adviser{
+	padding-bottom: 20px;
+	border-bottom: 3px solid orange;
+}
+.title-dashboard-customer{
+  padding-bottom: 20px;
+  border-bottom: 3px solid #55B0FF;
+}
 /* ============================ accountLogin ============================ */
 .loginForm .form-control {
 	font-size: 16px;
