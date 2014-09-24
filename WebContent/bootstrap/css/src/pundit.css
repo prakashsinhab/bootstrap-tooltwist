@@ -185,7 +185,7 @@ select.form-control {
 }
 
 .title-block:hover {
-	background: #F6FAFC !important;
+	background: #FAFAFA !important;
 }
 
 .title-block {
@@ -1487,14 +1487,47 @@ input[type="date"] {
 .account-selected{
 	opacity: .5;
 }
+.reg-text{
+	font-size: 14px !important;
+	margin: 10px 0 !important;
+	height: 100px;
+}
 .title-dashboard-adviser{
-	padding-bottom: 20px;
-	border-bottom: 3px solid orange;
+	text-align: center;
+	padding: 10px;
+	background: orange;
+	color: white;
+	margin-bottom: 10px;
+	border-radius: 5px;
 }
 .title-dashboard-customer{
-  padding-bottom: 20px;
-  border-bottom: 3px solid #55B0FF;
+	text-align: center;
+	padding: 10px;
+	background: #00ABE5;
+	color: white;
+	margin-bottom: 10px;
+	border-radius: 5px;
 }
+.applicant-list-buttons{
+	width: 230px;
+}
+.switch-type-button{
+	padding: 0 0 0 15px !important;
+	font-size: 18px !important;
+	border-radius: 4px !important;
+	color: white!important;
+	width: 130px;
+}
+.switch-type-button span{
+	padding: 10 15px !important;
+	font-size: 18px !important;
+	border-radius: 4px !important;
+	color: white!important;
+}
+
+/* ============================ todo ============================ */
+
+
 /* ============================ accountLogin ============================ */
 .loginForm .form-control {
 	font-size: 16px;
@@ -2818,14 +2851,8 @@ p span {
 		top: 90px;
 	}
 	.move-right {
-		float: left !important;
+		float: none !important;
 	}
-/* 	.move-right b { */
-/* 		display: none; */
-/* 	} */
-/* 	.pull-right b { */
-/* 		display: none; */
-/* 	} */
 	.title-block {
 		padding: 20px 0px !important;
 		border-bottom: 1px dotted #aeaeae;
@@ -2855,14 +2882,7 @@ p span {
 		margin-right: -15px;
 	}
 	.move-right {
-		float: left !important;
-/* 	} */
-/* 	.move-right b { */
-/* 		display: none; */
-/* 	} */
-/* 	.pull-right b { */
-/* 		display: none; */
-/* 	} */
+		float: none !important;
 	.title-block {
 		padding: 20px 0px !important;
 		border-bottom: 1px dotted #aeaeae;
@@ -2937,20 +2957,23 @@ p span {
 		float: left !important;
 	}
 	.move-right {
-		float: left !important;
+		float: none !important;
 	}
 	.move-right{
 	 margin: 10px 0;
 	}
-/* 	.move-right b { */
-/* 		display: none; */
-/* 	} */
-/* 	.pull-right b { */
-/* 		display: none; */
-/* 	} */
 	.title-block {
 		padding: 20px 0px !important;
 		border-bottom: 1px dotted #aeaeae;
+	}
+	.bid-list-buttons{
+		display: block;
+		margin: 20px auto 0px;
+		width: 185px;
+	}
+	.applicant-list-buttons{
+		display: block;
+		margin: 20px auto 0px;
 	}
 }
 
