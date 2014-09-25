@@ -42,6 +42,17 @@ var util = {
     return photo;
   },
   
+  getFile: function(file) {
+    if (_.isNull(file)) {
+      file = '';
+    } else {
+      var serverUrl = $('input[name="serverUrl"]').val();
+      file = serverUrl.concat(file);
+    }
+    
+    return file;
+  },
+  
   getParam: function(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
