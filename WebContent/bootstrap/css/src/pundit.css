@@ -210,7 +210,7 @@ select.form-control {
 	border-color: transparent !important;
 }
 
-.thumbnail {
+.thumbnail, .company-thumbnail {
 	border: 0 !important;
 	-webkit-border-radius: 0 !important;
 	-moz-border-radius: 0 !important;
@@ -233,6 +233,18 @@ select.form-control {
 	width: 160px !important;
 	max-height: 100%;
 	clip: rect(0px, 160px, 160px, 0px);
+}
+
+.fileinput .company-thumbnail {
+	background-image: url("/ttsvr/images/default-company.png");
+	padding: 0px !important;
+}
+
+.fileinput .company-thumbnail img {
+	position: absolute;
+	width: 200px !important;
+	max-height: 100%;
+	clip: rect(0px, 200px, 115px, 0px);
 }
 
 textarea {
@@ -285,7 +297,7 @@ textarea {
 }
 
 .navbar-fixed-top,.navbar-fixed-bottom {
-	z-index: 1015 !important;
+	z-index: 1030 !important;
 }
 
 /*--------------------
@@ -595,7 +607,7 @@ footer.misc * {
 ----------------------*/
 .banner-wrap {
 	background: transparent
-		url("/ttsvr/cropImage/pundit.images.banner_7.jpg") top center repeat-y;
+		url("/ttsvr/cropImage/pundit.images.banner_8.jpg") top center repeat-y;
 	margin-top: 100px;
 	padding-top: 45px;
 	padding-bottom: 25px;
@@ -1297,6 +1309,18 @@ input[type="date"] {
 .no-margin {
 	margin: 0px !important;
 }
+.no-margin-top {
+	margin-top: 0px !important;
+}
+.no-margin-bottom {
+	margin-bottom: 0px !important;
+}
+.no-margin-right {
+	margin-right: 0px !important;
+}
+.no-margin-left {
+	margin-left: 0px !important;
+}
 
 .pull-top-5 {
 	margin-top: -5px;
@@ -1440,6 +1464,22 @@ input[type="date"] {
 
 .push-right {
 	margin-right: 10px;
+}
+
+.margin-5{
+	margin: 5px;
+}
+
+.margin-10{
+	margin: 10px;
+}
+
+.margin-15{
+	margin: 15px;
+}
+
+.margin-20{
+	margin: 20px;
 }
 
 .fa-small {
@@ -2252,12 +2292,6 @@ p span {
 }
 
 @media ( max-width :480px) {
-	.navbar-fixed-top,.navbar-fixed-bottom {
-	z-index: 1030 !important;
-	}
-	.tooltip-white{
-		display: none;
-	}
 	#sidebar-nav .nav>li.nav-profile {
 		padding: 15px 0 20px 10px;
 		color: #333;
@@ -2894,6 +2928,13 @@ p span {
 
 /* Small devices Tablets (?768px) */
 @media ( max-width : 768px) {
+	.banner-wrap {
+	background: #7089BF;
+	margin-top: 100px;
+	padding-top: 45px;
+	padding-bottom: 25px;
+	background-size: 100%;
+}
 	/* Header */
 	.navbar-nav>li>a {
 		font-size: 16px !important;
@@ -2920,9 +2961,13 @@ p span {
 	h1,h4 {
 		text-align: left;
 	}
+	.featured-advisers {
+		min-height: 600px;
+	}
 	.how-it-works h1,.featured-advisers h1 {
 		text-align: center;
 	}
+
 	.more,.more p {
 		text-align: left !important;
 		margin-top: 0 !important;
