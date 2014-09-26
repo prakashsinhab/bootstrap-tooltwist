@@ -206,6 +206,14 @@ select.form-control {
 	background-color: #2399DA !important;
 }
 
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.cursor-pointer:hover {
+  opacity:0.5;
+}
+
 .input-group-btn .btn-primary,.input-group-btn .btn-primary:hover {
 	border-color: transparent !important;
 }
@@ -1221,6 +1229,29 @@ section.sign-up h5 {
 
 .move-left {
 	float: left;
+}
+
+.note-panel {
+  display: none;
+  margin: 0px;
+  padding:10px;
+  position: absolute;
+  width: 400px;
+  max-width: 90%;
+  height: 200px;
+  background-color: #F5F6CE;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px #AEAEAE;
+  border: 1px solid #FAFAFA;
+  z-index:1000;
+}
+
+.note-buttons .btn , .note-buttons .fa{
+  font-size:10px !important;
+}
+
+.note-buttons .fa{
+  padding:0px !important;
 }
 
 .choose-type {
