@@ -606,8 +606,8 @@ footer.misc * {
   Banner
 ----------------------*/
 .banner-wrap {
-	background: transparent
-		url("/ttsvr/cropImage/pundit.images.banner_8.jpg") top center repeat-y;
+	background: #2F4982
+		url("/ttsvr/cropImage/pundit.images.banner_10.png") top center no-repeat;
 	margin-top: 100px;
 	padding-top: 45px;
 	padding-bottom: 25px;
@@ -619,8 +619,8 @@ footer.misc * {
 }
 
 .banner-wrap .jumbotron {
-	background-color: rgba(0, 0, 0, .6);
-	/*background: #27aae1;*/
+/* 	background-color: rgba(0, 0, 0, .6); */
+  background: transparent;
 	color: white;
 	padding: 40px 25px !important;
 	-webkit-border-radius: 0 !important;
@@ -1560,7 +1560,6 @@ input[type="date"] {
 }
 .switch-type-button span{
 	padding: 10 15px !important;
-	font-size: 18px !important;
 	border-radius: 4px !important;
 	color: white!important;
 }
@@ -1586,7 +1585,7 @@ input[type="date"] {
 	background-image:
 		url("/ttsvr/cropImage/pundit.images.icon_login_password.png");
 	background-repeat: no-repeat;
-	margin: 30px 0 10px 0;
+	margin: 20px 0 10px 0;
 }
 
 /* ============================ activeJobView ============================ */
@@ -2010,9 +2009,13 @@ p span {
 	font-weight: 600;
 }
 
-.marginBottom {
-	margin-bottom: 10px !important;
+.btn-search-job{
+	padding: 12px 15px;
 }
+.field-search-job{
+	line-height: 32px;
+}
+
 /* ============================ messageList ====================================== */
 .icon-side-menu {
 	display: inline-block;
