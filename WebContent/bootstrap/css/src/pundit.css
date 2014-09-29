@@ -615,11 +615,12 @@ footer.misc * {
 ----------------------*/
 .banner-wrap {
 	background: #2F4982
-		url("/ttsvr/cropImage/pundit.images.banner_10.png") top center no-repeat;
+		url("/ttsvr/cropImage/pundit.images.banner_8.jpg") bottom center no-repeat;
 	margin-top: 100px;
 	padding-top: 45px;
 	padding-bottom: 25px;
 	background-size: 100%;
+	min-height: 700px;
 }
 
 .banner-wrap .jumbotron * {
@@ -770,8 +771,16 @@ section.category {
 }
 
 /*--------------------
-      Public Jobs Section
-    ----------------------*/
+  Featured Advisers
+----------------------*/
+.featured-adv img{
+	border-radius: 10px;
+	border: 1px solid #E7E7E7;
+}
+
+/*--------------------
+  Public Jobs Section
+----------------------*/
 section.public-jobs {
 	background: #27aae1;
 	color: white;
@@ -789,8 +798,8 @@ section.public-jobs {
 }
 
 /*--------------------
-      Testimonials Section
-    ----------------------*/
+  Testimonials Section
+----------------------*/
 .testimonials {
 	background-color: #FAFAFA;
 }
@@ -809,8 +818,8 @@ section.public-jobs {
 }
 
 /*--------------------
-      Companies Section
-    ----------------------*/
+  Companies Section
+----------------------*/
 .companies {
 	text-align: center;
 }
@@ -1533,8 +1542,28 @@ input[type="date"] {
 	font-size: 55px !important;
 }
 
-.cover {
+.cover, .cat-desc{
 	display: none;
+}
+
+.cat-desc{
+	position: absolute;
+	top: -155px;
+	padding: 10px;
+	border: 1px solid #E7E7E7;
+	border-radius: 10px;
+	width: 450px;
+	max-width: 90%;
+	height: 150px;
+	background: #26a4d9;
+	color: rgb(255, 255, 255);
+}
+.cat-desc-arrow{
+	position: absolute;
+	font-size: 25px !important;
+	margin-top: 128px;
+	color: #26a4d9;
+	left: 50px;
 }
 
 #expand-all .fa,#hide-all .fa {
@@ -2028,6 +2057,12 @@ p span {
 }
 
 /* ============================ jobSearch ======================================= */
+.searchJob img{
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	cursor: pointer;
+}
 .searchField {
 	border-bottom: 1px dotted #aeaeae;
 }
@@ -2935,6 +2970,22 @@ p span {
 
 /* iPhone 5 / HTC - landscape (?650px) */
 @media ( max-width : 650px) {
+/*--------------------
+  Featured Advisers
+----------------------*/
+	.featured-adv img{
+	display: block;
+	margin: 0px auto;
+	}
+	.featured-adv h4, .featured-adv h5{
+	text-align: center;
+	}
+	.featured-adv h6{
+	margin-bottom: 40px;
+	}
+	.featured-adv p{
+	text-align: justify;
+	}
 	footer.trans {
 		position: inherit;
 		width: auto;
