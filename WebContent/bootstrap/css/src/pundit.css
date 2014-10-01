@@ -273,7 +273,7 @@ textarea {
 	text-align: center !important;
 	font-size: 18px !important;
 	color: #51b1e3 !important;
-	padding-top: 5px !important;
+	padding-top: 5px;
 }
 #message-adviser, #message-customer {
 	text-align: center !important;
@@ -614,8 +614,8 @@ footer.misc * {
   Banner
 ----------------------*/
 .banner-wrap {
-	background: #2F4982
-		url("/ttsvr/cropImage/pundit.images.banner_8.jpg") bottom center no-repeat;
+	background: #304a83
+		url("/ttsvr/cropImage/pundit.images.banner_10.jpg") bottom center no-repeat;
 	margin-top: 100px;
 	padding-top: 45px;
 	padding-bottom: 25px;
@@ -1177,6 +1177,8 @@ section.sign-up h5 {
 }
 .link {
 	text-decoration: none;
+	font-size: 20px;
+	line-height: 40px;
 }
 .link:hover {
 	text-decoration: none !important;
@@ -1542,8 +1544,27 @@ input[type="date"] {
 	font-size: 55px !important;
 }
 
+.relative{
+	position: relative;
+}
+
+.fixed{
+	position: fixed;
+}
+
+.absolute{
+	position: absolute;
+}
+
 .cover, .cat-desc{
 	display: none;
+}
+
+.reference-trigger{
+	position: absolute;
+	top: 10px;
+	margin-left: 10px;
+	color: #55B0FF !important;
 }
 
 .cat-desc{
@@ -1609,7 +1630,7 @@ input[type="date"] {
 	border-radius: 5px;
 }
 .applicant-list-buttons{
-	width: 230px;
+	width: 235px;
 }
 .switch-type-button{
 	padding: 0 0 0 15px !important;
@@ -1623,8 +1644,71 @@ input[type="date"] {
 	border-radius: 4px !important;
 	color: white!important;
 }
+.btn-file .file-input-name{
+	display: none;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.upload-pic {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: pointer;
+    display: block;
+}
 
 /* ============================ todo ============================ */
+
+/* ============================ cropImage ============================ */
+.imageBox
+{
+    position: relative;
+    height: 160px;
+    width: 160px;
+    border:1px solid #aaa;
+    background: #fff;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    cursor:move;
+}
+
+.imageBox .thumbBox
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 160px;
+    height: 160px;
+    margin-top: -80px;
+    margin-left: -80px;
+    box-sizing: border-box;
+    border: 1px solid rgb(102, 102, 102);
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    background: none repeat scroll 0% 0% transparent;
+}
+
+.imageBox .spinner
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    line-height: 400px;
+    background: rgba(0,0,0,0.7);
+}
 
 
 /* ============================ accountLogin ============================ */
@@ -1997,6 +2081,11 @@ input[type="date"] {
 
 #customerView .toggleButton {
 	margin: -10px 10px 0 0;
+}
+
+#image img{
+	width: 160px;
+	height: 160px;
 }
 
 /* ============================ forgot password =============================== */
@@ -2630,9 +2719,9 @@ p span {
 }
 
 .terms {
-	margin-top: 10px;
-	font-size: 12px !important;
+	font-size: 14px !important;
 	color: gray;
+	letter-spacing: .4px;
 }
 
 .terms a {
