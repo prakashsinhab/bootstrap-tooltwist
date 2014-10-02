@@ -1569,20 +1569,28 @@ input[type="date"] {
 
 .cat-desc{
 	position: absolute;
-	top: -155px;
+	top: -265px;
 	padding: 10px;
 	border: 1px solid #E7E7E7;
 	border-radius: 10px;
-	width: 450px;
-	max-width: 90%;
-	height: 150px;
+	max-width: 95%;
 	background: #26a4d9;
 	color: rgb(255, 255, 255);
 }
+
+.cat-desc .desc{
+	width: 100%;
+	height: 230px;
+}
+
+.cat-desc p{
+	line-height: inherit !important;
+	font-size: 14px !important;]
+}
+
 .cat-desc-arrow{
 	position: absolute;
 	font-size: 25px !important;
-	margin-top: 128px;
 	color: #26a4d9;
 	left: 50px;
 }
