@@ -185,7 +185,7 @@ select.form-control {
 }
 
 .title-block:hover {
-	background: #F6FAFC !important;
+	background: #FAFAFA !important;
 }
 
 .title-block {
@@ -206,11 +206,19 @@ select.form-control {
 	background-color: #2399DA !important;
 }
 
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.cursor-pointer:hover {
+  opacity:0.5;
+}
+
 .input-group-btn .btn-primary,.input-group-btn .btn-primary:hover {
 	border-color: transparent !important;
 }
 
-.thumbnail {
+.thumbnail, .company-thumbnail {
 	border: 0 !important;
 	-webkit-border-radius: 0 !important;
 	-moz-border-radius: 0 !important;
@@ -235,6 +243,18 @@ select.form-control {
 	clip: rect(0px, 160px, 160px, 0px);
 }
 
+.fileinput .company-thumbnail {
+	background-image: url("/ttsvr/images/default-company.png");
+	padding: 0px !important;
+}
+
+.fileinput .company-thumbnail img {
+	position: absolute;
+	width: 200px !important;
+	max-height: 100%;
+	clip: rect(0px, 200px, 115px, 0px);
+}
+
 textarea {
 	resize: none;
 	min-height: 150px;
@@ -253,7 +273,7 @@ textarea {
 	text-align: center !important;
 	font-size: 18px !important;
 	color: #51b1e3 !important;
-	padding-top: 5px !important;
+	padding-top: 5px;
 }
 #message-adviser, #message-customer {
 	text-align: center !important;
@@ -285,7 +305,7 @@ textarea {
 }
 
 .navbar-fixed-top,.navbar-fixed-bottom {
-	z-index: 1015 !important;
+	z-index: 1030 !important;
 }
 
 /*--------------------
@@ -594,12 +614,13 @@ footer.misc * {
   Banner
 ----------------------*/
 .banner-wrap {
-	background: transparent
-		url("/ttsvr/cropImage/pundit.images.banner_7.jpg") top center repeat-y;
+	background: #304a83
+		url("/ttsvr/cropImage/pundit.images.banner_10.jpg") bottom center no-repeat;
 	margin-top: 100px;
 	padding-top: 45px;
 	padding-bottom: 25px;
 	background-size: 100%;
+	min-height: 700px;
 }
 
 .banner-wrap .jumbotron * {
@@ -607,8 +628,8 @@ footer.misc * {
 }
 
 .banner-wrap .jumbotron {
-	background-color: rgba(0, 0, 0, .6);
-	/*background: #27aae1;*/
+/* 	background-color: rgba(0, 0, 0, .6); */
+  background: transparent;
 	color: white;
 	padding: 40px 25px !important;
 	-webkit-border-radius: 0 !important;
@@ -750,8 +771,16 @@ section.category {
 }
 
 /*--------------------
-      Public Jobs Section
-    ----------------------*/
+  Featured Advisers
+----------------------*/
+.featured-adv img{
+	border-radius: 10px;
+	border: 1px solid #E7E7E7;
+}
+
+/*--------------------
+  Public Jobs Section
+----------------------*/
 section.public-jobs {
 	background: #27aae1;
 	color: white;
@@ -769,8 +798,8 @@ section.public-jobs {
 }
 
 /*--------------------
-      Testimonials Section
-    ----------------------*/
+  Testimonials Section
+----------------------*/
 .testimonials {
 	background-color: #FAFAFA;
 }
@@ -789,8 +818,8 @@ section.public-jobs {
 }
 
 /*--------------------
-      Companies Section
-    ----------------------*/
+  Companies Section
+----------------------*/
 .companies {
 	text-align: center;
 }
@@ -1148,6 +1177,8 @@ section.sign-up h5 {
 }
 .link {
 	text-decoration: none;
+	font-size: 20px;
+	line-height: 40px;
 }
 .link:hover {
 	text-decoration: none !important;
@@ -1209,6 +1240,29 @@ section.sign-up h5 {
 
 .move-left {
 	float: left;
+}
+
+.note-panel {
+  display: none;
+  margin: 0px;
+  padding:10px;
+  position: absolute;
+  width: 400px;
+  max-width: 90%;
+  height: 200px;
+  background-color: #F5F6CE;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px #AEAEAE;
+  border: 1px solid #FAFAFA;
+  z-index:1000;
+}
+
+.note-buttons .btn , .note-buttons .fa{
+  font-size:10px !important;
+}
+
+.note-buttons .fa{
+  padding:0px !important;
 }
 
 .choose-type {
@@ -1296,6 +1350,18 @@ input[type="date"] {
 
 .no-margin {
 	margin: 0px !important;
+}
+.no-margin-top {
+	margin-top: 0px !important;
+}
+.no-margin-bottom {
+	margin-bottom: 0px !important;
+}
+.no-margin-right {
+	margin-right: 0px !important;
+}
+.no-margin-left {
+	margin-left: 0px !important;
 }
 
 .pull-top-5 {
@@ -1442,6 +1508,22 @@ input[type="date"] {
 	margin-right: 10px;
 }
 
+.margin-5{
+	margin: 5px;
+}
+
+.margin-10{
+	margin: 10px;
+}
+
+.margin-15{
+	margin: 15px;
+}
+
+.margin-20{
+	margin: 20px;
+}
+
 .fa-small {
 	font-size: 15px !important;
 }
@@ -1462,8 +1544,55 @@ input[type="date"] {
 	font-size: 55px !important;
 }
 
-.cover {
+.relative{
+	position: relative;
+}
+
+.fixed{
+	position: fixed;
+}
+
+.absolute{
+	position: absolute;
+}
+
+.cover, .cat-desc{
 	display: none;
+}
+
+.reference-trigger{
+	position: absolute;
+	top: 10px;
+	margin-left: 10px;
+	color: #55B0FF !important;
+}
+
+.cat-desc{
+	position: absolute;
+	top: -265px;
+	padding: 10px;
+	border: 1px solid #E7E7E7;
+	border-radius: 10px;
+	max-width: 95%;
+	background: #26a4d9;
+	color: rgb(255, 255, 255);
+}
+
+.cat-desc .desc{
+	width: 100%;
+	height: 230px;
+}
+
+.cat-desc p{
+	line-height: inherit !important;
+	font-size: 14px !important;]
+}
+
+.cat-desc-arrow{
+	position: absolute;
+	font-size: 25px !important;
+	color: #26a4d9;
+	left: 50px;
 }
 
 #expand-all .fa,#hide-all .fa {
@@ -1487,6 +1616,109 @@ input[type="date"] {
 .account-selected{
 	opacity: .5;
 }
+.reg-text{
+	font-size: 14px !important;
+	margin: 10px 0 !important;
+	height: 100px;
+}
+.title-dashboard-adviser{
+	text-align: center;
+	padding: 10px;
+	background: orange;
+	color: white;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+.title-dashboard-customer{
+	text-align: center;
+	padding: 10px;
+	background: #00ABE5;
+	color: white;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+.applicant-list-buttons{
+	width: 235px;
+}
+.switch-type-button{
+	padding: 0 0 0 15px !important;
+	font-size: 18px !important;
+	border-radius: 4px !important;
+	color: white!important;
+	width: 130px;
+}
+.switch-type-button span{
+	padding: 10 15px !important;
+	border-radius: 4px !important;
+	color: white!important;
+}
+.btn-file .file-input-name{
+	display: none;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.upload-pic {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: pointer;
+    display: block;
+}
+
+/* ============================ todo ============================ */
+
+/* ============================ cropImage ============================ */
+.imageBox
+{
+    position: relative;
+    height: 160px;
+    width: 160px;
+    border:1px solid #aaa;
+    background: #fff;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    cursor:move;
+}
+
+.imageBox .thumbBox
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 160px;
+    height: 160px;
+    margin-top: -80px;
+    margin-left: -80px;
+    box-sizing: border-box;
+    border: 1px solid rgb(102, 102, 102);
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    background: none repeat scroll 0% 0% transparent;
+}
+
+.imageBox .spinner
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    line-height: 400px;
+    background: rgba(0,0,0,0.7);
+}
+
+
 /* ============================ accountLogin ============================ */
 .loginForm .form-control {
 	font-size: 16px;
@@ -1505,7 +1737,7 @@ input[type="date"] {
 	background-image:
 		url("/ttsvr/cropImage/pundit.images.icon_login_password.png");
 	background-repeat: no-repeat;
-	margin: 30px 0 10px 0;
+	margin: 20px 0 10px 0;
 }
 
 /* ============================ activeJobView ============================ */
@@ -1859,6 +2091,11 @@ input[type="date"] {
 	margin: -10px 10px 0 0;
 }
 
+#image img{
+	width: 160px;
+	height: 160px;
+}
+
 /* ============================ forgot password =============================== */
 .forgotPasswordForm {
 	padding-top: 5px;
@@ -1917,6 +2154,12 @@ p span {
 }
 
 /* ============================ jobSearch ======================================= */
+.searchJob img{
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	cursor: pointer;
+}
 .searchField {
 	border-bottom: 1px dotted #aeaeae;
 }
@@ -1929,9 +2172,13 @@ p span {
 	font-weight: 600;
 }
 
-.marginBottom {
-	margin-bottom: 10px !important;
+.btn-search-job{
+	padding: 12px 15px;
 }
+.field-search-job{
+	line-height: 32px;
+}
+
 /* ============================ messageList ====================================== */
 .icon-side-menu {
 	display: inline-block;
@@ -2211,12 +2458,6 @@ p span {
 }
 
 @media ( max-width :480px) {
-	.navbar-fixed-top,.navbar-fixed-bottom {
-	z-index: 1030 !important;
-	}
-	.tooltip-white{
-		display: none;
-	}
 	#sidebar-nav .nav>li.nav-profile {
 		padding: 15px 0 20px 10px;
 		color: #333;
@@ -2486,9 +2727,9 @@ p span {
 }
 
 .terms {
-	margin-top: 10px;
-	font-size: 12px !important;
+	font-size: 14px !important;
 	color: gray;
+	letter-spacing: .4px;
 }
 
 .terms a {
@@ -2810,14 +3051,8 @@ p span {
 		top: 90px;
 	}
 	.move-right {
-		float: left !important;
+		float: none !important;
 	}
-/* 	.move-right b { */
-/* 		display: none; */
-/* 	} */
-/* 	.pull-right b { */
-/* 		display: none; */
-/* 	} */
 	.title-block {
 		padding: 20px 0px !important;
 		border-bottom: 1px dotted #aeaeae;
@@ -2832,6 +3067,22 @@ p span {
 
 /* iPhone 5 / HTC - landscape (?650px) */
 @media ( max-width : 650px) {
+/*--------------------
+  Featured Advisers
+----------------------*/
+	.featured-adv img{
+	display: block;
+	margin: 0px auto;
+	}
+	.featured-adv h4, .featured-adv h5{
+	text-align: center;
+	}
+	.featured-adv h6{
+	margin-bottom: 40px;
+	}
+	.featured-adv p{
+	text-align: justify;
+	}
 	footer.trans {
 		position: inherit;
 		width: auto;
@@ -2847,14 +3098,7 @@ p span {
 		margin-right: -15px;
 	}
 	.move-right {
-		float: left !important;
-/* 	} */
-/* 	.move-right b { */
-/* 		display: none; */
-/* 	} */
-/* 	.pull-right b { */
-/* 		display: none; */
-/* 	} */
+		float: none !important;
 	.title-block {
 		padding: 20px 0px !important;
 		border-bottom: 1px dotted #aeaeae;
@@ -2866,6 +3110,13 @@ p span {
 
 /* Small devices Tablets (?768px) */
 @media ( max-width : 768px) {
+	.banner-wrap {
+	background: #7089BF;
+	margin-top: 100px;
+	padding-top: 45px;
+	padding-bottom: 25px;
+	background-size: 100%;
+}
 	/* Header */
 	.navbar-nav>li>a {
 		font-size: 16px !important;
@@ -2892,9 +3143,13 @@ p span {
 	h1,h4 {
 		text-align: left;
 	}
+	.featured-advisers {
+		min-height: 600px;
+	}
 	.how-it-works h1,.featured-advisers h1 {
 		text-align: center;
 	}
+
 	.more,.more p {
 		text-align: left !important;
 		margin-top: 0 !important;
@@ -2929,20 +3184,23 @@ p span {
 		float: left !important;
 	}
 	.move-right {
-		float: left !important;
+		float: none !important;
 	}
 	.move-right{
 	 margin: 10px 0;
 	}
-/* 	.move-right b { */
-/* 		display: none; */
-/* 	} */
-/* 	.pull-right b { */
-/* 		display: none; */
-/* 	} */
 	.title-block {
 		padding: 20px 0px !important;
 		border-bottom: 1px dotted #aeaeae;
+	}
+	.bid-list-buttons{
+		display: block;
+		margin: 20px auto 0px;
+		width: 185px;
+	}
+	.applicant-list-buttons{
+		display: block;
+		margin: 20px auto 0px;
 	}
 }
 
