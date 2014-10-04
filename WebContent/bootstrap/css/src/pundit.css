@@ -1813,7 +1813,7 @@ input[type="date"] {
 	display: none;
 }
 
-#textarea_feedback {
+.textarea_feedback{
 	margin-top: 7px;
 	font-size: 14px;
 	color: #a0a0a0;
@@ -2155,8 +2155,8 @@ p span {
 
 /* ============================ jobSearch ======================================= */
 .searchJob img{
-	width: 35px;
-	height: 35px;
+	width: 30px;
+	height: 30px;
 	border-radius: 50%;
 	cursor: pointer;
 }
