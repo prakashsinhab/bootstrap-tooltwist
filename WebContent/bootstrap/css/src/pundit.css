@@ -1676,6 +1676,15 @@ input[type="date"] {
     display: block;
 }
 
+.toggleWraps label {
+	position: absolute;
+	top: -53px;
+}
+.checkbox label{
+	position: absolute;
+	margin-top: -15px;
+}
+
 /* ============================ todo ============================ */
 
 /* ============================ cropImage ============================ */
@@ -1835,12 +1844,6 @@ input[type="date"] {
 	text-decoration: none;
 }
 
-
-
-.toggleWraps label {
-	position: absolute;
-	top: -20px;
-}
 
 #categoryInserter {
 	margin-top: 20px;
