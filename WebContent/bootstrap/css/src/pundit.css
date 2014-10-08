@@ -230,7 +230,7 @@ select.form-control {
 }
 
 .company-thumbnail{
-	margin-top: 20px;
+	padding: 10px !important;
 }
 
 .profilePhoto img {
@@ -244,6 +244,11 @@ select.form-control {
 	padding: 0px !important;
 }
 
+.fileinput .company-thumbnail {
+	background-image: url("/ttsvr/images/default-company.png");
+	padding: 0px;
+}
+
 .fileinput .thumbnail img {
 	position: absolute;
 	width: 160px !important;
@@ -251,16 +256,21 @@ select.form-control {
 	clip: rect(0px, 159px, 159px, 0px);
 }
 
-.fileinput .company-thumbnail {
-	background-image: url("/ttsvr/images/default-company.png");
-	padding: 0px !important;
-}
-
 .fileinput .company-thumbnail img {
 	position: absolute;
-	width: 200px !important;
-	max-height: 100%;
-	clip: rect(0px, 200px, 115px, 0px);
+	width: 180px !important;
+	height: auto;
+	clip: rect(0px, 200px, 95px, 0px);
+}
+
+.view-thumbnail{
+	max-height: 200px;
+	overflow: hidden;
+}
+
+.view-thumbnail img{
+	max-width: 200px;
+	height: auto;
 }
 
 textarea {
@@ -1697,6 +1707,9 @@ input[type="date"] {
 .checkbox label{
 	position: absolute;
 	margin-top: -15px;
+}
+.cropbox{
+	display: none;
 }
 
 /* ============================ todo ============================ */
