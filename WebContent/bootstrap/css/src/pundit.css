@@ -223,10 +223,14 @@ select.form-control {
 }
 
 .thumbnail, .company-thumbnail {
-	border: 0 !important;
+	border: 1px solid #EBEBEB !important;
 	-webkit-border-radius: 0 !important;
 	-moz-border-radius: 0 !important;
 	border-radius: 0 !important;
+}
+
+.company-thumbnail{
+	margin-top: 20px;
 }
 
 .profilePhoto img {
@@ -244,7 +248,7 @@ select.form-control {
 	position: absolute;
 	width: 160px !important;
 	max-height: 100%;
-	clip: rect(0px, 160px, 160px, 0px);
+	clip: rect(0px, 159px, 159px, 0px);
 }
 
 .fileinput .company-thumbnail {
@@ -1573,7 +1577,7 @@ input[type="date"] {
 
 .cat-desc{
 	position: absolute;
-	top: -265px;
+	top: -235px;
 	padding: 10px;
 	border: 1px solid #E7E7E7;
 	border-radius: 10px;
@@ -1584,12 +1588,18 @@ input[type="date"] {
 
 .cat-desc .desc{
 	width: 100%;
-	height: 230px;
+	height: 200px;
 }
 
 .cat-desc p{
 	line-height: inherit !important;
 	font-size: 14px !important;]
+}
+
+.cat-desc h4{
+	line-height: inherit !important;
+	font-size: 18px !important;
+	font-weight: bold !important;
 }
 
 .cat-desc-arrow{
@@ -1692,43 +1702,40 @@ input[type="date"] {
 /* ============================ todo ============================ */
 
 /* ============================ cropImage ============================ */
-.imageBox
-{
-    position: relative;
-    height: 160px;
-    width: 160px;
-    border:1px solid #aaa;
-    background: #fff;
-    overflow: hidden;
-    background-repeat: no-repeat;
-    cursor:move;
+.imageBox {
+  position: relative;
+  height: 160px;
+  width: 160px;
+  border:1px solid #aaa;
+  background: #fff;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  cursor:move;
 }
 
-.imageBox .thumbBox
-{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 160px;
-    height: 160px;
-    margin-top: -80px;
-    margin-left: -80px;
-    box-sizing: border-box;
-    border: 1px solid rgb(102, 102, 102);
-    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
-    background: none repeat scroll 0% 0% transparent;
+.imageBox .thumbBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 160px;
+  height: 160px;
+  margin-top: -80px;
+  margin-left: -80px;
+  box-sizing: border-box;
+  border: 1px solid rgb(102, 102, 102);
+  box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+  background: none repeat scroll 0% 0% transparent;
 }
 
-.imageBox .spinner
-{
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    text-align: center;
-    line-height: 400px;
-    background: rgba(0,0,0,0.7);
+.imageBox .spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  line-height: 400px;
+  background: rgba(0,0,0,0.7);
 }
 
 
@@ -2992,6 +2999,9 @@ p span {
 ------------------------------------------------------------------------------------------------------------------------*/
 /* Mobile */
 @media ( max-width : 480px) {
+	.wrap {
+	min-width: 400px !important;
+	}
 	/* Logo */
 	.navbar-brand img {
 		width: 200px;
@@ -3253,6 +3263,7 @@ p span {
 
 /* Large devices Desktops (?1200px) */
 @media ( max-width : 1200px) {
+
 }
 /*----------------------------------------------------------------------------------------------------------------------
   Media Queries END
