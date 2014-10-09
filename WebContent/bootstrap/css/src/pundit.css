@@ -108,6 +108,7 @@ section {
 
 .wrap {
 	max-width: 1170px;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -666,34 +667,6 @@ footer.misc * {
 
 .banner-wrap .panel {
 	background-color: rgba(255, 255, 255, .9);
-}
-
-/*----------------------------------------------
-                   Login Page
-------------------------------------------------*/
-.loginForm {
-	margin: 0 auto;
-}
-
-.login-links {
-	padding: 10px 0 20px 0;
-}
-
-.registrationLink,.forgotPasswordLink {
-	font-size: 12px;
-	color: rgb(60, 127, 197);
-	font-weight: bold;
-	text-decoration: none;
-}
-
-.registrationLink:hover,.forgotPasswordLink:hover {
-	color: #55B0FF !important;
-	text-decoration: none;
-}
-
-.registrationLink span {
-	font-size: 12px;
-	font-weight: 100;
 }
 
 /*----------------------------------------------
@@ -1574,10 +1547,6 @@ input[type="date"] {
 	position: absolute;
 }
 
-.cover, .cat-desc{
-	display: none;
-}
-
 .reference-trigger{
 	position: absolute;
 	top: 10px;
@@ -1676,28 +1645,25 @@ input[type="date"] {
 	border-radius: 4px !important;
 	color: white!important;
 }
-.btn-file .file-input-name{
-	display: none;
-}
 
 .btn-file {
-    position: relative;
-    overflow: hidden;
+	position: relative;
+	overflow: hidden;
 }
 .upload-pic {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: pointer;
-    display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: pointer;
+	display: block;
 }
 
 .toggleWraps label {
@@ -1708,12 +1674,54 @@ input[type="date"] {
 	position: absolute;
 	margin-top: -15px;
 }
-.cropbox{
+
+#categoryInserter .form-group:last-of-type, .cropbox,
+#categoryToggle, #referenceToggle,.textarea, .message,
+#recipient, .accepted,.denied, .textarea, .progress, .cover, 
+.cat-desc, .btn-file .file-input-name, .Accepted,.Declined, 
+.bidList .Engaged, .bidList .Denied, .single-milestone,
+.multi-milestone, .fixed-price, .price-range, .request-quote,
+.single-milestone, .multi-milestone, #recipient{
 	display: none;
 }
 
-#categoryInserter .form-group:last-of-type {
-  display: none;
+.a-link, .text-decor-none{
+	text-decoration: none;
+}
+
+.a-link span{
+	font-weight: bold;
+}
+
+.a-link:hover{
+	color: #55B0FF !important;
+	text-decoration: none !important;
+}
+
+.messageNotice {
+	margin-top: 15px;
+	color: #6A6A6A !important;
+	font-size: 14px;
+}
+
+.messageNotice p {
+	font-size: 14px !important;
+	margin: 10px;
+}
+
+.messageNotice a {
+	font-size: 14px !important;
+	text-decoration: none;
+}
+
+.textarea_feedback{
+	margin-top: 7px;
+	font-size: 14px;
+	color: #a0a0a0;
+}
+
+.action{
+	width: 170px;
 }
 
 /* ============================ todo ============================ */
@@ -1755,7 +1763,6 @@ input[type="date"] {
   background: rgba(0,0,0,0.7);
 }
 
-
 /* ============================ accountLogin ============================ */
 .loginForm .form-control {
 	font-size: 16px;
@@ -1776,30 +1783,16 @@ input[type="date"] {
 	background-repeat: no-repeat;
 	margin: 20px 0 10px 0;
 }
-
-/* ============================ activeJobView ============================ */
-/* #activeJobView .header{ */
-/*   min-height: 50px; */
-/* } */
-#activeJobView img {
-	display: block;
+.loginForm {
 	margin: 0 auto;
 }
-
-#activeJobView .paymentMilestone .fa {
-	font-size: 50px;
-	text-align: center;
+.login-links {
+	padding: 10px 0 20px 0;
 }
 
-/* ============================ activeJobViewCustomer ============================ */
+/* ============================ activeJobView ============================ */
 #activeJobView .header {
 	min-height: 50px;
-}
-
-#activeJobView .note {
-	color: #ACACAC;
-	line-height: 16px;
-	padding-top: 10px;
 }
 
 #activeJobView .name {
@@ -1824,19 +1817,7 @@ input[type="date"] {
 	text-align: center;
 }
 
-.pending {
-	color: orange !important;
-}
-
-.activated {
-	color: #353535;
-}
-
 /* ============================ adviserResgistration ============================ */
-.adviserInitialRegistration {
-	margin-top: 20px;
-}
-
 .thumbnail img {
 	position: absolute;
 	clip: rect(0px, 150px, 150px, 0px);
@@ -1845,38 +1826,6 @@ input[type="date"] {
 .btn-primary span {
 	color: white;
 }
-
-#categoryToggle,#referenceToggle {
-	display: none;
-}
-
-.textarea_feedback{
-	margin-top: 7px;
-	font-size: 14px;
-	color: #a0a0a0;
-}
-
-.messageNotice {
-	margin-top: 15px;
-	color: #6A6A6A !important;
-	font-size: 14px;
-}
-
-.messageNotice p {
-	font-size: 14px !important;
-	margin: 10px;
-}
-
-.messageNotice a {
-	font-size: 14px !important;
-	text-decoration: none;
-}
-
-
-#categoryInserter {
-	margin-top: 20px;
-}
-
 /* ============================ adviserView ============================== */
 .adviserView h3 {
 	font-size: 24px !important;
@@ -1940,14 +1889,6 @@ input[type="date"] {
 	margin-top: 0px !important;
 }
 
-.textarea,.message {
-	display: none;
-}
-
-.accepted,.denied {
-	display: none;
-}
-
 .linkToAccountList {
 	margin-top: 50px;
 	color: rgba(39, 170, 225, .9) !important;
@@ -1973,10 +1914,6 @@ input[type="date"] {
 	padding-top: 5px;
 	border-top: 1px dotted #E5E5E5;
 }
-
-.Accepted,.Declined {
-	display: none;
-}
 /* ============================  bidList ================================== */
 .bidList .title-block img {
 	margin: 8px 0px !important;
@@ -1984,14 +1921,6 @@ input[type="date"] {
 
 .bidList .Pending {
 	display: block;
-}
-
-.bidList .Engaged {
-	display: none;
-}
-
-.bidList .Denied {
-	display: none;
 }
 
 /* ============================ bidPost =================================== */
@@ -2005,10 +1934,6 @@ input[type="date"] {
 	font-weight: bold;
 	width: 300px;
 	font-style: italic;
-}
-
-.single-milestone,.multi-milestone {
-	display: none;
 }
 
 .multi-milestone-active .multi-milestone,.single-milestone-active .single-milestone
@@ -2149,11 +2074,6 @@ input[type="date"] {
 }
 
 /* ============================ jobPost ======================================== */
-.fixed-price,.price-range,.request-quote,.single-milestone,.multi-milestone
-	{
-	display: none;
-}
-
 .fixed-price-active .fixed-price,.price-range-active .price-range,.request-quote-active .request-quote,.multi-milestone-active .multi-milestone,.single-milestone-active .single-milestone
 	{
 	display: block;
@@ -2211,349 +2131,6 @@ p span {
 }
 
 /* ============================ messageList ====================================== */
-.icon-side-menu {
-	display: inline-block;
-	margin-bottom: 10px;
-}
-
-.icon-side-menu .fa {
-	color: gray;
-}
-
-#sidebar-nav {
-	width: 180px;
-	float: left;
-	margin: 0;
-	padding-top: 3px;
-	position: relative;
-	left: 0;
-	-webkit-transition: .3s ease;
-	-moz-transition: .3s ease;
-	-o-transition: .3s ease;
-	-ms-transition: .3s ease;
-	transition: .3s ease;
-}
-
-#sidebar-nav #dashboard-menu {
-	list-style: none;
-	padding-right: 12px;
-	padding-left: 0;
-	margin-bottom: 0;
-	margin-left: 10px;
-}
-
-#sidebar-nav #dashboard-menu>li>a {
-	display: block;
-	padding: 20px 14px 6px 5px;
-	margin-left: -15px;
-	margin-bottom: 5px;
-	color: #8b939e;
-	outline: 0;
-	line-height: 21px;
-}
-
-#sidebar-nav #dashboard-menu>li {
-	position: relative;
-}
-
-#sidebar-nav #dashboard-menu>li .icon-group {
-	font-size: 17px;
-}
-
-#sidebar-nav #dashboard-menu>li i {
-	font-size: 17px;
-	top: 22px;
-}
-
-#sidebar-nav #dashboard-menu>li:hover i {
-	opacity: 1;
-}
-
-#sidebar-nav #dashboard-menu>li>a:hover {
-	color: #2399DA;
-	text-decoration: none;
-}
-
-#sidebar-nav #dashboard-menu>li.active a {
-	font-weight: 600;
-	color: #2399DA;
-}
-
-#sidebar-nav #dashboard-menu>li.active i {
-	opacity: 1;
-}
-
-#sidebar-nav #dashboard-menu .pointer {
-	position: absolute;
-	right: 9px;
-	top: 20px;
-}
-
-#sidebar-nav #dashboard-menu .pointer .arrow,#sidebar-nav #dashboard-menu .pointer .arrow_border
-	{
-	border-color: transparent #e7ebee transparent transparent;
-	border-width: 11px;
-	border-style: solid;
-	font-size: 0;
-	left: 50%;
-	line-height: 0;
-	margin: 0 auto;
-	position: absolute;
-	top: 0;
-	width: 0;
-	z-index: 1002;
-	left: 0;
-	margin-left: 45%;
-}
-
-#sidebar-nav #dashboard-menu .pointer .arrow_border {
-	border-color: transparent #e7ebee transparent transparent;
-	border-width: 11px;
-	margin-left: -1px;
-	border-style: solid;
-	z-index: 1001;
-	top: 0;
-}
-
-#sidebar-nav #dashboard-menu a span {
-	margin-left: 35px;
-	transition: color .1s linear;
-	-moz-transition: color .1s linear;
-	-webkit-transition: color .1s linear;
-	-o-transition: color .1s linear;
-}
-
-#sidebar-nav #dashboard-menu a.ui-elements span {
-	margin-left: 25px;
-}
-
-#sidebar-nav #dashboard-menu a i {
-	position: absolute;
-	left: 0;
-	height: 24px;
-	width: 24px;
-	opacity: .7;
-	transition: opacity .1s ease;
-	-moz-transition: opacity .1s ease;
-	-webkit-transition: opacity .1s ease;
-	-o-transition: opacity .1s ease;
-}
-
-#sidebar-nav #dashboard-menu a i.icon-chevron-down {
-	position: relative;
-	float: right;
-	top: 5px;
-	font-size: 11px;
-	color: #686868;
-	width: initial;
-	height: initial;
-}
-
-#sidebar-nav #dashboard-menu>li.active .dropdown-toggle,#sidebar-nav #dashboard-menu>li.open .dropdown-toggle
-	{
-	border-bottom: 0;
-	box-shadow: none;
-}
-
-#sidebar-nav #dashboard-menu ul.submenu {
-	list-style-type: none;
-	display: none;
-	padding-left: 35px;
-	border-bottom: 1px solid #2c3645;
-	padding-bottom: 10px;
-	margin: 7px 5px 15px -15px;
-}
-
-#sidebar-nav #dashboard-menu ul.submenu.active {
-	display: block;
-}
-
-#sidebar-nav #dashboard-menu ul.submenu a {
-	font-weight: 400;
-	font-size: 13px;
-	color: #ddd;
-	text-decoration: none;
-	display: block;
-	margin-bottom: 7px;
-}
-
-#sidebar-nav #dashboard-menu ul.submenu a:hover {
-	text-decoration: none;
-	color: #fff
-}
-
-#sidebar-nav #dashboard-menu ul.submenu a.active {
-	font-weight: 700;
-	text-shadow: none;
-}
-
-#pad-wrapper {
-	padding: 0 20px;
-	margin-top: 10px;
-}
-
-#pad-wrapper h4 {
-	color: #696d73;
-	margin: 35px 0 10px 15px !important;
-}
-
-.content {
-	min-width: 400px;
-	min-height: 400px;
-	margin-bottom: 0;
-	padding-bottom: 50px;
-	overflow: hidden;
-	position: relative;
-	border-left: 1px solid #e7ebee;
-	-webkit-transition: .3s ease;
-	-moz-transition: .3s ease;
-	-o-transition: .3s ease;
-	-ms-transition: .3s ease;
-	transition: .3s ease;
-}
-
-@media ( min-width :480px) and (max-width:767px) {
-	#sidebar-nav .nav>li.nav-profile {
-		padding: 15px 0 20px 10px;
-		color: #333;
-		background-color: #1d232d;
-		width: 177px;
-	}
-	#sidebar-nav .nav>li.nav-profile .image {
-		float: left;
-		width: 34px;
-		height: 34px;
-		margin-top: 2px;
-		margin-right: 10px;
-		overflow: hidden;
-		-webkit-border-radius: 50%;
-		-moz-border-radius: 50%;
-		border-radius: 50%;
-	}
-	#sidebar-nav .nav>li.nav-profile .image img {
-		max-width: 100%;
-		max-height: 100%;
-	}
-	#sidebar-nav .nav>li.nav-profile .info a,#sidebar-nav .nav>li.nav-profile .info a:hover
-		{
-		font-size: 14px;
-		color: #fff;
-		text-decoration: none;
-	}
-	#sidebar-nav .nav>li.nav-profile .info small {
-		display: block;
-		color: #889097;
-		font-size: 11px;
-	}
-	.content {
-		min-width: 0;
-		margin: 0;
-		border: none;
-	}
-	#dashboard-menu .pointer {
-		display: none;
-	}
-	#sidebar-nav #dashboard-menu {
-		margin-left: 10px;
-	}
-	#sidebar-nav #dashboard-menu li a span {
-		visibility: visible;
-	}
-	#sidebar-nav #dashboard-menu li:last-child a {
-		border-bottom: 0;
-		box-shadow: none;
-	}
-
-	/* Messages Tabs */
-	#sidebar-nav {
-		position: absolute;
-		left: -258px;
-		z-index: 1;
-		background: white;
-		padding-top: 10px;
-		padding-bottom: 20px;
-		height: 100%;
-		border-top: 1px solid #eee;
-		-webkit-box-shadow: 2px 0px 9px 0px rgba(50, 50, 50, 0.05);
-		-moz-box-shadow: 2px 0px 9px 0px rgba(50, 50, 50, 0.05);
-		box-shadow: 2px 0px 9px 0px rgba(50, 50, 50, 0.05);
-	}
-	#sidebar-nav.slideOut {
-		left: 0;
-	}
-
-	/* Message Content */
-	#pad-wrapper {
-		padding: 0;
-	}
-}
-
-@media ( max-width :480px) {
-	#sidebar-nav .nav>li.nav-profile {
-		padding: 15px 0 20px 10px;
-		color: #333;
-		background-color: #1d232d;
-		width: 177px;
-	}
-	#sidebar-nav .nav>li.nav-profile .image {
-		float: left;
-		width: 34px;
-		height: 34px;
-		margin-top: 2px;
-		margin-right: 10px;
-		overflow: hidden;
-		-webkit-border-radius: 50%;
-		-moz-border-radius: 50%;
-		border-radius: 50%;
-	}
-	#sidebar-nav .nav>li.nav-profile .image img {
-		max-width: 100%;
-		max-height: 100%;
-	}
-	#sidebar-nav .nav>li.nav-profile .info a,#sidebar-nav .nav>li.nav-profile .info a:hover
-		{
-		font-size: 14px;
-		color: #fff;
-		text-decoration: none;
-	}
-	#sidebar-nav .nav>li.nav-profile .info small {
-		display: block;
-		color: #889097;
-		font-size: 11px;
-	}
-	.content {
-		min-width: 0;
-		margin: 0;
-		border: none;
-	}
-	#dashboard-menu .pointer {
-		display: none;
-	}
-
-	/* Messages Tabs */
-	#sidebar-nav {
-		position: absolute;
-		left: -258px;
-		z-index: 1;
-		background: white;
-		padding-top: 10px;
-		padding-bottom: 20px;
-		height: 100%;
-		border-top: 1px solid #eee;
-		-webkit-box-shadow: 2px 0px 9px 0px rgba(50, 50, 50, 0.05);
-		-moz-box-shadow: 2px 0px 9px 0px rgba(50, 50, 50, 0.05);
-		box-shadow: 2px 0px 9px 0px rgba(50, 50, 50, 0.05);
-	}
-	#sidebar-nav.slideOut {
-		left: 0;
-	}
-
-	/* Message Content */
-	#pad-wrapper {
-		padding: 0;
-	}
-}
-
 #messageList {
 	font-size: 14px !important;
 }
@@ -2598,10 +2175,6 @@ p span {
 
 .input-group-addon {
 	border-radius: 0px !important;
-}
-
-#recipient {
-	display: none;
 }
 /* ============================ messageView ======================================= */
 .messageView h2 {
@@ -2717,14 +2290,6 @@ p span {
 	font-size: 18px !important;
 	text-align: left;
 	margin-top: 0px !important;
-}
-
-.textarea,.message {
-	display: none;
-}
-
-.accepted,.denied {
-	display: none;
 }
 
 .linkToAccountList {
@@ -3007,18 +2572,12 @@ p span {
 	text-shadow: none;
 }
 
-.progress {
-	display: none;
-}
 
 /*----------------------------------------------------------------------------------------------------------------------
   Media Queries
 ------------------------------------------------------------------------------------------------------------------------*/
 /* Mobile */
 @media ( max-width : 480px) {
-	.wrap {
-	min-width: 400px !important;
-	}
 	/* Logo */
 	.navbar-brand img {
 		width: 200px;
@@ -3049,7 +2608,7 @@ p span {
 		font-size: 14pt !important;
 	}
 	p {
-		font-size: 16px !important;
+		font-size: 12px !important;
 	}
 
 	/* Footer */
