@@ -121,6 +121,7 @@ section {
 	-moz-transition: .2s ease-in-out;
 	-o-transition: .2s ease-in-out;
 	transition: .2s ease-in-out;
+	height: 36px;
 }
 
 .btn a {
@@ -178,13 +179,13 @@ select.form-control {
 }
 
 .title {
-	font-size: 26px !important;;
+	font-size: 26px !important;
 	margin-bottom: 10px !important;
 	font-weight: 500 !important;
 }
 
 .list-title {
-	font-size: 20px !important;;
+	font-size: 20px !important;
 	margin-bottom: 10px !important;
 	font-weight: 500 !important;
 }
@@ -1572,7 +1573,7 @@ input[type="date"] {
 
 .cat-desc p{
 	line-height: inherit !important;
-	font-size: 14px !important;]
+	font-size: 14px !important;
 }
 
 .cat-desc h4{
@@ -1725,6 +1726,82 @@ input[type="date"] {
 }
 
 /* ============================ todo ============================ */
+
+/* ============================ contactPage ============================ */
+
+.contact-page{
+	background: #304a83 url("/ttsvr/cropImage/pundit.images.banner_10.jpg") bottom center no-repeat;
+	min-height: 900px !important;
+}
+
+.contact-page h3, .contact-page p{
+	color: #fff;
+}
+
+.contact-page p{
+	font-size: 16px;
+}
+
+.contact-page a{
+	font-weight: 500;
+}
+
+.contact-page a:hover{
+	text-decoration: none;
+	color: black;
+}
+
+/* ============================ policy ============================ */
+
+.privacy-policy p{
+	font-size: 16px;
+	line-height: 40px;
+	text-indent: 25px;
+}
+
+.privacy-policy p strong{
+	color: #55B0FF !important;
+}
+
+/* ============================ faq ============================ */
+
+.faq p{
+	font-size: 16px;
+	line-height: 35px;
+}
+
+.faq p strong{
+	color: #55B0FF;
+}
+
+/* ============================ blog ============================ */
+#blogAdminBlogList table{
+  width: 100%;
+}
+
+#blogAdminBlogList table,#blogAdminBlogList  th, #blogAdminBlogList td {
+  border: 1px solid #EBEBEB;
+  padding: 15px 10px;
+}
+
+#blog_filter ul li{
+	list-style: none;
+}
+
+#blog_filter td{
+	padding: 15px 0px;
+	border-bottom: 1px dotted #EBEBEB;
+}
+
+#blog_filter td:hover{
+	background: #FAFAFA;
+	cursor: pointer;
+}
+
+.news_listing{
+	padding: 0px;
+	margin: 0px;
+}
 
 /* ============================ cropImage ============================ */
 .imageBox {
@@ -2137,8 +2214,6 @@ p span {
 
 #messageList .title-block {
 	padding: 12px;
-	!
-	important;
 }
 
 #messageList p {
@@ -2219,7 +2294,6 @@ p span {
 .show {
 	display: inherit !important;
 }
-
 /* ============================ paymentApprovalCustomer ============================ */
 .jobtitle {
 	font-size: 17px;
@@ -2692,6 +2766,7 @@ p span {
 	}
 	.move-right {
 		float: none !important;
+	}
 	.title-block {
 		padding: 20px 0px !important;
 		border-bottom: 1px dotted #aeaeae;
