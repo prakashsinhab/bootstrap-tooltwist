@@ -212,6 +212,11 @@ select.form-control {
 	background-color: #2399DA !important;
 }
 
+.btn-edit {
+	margin: 8px 0px 5px 5px !important;
+	float: right;
+}
+
 .cursor-pointer {
   cursor: pointer !important;
 }
@@ -1725,6 +1730,9 @@ input[type="date"] {
 	width: 170px;
 }
 
+#submitButton, #forgotPasswordButton, #signUpButton, #saveButton{
+	height: 46px !important;
+}
 /* ============================ todo ============================ */
 
 /* ============================ contactPage ============================ */
@@ -1779,9 +1787,15 @@ input[type="date"] {
   width: 100%;
 }
 
-#blogAdminBlogList table,#blogAdminBlogList  th, #blogAdminBlogList td {
+#blogAdminBlogList table, #blogAdminBlogList th, #blogAdminBlogList td {
   border: 1px solid #EBEBEB;
   padding: 15px 10px;
+}
+
+#blogAdminBlogList th{
+	background: rgba(39, 170, 225, .9) !important;
+	color: #fff;
+	border-collapse: collapse;
 }
 
 #blog_filter ul li{
@@ -2202,7 +2216,10 @@ p span {
 
 .btn-search-job{
 	padding: 12px 15px;
+	height: 46px;
 }
+
+
 .field-search-job{
 	line-height: 32px;
 }
