@@ -1157,7 +1157,7 @@ section.sign-up h5 {
 	font-weight: 400;
 }
 .valid {
-	display: none !important;
+	display: inherit;
 }
 .price {
 	color: #55B0FF;
@@ -1332,8 +1332,8 @@ input[type="date"] {
 }
 
 .adviserProfile .divideSection {
-	padding: 0px 0 20px 0 !important;
-	margin-bottom: 20px;
+	padding: 0px 0 10px 0 !important;
+	margin-bottom: 15px;
 	border-bottom: 5px dotted #AEAEAE;
 }
 
@@ -1687,7 +1687,7 @@ input[type="date"] {
 .cat-desc, .btn-file .file-input-name, .Accepted,.Declined, 
 .bidList .Engaged, .bidList .Denied, .single-milestone,
 .multi-milestone, .fixed-price, .price-range, .request-quote,
-.single-milestone, .multi-milestone, #recipient{
+.single-milestone, .multi-milestone, #recipient, .adminDashboard{
 	display: none;
 }
 
