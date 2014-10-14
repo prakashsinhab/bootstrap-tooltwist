@@ -1652,10 +1652,15 @@ input[type="date"] {
 	color: white!important;
 }
 
+.btn-notes{
+	height: 29px !important;
+}
+
 .btn-file {
 	position: relative;
 	overflow: hidden;
 }
+
 .upload-pic {
 	position: absolute;
 	top: 0;
