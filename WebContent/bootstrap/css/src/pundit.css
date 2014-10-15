@@ -2262,6 +2262,25 @@ p span {
 	line-height: 32px;
 }
 
+.welcome-message p{
+	text-indent: 20px;
+	font-size: 14px;
+	line-height: 30px;
+	text-align: justify;
+}
+
+.welcome-message span{
+	font-size: 14px;
+}
+
+.welcome-message img{
+	float: left;
+	padding: 20px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+
 /* ============================ messageList ====================================== */
 #messageList {
 	font-size: 14px !important;
