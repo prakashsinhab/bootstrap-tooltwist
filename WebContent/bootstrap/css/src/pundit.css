@@ -1326,7 +1326,17 @@ input[type="date"] {
 	line-height: 34px;
 	padding: 5px 12px;
 }
-
+input[readonly] {
+     cursor: pointer;
+}
+.date {
+	background-image: url('/ttsvr/cropImage/pundit.images.calendar.png');
+	background-size: 20px ;
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+  padding-left: 40px;
+  cursor:pointer;
+}
 .divideSection {
 	padding-top: 20px;
 }
