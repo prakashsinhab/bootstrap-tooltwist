@@ -1326,7 +1326,17 @@ input[type="date"] {
 	line-height: 34px;
 	padding: 5px 12px;
 }
-
+input[readonly] {
+     cursor: pointer;
+}
+.date {
+	background-image: url('/ttsvr/cropImage/pundit.images.calendar.png');
+	background-size: 20px ;
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+  padding-left: 40px;
+  cursor:pointer;
+}
 .divideSection {
 	padding-top: 20px;
 }
@@ -2261,6 +2271,26 @@ p span {
 .field-search-job{
 	line-height: 32px;
 }
+
+.welcome-message p{
+	font-size: 14px;
+	line-height: 25px;
+	text-align: justify;
+}
+
+.welcome-message span{
+	font-size: 14px;
+}
+
+.welcome-message img{
+	display: block;
+	margin: 8px auto 15px;
+	border-radius: 10% !important;
+	cursor: pointer;
+	width:100px;
+	height:100px
+}
+
 
 /* ============================ messageList ====================================== */
 #messageList {
