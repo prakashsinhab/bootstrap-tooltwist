@@ -721,27 +721,48 @@ footer.misc * {
 	font-size: 22px;
 }
 
-.how-it-works .icon:hover img {
-	-webkit-animation: hoverness 2s;
-	animation: hoverness 2s;
-}
-
-.how-it-works .icon:hover .text {
-	
-}
-
-@
--webkit-keyframes hoverness {from { -webkit-box-shadow:0px0px16px0pxrgba(50,
-	50, 50, 0.28);
+.how-it-works img:hover {
 	-moz-box-shadow: 0px 0px 16px 0px rgba(50, 50, 50, 0.28);
 	box-shadow: 0px 0px 16px 0px rgba(50, 50, 50, 0.28);
+	cursor: pointer;
 }
 
-to {
-	border-width: 4px;
+.how-it-works-toggle{
+	display: none;
+	position: absolute;
+	width: 300px;
+	height: 160px;
+	background: #26a4d9;
+	padding: 20px;
+	z-index: 100;
+	border-radius: 5px;
+	margin-left: -65px;
+	margin-top: -170px;
+	color: white;
+	line-height: 25px;
+	font-weight: 500;
 }
 
+.how-it-works-toggle .hiw-desc-arrow{
+	position: absolute;
+	font-size: 25px !important;
+	color: #26a4d9;
+	left: 135px;
+	top: 150px;
 }
+
+
+/* -webkit-keyframes hoverness {from { -webkit-box-shadow:0px0px16px0pxrgba(50, */
+/* 	50, 50, 0.28); */
+/* 	-moz-box-shadow: 0px 0px 16px 0px rgba(50, 50, 50, 0.28); */
+/* 	box-shadow: 0px 0px 16px 0px rgba(50, 50, 50, 0.28); */
+/* } */
+
+/* to { */
+/* 	border-width: 4px; */
+/* } */
+
+/* } */
 
 /*--------------------
       Category Section
@@ -1749,6 +1770,46 @@ input[readonly] {
 	height: 46px !important;
 }
 /* ============================ todo ============================ */
+
+/* ============================ errorPage ============================ */
+.err-page{
+	background: #FFFFFF url("/ttsvr/cropImage/pundit.images.error_bg.png");
+	background-repeat: no-repeat;
+	background-position: center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;	
+	min-height: 900px !important;
+}
+
+.err-page h1{
+	font-size: 94px !important;
+	color: #ffffff;
+	font-weight: 700 !important;
+	margin-bottom: 15px !important;
+}
+
+.err-page p{
+	font-size: 28px;
+	color: #ffffff;
+	font-weight: 500 !important;
+}
+
+.err-page a{
+	font-weight: bold;
+}
+
+.err-page a:hover{
+	text-decoration: none;
+	color: #55B0FF;
+}
+
+.err-page .err-message p{
+	font-size: 20px !important;
+	color: #ffffff;
+	font-weight: 500 !important;
+}
 
 /* ============================ contactPage ============================ */
 
