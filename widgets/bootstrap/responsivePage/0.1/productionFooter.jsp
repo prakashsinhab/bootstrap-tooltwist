@@ -6,10 +6,8 @@
 	
 	<script src="/ttsvr/bootstrap/js/jquery-1.10.2.min.js"></script>
 	<script src="/ttsvr/bootstrap/js/jquery-ui.js"></script>
-	<script src="/ttsvr/bootstrap/js/build/c151014.js"></script>
-<!-- 	<script src="/ttsvr/bootstrap/js/src/pundit.js"></script> -->
-<!-- 	<script src="/ttsvr/bootstrap/js/src/underscore.string.js"></script> -->
-<!-- 	<script src="/ttsvr/bootstrap/js/src/ckeditor/ckeditor.js"></script> -->
+	<script src="/ttsvr/bootstrap/js/build/c171014.js"></script>
+	<script src="/ttsvr/bootstrap/js/pundit.js"></script>
   <script type="text/javascript" src="http://platform.linkedin.com/in.js">
     api_key: 75hd696f0s1xxh
     authorize: true
