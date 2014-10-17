@@ -39,6 +39,13 @@ $.validator.addMethod('mandatoryIf', function(value, element, param) {
   }
 });
 
+Handlebars.registerHelper('ifCond', function(v1, v2, options) {
+  if(v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
 var cropbox = function(options){
   var el = document.querySelector(options.imageBox),
   obj =
