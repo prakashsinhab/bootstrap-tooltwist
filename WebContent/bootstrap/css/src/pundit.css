@@ -788,12 +788,17 @@ section.category {
 	margin-top: 20px;
 }
 
+.
 /*--------------------
   Featured Advisers
 ----------------------*/
 .featured-adv img{
 	border-radius: 10px;
 	border: 1px solid #E7E7E7;
+}
+section.feat-adv {
+	background: #f8f8f8;
+	min-height: 850px;
 }
 
 /*--------------------
@@ -1723,8 +1728,28 @@ input[readonly] {
 .cat-desc, .btn-file .file-input-name, .Accepted,.Declined, 
 .bidList .Engaged, .bidList .Denied, .single-milestone,
 .multi-milestone, .fixed-price, .price-range, .request-quote,
-.single-milestone, .multi-milestone, #recipient, .adminDashboard{
+.single-milestone, .multi-milestone, #recipient, .adminDashboard, .fa-2{
 	display: none;
+}
+
+.fa-nav{
+	position: relative;
+	z-index: 1000;
+	top: 350px;
+}
+
+.fa-nav-opt{
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+}
+
+.fa-nav-prev{
+	left:-50px;
+}
+
+.fa-nav-next{
+	right:-50px;
 }
 
 .a-link, .text-decor-none{
