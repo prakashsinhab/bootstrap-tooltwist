@@ -2005,6 +2005,18 @@ input[readonly] {
 .share-icon{
 	width:30px;
 }
+.pagination{
+	width: 100%;
+}
+
+.pagination ul li{
+	list-style: none;
+display: inline;
+margin-right: 10px;
+padding: 5px 10px;
+border-radius: 5px;
+background: rgb(229, 229, 229);
+}
 /* ============================ cropImage ============================ */
 .imageBox {
   position: relative;
