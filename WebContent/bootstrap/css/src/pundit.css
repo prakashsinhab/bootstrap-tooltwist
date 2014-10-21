@@ -1722,7 +1722,8 @@ input[readonly] {
 .cat-desc, .btn-file .file-input-name, .Accepted,.Declined, 
 .bidList .Engaged, .bidList .Denied, .single-milestone,
 .multi-milestone, .fixed-price, .price-range, .request-quote,
-.single-milestone, .multi-milestone, #recipient, .adminDashboard, .fa-2{
+.single-milestone, .multi-milestone, #recipient, .adminDashboard,
+.fa-2, .message-dashboard{
 	display: none;
 }
 
@@ -1791,6 +1792,58 @@ input[readonly] {
 
 #submitButton, #forgotPasswordButton, #signUpButton, #saveButton{
 	height: 46px !important;
+}
+
+.sticky-note-registration{
+	position: fixed;
+	-ms-transform: rotate(270deg);
+	-webkit-transform: rotate(270deg);
+	transform: rotate(270deg);
+	padding: 20px;
+	background: rgba(39, 170, 225, .9) !important;
+	top: 350px;
+	left: -82px;
+	color: white;
+	font-weight: 500;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	z-index: 1000;
+}
+.sticky-note-registration:hover{
+	background: rgba(4, 159, 224, 0.9) !important;
+	cursor: pointer;
+}
+
+.message-title i:hover{
+	cursor: pointer;
+	color: #AEAEAE;
+}
+
+.message-dashboard{
+	background: rgba(249, 249, 249, 0.92);
+	position: absolute;
+	z-index: 999;
+	border-radius: 10px;
+	cursor: pointer;
+	top: 0px;
+	left: 160px;
+}
+.message-dashboard p{
+	padding: 10px 20px;
+	margin: 0px;
+	width: 120px;
+}
+.message-dashboard p:first-of-type{
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+.message-dashboard p:last-of-type{
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.message-dashboard p:hover{
+	background: rgba(39, 170, 225, .9) !important;
+	color: #fff;
 }
 /* ============================ todo ============================ */
 
@@ -1948,6 +2001,21 @@ input[readonly] {
 #blogDetails p{
 	font-size: 14px !important;
 	line-height: 30px;
+}
+.share-icon{
+	width:30px;
+}
+.pagination{
+	width: 100%;
+}
+
+.pagination ul li{
+	list-style: none;
+display: inline;
+margin-right: 10px;
+padding: 5px 10px;
+border-radius: 5px;
+background: rgb(229, 229, 229);
 }
 /* ============================ cropImage ============================ */
 .imageBox {
@@ -2354,6 +2422,12 @@ p span {
 
 .field-search-job{
 	line-height: 32px;
+}
+
+.welcome-message{
+	border: 3px dotted #F5F5F5;
+	padding: 20px;
+	border-radius: 10px;
 }
 
 .welcome-message p{
