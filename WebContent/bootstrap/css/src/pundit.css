@@ -1722,7 +1722,8 @@ input[readonly] {
 .cat-desc, .btn-file .file-input-name, .Accepted,.Declined, 
 .bidList .Engaged, .bidList .Denied, .single-milestone,
 .multi-milestone, .fixed-price, .price-range, .request-quote,
-.single-milestone, .multi-milestone, #recipient, .adminDashboard, .fa-2{
+.single-milestone, .multi-milestone, #recipient, .adminDashboard,
+.fa-2, .message-dashboard{
 	display: none;
 }
 
@@ -1811,6 +1812,38 @@ input[readonly] {
 .sticky-note-registration:hover{
 	background: rgba(4, 159, 224, 0.9) !important;
 	cursor: pointer;
+}
+
+.message-title i:hover{
+	cursor: pointer;
+	color: #AEAEAE;
+}
+
+.message-dashboard{
+	background: rgba(249, 249, 249, 0.92);
+	position: absolute;
+	z-index: 999;
+	border-radius: 10px;
+	cursor: pointer;
+	top: 0px;
+	left: 160px;
+}
+.message-dashboard p{
+	padding: 10px 20px;
+	margin: 0px;
+	width: 120px;
+}
+.message-dashboard p:first-of-type{
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+.message-dashboard p:last-of-type{
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.message-dashboard p:hover{
+	background: rgba(39, 170, 225, .9) !important;
+	color: #fff;
 }
 /* ============================ todo ============================ */
 
@@ -1968,6 +2001,9 @@ input[readonly] {
 #blogDetails p{
 	font-size: 14px !important;
 	line-height: 30px;
+}
+.share-icon{
+	width:30px;
 }
 /* ============================ cropImage ============================ */
 .imageBox {
