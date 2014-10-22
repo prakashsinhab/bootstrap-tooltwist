@@ -238,5 +238,46 @@ var util = {
     } else {
       return null;
     }
-  }
+  },
+  
+  cropImage: function() {
+      var options =
+        {
+          imageBox: '.imageBox',
+          thumbBox: '.thumbBox',
+          spinner: '.spinner',
+          imgSrc: 'avatar.png'
+        }
+        var cropper;
+        document.querySelector('#file').addEventListener('change', function(){
+        var reader = new FileReader();
+          reader.onload = function(e) {
+          options.imgSrc = e.target.result;
+          cropper = new cropbox(options);
+        }
+        reader.readAsDataURL(this.files[0]);
+        this.files = [];
+      })
+      document.querySelector('#btnCrop').addEventListener('click', function(){
+        var img = cropper.getAvatar()
+        document.querySelector('.cropped').innerHTML = "<img src='"+img+"' id='croppedImage'>";
+        $('.cropbox').fadeOut();
+        $('.cropped').css('background-image','none');
+        $('.upload-btn').find('label').hide();
+      })
+      document.querySelector('#btnZoomIn').addEventListener('click', function(){
+        cropper.zoomIn();
+        var img = cropper.getAvatar()
+        document.querySelector('.cropped').innerHTML = "<img src='"+img+"' id='croppedImage'>";
+        $('.cropped').css('background-image','none');
+        $('.upload-btn').find('label').hide();
+      })
+      document.querySelector('#btnZoomOut').addEventListener('click', function(){
+        cropper.zoomOut();
+        var img = cropper.getAvatar()
+        document.querySelector('.cropped').innerHTML = "<img src='"+img+"' id='croppedImage'>";
+        $('.cropped').css('background-image','none');
+        $('.upload-btn').find('label').hide();
+      })
+    }
 };
