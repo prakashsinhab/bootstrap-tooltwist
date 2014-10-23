@@ -300,9 +300,12 @@ var util = {
       $('.cropped').hide();
     });
     document.querySelector('#btnCropped').addEventListener('click', function(){
-      var img = cropper.getAvatar();
-      document.querySelector('.cropped').innerHTML = "<img src='"+img+"' id='croppedImage'>";
-      $('.cropped').hide();
+      var file = $('#file').val();
+      if ( file != '' ){
+        var img = cropper.getAvatar();
+        document.querySelector('.cropped').innerHTML = "<img src='"+img+"' id='croppedImage'>";
+        $('.cropped').hide();
+      }
     });
   }
 };
