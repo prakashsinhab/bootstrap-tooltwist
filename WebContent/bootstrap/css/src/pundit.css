@@ -1787,7 +1787,11 @@ input[readonly] {
 }
 
 .action{
+	position: absolute;
 	width: 170px;
+	left: 19px;
+	top: 105px;
+	opacity: .7;
 }
 
 #submitButton, #forgotPasswordButton, #signUpButton, #saveButton{
