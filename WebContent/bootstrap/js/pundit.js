@@ -30,14 +30,29 @@ $.validator.addMethod('requireMemberNum', function(value, element, param) {
   return true; 
 }, 'You need to enter your membership number.');
 
-$.validator.addMethod('mandatoryIf', function(value, element, param) {
-  var linkedinURL = $('#linkedin').val();
-  if (linkedinURL !== '' || value !== ''){
+$.validator.addMethod('upload', function(value, element, param) {
+  var img = $('.cropped').find('img').length;
+  if ( img != 0 || value != '') {
     return true;
-  } else {
-    return false;
   }
-});
+  return false; 
+}, 'You need to upload photo.');
+
+//$.validator.addMethod('mandatoryIf', function(value, element, param) {
+//  var linkedinURL = $('#linkedin').val();
+//  if (linkedinURL != '' || value != ''){
+//    return true;
+//  }
+//  return false; 
+//}, 'You need to upload CV or add linked URL');
+
+$.validator.addMethod('mandatoryIf', function(value, element, param) {
+var attachCV = $('#attachCV').val();
+if (attachCV != '' || value != ''){
+return true;
+}
+return false; 
+}, 'You need to upload CV or add linked URL');
 
 $.validator.addMethod('filesize', function(value, element, param) {
   return this.optional(element) || (element.files[0].size <= param) 
@@ -280,6 +295,11 @@ var util = {
       $('.cropped').hide();
     });
     document.querySelector('.thumbBox').addEventListener('click', function(){
+      var img = cropper.getAvatar();
+      document.querySelector('.cropped').innerHTML = "<img src='"+img+"' id='croppedImage'>";
+      $('.cropped').hide();
+    });
+    document.querySelector('#btnCropped').addEventListener('click', function(){
       var img = cropper.getAvatar();
       document.querySelector('.cropped').innerHTML = "<img src='"+img+"' id='croppedImage'>";
       $('.cropped').hide();
