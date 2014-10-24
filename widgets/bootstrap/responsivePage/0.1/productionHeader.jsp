@@ -57,8 +57,8 @@
 	
     <!-- [ Bootstrap ] -->
     <link href="%%URL(/ttsvr/bootstrap/css/build/pundit.essential.310714.css)%%" rel="stylesheet" media="screen">
-    <link href="%%URL(/ttsvr/bootstrap/css/jquery-ui.css)%%" rel="stylesheet" media="screen">
-    <link href="%%URL(/ttsvr/bootstrap/css/src/pundit.css)%%" rel="stylesheet" media="screen">
+    <link href="%%URL(/ttsvr/bootstrap/css/jquery-ui.min.css)%%" rel="stylesheet" media="screen">
+    <link href="%%URL(/ttsvr/pundit/css/pundit.css)%%" rel="stylesheet" media="screen">
     <link rel="icon" href="/ttsvr/cropImage/pundit.images.favicon.ico" sizes="16x16" type="image/ico">
     
   </head>
