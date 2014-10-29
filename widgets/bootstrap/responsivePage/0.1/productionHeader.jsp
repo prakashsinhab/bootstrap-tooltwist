@@ -42,7 +42,7 @@
 %%preFetchCode%%
 
 %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
   <head>
     <title>%%pageTitle%%</title>
@@ -51,14 +51,15 @@
 	<meta name="keywords" content="%%keywordMetatag%%">
 	<meta name="generator" content="ToolTwist" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	
 	<!-- [ CSS from cssContainer widget ] -->
 	%%headerCode%%
 	
     <!-- [ Bootstrap ] -->
     <link href="%%URL(/ttsvr/bootstrap/css/build/pundit.essential.310714.css)%%" rel="stylesheet" media="screen">
-    <link href="%%URL(/ttsvr/bootstrap/css/jquery-ui.css)%%" rel="stylesheet" media="screen">
-    <link href="%%URL(/ttsvr/bootstrap/css/src/pundit.css)%%" rel="stylesheet" media="screen">
+    <link href="%%URL(/ttsvr/bootstrap/css/jquery-ui.min.css)%%" rel="stylesheet" media="screen">
+    <link href="%%URL(/ttsvr/pundit/css/pundit.css)%%" rel="stylesheet" media="screen">
     <link rel="icon" href="/ttsvr/cropImage/pundit.images.favicon.ico" sizes="16x16" type="image/ico">
     
   </head>
