@@ -4,7 +4,7 @@
 
 	<!-- footer for responsivePage -->
 	<script src="/ttsvr/bootstrap/js/jquery-1.10.2.min.js"></script>
-	<script src="/ttsvr/bootstrap/js/build/c241014.js"></script>
+	<script src="/ttsvr/bootstrap/js/build/c311014.js"></script>
 	<script src="/ttsvr/pundit/js/paging.js"></script>
 	<script src="/ttsvr/pundit/js/pundit.js"></script>
   <script type="text/javascript" src="http://platform.linkedin.com/in.js">
