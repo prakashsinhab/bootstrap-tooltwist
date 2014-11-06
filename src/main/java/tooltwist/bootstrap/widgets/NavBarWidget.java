@@ -274,12 +274,11 @@ public class NavBarWidget extends ContainerWidget
 				
 				String title = instance.getProperty("title", wbdChildIndex);
 				String linkNavpoint = instance.getProperty("linkNavpoint", wbdChildIndex);
+				String navpointId = instance.getProperty("navpoint", wbdChildIndex);
 				String parameters = instance.getProperty("parameters", wbdChildIndex);
 				boolean isDisplay = instance.getProperty("display", wbdChildIndex) != null && instance.getProperty("display", wbdChildIndex).equalsIgnoreCase("show") ? true : false;
 				
-				Navpoint navpoint = WbdCache.findNavPoint(currentNavpointId, false);
-				
-				RoutingUIM.navpointUrl(ud, currentNavpointId, AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS);
+				Navpoint navpoint = WbdCache.findNavPoint(navpointId, false);
 				
 				if (type.equals("Link")) {
 					
@@ -574,6 +573,7 @@ public class NavBarWidget extends ContainerWidget
 			String type = cells.getText("./type");
 			String title = cells.getText("./title");
 			String linkNavpoint = cells.getText("./linkNavpoint");
+			String navpoint = cells.getText("./navpoint");
 			String parameters = cells.getText("./parameters");
 			String horizontalPosition = cells.getText("./horizontalPosition");
 			String buttonType = cells.getText("./buttonType");
@@ -586,6 +586,7 @@ public class NavBarWidget extends ContainerWidget
 			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
 			widget.defineProperty(new WbdRadioTextProperty("horizontalPosition", index, "Position", "left,right", horizontalPosition));
 			widget.defineProperty(new WbdStringProperty("linkNavpoint", index, "Link Navpoint", linkNavpoint));
+			widget.defineProperty(new WbdNavPointProperty("navpoint", index, "Navpoint", navpoint));
 			widget.defineProperty(new WbdStringProperty("parameters", index, "Parameters", parameters));
 			widget.defineProperty(new WbdSelectProperty("buttonType", index, "Button Type", "primary,success,info,warning,danger", buttonType));
 			widget.defineProperty(new WbdRadioTextProperty("buttonSize", index, "Button Size", "Large:lg,Small:sm,Extra Small:xs", buttonSize));
@@ -635,6 +636,7 @@ public class NavBarWidget extends ContainerWidget
 			
 			String display = (instance.getProperty("display", index) == null) ? "" : instance.getProperty("display", index);
 			String linkNavpoint = (instance.getProperty("linkNavpoint", index) == null) ? "" : instance.getProperty("linkNavpoint", index);
+			String navpoint = (instance.getProperty("navpoint", index) == null) ? "" : instance.getProperty("navpoint", index);
 			String parameters = (instance.getProperty("parameters", index) == null) ? "" : instance.getProperty("parameters", index);
 			String horizontalPosition = (instance.getProperty("horizontalPosition", index) == null) ? "" : instance.getProperty("horizontalPosition", index);
 			String buttonType = (instance.getProperty("buttonType", index) == null) ? "" : instance.getProperty("buttonType", index);
@@ -656,6 +658,7 @@ public class NavBarWidget extends ContainerWidget
 				instance.defineProperty(new WbdStringProperty("title", index, "Title", title));
 				instance.defineProperty(new WbdRadioTextProperty("horizontalPosition", index, "Position", "left,right", horizontalPosition));
 				instance.defineProperty(new WbdStringProperty("linkNavpoint", index, "Link Navpoint", linkNavpoint));
+				instance.defineProperty(new WbdNavPointProperty("navpoint", index, "Navpoint", navpoint));
 				instance.defineProperty(new WbdStringProperty("parameters", index, "Parameters", parameters));
 				instance.defineProperty(new WbdSelectProperty("buttonType", index, "Button Type", "primary,success,info,warning,danger", buttonType));
 				instance.defineProperty(new WbdRadioTextProperty("buttonSize", index, "Button Size", "Large:lg,Small:sm,Extra Small:xs", buttonSize));
