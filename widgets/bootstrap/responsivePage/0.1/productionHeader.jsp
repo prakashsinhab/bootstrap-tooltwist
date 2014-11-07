@@ -66,6 +66,7 @@
     <title><%=categoryName %></title> --%>
     
     <title>%%pageTitle%%</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="description" content="%%descriptionMetatag%%">
 	<meta name="keywords" content="%%keywordMetatag%%">
