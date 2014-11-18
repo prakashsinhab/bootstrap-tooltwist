@@ -1,4 +1,5 @@
 <!--START-->
+<!DOCTYPE html>
 <!-- header for responsivePage -->
 <%@page import="tooltwist.wbd.Navpoint"%>
 <%@page import="com.dinaa.misc.AltLang"%>
@@ -35,48 +36,48 @@
 <%@page import="tooltwist.wbd.WbdProductionHelper"%>
 <%@page import="tooltwist.wbd.WbdCache"%>
 <%@page contentType="text/html; charset=UTF-8" %>
-%%importCode%%
+	%%importCode%%
 <%
 	String jspName = "%%navpointId%%";
 	JspHelper jh = JspHelper.getJspHelper(pageContext, jspName);
-%%preFetchCode%%
-
+	%%preFetchCode%%
 %>
-<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>%%pageTitle%%</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="description" content="%%descriptionMetatag%%">
-	<meta name="keywords" content="%%keywordMetatag%%">
-	<meta name="generator" content="ToolTwist" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+	<head>
+		<title>%%pageTitle%%</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="description" content="%%descriptionMetatag%%">
+		<meta name="keywords" content="%%keywordMetatag%%">
+		<meta name="generator" content="ToolTwist" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+
 	<!-- [ CSS from cssContainer widget ] -->
 	%%headerCode%%
 	
-    <!-- [ Bootstrap ] -->
-    <link href="%%URL(/ttsvr/bootstrap/css/build/pundit.essential.310714.css)%%" rel="stylesheet" media="screen">
-    <link href="%%URL(/ttsvr/bootstrap/css/jquery-ui.css)%%" rel="stylesheet" media="screen">
-    <link href="%%URL(/ttsvr/bootstrap/css/src/pundit.css)%%" rel="stylesheet" media="screen">
-  </head>
-  <body>
-%%topCode%%
+		<!-- [ Bootstrap ] -->
+		<link href="%%URL(/ttsvr/bootstrap/css/build/pundit.essential.310714.css)%%" rel="stylesheet" media="screen">
+		<link href="%%URL(/ttsvr/bootstrap/css/jquery-ui.min.css)%%" rel="stylesheet" media="screen">
+		<link href="%%URL(/ttsvr/pundit/css/pundit.css)%%" rel="stylesheet" media="screen">
+		<link rel="icon" href="/ttsvr/cropImage/pundit.images.favicon.ico" sizes="16x16" type="image/ico">
+	</head>
+	<body>
+	%%topCode%%
 
-<!--  Provides a common fixed-width (and optionally responsive) layout with only <div class="container"> required. -->
- <div class="container">
-   <input type="hidden" name="serverUrl" value="<%=WbdCache.getProperty("server.url")%>">
- 
- <!--  Create a fluid-->
- <!-- <div class="container-fluid" -->
- 
-<!--END-->
-      <hr>
+	<!--  Provides a common fixed-width (and optionally responsive) layout with only <div class="container"> required. -->
+	<div class="container">
+	<input type="hidden" name="serverUrl" value="<%=WbdCache.getProperty("server.url")%>">
 
-      <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
+		<!--  Create a fluid-->
+		<!-- <div class="container-fluid" -->
 
-    </div> <!-- /container -->
-</body>
+		<!--END-->
+			<hr>
+
+			<footer>
+				<p>&copy; Company 2013</p>
+			</footer>
+
+		</div> <!-- /container -->
+	</body>
 </html>
