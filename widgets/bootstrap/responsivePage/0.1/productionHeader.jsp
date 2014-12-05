@@ -35,13 +35,12 @@
 <%@page import="tooltwist.wbd.WbdProductionHelper"%>
 <%@page import="tooltwist.wbd.WbdCache"%>
 <%@page contentType="text/html; charset=UTF-8" %>
-%%importCode%%
-<%
-	String jspName = "%%navpointId%%";
-	JspHelper jh = JspHelper.getJspHelper(pageContext, jspName);
-%%preFetchCode%%
-
-%>
+	%%importCode%%
+	<%
+		String jspName = "%%navpointId%%";
+		JspHelper jh = JspHelper.getJspHelper(pageContext, jspName);
+		%%preFetchCode%%
+	%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -49,33 +48,21 @@
 	<meta name="description" content="%%descriptionMetatag%%">
 	<meta name="keywords" content="%%keywordMetatag%%">
 	<meta name="generator" content="ToolTwist" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-<!--[if lte IE 9]>
-    <script src="/ttsvr/skypepi/scripts/jquery/1.11.0/jquery-1.11.0.min.js"></script>
-<![endif]-->
-<!--[if gt IE 9]><!-->
-    <script src="/ttsvr/skypepi/scripts/jquery/2.1.0/jquery-2.1.0.min.js"></script>
-<!--<![endif]-->
-
-<!-- Respond.js proxy on external server -->
-    <link href="http://externalcdn.com/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
-
-    <!-- Respond.js redirect location on local server -->
-    <link href="/path/to/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
-
-    <!-- Respond.js proxy script on local server -->
-    <script src="/path/to/respond.proxy.js"></script>
-
-<script src="/ttsvr/skypepi/scripts/jquery.simplemodal.1.4.4.min.js"></script>
-<link type="text/css" rel="stylesheet" href="/ttsvr/skypepi/stylesheet/dialog/confirm.css" media="screen" />
-
-%%headerCode%%
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
+	<!-- [ CSS from cssContainer widget ] -->
+	%%headerCode%%
+    
+    <!--[ Bootstrap ]-->
     <link href="%%URL(/ttsvr/bootstrap/css/bootstrap.min.css?v=3.0.0)%%" rel="stylesheet" media="screen">
+    
+    <!--[ Font Awesome ]-->
+    <link href="%%URL(/ttsvr/bootstrap/css/font-awesome.css)%%" rel="stylesheet" media="screen">
+    
+    <!-- [ Favicon ] -->
     <link rel="icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
-	<link rel="shortcut icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
-	<!-- <link href="%%URL(/ttsvr/bootstrap/css/bootstrap-responsive.css)%%" rel="stylesheet"> -->
+	<link rel="shortcut icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon">
+	
 	<%
 	Navpoint navpoint = WbdCache.findNavpointInAnyLoadedProject(jspName, true);
 	boolean requiresLogin = navpoint.requiresLogin();
@@ -93,22 +80,23 @@
 		</script>	
 	<% } %>
   </head>
-  <body>
+<body>
 %%topCode%%
 
-<!--  Provides a common fixed-width (and optionally responsive) layout with only <div class="container"> required. -->
- <div class="container">
- 
- <!--  Create a fluid-->
- <!-- <div class="container-fluid" -->
- 
-<!--END-->
-      <hr>
+	<!--  Provides a common fixed-width (and optionally responsive) layout with only <div class="container"> required. -->
+	<div class="container">
+	
+		<!--  Create a fluid-->
+		<!-- <div class="container-fluid" -->
+		
+		<!--END-->
+		<hr>
+		
+		<footer>
+		<p>&copy; Company 2013</p>
+		</footer>
+	
+	</div> <!-- /container -->
 
-      <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
-
-    </div> <!-- /container -->
 </body>
 </html>
