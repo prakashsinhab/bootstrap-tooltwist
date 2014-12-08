@@ -75,7 +75,7 @@ public class NavBarWidget extends ContainerWidget
 		instance.defineHiddenProperty(new WbdStringProperty("selectedRow", null, "Selected Row", "0"));
 		instance.defineProperty(new WbdRadioTextProperty("brandType", null, "Brand Type", "Label,Image", ""));
 		instance.defineProperty(new WbdStringProperty("titleImagePath", null, "Title / Image Path", ""));
-		instance.defineProperty(new WbdNavPointProperty("brandNavpoint", null, "Navpoint", ""));
+		instance.defineProperty(new WbdStringProperty("brandNavpoint", null, "Link Navpoint", ""));
 		instance.defineProperty(new WbdRadioTextProperty("verticalPosition", null, "Position", "Fixed Top:top,Fixed Bottom:bottom", ""));
 		instance.defineProperty(new WbdRadioTextProperty("inverted", null, "Inverted Variation", "True:true,False:false", "false"));
 		
@@ -185,7 +185,7 @@ public class NavBarWidget extends ContainerWidget
 			String rows = instance.getProperty("rows", null);
 			String brandType = instance.getProperty("brandType", null).toLowerCase();
 			String titleImagePath = instance.getProperty("titleImagePath", null);
-			String brandNavpoint = RoutingUIM.navpointUrl(ud, instance.getProperty("brandNavpoint", null), null);
+			String brandNavpoint = instance.getProperty("brandNavpoint", null);
 			String elementId = instance.getProperty("elementId", null);
 			String verticalPosition = instance.getProperty("verticalPosition", null);
 			
