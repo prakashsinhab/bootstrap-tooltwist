@@ -78,9 +78,9 @@
 	<!-- [ CSS from cssContainer widget END ] -->
     
     <!-- [ Cloudmall Essentials - Bootstrap and Font Awesome ] -->
-	<link href="%%URL(/ttsvr/bootstrap/css/build/cloudmall.essential.050814.css)%%" rel="stylesheet" media="screen">
+	<link href="%%URL(/ttsvr/bootstrap/css/build/cloudmall.essential.112014.css)%%" rel="stylesheet" media="screen">
 	<!-- [ Cloudmall Essentials END ] -->
-    
+	
     <!-- [ Favicon ] -->
     <link rel="icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
 	<link rel="shortcut icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
