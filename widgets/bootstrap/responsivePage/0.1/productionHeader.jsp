@@ -50,14 +50,14 @@
 	<meta name="generator" content="ToolTwist" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<!-- [ CSS from cssContainer widget ] -->
-	%%headerCode%%
-    
     <!--[ Bootstrap ]-->
-    <link href="%%URL(/ttsvr/bootstrap/css/bootstrap.min.css?v=3.0.0)%%" rel="stylesheet" media="screen">
+    <link href="%%URL(/ttsvr/bootstrap/css/bootstrap.freemium.min.css?v=3.0.0)%%" rel="stylesheet" media="screen">
     
     <!--[ Font Awesome ]-->
     <link href="%%URL(/ttsvr/bootstrap/css/font-awesome.css)%%" rel="stylesheet" media="screen">
+    
+    <!-- [ CSS from cssContainer widget ] -->
+	%%headerCode%%
     
     <!-- [ Favicon ] -->
     <link rel="icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
