@@ -11,6 +11,8 @@
 		<!-- [ Bootstrap Project ] -->
 		<script src="/ttsvr/bootstrap/js/bootstrap.min.js?v=3.0.0"></script>
 		
+		
+		
 		<!-- [ myrp_t ] -->
 		<!-- <script src="/ttsvr/freemium/script/main.js"></script> -->
 		
@@ -52,3 +54,24 @@
 	</body>
 	
 </html>
+
+<%
+	request.getSession().removeAttribute("propertyDetailSession");
+	request.getSession().removeAttribute("propertySearchSession");
+	request.getSession().removeAttribute("purchaseHistorySession");
+	request.getSession().removeAttribute("relevantAgentSession");
+	request.getSession().removeAttribute("demographicsParagraphSession");
+	request.getSession().removeAttribute("avmSalesHistoryDetailSession");
+	request.getSession().removeAttribute("bsg3PropertyAddressSession");
+	request.getSession().removeAttribute("bsg3PropertyDetailsSession");
+	request.getSession().removeAttribute("bsg3SalesPropertySearchSession");
+	request.getSession().removeAttribute("bsg3ForSaleAdvertisementUrlSession");
+	request.getSession().removeAttribute("bsg3SuggestService");
+	request.getSession().removeAttribute("avmSession");
+	request.getSession().removeAttribute("isOtmSession");
+	request.getSession().removeAttribute("requestTimeSession");
+	request.getSession().removeAttribute("bsg3StreetSalesPropertySearchSession");
+	request.getSession().removeAttribute("bsg3SuburbSalesPropetySearchSession");
+	request.getSession().removeAttribute("bsg3ForSaleAdvertisementUrlSession");
+	//WidgetUtil.displayBSGLog(request);
+%>
