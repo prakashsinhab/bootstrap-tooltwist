@@ -11,10 +11,8 @@
 		<!-- [ Bootstrap Project ] -->
 		<script src="/ttsvr/bootstrap/js/bootstrap.min.js?v=3.0.0"></script>
 		
-		
-		
 		<!-- [ myrp_t ] -->
-		<!-- <script src="/ttsvr/freemium/script/main.js"></script> -->
+		<script src="/ttsvr/freemium/script/main.js"></script>
 		
 		<!-- [ This resolves the issue upon logging in to Freemium login page. I got this code from "/myrp_t/widgets/myrp_widgets/page_html5/3.1/new_jquery_footer.jsp" ] -->
 		<script type="text/javascript">
