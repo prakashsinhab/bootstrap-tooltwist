@@ -39,6 +39,7 @@
 <%
 	String jspName = "%%navpointId%%";
 	JspHelper jh = JspHelper.getJspHelper(pageContext, jspName);
+	AltLang lang = new AltLang();
 %%preFetchCode%%
 
 %>
