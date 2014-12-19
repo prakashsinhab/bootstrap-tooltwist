@@ -1,21 +1,41 @@
 <div id="carousel-example-generic" class="carousel slide">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-   [[#imageList]]
-	    <li data-target="#carousel-example-generic" data-slide-to="[[index]]" class="[[#active]]active[[/active]]"></li>
-    [[/imageList]]
+   {{#imageList}}
+	    <li data-target="#carousel-example-generic" data-slide-to="{{index}}" class="{{#active}}active{{/active}}"></li>
+    {{/imageList}}
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
           
-    [[#imageList]]
-			<div class="item [[#active]]active[[/active]]">
-				<a href="[[url]]"><img src="[[image]]" alt="Banner"></a>
+    {{#imageList}}
+			<div class="item {{#active}}active{{/active}}">
+				<a href="{{url}}"><img src="{{image}}" alt="Banner"></a>
 			</div>
-   [[/imageList]]
+    {{/imageList}}
    
   </div>
+  
+  {{#isNutra}}
+	<div class="callToAction">
+		<a href="/ttsvr/n/Superfood-Blends/nutraorganics-360?categoryId=1">
+			<img src="/ttsvr/cloudmall/images/nutraorganics/button-superfoods.png" alt="Nutra Superfoods" />
+		</a>
+		<a href="/ttsvr/n/Wholefood-Bars/nutraorganics-362?categoryId=3">
+			<img src="/ttsvr/cloudmall/images/nutraorganics/button-wholefoods.png" alt="Nutra Wholefoods" />
+		</a>
+		<a href="/ttsvr/n/Superfoods-For-Kidz/nutraorganics-361?categoryId=2">
+			<img src="/ttsvr/cloudmall/images/nutraorganics/button-kids.png" alt="Nutra Kids" />
+		</a>
+		<a href="/ttsvr/n/Nutra-Fitness/nutraorganics-453?categoryId=14">
+			<img src="/ttsvr/cloudmall/images/nutraorganics/button-fitness.png" alt="Nutra Fitness" />
+		</a>
+		<a href="/ttsvr/n/The-Wholefood-Pantry/nutraorganics-420?categoryId=13">
+			<img src="/ttsvr/cloudmall/images/nutraorganics/button-pantry.png" alt="Nutra Pantry" />
+		</a>
+	</div>
+{{/isNutra}}
 
   <!-- Controls -->
   <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">

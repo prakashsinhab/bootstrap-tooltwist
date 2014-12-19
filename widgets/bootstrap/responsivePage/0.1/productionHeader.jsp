@@ -1,5 +1,9 @@
 <!--START-->
 <!-- header for responsivePage -->
+<%@page import="org.apache.commons.lang.WordUtils"%>
+<%@page import="org.apache.commons.lang.StringUtils"%>
+<%@page import="tooltwist.cloudmall.utils.StringUtil"%>
+<%@page import="tooltwist.cloudmall.utils.CloudMallUtils"%>
 <%@page import="tooltwist.wbd.Navpoint"%>
 <%@page import="com.dinaa.misc.AltLang"%>
 <%@page import="tooltwist.wbd.WbdProductionHelper"%>
@@ -39,60 +43,72 @@
 <%
 	String jspName = "%%navpointId%%";
 	JspHelper jh = JspHelper.getJspHelper(pageContext, jspName);
-	AltLang lang = new AltLang();
-%%preFetchCode%%
-
+	AltLang lang=WebUtils.getAltLang(jh);
+	%%preFetchCode%%
 %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  <%-- <%
+  String categoryName = jh.getRequest().getParameter("categoryName");
+  String domainName = jh.getRequest().getServerName();
+  if (StringUtil.isNullOrEmpty(categoryName)) {
+	  categoryName = "%%pageTitle%%" + " - " + domainName;
+  } else {
+	  if(StringUtils.contains(categoryName, "/")){
+		categoryName = StringUtil.substringAfterLast(categoryName, "/");
+	  } 
+	  categoryName = "%%pageTitle%%" + " " + WordUtils.capitalize((StringUtil.replaceAll(categoryName, "-", " "))) + " - " + domainName;
+  }
+  %>
+    <title><%=categoryName %></title> --%>
+    
     <title>%%pageTitle%%</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="description" content="%%descriptionMetatag%%">
 	<meta name="keywords" content="%%keywordMetatag%%">
 	<meta name="generator" content="ToolTwist" />
-	
-<!--[if lte IE 9]>
-    <script src="/ttsvr/skypepi/scripts/jquery/1.11.0/jquery-1.11.0.min.js"></script>
-<![endif]-->
-<!--[if gt IE 9]><!-->
-    <script src="/ttsvr/skypepi/scripts/jquery/2.1.0/jquery-2.1.0.min.js"></script>
-<!--<![endif]-->
-
-<!-- Respond.js proxy on external server -->
-    <link href="http://externalcdn.com/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
-
-    <!-- Respond.js redirect location on local server -->
-    <link href="/path/to/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
-
-    <!-- Respond.js proxy script on local server -->
-    <script src="/path/to/respond.proxy.js"></script>
-
-<script src="/ttsvr/skypepi/scripts/jquery.simplemodal.1.4.4.min.js"></script>
-<link type="text/css" rel="stylesheet" href="/ttsvr/skypepi/stylesheet/dialog/confirm.css" media="screen" />
-
-%%headerCode%%
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="%%URL(/ttsvr/bootstrap/css/bootstrap.min.css?v=3.0.0)%%" rel="stylesheet" media="screen">
+    
+    <!-- [ CSS from cssContainer widget ] -->
+	%%headerCode%%
+	<!-- [ CSS from cssContainer widget END ] -->
+    
+    <!-- [ Cloudmall Essentials - Bootstrap and Font Awesome ] -->
+	<link href="%%URL(/ttsvr/bootstrap/css/build/cloudmall.essential.112014.css)%%" rel="stylesheet" media="screen">
+	<!-- [ Cloudmall Essentials END ] -->
+	
+    <!-- [ Favicon ] -->
     <link rel="icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
 	<link rel="shortcut icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
-	<!-- <link href="%%URL(/ttsvr/bootstrap/css/bootstrap-responsive.css)%%" rel="stylesheet"> -->
+	<!-- [ Favicon END ] -->
+	
 	<%
 	Navpoint navpoint = WbdCache.findNavpointInAnyLoadedProject(jspName, true);
 	boolean requiresLogin = navpoint.requiresLogin();
-	
-	if (!requiresLogin) {
 	%>
-		<script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		  ga('create', '<%=WbdCache.getProperty("uaCode")%>', '<%=WbdCache.getProperty("uaDomainName")%>');
-		  ga('require', 'linkid', 'linkid.js');
-		  ga('send', 'pageview');
+	
+	<!-- [ Google Analytics ] -->
+	<% if (!navpoint.getParent().getId().equals(WbdCache.getProperty("store.name") + "-176")) { %>
+	  	<% if (navpoint.getLabel().equalsIgnoreCase("home")) { %>
+		  	<meta name="google-site-verification" content="AhLcdFsg980gnZh8k4dzSkYUiLzwgnDapP8c80WM_-A" />
+		  	<meta name="msvalidate.01" content="4017B989E703CFA096F76AF5F42A2293" />
+	  	<% } %>
+		  	
+	  	<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', '<%=WbdCache.getProperty("uaCode")%>', '<%=WbdCache.getProperty("uaDomainName")%>');
+			ga('require', 'linkid', 'linkid.js');
+			ga('require', 'displayfeatures');
+			ga('send', 'pageview');
 		</script>	
 	<% } %>
+	<!-- [ Google Analytics END ] -->
+	
   </head>
   <body>
 %%topCode%%

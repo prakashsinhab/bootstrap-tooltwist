@@ -1,28 +1,24 @@
 <html>
+	
 	<head>
 	</head>
+	
 	<body>
-<!--START-->
 
-<!--
-      <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
- -->
+      	<hr>
+    	
+    	</div> <!-- /container -->
+		
+		<!-- [ Should be called first and cannot be mixed into the unified Js file. ] -->
+		<script src="/ttsvr/cloudmall/js/jquery-1.11.0.min.js"></script>
+		
+		<!-- [ Cloudmall Project ] -->
+		<script src="/ttsvr/cloudmall/js/build/c091214.js"></script>
+		
+		<!-- [ Bootstrap Project ] -->
+		<script src="/ttsvr/bootstrap/js/build/c201114.js"></script>
 
-    </div> <!-- /container -->
-	<!-- footer for responsivePage -->
-
-<!--     <script src="/ttsvr/bootstrap/js/jquery-1.10.2.min.js?v=1.10.2"></script> -->
-    <script src="/ttsvr/bootstrap/js/bootstrap.min.js?v=3.0.0"></script>
-<!--     <script src="/ttsvr/cloudmall/js/cloudmall-v1.0.0.js?v=1.0.0"></script> -->
-<!--     <script src="/ttsvr/cloudmall/js/frontend.config.js"></script> -->
-    <!--
-    <script src="/ttsvr/bootstrap/js/bootstrap-v1.0.0.js?v=1.0.0"></script>
-    <script src="/ttsvr/bootstrap/js/respond.js"></script>
-    <script src="/ttsvr/bootstrap/js/less-1.5.0.min.js"></script>
-    <script src="/ttsvr/cloudmall/js/frontend.config.js"></script>
-    -->
-  %%bottomCode%%</body>
+		%%bottomCode%%
+	
+	</body>
 </html>
-<!--END-->

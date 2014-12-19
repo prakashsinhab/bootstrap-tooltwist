@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 
 import tooltwist.misc.TtConfig;
 import tooltwist.wbd.ViewHelper;
+import tooltwist.wbd.WbdCache;
+
 import com.dinaa.data.XData;
 import com.dinaa.data.XNodes;
 import com.dinaa.ui.UimData;
@@ -21,6 +23,7 @@ public class CarouselViewHelper extends ViewHelper
 	private static final Logger logger = LoggerFactory.getLogger(CarouselViewHelper.class);
 	private String navpointId = "";
 	private String pageDataSection = "";
+	private boolean isNutra = false;
 
 	public CarouselViewHelper(Properties prop)
 	{
@@ -79,9 +82,20 @@ public class CarouselViewHelper extends ViewHelper
 
 	@Override
 	public XData preFetch(UimData ud) throws Exception {
+		
+		setIsNutra(WbdCache.getProperty("isNutra").equals("true") ? true : false);
+		
 		return null;
 	}
 	
+	public boolean getIsNutra() {
+		return isNutra;
+	}
+
+	public void setIsNutra(boolean isNutra) {
+		this.isNutra = isNutra;
+	}
+
 	class Carousel {
 		
 		private String image = "";
