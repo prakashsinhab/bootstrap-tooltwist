@@ -1,9 +1,9 @@
 <!--START-->
 <!-- header for responsivePage -->
-<%@page import="org.apache.commons.lang.WordUtils"%>
-<%@page import="org.apache.commons.lang.StringUtils"%>
+<%@page import="org.apache.commons.lang3.text.WordUtils"%>
 <%@page import="tooltwist.cloudmall.utils.StringUtil"%>
 <%@page import="tooltwist.cloudmall.utils.CloudMallUtils"%>
+<%@page import="tooltwist.cloudmall.utils.WebUtils"%>
 <%@page import="tooltwist.wbd.Navpoint"%>
 <%@page import="com.dinaa.misc.AltLang"%>
 <%@page import="tooltwist.wbd.WbdProductionHelper"%>

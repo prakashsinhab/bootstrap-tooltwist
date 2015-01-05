@@ -9,11 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import tooltwist.bootstrap.properties.WbdSelectProperty;
-<<<<<<< HEAD
-=======
-import tooltwist.ecommerce.AutomaticUrlParametersMode;
->>>>>>> 4c7f8172a27b65f210eb5bcb3eb36d9d6aa40801
-import tooltwist.ecommerce.RoutingUIM;
 import tooltwist.repository.ToolTwist;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
@@ -443,16 +438,6 @@ public class NavBarWidget extends ContainerWidget
 		}
 		
 	}
-
-	private SnippetParam[] getSnippetParams(WbdGenerator generator, WbdWidget instance, UimData ud) throws WbdException {
-//		String myProperty = instance.getProperty("myProperty", null);
-//		String myNavpoint = instance.getProperty("myNavpoint", null);
-		SnippetParam[] params = {
-//			new SnippetParam("myProperty", myProperty),
-//			new SnippetParam("myNavpoint", myNavpoint)
-		};
-		return params;
-	}
 	
 	private String codeToInsert(WbdGenerator generator, WbdWidget instance, SnippetLocation location, String templateName, SnippetParam[] params) throws WbdException {
 		Snippet snippet = new Snippet(generator, instance, location, templateName);		
@@ -681,8 +666,6 @@ public class NavBarWidget extends ContainerWidget
 		
 		WidgetId navBarId = new WidgetId(instance);
 		navBarId.setPrefix("navBar");
-		
-		WbdChildIndex index = id.getIndex();
 		
 		rh.renderPropertiesHeading(generator, ud, instance, id, this.getLabel(instance), -1);
 		
