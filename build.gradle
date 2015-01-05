@@ -28,28 +28,20 @@ sourceSets {
 
 dependencies {
 
-    /* Dependencies if you have ToolTwist source code installed. 
+    // Dependencies if you have ToolTwist source code installed
     compile project(':tooltwist')
     compile project(':ttWbd')
-    compile project(':ttStd')
-    compile project(':xdata')
-    compile project(':filemap')*/
+    //compile project(':ttStd')
+    //compile project(':xdata')
+    //compile project(':filemap')
 
-    /* ToolTwist Dependencies */
-    compile 'com.tooltwist:tooltwist:8.4.1-SNAPSHOT'  
-    compile 'com.tooltwist:ttStd:8.3.3-SNAPSHOT'  
-    compile 'com.tooltwist:ttWbd:8.3.3-SNAPSHOT'  
-	
-	//Dependencies
-	/*
-	compile group: 'net.sourceforge.htmlcleaner', name: 'htmlcleaner', version: '2.2'
-	compile group: 'org.xhtmlrenderer', name: 'core-renderer', version: 'R8pre2'
-	compile group: 'org.json', name: 'json', version: '20140107'
-	compile group: 'net.sf.ehcache', name: 'ehcache-core', version: '2.6.0'
-	compile group: 'javax.xml', name: 'jaxrpc', version: '1.1'
-	compile group: 'org.apache.axis2', name: 'axis2', version: '1.5.4'
-	compile group: 'commons-discovery', name: 'commons-discovery', version: '0.2' */
-
+    // ToolTwist Dependencies 
+    //compile 'com.tooltwist:tooltwist:8.3.3-SNAPSHOT'  
+    //compile 'com.tooltwist:ttWbd:8.3.3-SNAPSHOT'  
+    compile 'com.tooltwist:ttStd:8.3.3-SNAPSHOT'
+    compile 'com.tooltwist:xdata:8.3.3-SNAPSHOT' 
+    compile 'com.tooltwist:filemap:8.3.3-SNAPSHOT' 
+    
     // This jar contains stubs used only while compiling. At runtime the
     // web server (e.g. Tomcat) provides the real implementation of the API.
     provided 'javax:javaee-api:6.0'
