@@ -3,7 +3,6 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="src" path="/ttWbd"/>
 	<classpathentry exported="true" kind="lib" path="/Users/tony/.gradle/caches/modules-2/files-2.1/com.tooltwist/ttStd/8.3.3-SNAPSHOT/28ae980ba7a676a044248041059c08b07f0ea1f9/ttStd-8.3.3-SNAPSHOT.jar">
 		<attributes>
@@ -178,6 +177,12 @@
 	<classpathentry exported="true" kind="lib" path="/Users/tony/.gradle/caches/modules-2/files-2.1/com.tooltwist/tooltwist/8.3.3-SNAPSHOT/3a221bd61b7cbc9231f731809ff1f7159f8cf435/tooltwist-8.3.3-SNAPSHOT.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/tooltwist"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>

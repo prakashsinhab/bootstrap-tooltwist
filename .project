@@ -2,7 +2,10 @@
 <projectDescription>
 	<name>bootstrap</name>
 	<comment/>
-	<projects/>
+	<projects>
+		<project>tooltwist</project>
+		<project>ttWbd</project>
+	</projects>
 	<natures>
 		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
 		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
