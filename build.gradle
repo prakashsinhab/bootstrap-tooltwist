@@ -4,7 +4,6 @@ apply plugin: 'artifactory'
 apply plugin: 'maven' // so a POM file can be uploaded to repo
 
 
-
 //----------------------------------------------------------------------
 // Gradle lacks the "provided" dependency so we'll have to add it.
 // http://blog.codeaholics.org/2012/emulating-mavens-provided-scope-in-gradle/
