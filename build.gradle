@@ -29,17 +29,18 @@ sourceSets {
 //----------------------------------------------------------------------
 dependencies {
 
-    /* Dependencies if you have ToolTwist source code installed. */
+    /* Dependencies if you have ToolTwist source code installed. 
     compile project(':tooltwist')
     compile project(':ttWbd')
     compile project(':ttStd')
     compile project(':xdata')
-    compile project(':filemap')
+    compile project(':filemap')*/
 
     /* ToolTwist Dependencies */
-    compile 'com.tooltwist:tooltwist:8.3-SNAPSHOT'  
-    compile 'com.tooltwist:ttStd:8.3-SNAPSHOT'  
-    compile 'com.tooltwist:ttWbd:8.3-SNAPSHOT'  
+    compile 'com.tooltwist:tooltwist:8.3.1-20140404'  
+    compile 'com.tooltwist:ttStd:8.3.1-20140404'  
+    compile 'com.tooltwist:ttWbd:8.3.1-20140404'
+    compile 'com.tooltwist:ttsec-standaloneDesigner:8.3.1-20140404'
 	
 	//Dependencies
 	/*
