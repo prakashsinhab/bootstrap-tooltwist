@@ -51,7 +51,7 @@
 	<meta name="keywords" content="%%keywordMetatag%%">
 	<meta name="generator" content="ToolTwist" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="shortcut icon" href="/ttsvr/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="/ttsvr/favicon.ico?v=0.2" type="image/x-icon">
 	
 <!--[if lte IE 9]>
     <script src="/ttsvr/skypepi/scripts/jquery/1.11.0/jquery-1.11.0.min.js"></script>
@@ -85,7 +85,7 @@
 	<!-- START OF SmartSource Data Collector TAG v10.2.29 -->
 	<!-- Copyright (c) 2012 Webtrends Inc.  All rights reserved. -->
 	<script>
-	window.webtrendsAsyncInit=function(){
+	/* window.webtrendsAsyncInit=function(){
 	    var dcs=new Webtrends.dcs().init({
 	        dcsid:"dcs222yr3uqow8spu3rba9o5l_2w5b",
 	        domain:"statse.webtrendslive.com",
@@ -107,7 +107,7 @@
 	(function(){
 	    var s=document.createElement("script"); s.async=true; s.src="/ttsvr/skypepi/scripts/webtrends.min.js";    
 	    var s2=document.getElementsByTagName("script")[0]; s2.parentNode.insertBefore(s,s2);
-	}());
+	}()); */
 	</script>
 	<noscript><img alt="DCSIMG" id="DCSIMG" width="1" height="1" src="http://statse.webtrendslive.com/dcs222yr3uqow8spu3rba9o5l_2w5b/njs.gif?dcssip=https://english-courses.britishcouncil.org&amp;dcsuri=/nojavascript&amp;WT.dl=0&amp;WT.es=https://english-courses.britishcouncil.org/nojavascript&amp;WT.js=No&amp;WT.tv=BC.nojs.1"/></noscript>
 	<!-- END OF SmartSource Data Collector TAG v10.2.29 -->
@@ -115,7 +115,7 @@
 %%topCode%%
 
 <!--  Provides a common fixed-width (and optionally responsive) layout with only <div class="container"> required. -->
-<div class="container">
+<div class="">
 <!--  Create a fluid-->
 <!-- <div class="container-fluid" -->
  
