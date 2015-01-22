@@ -25,14 +25,24 @@ repositories {
             password = "${RESOLVE_ARTIFACTORY_PASSWORD}"
         }
     }
+    ivy {
+        url "file:/${localRepo}"
+        layout "maven"
+    }
     mavenCentral()
 }
 
 dependencies {
     /* ToolTwist Dependencies */
-    compile 'com.tooltwist:ttStd:8.3.2'
     compile 'com.tooltwist:ttWbd:8.3.3-SNAPSHOT'
+    compile 'com.tooltwist:ttStd:8.3.2'
     compile 'com.tooltwist:ttsec-standaloneDesigner:8.3.2'
+    
+    /* ToolTwist Dependencies For Local
+    compile 'com.tooltwist:tooltwist:8.3.1-20140404'
+    compile 'com.tooltwist:ttStd:8.3.1-20140404'
+    compile 'com.tooltwist:ttWbd:8.3.1-20140404'
+    */
     
     provided 'javax:javaee-api:6.0'
     
@@ -45,18 +55,28 @@ dependencies {
  */
 task copyWebContent(type: Copy) {
         from 'WebContent'
-        into 'build/classes/main/META-INF/bootstrap-resources'
+        into 'build/bootstrap-tooltwist-resources/WebContent'
 }
 task copyConfig(type: Copy) {
         from 'config'
-        into 'build/classes/main/META-INF/bootstrap-tooltwist/config'
+        into 'build/bootstrap-tooltwist-resources/bootstrap-tooltwist/config'
 }
 task copyWidgets(type: Copy) {
         from 'widgets'
-        into 'build/classes/main/META-INF/bootstrap-tooltwist/widgets'
+        into 'build/bootstrap-tooltwist-resources/bootstrap-tooltwist/widgets'
+}
+task copyLib(type: Copy) {
+        from configurations.runtime
+        into "build/bootstrap-tooltwist-resources/WebContent/WEB-INF/lib"
+}
+task zipResources(type: Zip) {
+        from 'build/bootstrap-tooltwist-resources'
+        classifier = 'bootstrap-tooltwist-resources'
 }
 processResources {
         processResources.dependsOn("copyWebContent")
         processResources.dependsOn("copyConfig")
         processResources.dependsOn("copyWidgets")
+        processResources.dependsOn("copyLib")
+        processResources.dependsOn("zipResources")
 }
