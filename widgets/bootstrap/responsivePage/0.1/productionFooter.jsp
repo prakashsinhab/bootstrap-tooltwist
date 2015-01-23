@@ -3,7 +3,7 @@
 	
 	<body>
 	
-		</div> <!--/ Di ko alam kung ano ginagawa neto. /-->
+		</div> <!--/ Di ko alam kung ano ginagawa neto. /--> 
 		
 		<!-- [ jQuery ] -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
