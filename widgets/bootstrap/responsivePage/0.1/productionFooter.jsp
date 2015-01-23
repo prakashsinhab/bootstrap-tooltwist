@@ -3,7 +3,7 @@
 	
 	<body>
 	
-		</div> <!--/ Di ko alam kung ano ginagawa neto. /--> 
+		</div> <!--/ Di ko alam kung ano ginagawa neto. /-->
 		
 		<!-- [ jQuery ] -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -13,6 +13,14 @@
 		
 		<!-- [ myrp_t ] -->
 		<script src="/ttsvr/freemium/script/main.js"></script>
+		
+		<script src='/ttsvr/freemium/script/jquery.transit.min.js'></script>
+		<script src='/ttsvr/freemium/script/jquery.easing.min.js'></script>
+		<script src='/ttsvr/freemium/script/nav.js'></script>
+		<script src='/ttsvr/freemium/script/select.js'></script>
+		<script src='/ttsvr/freemium/script/jquery.peity.min.js'></script>
+		<script src='/ttsvr/freemium/script/suburb.js'></script>
+		<script src='/ttsvr/freemium/script/property.js'></script>
 		
 		<!-- [ This resolves the issue upon logging in to Freemium login page. I got this code from "/myrp_t/widgets/myrp_widgets/page_html5/3.1/new_jquery_footer.jsp" ] -->
 		<script type="text/javascript">
