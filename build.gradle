@@ -18,6 +18,7 @@ sourceSets {
 }
 //----------------------------------------------------------------------
 
+
 dependencies {
 	/* Build using standard ToolTwist libraries
 	*/
@@ -194,35 +195,4 @@ processResources {
 	    processResources.dependsOn("webcontentZip")
 	    project.artifacts { archives webcontentZip }
 	}
-}
-task widgetsZip(type: Zip) {
-        from 'widgets'
-        classifier = "tooltwist-widgets"
-}
-task webcontentZip(type: Zip) {
-        from 'WebContent'
-        classifier = "tooltwist-webcontent"
-}
-processResources {
-        // Maybe place resources directly inside the jar file.
-        if (project.hasProperty('PROJECT_DIRECTORIES_IN_JAR') && PROJECT_DIRECTORIES_IN_JAR.toBoolean()) {
-                println "Including config, widgets and WebContent inside jar file"
-                processResources.dependsOn("copyWebContent")
-                processResources.dependsOn("copyConfig")
-                processResources.dependsOn("copyWidgets")
-        }
-
-        // Create zip files for config, widget and WebContent.
-        if (file('config').isDirectory()) {
-            processResources.dependsOn("configZip")
-            project.artifacts { archives configZip }
-        }
-        if (file('widgets').isDirectory()) {
-            processResources.dependsOn("widgetsZip")
-            project.artifacts { archives widgetsZip }
-        }
-        if (file('WebContent').isDirectory()) {
-            processResources.dependsOn("webcontentZip")
-            project.artifacts { archives webcontentZip }
-        }
 }
