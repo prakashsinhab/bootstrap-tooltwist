@@ -20,11 +20,10 @@ sourceSets {
 
 
 dependencies {
-	/* Build using standard ToolTwist libraries
-	*/
-	compile group: 'com.tooltwist', name: 'xdata', version: '5.0.0'
-	compile group: 'com.tooltwist', name: 'filemap', version: '5.0.0'
-	compile group: 'com.tooltwist', name: 'ttWbd', version: '8.3.2'
+	/* Build using standard ToolTwist libraries*/
+    compile 'com.tooltwist:filemap:5.0-SNAPSHOT'
+    compile 'com.tooltwist:xdata:5.0.0-SNAPSHOT'
+    compile 'com.tooltwist:ttWbd:8.4.0-SNAPSHOT'
 
 	/* Build using ToolTwist source code
 	compile project(':tooltwist')
