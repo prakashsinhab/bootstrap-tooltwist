@@ -59,6 +59,9 @@
     <!--[ Font Awesome ]-->
     <link href="%%URL(/ttsvr/bootstrap/css/font-awesome.css)%%" rel="stylesheet" media="screen">
     
+    <!-- [ jQuery ] -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	
     <!-- [ CSS from cssContainer widget ] -->
 	%%headerCode%%
     
