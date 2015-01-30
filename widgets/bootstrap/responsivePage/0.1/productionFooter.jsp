@@ -17,6 +17,10 @@
 		<script src='/ttsvr/freemium/script/suburb.js'></script>
 		<script src='/ttsvr/freemium/script/property.js'></script>
 		
+		<!-- [ Maps for Contact Us page - I can't move this to the mustache widget from TT Designer because it breaks the page widget where the widget is dragged in. ] -->
+		<script src="//maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+	    <script src="/ttsvr/freemium/script/markerwithlabel.js" type="text/javascript"></script>
+		
 		<!-- [ This resolves the issue upon logging in to Freemium login page. I got this code from "/myrp_t/widgets/myrp_widgets/page_html5/3.1/new_jquery_footer.jsp" ] -->
 		<script type="text/javascript">
 			<% 
