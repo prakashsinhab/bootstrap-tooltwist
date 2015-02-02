@@ -79,4 +79,11 @@
 	request.getSession().removeAttribute("bsg3SuburbSalesPropetySearchSession");
 	request.getSession().removeAttribute("bsg3ForSaleAdvertisementUrlSession");
 	//WidgetUtil.displayBSGLog(request);
+	
+	//freemium session
+	request.getSession().removeAttribute("bsg3PropertyAddressSessionFreemium");
+	request.getSession().removeAttribute("bsg3PropertyAdvertisementsSessionFreemium");
+	request.getSession().removeAttribute("bsg3SalesPropertySearchSessionFreemium");
+	request.getSession().removeAttribute("bsg3SuggestServiceFreemium");
+	request.getSession().removeAttribute("propertySearchSessionFreemium");
 %>
