@@ -4,18 +4,28 @@
 	<body>
 		
 		<!-- [ Bootstrap Project ] -->
-		<script src="/ttsvr/bootstrap/js/bootstrap.min.js?v=3.0.0"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> <!-- version used by Simple Machines -->
+		<!-- <script src="/ttsvr/bootstrap/js/bootstrap.min.js?v=3.0.0"></script> --> <!-- before -->
 		
 		<!-- [ myrp_t ] -->
 		<script src="/ttsvr/freemium/script/main.js"></script>
 		
 		<script src='/ttsvr/freemium/script/jquery.transit.min.js'></script>
 		<script src='/ttsvr/freemium/script/jquery.easing.min.js'></script>
+		
 		<script src='/ttsvr/freemium/script/nav.js'></script>
 		<script src='/ttsvr/freemium/script/select.js'></script>
-		<script src='/ttsvr/freemium/script/jquery.peity.min.js'></script>
 		<script src='/ttsvr/freemium/script/suburb.js'></script>
 		<script src='/ttsvr/freemium/script/property.js'></script>
+		<script src="/ttsvr/freemium/script/signup.js"></script>
+		
+		<script src='/ttsvr/freemium/script/jquery.peity.min.js'></script>
+		<script src="/ttsvr/freemium/script/jquery.autocomplete.min.js"></script>
+		<script src='/ttsvr/freemium/script/bootstrap-datepicker.js'></script>
+		<script src="/ttsvr/freemium/script/search-suggestions.js"></script>
+		<script src='/ttsvr/freemium/script/watchlist-functions.js'></script>
+		
+		<script src='/ttsvr/freemium/script/allfreemium.js'></script>
 		
 		<!-- [ Maps for Contact Us page - I can't move this to the mustache widget from TT Designer because it breaks the page widget where the widget is dragged in. ] -->
 		<script src="//maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>

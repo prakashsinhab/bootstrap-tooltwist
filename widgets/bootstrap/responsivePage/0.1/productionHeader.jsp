@@ -54,7 +54,8 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 	
     <!--[ Bootstrap ]-->
-    <link href="%%URL(/ttsvr/bootstrap/css/bootstrap.freemium.min.css?v=3.0.0)%%" rel="stylesheet" media="screen">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" media="screen"> <!-- version used by Simple Machines -->
+    <!-- <link href="%%URL(/ttsvr/bootstrap/css/bootstrap.freemium.min.css?v=3.0.0)%%" rel="stylesheet" media="screen"> --> <!-- before -->
     
     <!--[ Font Awesome ]-->
     <link href="%%URL(/ttsvr/bootstrap/css/font-awesome.css)%%" rel="stylesheet" media="screen">
