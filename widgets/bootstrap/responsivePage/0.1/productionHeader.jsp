@@ -1,5 +1,6 @@
 <!--START-->
 <!-- header for responsivePage -->
+<%@page import="com.myrp.util.Cloudfront"%>
 <%@page import="tooltwist.wbd.Navpoint"%>
 <%@page import="com.dinaa.misc.AltLang"%>
 <%@page import="tooltwist.wbd.WbdProductionHelper"%>
