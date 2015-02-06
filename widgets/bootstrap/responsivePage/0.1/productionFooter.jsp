@@ -24,6 +24,7 @@
 		<script src='/ttsvr/freemium/script/bootstrap-datepicker.js'></script>
 		<script src="/ttsvr/freemium/script/search-suggestions.js"></script>
 		<script src='/ttsvr/freemium/script/watchlist-functions.js'></script>
+		<script src="/ttsvr/freemium/script/comparison-functions.js"></script>
 		
 		<script src='/ttsvr/freemium/script/allfreemium.js'></script>
 		
