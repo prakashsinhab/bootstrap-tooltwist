@@ -4,7 +4,7 @@
 	<script src="/ttsvr/pundit/js/paging.js"></script>
 	<script src="/ttsvr/pundit/js/pundit.js"></script>
 	<script src="/ttsvr/pundit/js/bootstrap-select.js"></script>
-  <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+  <script type="text/javascript" src="https://platform.linkedin.com/in.js">
     api_key: 75hd696f0s1xxh
     authorize: true
   </script>
