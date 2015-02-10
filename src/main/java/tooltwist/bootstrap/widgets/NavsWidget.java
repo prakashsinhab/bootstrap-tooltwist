@@ -104,7 +104,7 @@ public class NavsWidget extends ContainerWidget
 		{
 			// Add code inserters for production mode
 			CodeInserter[] arr = {
-
+					new JavascriptCodeInserter(generator, instance, "navs_jsHeader.js")
 			};
 			codeInserterList.add(arr);
 
@@ -165,7 +165,7 @@ public class NavsWidget extends ContainerWidget
 			rh.append("<div class='tabbable " + tabDirection + "'>\n");
 
 			StringBuffer tabNav = new StringBuffer();
-			tabNav.append("<ul " + elementId + "class='nav " + type + justifiedClass + "'>\n");
+			tabNav.append("<ul " + elementId + "class='nav " + type + justifiedClass + "' id='myTab'>\n");
 
 			for(int row = 0; row < Integer.valueOf(rows); row++) {
 
