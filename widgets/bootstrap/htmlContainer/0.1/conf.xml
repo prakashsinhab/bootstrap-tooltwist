@@ -1,0 +1,9 @@
+<widget>
+  <widgetType>primitive</widgetType>
+  <widgetClass>tooltwist.bootstrap.widgets.HtmlContainerWidget</widgetClass>
+  <showInToolbox>true</showInToolbox>
+  <toolboxCategory></toolboxCategory>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>HTML Container</label>
+  <description>Html Container</description>
+</widget>
