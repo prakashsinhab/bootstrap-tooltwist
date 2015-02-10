@@ -1,23 +1,15 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'com.jfrog.artifactory-upload'
-apply plugin: 'maven' // so a POM file can be uploaded to repo
 
+group = 'com.tooltwist'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = 1.7
 
-
-/*  
- *	Gradle lacks a "provided" dependency like Maven, so we have to
- *	add it. For example, we wish to specify that the J2EE API is
- *	provided by the runtime, so the mock API jar we use here is
- *	used for compiling but is not carried forward as a dependency
- *	through into production.  
- *
- *	See http://blog.codeaholics.org/2012/emulating-mavens-provided-scope-in-gradle/  
- */  
 configurations {
-	provided
-        published
+    provided
+    published
 }
+
 sourceSets {
     main.compileClasspath += configurations.provided
     test.compileClasspath += configurations.provided
@@ -25,186 +17,66 @@ sourceSets {
     main { resources { srcDir 'src' } }
 }
 
-
-/*
- *	This section contains you project dependencies.
- */
-dependencies {
-	/* Dependencies if you have ToolTwist source code installed.
-	compile project(':xdata')
-	*/
-	/* ToolTwist Dependencies
-	*/
-	compile 'com.tooltwist:ttWbd:8.3.3-SNAPSHOT'  
-
-	// Hack - extras, to ensure they end up in ttsvr
-	compile 'com.tooltwist:ttStd:8.3.2'  
-	compile 'com.tooltwist:ttsec-standaloneDesigner:8.3.2'  
-
-	// This jar contains stubs used only while compiling. At runtime the
-	// web server (e.g. Tomcat) provides the real implementation of the API.
-	provided 'javax:javaee-api:6.0'
-	
-	// Used only during unit testing
-	testCompile group: 'junit', name: 'junit', version: '4.8.2'
-}
-
-
-/**************************************************************************************************
- *
- *	NOTE: Standard code from here on down.
- *
- *	Values defined in ../gradle.properties:
- *		PUNDIT_GROUP, PUNDIT_SOURCE_COMPATIBILITY, PUNDIT_VERSION, PUNDIT_REPO
- *
- *	Values defined in ~/.gradle/gradle.properties:
- *		artifactory_user, artifactory_password, artifactory_repo
- */
-group = PUNDIT_GROUP
-version = PUNDIT_VERSION
-sourceCompatibility = PUNDIT_SOURCE_COMPATIBILITY
-
-
-
-/*  
- *	Save a source code jar file when publishing into the repo.  
- */  
-task sourceJar(type: Jar) {  
-	classifier = 'sources'  
-	from sourceSets.main.allSource  
-}  
-artifacts {  
-	archives sourceJar  
-}  
-
-
-
-/*  
- *  Define dependencies to be used by Gradle (not the project).  
- *  In particular, include the jar for artifactory.  
- */  
-buildscript {
-    repositories {
-        jcenter()
-        maven {
-            url RESOLVE_ARTIFACTORY_CONTEXTURL + RESOLVE_ARTIFACTORY_REPO
-            credentials {
-                username = "${RESOLVE_ARTIFACTORY_USER}"
-                password = "${RESOLVE_ARTIFACTORY_PASSWORD}"
-            }
-	}
-	mavenCentral()
-    }
-    dependencies {
-        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:3.0.1'
-    }
-}
-
-
-
-/*  
- *	Tell the artifactory plugin where to find jars when building, and where to
- *	publish them.  
- *
- *	See https://www.jfrog.com/confluence/display/RTF/Gradle+Artifactory+Plugin  
- */  
-project.ext.isSnapshot = version.endsWith("-SNAPSHOT")
-artifactory {
-    publish {
-        repository {
-	    contextUrl = "${PUNDIT_PUBLISH_ARTIFACTORY_CONTEXTURL}"
-	    repoKey = isSnapshot ? "${PUNDIT_PUBLISH_SNAPSHOT_REPO}" : "${PUNDIT_PUBLISH_RELEASE_REPO}"
-            username = "${PUNDIT_PUBLISH_ARTIFACTORY_USER}"
-            password = "${PUNDIT_PUBLISH_ARTIFACTORY_PASSWORD}"
-            maven = true
-	    ivy { 
-	      ivyLayout = '[organization]/[module]/ivy-[revision].xml' 
-	      artifactLayout = '[organization]/[module]/[revision]/[module]-[revision](-[classifier]).[ext]' 
-	      mavenCompatible = true
-	    } 
-        }
-	defaults {
-	    publishConfigs('archives', 'published')
-	    properties = ['build.status': "$it.project.status".toString()]
-	}
-    }
-    resolve {
-        repository {
-	    contextUrl = "${RESOLVE_ARTIFACTORY_CONTEXTURL}"
-            repoKey = "${RESOLVE_ARTIFACTORY_REPO}"
+repositories {
+    maven {
+        url RESOLVE_ARTIFACTORY_CONTEXTURL + RESOLVE_ARTIFACTORY_REPO
+        credentials {
             username = "${RESOLVE_ARTIFACTORY_USER}"
             password = "${RESOLVE_ARTIFACTORY_PASSWORD}"
-            maven = true
         }
     }
-}
-
-task wrapper(type: Wrapper) {
-  gradleVersion = '1.12'
-}
-
-/*
- *      If we're reconfiguring Eclipse, take the opportunity to fix the
- *	occasional problem where 'Deployment Assembly' is missing from the
- *	properties dialog, preventing dependency jars from being added to
- *	the War and Tomcat classpath.
- *
- *      http://forums.gradle.org/gradle/topics/my_war_in_eclipse_doesnt_see_jars_in_other_projects
- */
-eclipse {
-    project {
-        natures 'org.eclipse.wst.common.modulecore.ModuleCoreNature'
+    ivy {
+        url "file:/${localRepo}"
+        layout "maven"
     }
+    mavenCentral()
 }
 
-/****************************************************************************
+dependencies {
+    /* ToolTwist Dependencies */
+    compile 'com.tooltwist:ttWbd:8.3.3-SNAPSHOT'
+    compile 'com.tooltwist:ttStd:8.3.2'
+    compile 'com.tooltwist:ttsec-standaloneDesigner:8.3.2'
+    
+    /* ToolTwist Dependencies For Local
+    compile 'com.tooltwist:tooltwist:8.3.1-20140404'
+    compile 'com.tooltwist:ttStd:8.3.1-20140404'
+    compile 'com.tooltwist:ttWbd:8.3.1-20140404'
+    */
+    
+    provided 'javax:javaee-api:6.0'
+    
+    testCompile group: 'junit', name: 'junit', version: '4.8.2'
+}
+
+/**************************************************************************************************
  *
  *      Copy various resources into the jar file or into separate zip files.
  */
 task copyWebContent(type: Copy) {
-        from('WebContent')
-        into 'build/classes/main/META-INF/resources'
+        from 'WebContent'
+        into 'build/bootstrap-tooltwist-resources/WebContent'
 }
 task copyConfig(type: Copy) {
-        from('config')
-        into 'build/classes/main/META-INF/tooltwist/config'
+        from 'config'
+        into 'build/bootstrap-tooltwist-resources/bootstrap-tooltwist/config'
 }
 task copyWidgets(type: Copy) {
-        from('widgets')
-        into 'build/classes/main/META-INF/tooltwist/widgets'
-}
-task configZip(type: Zip) {
-        from 'config'
-        classifier = "tooltwist-config"
-}
-task widgetsZip(type: Zip) {
         from 'widgets'
-        classifier = "tooltwist-widgets"
+        into 'build/bootstrap-tooltwist-resources/bootstrap-tooltwist/widgets'
 }
-task webcontentZip(type: Zip) {
-        from 'WebContent'
-        classifier = "tooltwist-webcontent"
+/*task copyLib(type: Copy) {
+        from configurations.runtime
+        into "build/bootstrap-tooltwist-resources/WebContent/WEB-INF/lib"
+}*/
+task zipResources(type: Zip) {
+        from 'build/bootstrap-tooltwist-resources'
+        classifier = 'bootstrap-tooltwist-resources'
 }
 processResources {
-        // Maybe place resources directly inside the jar file.
-        if (project.hasProperty('PROJECT_DIRECTORIES_IN_JAR')
-			&& PROJECT_DIRECTORIES_IN_JAR.toBoolean()) {
-                processResources.dependsOn("copyWebContent")
-                processResources.dependsOn("copyConfig")
-                processResources.dependsOn("copyWidgets")
-        }
-
-        // Create zip files for config, widget and WebContent.
-        if (file('config').isDirectory()) {
-            processResources.dependsOn("configZip")
-            project.artifacts { archives configZip }
-        }
-        if (file('widgets').isDirectory()) {
-            processResources.dependsOn("widgetsZip")
-            project.artifacts { archives widgetsZip }
-        }
-        if (file('WebContent').isDirectory()) {
-            processResources.dependsOn("webcontentZip")
-            project.artifacts { archives webcontentZip }
-        }
+        processResources.dependsOn("copyWebContent")
+        processResources.dependsOn("copyConfig")
+        processResources.dependsOn("copyWidgets")
+        //processResources.dependsOn("copyLib")
+        processResources.dependsOn("zipResources")
 }
