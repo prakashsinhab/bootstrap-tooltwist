@@ -65,10 +65,10 @@ task copyWidgets(type: Copy) {
         from 'widgets'
         into 'build/bootstrap-tooltwist-resources/bootstrap-tooltwist/widgets'
 }
-task copyLib(type: Copy) {
+/*task copyLib(type: Copy) {
         from configurations.runtime
         into "build/bootstrap-tooltwist-resources/WebContent/WEB-INF/lib"
-}
+}*/
 task zipResources(type: Zip) {
         from 'build/bootstrap-tooltwist-resources'
         classifier = 'bootstrap-tooltwist-resources'
@@ -77,6 +77,6 @@ processResources {
         processResources.dependsOn("copyWebContent")
         processResources.dependsOn("copyConfig")
         processResources.dependsOn("copyWidgets")
-        processResources.dependsOn("copyLib")
+        //processResources.dependsOn("copyLib")
         processResources.dependsOn("zipResources")
 }
