@@ -2,6 +2,9 @@
 	<head></head>
 	
 	<body>
+	
+		<!-- [ Jquery Cookie ] -->
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 		
 		<!-- [ Bootstrap Project ] -->
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> <!-- version used by Simple Machines -->
