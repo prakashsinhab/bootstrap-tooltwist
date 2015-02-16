@@ -68,8 +68,8 @@
 	%%headerCode%%
     
     <!-- [ Favicon ] -->
-    <link rel="icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon"> 
-	<link rel="shortcut icon" href="/ttsvr/cropImage/<%=WbdCache.getProperty("store.name") %>.images.favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="/ttsvr/freemium/images/pv/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/ttsvr/freemium/images/pv/favicon.ico" type="image/x-icon">
 	
 	<%
 	Navpoint navpoint = WbdCache.findNavpointInAnyLoadedProject(jspName, true);
