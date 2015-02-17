@@ -6,7 +6,7 @@ var Navs = function() {
 		init: function() {
 			jQuery(".navs-heading").unbind("click");
 			
-			$('#myTab a').click(function (e) {
+			$('#genericTab a').click(function (e) {
 		        e.preventDefault();
 		        $(this).tab('show');
 		        window.location.href = window.location.href.split("/?")[0];
@@ -20,7 +20,10 @@ var Navs = function() {
 
 		    // on load of the page: switch to the currently selected tab
 		    var hash = window.location.hash;
-		    $('#myTab a[href="' + hash + '"]').tab('show');
+		    var n = hash.search("webdesign");
+		    if(n<=0){
+		    	$('#genericTab a[href="' + hash + '"]').tab('show');
+		    }
 		    
 		},
 		

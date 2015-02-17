@@ -165,7 +165,7 @@ public class NavsWidget extends ContainerWidget
 			rh.append("<div class='tabbable " + tabDirection + "'>\n");
 
 			StringBuffer tabNav = new StringBuffer();
-			tabNav.append("<ul " + elementId + "class='nav " + type + justifiedClass + "' id='myTab'>\n");
+			tabNav.append("<ul " + elementId + "class='nav " + type + justifiedClass + "' id='genericTab'>\n");
 
 			for(int row = 0; row < Integer.valueOf(rows); row++) {
 
