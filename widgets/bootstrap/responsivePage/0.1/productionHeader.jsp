@@ -78,7 +78,7 @@
 	<!-- [ CSS from cssContainer widget END ] -->
     
     <!-- [ Cloudmall Essentials - Bootstrap and Font Awesome ] -->
-	<link href="%%URL(/ttsvr/bootstrap/css/build/cloudmall.essential.230115.css)%%" rel="stylesheet" media="screen">
+	<link href="%%URL(/ttsvr/bootstrap/css/build/cloudmall.essential.170215.css)%%" rel="stylesheet" media="screen">
 	<!-- [ Cloudmall Essentials END ] -->
 	
     <!-- [ Favicon ] -->
