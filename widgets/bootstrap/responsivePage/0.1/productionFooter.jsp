@@ -100,4 +100,7 @@
 	request.getSession().removeAttribute("bsg3SalesPropertySearchSessionFreemium");
 	request.getSession().removeAttribute("bsg3SuggestServiceFreemium");
 	request.getSession().removeAttribute("propertySearchSessionFreemium");
+	
+	// for Juls
+	request.getSession().removeAttribute("propertyDetailSessionFreemium");
 %>
