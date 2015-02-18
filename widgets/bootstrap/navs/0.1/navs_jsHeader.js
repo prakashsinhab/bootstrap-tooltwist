@@ -6,7 +6,7 @@ var Navs = function() {
 		init: function() {
 			jQuery(".navs-heading").unbind("click");
 			
-			$('#genericTab a').click(function (e) {
+			$('.tabbable a').click(function (e) {
 		        e.preventDefault();
 		        $(this).tab('show');
 		        window.location.href = window.location.href.split("/?")[0];
@@ -22,7 +22,7 @@ var Navs = function() {
 		    var hash = window.location.hash;
 		    var n = hash.search("webdesign");
 		    if(n<=0){
-		    	$('#genericTab a[href="' + hash + '"]').tab('show');
+		    	$('.tabbable a[href="' + hash + '"]').tab('show');
 		    }
 		    
 		},
