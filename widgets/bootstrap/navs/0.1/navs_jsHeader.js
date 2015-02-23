@@ -6,10 +6,22 @@ var Navs = function() {
 		init: function() {
 			jQuery(".navs-heading").unbind("click");
 			
-			$('.tabbable a.tab').click(function (e) {
+			$('.tabbable a[data-toggle="tab"]').click(function (e) {
 				e.preventDefault();
 		        $(this).tab('show');
-		        window.location.href = window.location.href.split("/?")[0];
+		        var url = window.location.href;
+		        var currentUrl = url.split("?");
+		        if(currentUrl && currentUrl.length > 1){
+		        	var paramString = currentUrl[1].split("#");
+		        	if(currentUrl[0].charAt(currentUrl[0].length-1) === "/"){
+		        		url = currentUrl[0].slice(0, -1);		        		
+		        	}
+		        	if(paramString && paramString.length > 1){
+		        		var hash = paramString[1];
+		        		url = url + "#" + hash;
+		        	}
+		        }
+		        window.location.href = url; 
 		    });
 
 		    // store the currently selected tab in the hash value
