@@ -6,8 +6,8 @@ var Navs = function() {
 		init: function() {
 			jQuery(".navs-heading").unbind("click");
 			
-			$('.tabbable a').click(function (e) {
-		        e.preventDefault();
+			$('.tabbable a.tab').click(function (e) {
+				e.preventDefault();
 		        $(this).tab('show');
 		        window.location.href = window.location.href.split("/?")[0];
 		    });

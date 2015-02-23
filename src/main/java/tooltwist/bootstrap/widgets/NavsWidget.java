@@ -181,7 +181,7 @@ public class NavsWidget extends ContainerWidget
 				}
 
 				String id = "#" + title.toLowerCase().replace(" ", "_");;
-				tabNav.append("   <a href='" + id + "' data-toggle='tab'>" + title + "</a>\n");
+				tabNav.append("   <a href='" + id + "' data-toggle='tab' class='tab'>" + title + "</a>\n");
 				tabNav.append("  </li>\n");
 			}
 			tabNav.append("  </ul>\n");
