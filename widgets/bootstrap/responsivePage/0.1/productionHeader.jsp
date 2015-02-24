@@ -8,7 +8,7 @@
     <meta name="keywords" content="%%keywordMetatag%%">
     <meta name="generator" content="ToolTwist" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:image" content="/ttsvr/cropImage/pundit.images.logo_pundit.png" />
+    <meta property="og:image" content="http://www.punditconnect.com/cropImage/pundit.images.logo_pundit.png" />
     <meta property="og:image:type" content="image/png" />
     <link href="%%URL(/ttsvr/bootstrap/css/build/pundit.essential.310714.css)%%" rel="stylesheet" media="screen">
     <link href="%%URL(/ttsvr/bootstrap/css/jquery-ui.min.css)%%" rel="stylesheet" media="screen">
