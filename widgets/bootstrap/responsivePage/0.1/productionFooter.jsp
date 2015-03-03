@@ -23,7 +23,7 @@
 		<script src="/ttsvr/freemium/script/signup.js"></script>
 		
 		<script src='/ttsvr/freemium/script/jquery.peity.min.js'></script>
-		<script src="/ttsvr/freemium/script/jquery.autocomplete.min.js"></script>
+		
 		<script src='/ttsvr/freemium/script/bootstrap-datepicker.js'></script>
 		<script src="/ttsvr/freemium/script/search-suggestions.js"></script>
 		<script src='/ttsvr/freemium/script/watchlist-functions.js'></script>
