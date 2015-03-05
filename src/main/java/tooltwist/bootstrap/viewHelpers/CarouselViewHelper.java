@@ -82,8 +82,9 @@ public class CarouselViewHelper extends ViewHelper
 
 	@Override
 	public XData preFetch(UimData ud) throws Exception {
-		
-		setIsNutra(WbdCache.getProperty("isNutra").equals("true") ? true : false);
+		String val = WbdCache.getProperty("isNutra");
+		boolean isNutra = (val != null) && (val.toUpperCase().equals("TRUE") || val.toUpperCase().startsWith("Y"));
+		setIsNutra(isNutra);
 		
 		return null;
 	}
