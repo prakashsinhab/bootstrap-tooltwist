@@ -87,7 +87,7 @@
 	<!-- [ Favicon END ] -->
 	
 	<%
-	Navpoint navpoint = WbdCache.findNavPoint(jspName, true);
+	Navpoint navpoint = WbdCache.findNavpointInAnyLoadedProject(jspName, true);
 	boolean requiresLogin = navpoint.requiresLogin();
 	%>
 	

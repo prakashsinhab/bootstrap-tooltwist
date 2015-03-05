@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import tooltwist.bootstrap.properties.WbdSelectProperty;
-import tooltwist.ecommerce.RoutingUIM;
 import tooltwist.repository.ToolTwist;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
@@ -17,7 +16,6 @@ import tooltwist.wbd.ContainerWidget;
 import tooltwist.wbd.DesignerHelper;
 import tooltwist.wbd.DesignerRole;
 import tooltwist.wbd.DesignerUIM;
-import tooltwist.wbd.Navpoint;
 import tooltwist.wbd.Snippet;
 import tooltwist.wbd.UserPreferences;
 import tooltwist.wbd.WbdWidgetController;
@@ -28,18 +26,14 @@ import tooltwist.wbd.SnippetParam;
 import tooltwist.wbd.SnippetParamList;
 import tooltwist.wbd.StylesheetCodeInserter;
 import tooltwist.wbd.StylesheetLinkInserter;
-import tooltwist.wbd.WbdCache;
 import tooltwist.wbd.WbdChildIndex;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
 import tooltwist.wbd.WbdLibrary;
-import tooltwist.wbd.WbdNavPointProperty;
 import tooltwist.wbd.WbdProperty;
 import tooltwist.wbd.WbdProperty.DisplayMode;
-import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdRenderHelper;
-import tooltwist.wbd.WbdSession;
 import tooltwist.wbd.WbdSizeInfo;
 import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdVersionSelector;
@@ -47,7 +41,6 @@ import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WidgetId;
 
 import com.dinaa.DinaaException;
-import com.dinaa.data.XData;
 import com.dinaa.data.XDataException;
 import com.dinaa.data.XNodes;
 import com.dinaa.ui.UimData;
@@ -309,15 +302,15 @@ public class HtmlContainerWidget extends ContainerWidget
     	}
 	}
 
-	private SnippetParam[] getSnippetParams(WbdGenerator generator, WbdWidget instance, UimData ud) throws WbdException {
-//		String myProperty = instance.getProperty("myProperty", null);
-//		String myNavpoint = instance.getProperty("myNavpoint", null);
-		SnippetParam[] params = {
-//			new SnippetParam("myProperty", myProperty),
-//			new SnippetParam("myNavpoint", myNavpoint)
-		};
-		return params;
-	}
+//	private SnippetParam[] getSnippetParams(WbdGenerator generator, WbdWidget instance, UimData ud) throws WbdException {
+////		String myProperty = instance.getProperty("myProperty", null);
+////		String myNavpoint = instance.getProperty("myNavpoint", null);
+//		SnippetParam[] params = {
+////			new SnippetParam("myProperty", myProperty),
+////			new SnippetParam("myNavpoint", myNavpoint)
+//		};
+//		return params;
+//	}
 	
 	private String codeToInsert(WbdGenerator generator, WbdWidget instance, SnippetLocation location, String templateName, SnippetParam[] params) throws WbdException {
 		Snippet snippet = new Snippet(generator, instance, location, templateName);		

@@ -192,15 +192,15 @@ public class AccordionWidget extends ContainerWidget
 		}
 	}
 	
-	private SnippetParam[] getSnippetParams(WbdGenerator generator, WbdWidget instance, UimData ud) throws WbdException {
-//		String myProperty = instance.getProperty("myProperty", null);
-//		String myNavpoint = instance.getProperty("myNavpoint", null);
-		SnippetParam[] params = {
-//			new SnippetParam("myProperty", myProperty),
-//			new SnippetParam("myNavpoint", myNavpoint)
-		};
-		return params;
-	}
+//	private SnippetParam[] getSnippetParams(WbdGenerator generator, WbdWidget instance, UimData ud) throws WbdException {
+////		String myProperty = instance.getProperty("myProperty", null);
+////		String myNavpoint = instance.getProperty("myNavpoint", null);
+//		SnippetParam[] params = {
+////			new SnippetParam("myProperty", myProperty),
+////			new SnippetParam("myNavpoint", myNavpoint)
+//		};
+//		return params;
+//	}
 	
 	private void render(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) {
 		

@@ -275,7 +275,7 @@ public class NavBarWidget extends ContainerWidget {
 				String parameters = instance.getProperty("parameters", wbdChildIndex);
 				boolean isDisplay = instance.getProperty("display", wbdChildIndex) != null && instance.getProperty("display", wbdChildIndex).equalsIgnoreCase("show") ? true : false;
 
-				Navpoint navpoint = WbdCache.findNavPoint(navpointId, false);
+				Navpoint navpoint = WbdCache.findNavpointInAnyLoadedProject(navpointId, false);
 
 				if (type.equals("Link")) {
 
