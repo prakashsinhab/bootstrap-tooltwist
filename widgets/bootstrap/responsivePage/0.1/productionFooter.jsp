@@ -30,8 +30,6 @@
 		
 		<script src='/ttsvr/freemium/script/allfreemium.js'></script>
 		
-	    <script src="/ttsvr/freemium/script/markerwithlabel.js" type="text/javascript"></script>
-		
 		<!-- [ This resolves the issue upon logging in to Freemium login page. I got this code from "/myrp_t/widgets/myrp_widgets/page_html5/3.1/new_jquery_footer.jsp" ] -->
 		<script type="text/javascript">
 			<% 
