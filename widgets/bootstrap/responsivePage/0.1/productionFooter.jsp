@@ -98,4 +98,7 @@
 	
 	// for Juls
 	/* request.getSession().removeAttribute("propertyDetailSessionFreemium"); */
+	
+	// for Jay
+	request.getSession().removeAttribute("myrpErrorMessages");
 %>
