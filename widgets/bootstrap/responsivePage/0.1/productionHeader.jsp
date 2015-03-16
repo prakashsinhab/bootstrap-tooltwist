@@ -1,5 +1,8 @@
 <!--START-->
 <!-- header for responsivePage -->
+<%@page import="tooltwist.myrp.util.FreemiumUtil"%>
+<%@page import="java.util.Map"%>
+<%@page import="com.myrp.util.WebUtil"%>
 <%@page import="com.myrp.util.Cloudfront"%>
 <%@page import="tooltwist.wbd.Navpoint"%>
 <%@page import="com.dinaa.misc.AltLang"%>
@@ -9,6 +12,7 @@
 <%@page import="tooltwist.ecommerce.AutomaticUrlParametersMode"%>
 <%@page import="tooltwist.ecommerce.RoutingUIM"%>
 <%@page import="tooltwist.wbd.WbdSession"%>
+
 
 <%@page errorPage="../tooltwist/basic/error.jsp"%>
 <%@page import="java.text.DateFormat"%>
@@ -34,14 +38,34 @@
 <%@page import="tooltwist.wbd.WbdStringProperty"%>
 <%@page import="tooltwist.wbd.WbdSession"%>
 <%@page import="tooltwist.wbd.WbdProductionHelper"%>
+
 <%@page import="tooltwist.wbd.WbdCache"%>
 <%@page contentType="text/html; charset=UTF-8" %>
+
 	%%importCode%%
 	<%
 		String jspName = "%%navpointId%%";
 		JspHelper jh = JspHelper.getJspHelper(pageContext, jspName);
 		%%preFetchCode%%
 	%>
+	
+	<%
+	FreemiumUtil.checkFreemiumSiteRedirect(request, response);
+
+	WebUtil.checkCookieRedirect(request, response);
+	Map<String, String> properties = new HashMap<String, String>();
+	String currentNavpointId = "";
+	try {
+		String uri = request.getRequestURI();
+		currentNavpointId = uri.substring(uri.lastIndexOf("/")+1, uri.length()-4);
+		Navpoint currentNavpoint = WbdCache.findNavpointInAnyLoadedProject(currentNavpointId, true);
+		properties = currentNavpoint.getProperties();
+	} catch(Exception e) {
+		currentNavpointId = "";
+	}
+	
+%>
+<%-- <%if(snippetVar_currentNavpointId %> --%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -50,6 +74,10 @@
 	<meta name="keywords" content="%%keywordMetatag%%">
 	<meta name="generator" content="ToolTwist" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<%if(currentNavpointId.equals("myrp-1327")){%>
+			 <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+	<% } %>
 	
 	<!--[ Import Open Sans font ]-->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
