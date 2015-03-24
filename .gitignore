@@ -1,9 +1,11 @@
-*.class
-*.swp
 .DS_Store
-.svn/
-/bin/
-/target/
+.settings/
+/bin
+version.xml
+timestamp
+*.class
+/target
 /build
-.gradle
+/.gradle
+.*.swp
 .classpath
