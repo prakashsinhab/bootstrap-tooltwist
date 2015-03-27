@@ -52,7 +52,7 @@
 	<meta name="generator" content="ToolTwist" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="shortcut icon" href="/ttsvr/favicon.ico?v=0.2" type="image/x-icon">
-	
+	 
 <!--[if lte IE 9]>
     <script src="/ttsvr/skypepi/scripts/jquery/1.11.0/jquery-1.11.0.min.js"></script>
 <![endif]-->

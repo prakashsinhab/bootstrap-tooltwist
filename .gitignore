@@ -1,5 +1,7 @@
+.classpath
+.settings/*
 *.class
-*.swp
+r.swp
 .DS_Store
 .svn/
 /bin/
