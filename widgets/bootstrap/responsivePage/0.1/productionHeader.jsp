@@ -54,10 +54,10 @@
 	<link rel="shortcut icon" href="/ttsvr/favicon.ico?v=0.2" type="image/x-icon">
 	 
 <!--[if lte IE 9]>
-    <script src="/ttsvr/skypepi/scripts/jquery/1.11.0/jquery-1.11.0.min.js"></script>
+    <script src="/ttsvr/studylane_t/scripts/jquery/1.11.0/jquery-1.11.0.min.js"></script>
 <![endif]-->
 <!--[if gt IE 9]><!-->
-    <script src="/ttsvr/skypepi/scripts/jquery/2.1.0/jquery-2.1.0.min.js"></script>
+    <script src="/ttsvr/studylane_t/scripts/jquery/2.1.0/jquery-2.1.0.min.js"></script>
 <!--<![endif]-->
 
 <!-- Respond.js proxy on external server -->
@@ -69,8 +69,6 @@
     <!-- Respond.js proxy script on local server -->
 <!--     <script src="/path/to/respond.proxy.js"></script> -->
 
-<!-- <script src="/ttsvr/skypepi/scripts/jquery.simplemodal.1.4.4.min.js"></script> -->
-<!-- <link type="text/css" rel="stylesheet" href="/ttsvr/skypepi/stylesheet/dialog/confirm.css" media="screen" /> -->
 <script src="/ttsvr/bootstrap/js/bootstrap.min.js?v=3.0.0" type="text/javascript"></script>
 <script type="text/javascript">if (typeof console == "undefined" || typeof console.log == "undefined") var console = { log: function() {} };</script>
 %%headerCode%%
@@ -105,7 +103,7 @@
 	        dcs.track();
 	};
 	(function(){
-	    var s=document.createElement("script"); s.async=true; s.src="/ttsvr/skypepi/scripts/webtrends.min.js";    
+	    var s=document.createElement("script"); s.async=true; s.src="/ttsvr/studylane_t/scripts/webtrends.min.js";    
 	    var s2=document.getElementsByTagName("script")[0]; s2.parentNode.insertBefore(s,s2);
 	}()); */
 	</script>
