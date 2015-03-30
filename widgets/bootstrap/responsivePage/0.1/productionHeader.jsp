@@ -54,10 +54,10 @@
 	<link rel="shortcut icon" href="/ttsvr/favicon.ico?v=0.2" type="image/x-icon">
 	 
 <!--[if lte IE 9]>
-    <script src="/ttsvr/studylane_t/scripts/jquery/1.11.0/jquery-1.11.0.min.js"></script>
+    <script src="/ttsvr/studylane_t/libraries/jquery/1.11.0/jquery-1.11.0.min.js"></script>
 <![endif]-->
 <!--[if gt IE 9]><!-->
-    <script src="/ttsvr/studylane_t/scripts/jquery/2.1.0/jquery-2.1.0.min.js"></script>
+    <script src="/ttsvr/studylane_t/libraries/jquery/2.1.0/jquery-2.1.0.min.js"></script>
 <!--<![endif]-->
 
 <!-- Respond.js proxy on external server -->
