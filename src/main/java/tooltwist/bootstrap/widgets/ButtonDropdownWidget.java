@@ -40,12 +40,12 @@ import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WidgetId;
 
 import com.dinaa.DinaaException;
-import com.dinaa.data.XDataException;
-import com.dinaa.data.XNodes;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 import com.dinaa.ui.UimResult;
 import com.dinaa.xpc.XpcSecurity;
+import com.tooltwist.xdata.XDException;
+import com.tooltwist.xdata.XSelector;
 
 
 /**
@@ -279,7 +279,11 @@ public class ButtonDropdownWidget extends ContainerWidget
 		rows = (Integer.valueOf(rows) + 1) + "";
 		instance.setProperty("rows",null, rows);
 
-		helper.saveAsRequired(uh);
+		// Save any changes
+		String errors = helper.saveAsRequired(uh);
+		if (errors != null) {
+			return uh.replyHtmlError("Error saving changes", errors);
+		}
 
 		String html = helper.htmlForLayoutEditorPane(generator, uh, root);
 
@@ -306,7 +310,11 @@ public class ButtonDropdownWidget extends ContainerWidget
 		if (Integer.valueOf(rows) > 0)
 			instance.setProperty("rows",null, rows);
 
-		helper.saveAsRequired(uh);
+		// Save any changes
+		String errors = helper.saveAsRequired(uh);
+		if (errors != null) {
+			return uh.replyHtmlError("Error saving changes", errors);
+		}
 
 		String html = helper.htmlForLayoutEditorPane(generator, uh, root);
 
@@ -329,7 +337,11 @@ public class ButtonDropdownWidget extends ContainerWidget
 		WbdWidget root = instance.getRoot();
 		root.setDirty();
 
-		helper.saveAsRequired(uh);
+		// Save any changes
+		String errors = helper.saveAsRequired(uh);
+		if (errors != null) {
+			return uh.replyHtmlError("Error saving changes", errors);
+		}
 
 		//set selected row
 		String selectedRow = uh.getRequestValue("index");
@@ -348,39 +360,39 @@ public class ButtonDropdownWidget extends ContainerWidget
 	}
 
 	@Override
-	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XNodes node) throws WbdException
+	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XSelector node) throws WbdException, XDException
 	{
 		super.loadPropertiesFromXml(generator, widget, node);
 
 		// Get the cells
-		XNodes cells;
+		XSelector cells;
 		try
 		{
-			cells = node.getNodes("./buttonDropDowns");
+			cells = node.select("./buttonDropDowns");
 		}
-		catch (XDataException e)
+		catch (XDException e)
 		{
 			throw new WbdException("Error getting cells");
 		}
 		while (cells.next())
 		{
-			String indexStr = cells.getText("./index");
-			String title = cells.getText("./title");
-			String navpoint = cells.getText("./navpoint");
+			String indexStr = cells.getString("./index");
+			String title = cells.getString("./title");
+			String navpoint = cells.getString("./navpoint");
 
 			WbdChildIndex index = new WbdChildIndex(BUTTONDROPDOWN_INDEX_PREFIX + indexStr);
 			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
 			widget.defineProperty(new WbdNavPointProperty("navpoint", index, "Navpoint", navpoint));
 			try
 			{
-				XNodes widgetNode = cells.getNodes("./widget");
+				XSelector widgetNode = cells.select("./widget");
 				if (widgetNode.next())
 				{
-					WbdWidget child = WbdWidget.loadBasicPropertiesFromXml(generator, widgetNode);
-					child.setParent(widget, index);
+					WbdWidget child = new WbdWidget(widget, index);
+					child.loadPropertiesFromXml(generator, widgetNode);
 				}
 			}
-			catch (XDataException e)
+			catch (XDException e)
 			{
 				throw new WbdException("Error finding cell widget: " + e);
 			}

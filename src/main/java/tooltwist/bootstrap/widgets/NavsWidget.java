@@ -2,9 +2,12 @@ package tooltwist.bootstrap.widgets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import tooltwist.bootstrap.properties.WbdSelectProperty;
 import tooltwist.repository.ToolTwist;
 import tooltwist.wbd.CodeInserter;
@@ -34,13 +37,14 @@ import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdVersionSelector;
 import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WidgetId;
+
 import com.dinaa.DinaaException;
-import com.dinaa.data.XDataException;
-import com.dinaa.data.XNodes;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 import com.dinaa.ui.UimResult;
 import com.dinaa.xpc.XpcSecurity;
+import com.tooltwist.xdata.XDException;
+import com.tooltwist.xdata.XSelector;
 
 
 /**
@@ -321,7 +325,10 @@ public class NavsWidget extends ContainerWidget
 		rows = (Integer.valueOf(rows) + 1) + "";
 		instance.setProperty("rows",null, rows);
 
-		helper.saveAsRequired(uh);
+		String errors = helper.saveAsRequired(uh);
+		if (errors != null) {
+			return uh.replyHtmlError("Error saving changes", errors);
+		}
 
 		String html = helper.htmlForLayoutEditorPane(generator, uh, root);
 
@@ -348,7 +355,11 @@ public class NavsWidget extends ContainerWidget
 		if (Integer.valueOf(rows) > 0)
 			instance.setProperty("rows",null, rows);
 
-		helper.saveAsRequired(uh);
+		// Save any previous changes
+		String errors = helper.saveAsRequired(uh);
+		if (errors != null) {
+			return uh.replyHtmlError("Error saving changes", errors);
+		}
 
 		String html = helper.htmlForLayoutEditorPane(generator, uh, root);
 
@@ -371,7 +382,10 @@ public class NavsWidget extends ContainerWidget
 		WbdWidget root = instance.getRoot();
 		root.setDirty();
 
-		helper.saveAsRequired(uh);
+		String errors = helper.saveAsRequired(uh);
+		if (errors != null) {
+			return uh.replyJavascriptError("Error saving changes", errors);
+		}
 
 		//set selected row
 		String selectedRow = uh.getRequestValue("index");
@@ -390,39 +404,39 @@ public class NavsWidget extends ContainerWidget
 	}
 
 	@Override
-	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XNodes node) throws WbdException
+	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XSelector node) throws WbdException, XDException
 	{
 		super.loadPropertiesFromXml(generator, widget, node);
 
 		// Get the cells
-		XNodes cells;
+		XSelector cells;
 		try
 		{
-			cells = node.getNodes("./navs");
+			cells = node.select("./navs");
 		}
-		catch (XDataException e)
+		catch (XDException e)
 		{
 			throw new WbdException("Error getting cells");
 		}
 		while (cells.next())
 		{
-			String indexStr = cells.getText("./index");
-			String classId = cells.getText("./class");
-			String title = cells.getText("./title");
+			String indexStr = cells.getString("./index");
+			String classId = cells.getString("./class");
+			String title = cells.getString("./title");
 
 			WbdChildIndex index = new WbdChildIndex(NAVS_INDEX_PREFIX + indexStr);
 			widget.defineProperty(new WbdStringProperty("class", index, "Class", classId));
 			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
 			try
 			{
-				XNodes widgetNode = cells.getNodes("./widget");
+				XSelector widgetNode = cells.select("./widget");
 				if (widgetNode.next())
 				{
-					WbdWidget child = WbdWidget.loadBasicPropertiesFromXml(generator, widgetNode);
-					child.setParent(widget, index);
+					WbdWidget child = new WbdWidget(widget, index);
+					child.loadPropertiesFromXml(generator, widgetNode);
 				}
 			}
-			catch (XDataException e)
+			catch (XDException e)
 			{
 				throw new WbdException("Error finding cell widget: " + e);
 			}

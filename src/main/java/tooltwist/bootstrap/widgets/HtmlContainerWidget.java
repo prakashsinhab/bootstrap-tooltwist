@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import tooltwist.bootstrap.properties.WbdSelectProperty;
-import tooltwist.ecommerce.RoutingUIM;
 import tooltwist.repository.ToolTwist;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
@@ -17,7 +16,6 @@ import tooltwist.wbd.ContainerWidget;
 import tooltwist.wbd.DesignerHelper;
 import tooltwist.wbd.DesignerRole;
 import tooltwist.wbd.DesignerUIM;
-import tooltwist.wbd.Navpoint;
 import tooltwist.wbd.Snippet;
 import tooltwist.wbd.UserPreferences;
 import tooltwist.wbd.WbdWidgetController;
@@ -28,18 +26,14 @@ import tooltwist.wbd.SnippetParam;
 import tooltwist.wbd.SnippetParamList;
 import tooltwist.wbd.StylesheetCodeInserter;
 import tooltwist.wbd.StylesheetLinkInserter;
-import tooltwist.wbd.WbdCache;
 import tooltwist.wbd.WbdChildIndex;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
 import tooltwist.wbd.WbdLibrary;
-import tooltwist.wbd.WbdNavPointProperty;
 import tooltwist.wbd.WbdProperty;
 import tooltwist.wbd.WbdProperty.DisplayMode;
-import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdRenderHelper;
-import tooltwist.wbd.WbdSession;
 import tooltwist.wbd.WbdSizeInfo;
 import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdVersionSelector;
@@ -47,13 +41,12 @@ import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WidgetId;
 
 import com.dinaa.DinaaException;
-import com.dinaa.data.XData;
-import com.dinaa.data.XDataException;
-import com.dinaa.data.XNodes;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 import com.dinaa.ui.UimResult;
 import com.dinaa.xpc.XpcSecurity;
+import com.tooltwist.xdata.XDException;
+import com.tooltwist.xdata.XSelector;
 
 /**
  * NavBar Widget
@@ -357,7 +350,11 @@ public class HtmlContainerWidget extends ContainerWidget
 		rows = (Integer.valueOf(rows) + 1) + "";
 		instance.setProperty("rows",null, rows);
 		
-		helper.saveAsRequired(uh);
+		// Save any previous changes
+		String errors = helper.saveAsRequired(uh);
+		if (errors != null) {
+			return uh.replyHtmlError("Error saving changes", errors);
+		}
 		
 		String html = helper.htmlForLayoutEditorPane(generator, uh, root);
 
@@ -382,9 +379,13 @@ public class HtmlContainerWidget extends ContainerWidget
 		String rows = instance.getProperty("rows",null);
 		rows = (Integer.valueOf(rows) - 1) + "";
 		if (Integer.valueOf(rows) > 0)
-			instance.setProperty("rows",null, rows);
+			instance.setProperty("rows", null, rows);
 		
-		helper.saveAsRequired(uh);
+		// Save any previous changes
+		String errors = helper.saveAsRequired(uh);
+		if (errors != null) {
+			return uh.replyHtmlError("Error saving changes", errors);
+		}
 		
 		String html = helper.htmlForLayoutEditorPane(generator, uh, root);
 
@@ -406,7 +407,11 @@ public class HtmlContainerWidget extends ContainerWidget
 		WbdWidget root = instance.getRoot();
 		root.setDirty();
 		
-		helper.saveAsRequired(uh);
+		// Save any previous changes
+		String errors = helper.saveAsRequired(uh);
+		if (errors != null) {
+			return uh.replyHtmlError("Error saving changes", errors);
+		}
 		
 		//set selected row
 		String selectedRow = uh.getRequestValue("index");
@@ -425,26 +430,26 @@ public class HtmlContainerWidget extends ContainerWidget
 	}
 	
 	@Override
-	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XNodes node) throws WbdException
+	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XSelector node) throws WbdException, XDException
 	{
 		super.loadPropertiesFromXml(generator, widget, node);
 
 		// Get the cells
-		XNodes cells;
+		XSelector cells;
 		try
 		{
-			cells = node.getNodes("./divChild");
+			cells = node.select("./divChild");
 		}
-		catch (XDataException e)
+		catch (XDException e)
 		{
 			throw new WbdException("Error getting cells");
 		}
 		while (cells.next())
 		{
-			String indexStr = cells.getText("./index");
-			String elementId = cells.getText("./elementId");
-			String clazz = cells.getText("./class");
-			String tag = cells.getText("./tag");
+			String indexStr = cells.getString("./index");
+			String elementId = cells.getString("./elementId");
+			String clazz = cells.getString("./class");
+			String tag = cells.getString("./tag");
 			
 			if (tag == null || tag.equals("")) 
 				tag = DEFAULT_TAG;
@@ -456,14 +461,14 @@ public class HtmlContainerWidget extends ContainerWidget
 			
 			try
 			{
-				XNodes widgetNode = cells.getNodes("./widget");
+				XSelector widgetNode = cells.select("./widget");
 				if (widgetNode.next())
 				{
-					WbdWidget child = WbdWidget.loadBasicPropertiesFromXml(generator, widgetNode);
-					child.setParent(widget, index);
+					WbdWidget child = new WbdWidget(widget, index);
+					child.loadPropertiesFromXml(generator, widgetNode);
 				}
 			}
-			catch (XDataException e)
+			catch (XDException e)
 			{
 				throw new WbdException("Error finding cell widget: " + e);
 			}

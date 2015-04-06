@@ -11,7 +11,11 @@
           
     {{#imageList}}
 			<div class="item {{#active}}active{{/active}}">
+{{#DESIGNER_MODE}}
+				<img src="{{image}}" alt="Banner">
+{{/DESIGNER_MODE}}{{^DESIGNER_MODE}}
 				<a href="{{url}}"><img src="{{image}}" alt="Banner"></a>
+{{/DESIGNER_MODE}}
 			</div>
     {{/imageList}}
    

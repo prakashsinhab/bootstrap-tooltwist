@@ -1,7 +1,7 @@
 {
 	"imageList" : [
 		{
-			"image": "/ttsvr/cloudmall/images/banner1.jpg",
+			"image": "/ttsvr/bootstrap/images/banner1.jpg",
 			"active": "true",
 			"index": "0"
 		}

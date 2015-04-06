@@ -34,12 +34,12 @@ import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WidgetId;
 
 import com.dinaa.DinaaException;
-import com.dinaa.data.XDataException;
-import com.dinaa.data.XNodes;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 import com.dinaa.ui.UimResult;
 import com.dinaa.xpc.XpcSecurity;
+import com.tooltwist.xdata.XDException;
+import com.tooltwist.xdata.XSelector;
 
 /**
  * Accordion Widget
@@ -299,7 +299,9 @@ public class AccordionWidget extends ContainerWidget
 		rows = (Integer.valueOf(rows) + 1) + "";
 		instance.setProperty("rows",null, rows);
 		
-		helper.saveAsRequired(uh);
+		String error = helper.saveAsRequired(uh);
+		if (error != null)
+			return uh.replyHtmlError("Warning - your changes could not be saved", error);
 		
 		String html = helper.htmlForLayoutEditorPane(generator, uh, root);
 
@@ -326,7 +328,9 @@ public class AccordionWidget extends ContainerWidget
 		if (Integer.valueOf(rows) > 0)
 			instance.setProperty("rows",null, rows);
 		
-		helper.saveAsRequired(uh);
+		String error = helper.saveAsRequired(uh);
+		if (error != null)
+			return uh.replyHtmlError("Warning - your changes could not be saved", error);
 		
 		String html = helper.htmlForLayoutEditorPane(generator, uh, root);
 
@@ -348,7 +352,9 @@ public class AccordionWidget extends ContainerWidget
 		WbdWidget root = instance.getRoot();
 		root.setDirty();
 		
-		helper.saveAsRequired(uh);
+		String error = helper.saveAsRequired(uh);
+		if (error != null)
+			return uh.replyHtmlError("Warning - your changes could not be saved", error);
 		
 		//set selected row
 		String selectedRow = uh.getRequestValue("index");
@@ -369,38 +375,38 @@ public class AccordionWidget extends ContainerWidget
 	}
 	
 	@Override
-	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XNodes node) throws WbdException
+	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XSelector node) throws WbdException, XDException
 	{
 		super.loadPropertiesFromXml(generator, widget, node);
 
 		// Get the cells
-		XNodes cells;
+		XSelector cells;
 		try
 		{
-			cells = node.getNodes("./accordions");
+			cells = node.select("./accordions");
 		}
-		catch (XDataException e)
+		catch (XDException e)
 		{
 			throw new WbdException("Error getting cells");
 		}
 		while (cells.next())
 		{
-			String indexStr = cells.getText("./index");
-			String title = cells.getText("./title");
+			String indexStr = cells.getString("./index");
+			String title = cells.getString("./title");
 
 			WbdChildIndex index = new WbdChildIndex(ACCORDION_INDEX_PREFIX + indexStr);
 			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
 
 			try
 			{
-				XNodes widgetNode = cells.getNodes("./widget");
+				XSelector widgetNode = cells.select("./widget");
 				if (widgetNode.next())
 				{
-					WbdWidget child = WbdWidget.loadBasicPropertiesFromXml(generator, widgetNode);
-					child.setParent(widget, index);
+					WbdWidget child = new WbdWidget(widget, index);
+					child.loadPropertiesFromXml(generator, widgetNode);
 				}
 			}
-			catch (XDataException e)
+			catch (XDException e)
 			{
 				throw new WbdException("Error finding cell widget: " + e);
 			}
