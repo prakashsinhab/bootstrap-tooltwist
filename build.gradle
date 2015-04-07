@@ -19,19 +19,19 @@ sourceSets {
 
 dependencies {
 
-    // Dependencies if you have ToolTwist source code installed
-    compile project(':tooltwist')
-    compile project(':ttWbd')
-    //compile project(':ttStd')
-    //compile project(':xdata')
-    //compile project(':filemap')
+    /* Dependencies if you have ToolTwist source code installed.
+	compile project(':xdata')
+	compile project(':filemap')
+	compile project(':tooltwist')
+	compile project(':ttWbd')
+	compile project(':ttStd')
+	*/
 
-    // ToolTwist Dependencies 
-    //compile 'com.tooltwist:tooltwist:8.3.3-SNAPSHOT'  
-    //compile 'com.tooltwist:ttWbd:8.3.3-SNAPSHOT'  
-    compile 'com.tooltwist:ttStd:8.3.3-SNAPSHOT'
-    compile 'com.tooltwist:xdata:8.3.3-SNAPSHOT' 
-    compile 'com.tooltwist:filemap:8.3.3-SNAPSHOT' 
+	/* ToolTwist Dependencies
+	compile group: 'com.tooltwist', name: 'tooltwist', version: TOOLTWIST_VERSION
+	compile group: 'com.tooltwist', name: 'ttStd', version: TOOLTWIST_VERSION
+	*/
+	compile group: 'com.tooltwist', name: 'ttWbd', version: TOOLTWIST_VERSION 
     
     // This jar contains stubs used only while compiling. At runtime the
     // web server (e.g. Tomcat) provides the real implementation of the API.
