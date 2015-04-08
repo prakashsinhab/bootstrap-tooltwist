@@ -5,26 +5,23 @@ import java.io.PrintWriter;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.ContainerWidget;
-import tooltwist.wbd.JavascriptCodeInserter;
 import tooltwist.wbd.JavascriptLinkInserter;
-import tooltwist.wbd.PageImportCodeInserter;
 import tooltwist.wbd.SnippetParam;
 import tooltwist.wbd.StylesheetCodeInserter;
 import tooltwist.wbd.WbdCache;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
-import tooltwist.wbd.WbdNavPointProperty;
 import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSizeInfo;
 import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdWidget;
-import tooltwist.wbd.WbdWidgetController;
-import tooltwist.wbd.WbdProductionHelper;
-import com.dinaa.data.XNodes;
+
 //import tooltwist.bootstrap.productionHelpers.RowProductionHelper;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
+import com.tooltwist.xdata.XDException;
+import com.tooltwist.xdata.XSelector;
 
 /**
  * Row of columns
@@ -32,8 +29,6 @@ import com.dinaa.ui.UimHelper;
 public class RowWidget extends ContainerWidget
 {
 	private static final String SNIPPET_PREVIEW = "row_preview.html";
-	private static final String SNIPPET_DESIGN = "row_design.html";
-	private static final String SNIPPET_PRODUCTION = "row_production.jsp";
 	private static final boolean USE_PRODUCTION_HELPER = false;
 
 	@Override
@@ -200,15 +195,19 @@ public class RowWidget extends ContainerWidget
 	}
 	
 	@Override
-	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XNodes node) throws WbdException
+	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XSelector node) throws WbdException
 	{
 		// Read the properties of this widget
-		super.loadPropertiesFromXml(generator, widget, node);
+		try {
+			super.loadPropertiesFromXml(generator, widget, node);
+		} catch (XDException e) {
+			throw new WbdException("Error getting cells");
+		}
 
-		// Get the child, if there is one.
+		// Get the child, if there is one. O
 		flowChildren_loadPropertiesFromXml(generator, widget, node, null);
 	}
-
+	
 	@Override
 	protected void writeProperties(WbdGenerator generator, WbdWidget instance, PrintWriter pw, int indent) throws WbdException
 	{

@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import tooltwist.bootstrap.properties.WbdSelectProperty;
-import tooltwist.ecommerce.RoutingUIM;
 import tooltwist.repository.ToolTwist;
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
@@ -17,43 +16,37 @@ import tooltwist.wbd.ContainerWidget;
 import tooltwist.wbd.DesignerHelper;
 import tooltwist.wbd.DesignerRole;
 import tooltwist.wbd.DesignerUIM;
-import tooltwist.wbd.Navpoint;
 import tooltwist.wbd.Snippet;
-import tooltwist.wbd.UserPreferences;
-import tooltwist.wbd.WbdWidgetController;
-import tooltwist.wbd.ZoneWidget;
 import tooltwist.wbd.Snippet.SnippetLocation;
-import tooltwist.wbd.UserPreferences.ColorScheme;
 import tooltwist.wbd.SnippetParam;
 import tooltwist.wbd.SnippetParamList;
 import tooltwist.wbd.StylesheetCodeInserter;
 import tooltwist.wbd.StylesheetLinkInserter;
-import tooltwist.wbd.WbdCache;
+import tooltwist.wbd.UserPreferences;
+import tooltwist.wbd.UserPreferences.ColorScheme;
 import tooltwist.wbd.WbdChildIndex;
 import tooltwist.wbd.WbdException;
 import tooltwist.wbd.WbdGenerator;
 import tooltwist.wbd.WbdGenerator.GenerationMode;
 import tooltwist.wbd.WbdLibrary;
-import tooltwist.wbd.WbdNavPointProperty;
 import tooltwist.wbd.WbdProperty;
 import tooltwist.wbd.WbdProperty.DisplayMode;
-import tooltwist.wbd.WbdRadioTextProperty;
 import tooltwist.wbd.WbdRenderHelper;
-import tooltwist.wbd.WbdSession;
 import tooltwist.wbd.WbdSizeInfo;
 import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdVersionSelector;
 import tooltwist.wbd.WbdWidget;
+import tooltwist.wbd.WbdWidgetController;
 import tooltwist.wbd.WidgetId;
+import tooltwist.wbd.ZoneWidget;
 
 import com.dinaa.DinaaException;
-import com.dinaa.data.XData;
-import com.dinaa.data.XDataException;
-import com.dinaa.data.XNodes;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 import com.dinaa.ui.UimResult;
 import com.dinaa.xpc.XpcSecurity;
+import com.tooltwist.xdata.XDException;
+import com.tooltwist.xdata.XSelector;
 
 /**
  * NavBar Widget
@@ -308,16 +301,6 @@ public class HtmlContainerWidget extends ContainerWidget
     		throw wbdException;
     	}
 	}
-
-	private SnippetParam[] getSnippetParams(WbdGenerator generator, WbdWidget instance, UimData ud) throws WbdException {
-//		String myProperty = instance.getProperty("myProperty", null);
-//		String myNavpoint = instance.getProperty("myNavpoint", null);
-		SnippetParam[] params = {
-//			new SnippetParam("myProperty", myProperty),
-//			new SnippetParam("myNavpoint", myNavpoint)
-		};
-		return params;
-	}
 	
 	private String codeToInsert(WbdGenerator generator, WbdWidget instance, SnippetLocation location, String templateName, SnippetParam[] params) throws WbdException {
 		Snippet snippet = new Snippet(generator, instance, location, templateName);		
@@ -425,45 +408,45 @@ public class HtmlContainerWidget extends ContainerWidget
 	}
 	
 	@Override
-	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XNodes node) throws WbdException
+	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XSelector node) throws WbdException
 	{
-		super.loadPropertiesFromXml(generator, widget, node);
 
 		// Get the cells
-		XNodes cells;
+		XSelector cells;
 		try
 		{
-			cells = node.getNodes("./divChild");
+			super.loadPropertiesFromXml(generator, widget, node);
+			cells = node.select("./divChild");
 		}
-		catch (XDataException e)
+		catch (XDException e)
 		{
 			throw new WbdException("Error getting cells");
 		}
 		while (cells.next())
 		{
-			String indexStr = cells.getText("./index");
-			String elementId = cells.getText("./elementId");
-			String clazz = cells.getText("./class");
-			String tag = cells.getText("./tag");
-			
-			if (tag == null || tag.equals("")) 
-				tag = DEFAULT_TAG;
-
-			WbdChildIndex index = new WbdChildIndex(DIV_INDEX_PREFIX + indexStr);
-			widget.defineProperty(new WbdStringProperty("elementId", index, "Element Id", elementId));
-			widget.defineProperty(new WbdSelectProperty("tag", index, "Tag", "address,article,div,em,footer,h1,h2,h3,h4,h5,h6,header,hgroup,main,nav,p,section,small,span,strong", tag));
-			widget.defineProperty(new WbdStringProperty("class", index, "Class", clazz));
-			
 			try
 			{
-				XNodes widgetNode = cells.getNodes("./widget");
+				String indexStr = cells.getString("./index");
+				String elementId = cells.getString("./elementId");
+				String clazz = cells.getString("./class");
+				String tag = cells.getString("./tag");
+				
+				if (tag == null || tag.equals("")) 
+					tag = DEFAULT_TAG;
+	
+				WbdChildIndex index = new WbdChildIndex(DIV_INDEX_PREFIX + indexStr);
+				widget.defineProperty(new WbdStringProperty("elementId", index, "Element Id", elementId));
+				widget.defineProperty(new WbdSelectProperty("tag", index, "Tag", "address,article,div,em,footer,h1,h2,h3,h4,h5,h6,header,hgroup,main,nav,p,section,small,span,strong", tag));
+				widget.defineProperty(new WbdStringProperty("class", index, "Class", clazz));
+			
+				XSelector widgetNode = cells.select("./widget");
 				if (widgetNode.next())
 				{
-					WbdWidget child = WbdWidget.loadBasicPropertiesFromXml(generator, widgetNode);
+					WbdWidget child = new WbdWidget(widget, index);
 					child.setParent(widget, index);
 				}
 			}
-			catch (XDataException e)
+			catch (XDException e)
 			{
 				throw new WbdException("Error finding cell widget: " + e);
 			}

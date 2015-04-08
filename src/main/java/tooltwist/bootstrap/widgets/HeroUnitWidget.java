@@ -1,6 +1,7 @@
 package tooltwist.bootstrap.widgets;
 
 import java.io.PrintWriter;
+
 import tooltwist.wbd.CodeInserter;
 import tooltwist.wbd.CodeInserterList;
 import tooltwist.wbd.ContainerWidget;
@@ -12,9 +13,11 @@ import tooltwist.wbd.WbdRenderHelper;
 import tooltwist.wbd.WbdSizeInfo;
 import tooltwist.wbd.WbdStringProperty;
 import tooltwist.wbd.WbdWidget;
-import com.dinaa.data.XNodes;
+
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
+import com.tooltwist.xdata.XDException;
+import com.tooltwist.xdata.XSelector;
 
 /**
  * Hero Unit
@@ -206,12 +209,16 @@ public class HeroUnitWidget extends ContainerWidget
 	}
 
 	@Override
-	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XNodes node) throws WbdException
+	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XSelector node) throws WbdException
 	{
 		// Read the properties of this widget
-		super.loadPropertiesFromXml(generator, widget, node);
+		try {
+			super.loadPropertiesFromXml(generator, widget, node);
+		} catch (XDException e) {
+			throw new WbdException("Error getting cells");
+		}
 
-		// Get the child, if there is one.
+		// Get the child, if there is one. O
 		flowChildren_loadPropertiesFromXml(generator, widget, node, null);
 	}
 

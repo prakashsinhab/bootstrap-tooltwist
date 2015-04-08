@@ -42,12 +42,12 @@ import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WidgetId;
 
 import com.dinaa.DinaaException;
-import com.dinaa.data.XDataException;
-import com.dinaa.data.XNodes;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 import com.dinaa.ui.UimResult;
 import com.dinaa.xpc.XpcSecurity;
+import com.tooltwist.xdata.XDException;
+import com.tooltwist.xdata.XSelector;
 
 /**
  * NavBar Widget
@@ -545,56 +545,55 @@ public class NavBarWidget extends ContainerWidget
 	}
 	
 	@Override
-	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XNodes node) throws WbdException
+	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XSelector node) throws WbdException
 	{
-		super.loadPropertiesFromXml(generator, widget, node);
-
 		// Get the cells
-		XNodes cells;
+		XSelector cells;
 		try
 		{
-			cells = node.getNodes("./navBars");
+			super.loadPropertiesFromXml(generator, widget, node);
+			cells = node.select("./navBars");
 		}
-		catch (XDataException e)
+		catch (XDException e)
 		{
 			throw new WbdException("Error getting cells");
 		}
 		while (cells.next())
 		{
-			String indexStr = cells.getText("./index");
-			String display = cells.getText("./display");
-			String type = cells.getText("./type");
-			String title = cells.getText("./title");
-			String linkNavpoint = cells.getText("./linkNavpoint");
-			String navpoint = cells.getText("./navpoint");
-			String parameters = cells.getText("./parameters");
-			String horizontalPosition = cells.getText("./horizontalPosition");
-			String buttonType = cells.getText("./buttonType");
-			String buttonSize = cells.getText("./buttonSize");
-			String buttonGlyphicon = cells.getText("./buttonGlyphicon");
-
-			WbdChildIndex index = new WbdChildIndex(NAVBAR_INDEX_PREFIX + indexStr);
-			widget.defineProperty(new WbdRadioTextProperty("display", index, "Display", "Show,Hide", display));
-			widget.defineProperty(new WbdRadioTextProperty("type", index, "Type", "Link,Button", type));
-			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
-			widget.defineProperty(new WbdRadioTextProperty("horizontalPosition", index, "Position", "left,right", horizontalPosition));
-			widget.defineProperty(new WbdStringProperty("linkNavpoint", index, "Link Navpoint", linkNavpoint));
-			widget.defineProperty(new WbdNavPointProperty("navpoint", index, "Navpoint", navpoint));
-			widget.defineProperty(new WbdStringProperty("parameters", index, "Parameters", parameters));
-			widget.defineProperty(new WbdSelectProperty("buttonType", index, "Button Type", "primary,success,info,warning,danger", buttonType));
-			widget.defineProperty(new WbdRadioTextProperty("buttonSize", index, "Button Size", "Large:lg,Small:sm,Extra Small:xs", buttonSize));
-			widget.defineProperty(new WbdStringProperty("buttonGlyphicon", index, "Button Glyphicon", buttonGlyphicon));
-			
 			try
 			{
-				XNodes widgetNode = cells.getNodes("./widget");
+				String indexStr = cells.getString("./index");
+				String display = cells.getString("./display");
+				String type = cells.getString("./type");
+				String title = cells.getString("./title");
+				String linkNavpoint = cells.getString("./linkNavpoint");
+				String navpoint = cells.getString("./navpoint");
+				String parameters = cells.getString("./parameters");
+				String horizontalPosition = cells.getString("./horizontalPosition");
+				String buttonType = cells.getString("./buttonType");
+				String buttonSize = cells.getString("./buttonSize");
+				String buttonGlyphicon = cells.getString("./buttonGlyphicon");
+	
+				WbdChildIndex index = new WbdChildIndex(NAVBAR_INDEX_PREFIX + indexStr);
+				widget.defineProperty(new WbdRadioTextProperty("display", index, "Display", "Show,Hide", display));
+				widget.defineProperty(new WbdRadioTextProperty("type", index, "Type", "Link,Button", type));
+				widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
+				widget.defineProperty(new WbdRadioTextProperty("horizontalPosition", index, "Position", "left,right", horizontalPosition));
+				widget.defineProperty(new WbdStringProperty("linkNavpoint", index, "Link Navpoint", linkNavpoint));
+				widget.defineProperty(new WbdNavPointProperty("navpoint", index, "Navpoint", navpoint));
+				widget.defineProperty(new WbdStringProperty("parameters", index, "Parameters", parameters));
+				widget.defineProperty(new WbdSelectProperty("buttonType", index, "Button Type", "primary,success,info,warning,danger", buttonType));
+				widget.defineProperty(new WbdRadioTextProperty("buttonSize", index, "Button Size", "Large:lg,Small:sm,Extra Small:xs", buttonSize));
+				widget.defineProperty(new WbdStringProperty("buttonGlyphicon", index, "Button Glyphicon", buttonGlyphicon));
+			
+				XSelector widgetNode = cells.select("./widget");
 				if (widgetNode.next())
 				{
-					WbdWidget child = WbdWidget.loadBasicPropertiesFromXml(generator, widgetNode);
+					WbdWidget child = new WbdWidget(widget, index);
 					child.setParent(widget, index);
 				}
 			}
-			catch (XDataException e)
+			catch (XDException e)
 			{
 				throw new WbdException("Error finding cell widget: " + e);
 			}

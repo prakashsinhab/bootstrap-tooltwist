@@ -40,12 +40,12 @@ import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WidgetId;
 
 import com.dinaa.DinaaException;
-import com.dinaa.data.XDataException;
-import com.dinaa.data.XNodes;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 import com.dinaa.ui.UimResult;
 import com.dinaa.xpc.XpcSecurity;
+import com.tooltwist.xdata.XDException;
+import com.tooltwist.xdata.XSelector;
 
 
 /**
@@ -348,39 +348,40 @@ public class ButtonDropdownWidget extends ContainerWidget
 	}
 
 	@Override
-	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XNodes node) throws WbdException
+	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XSelector node) throws WbdException
 	{
-		super.loadPropertiesFromXml(generator, widget, node);
-
+		
 		// Get the cells
-		XNodes cells;
+		XSelector cells;
 		try
 		{
-			cells = node.getNodes("./buttonDropDowns");
+			super.loadPropertiesFromXml(generator, widget, node);
+			cells = node.select("./buttonDropDowns");
 		}
-		catch (XDataException e)
+		catch (XDException e)
 		{
 			throw new WbdException("Error getting cells");
 		}
 		while (cells.next())
 		{
-			String indexStr = cells.getText("./index");
-			String title = cells.getText("./title");
-			String navpoint = cells.getText("./navpoint");
-
-			WbdChildIndex index = new WbdChildIndex(BUTTONDROPDOWN_INDEX_PREFIX + indexStr);
-			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
-			widget.defineProperty(new WbdNavPointProperty("navpoint", index, "Navpoint", navpoint));
 			try
 			{
-				XNodes widgetNode = cells.getNodes("./widget");
+				String indexStr = cells.getString("./index");
+				String title = cells.getString("./title");
+				String navpoint = cells.getString("./navpoint");
+	
+				WbdChildIndex index = new WbdChildIndex(BUTTONDROPDOWN_INDEX_PREFIX + indexStr);
+				widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
+				widget.defineProperty(new WbdNavPointProperty("navpoint", index, "Navpoint", navpoint));
+			
+				XSelector widgetNode = cells.select("./widget");
 				if (widgetNode.next())
 				{
-					WbdWidget child = WbdWidget.loadBasicPropertiesFromXml(generator, widgetNode);
+					WbdWidget child = new WbdWidget(widget, index);
 					child.setParent(widget, index);
 				}
 			}
-			catch (XDataException e)
+			catch (XDException e)
 			{
 				throw new WbdException("Error finding cell widget: " + e);
 			}

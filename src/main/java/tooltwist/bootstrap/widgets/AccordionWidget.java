@@ -34,12 +34,12 @@ import tooltwist.wbd.WbdWidget;
 import tooltwist.wbd.WidgetId;
 
 import com.dinaa.DinaaException;
-import com.dinaa.data.XDataException;
-import com.dinaa.data.XNodes;
 import com.dinaa.ui.UimData;
 import com.dinaa.ui.UimHelper;
 import com.dinaa.ui.UimResult;
 import com.dinaa.xpc.XpcSecurity;
+import com.tooltwist.xdata.XDException;
+import com.tooltwist.xdata.XSelector;
 
 /**
  * Accordion Widget
@@ -190,16 +190,6 @@ public class AccordionWidget extends ContainerWidget
 		} catch (Exception e) {
 			throw new WbdException("Error finding cell widget: " + e);
 		}
-	}
-	
-	private SnippetParam[] getSnippetParams(WbdGenerator generator, WbdWidget instance, UimData ud) throws WbdException {
-//		String myProperty = instance.getProperty("myProperty", null);
-//		String myNavpoint = instance.getProperty("myNavpoint", null);
-		SnippetParam[] params = {
-//			new SnippetParam("myProperty", myProperty),
-//			new SnippetParam("myNavpoint", myNavpoint)
-		};
-		return params;
 	}
 	
 	private void render(WbdGenerator generator, WbdWidget instance, UimData ud, WbdRenderHelper rh) {
@@ -369,43 +359,42 @@ public class AccordionWidget extends ContainerWidget
 	}
 	
 	@Override
-	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XNodes node) throws WbdException
+	protected void loadPropertiesFromXml(WbdGenerator generator, WbdWidget widget, XSelector node) throws WbdException
 	{
-		super.loadPropertiesFromXml(generator, widget, node);
-
 		// Get the cells
-		XNodes cells;
+		XSelector cells;
 		try
 		{
-			cells = node.getNodes("./accordions");
+			super.loadPropertiesFromXml(generator, widget, node);
+			cells = node.select("./accordions");
 		}
-		catch (XDataException e)
+		catch (XDException e)
 		{
 			throw new WbdException("Error getting cells");
 		}
 		while (cells.next())
 		{
-			String indexStr = cells.getText("./index");
-			String title = cells.getText("./title");
-
-			WbdChildIndex index = new WbdChildIndex(ACCORDION_INDEX_PREFIX + indexStr);
-			widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
-
 			try
 			{
-				XNodes widgetNode = cells.getNodes("./widget");
+				String indexStr = cells.getString("./index");
+				String title = cells.getString("./title");
+	
+				WbdChildIndex index = new WbdChildIndex(ACCORDION_INDEX_PREFIX + indexStr);
+				widget.defineProperty(new WbdStringProperty("title", index, "Title", title));
+
+			
+				XSelector widgetNode = cells.select("./widget");
 				if (widgetNode.next())
 				{
-					WbdWidget child = WbdWidget.loadBasicPropertiesFromXml(generator, widgetNode);
+					WbdWidget child = new WbdWidget(widget, index);
 					child.setParent(widget, index);
 				}
 			}
-			catch (XDataException e)
+			catch (XDException e)
 			{
 				throw new WbdException("Error finding cell widget: " + e);
 			}
 		}
-	
 		
 		//for children
 		this.flowChildren_loadPropertiesFromXml(generator, widget, node, null);
