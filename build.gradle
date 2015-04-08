@@ -3,7 +3,6 @@ apply plugin: 'eclipse-wtp'
 apply plugin: 'artifactory'
 apply plugin: 'maven' // so a POM file can be uploaded to repo
 
-
 //----------------------------------------------------------------------
 // Gradle lacks the "provided" dependency so we'll have to add it.
 // http://blog.codeaholics.org/2012/emulating-mavens-provided-scope-in-gradle/
@@ -18,35 +17,25 @@ sourceSets {
 }
 //----------------------------------------------------------------------
 
-
 dependencies {
-	/* Build using standard ToolTwist libraries
-	*/
-	compile group: 'com.tooltwist', name: 'xdata', version: '5.0.0'
-	compile group: 'com.tooltwist', name: 'filemap', version: '5.0.0'
-	compile group: 'com.tooltwist', name: 'ttWbd', version: '8.3.2'
 
-	/* Build using ToolTwist source code
+    /* Dependencies if you have ToolTwist source code installed.
+	compile project(':xdata')
+	compile project(':filemap')
 	compile project(':tooltwist')
 	compile project(':ttWbd')
 	compile project(':ttStd')
-	compile project(':xdata')
-	compile project(':filemap')
 	*/
 
-	//Dependencies
-	/*
-	compile group: 'net.sourceforge.htmlcleaner', name: 'htmlcleaner', version: '2.2'
-	compile group: 'org.xhtmlrenderer', name: 'core-renderer', version: 'R8pre2'
-	compile group: 'org.json', name: 'json', version: '20140107'
-	compile group: 'net.sf.ehcache', name: 'ehcache-core', version: '2.6.0'
-	compile group: 'javax.xml', name: 'jaxrpc', version: '1.1'
-	compile group: 'org.apache.axis2', name: 'axis2', version: '1.5.4'
-	compile group: 'commons-discovery', name: 'commons-discovery', version: '0.2' */
-
-	// This jar contains stubs used only while compiling. At runtime the
-	// web server (e.g. Tomcat) provides the real implementation of the API.
-	provided 'javax:javaee-api:6.0'
+	/* ToolTwist Dependencies
+	compile group: 'com.tooltwist', name: 'tooltwist', version: TOOLTWIST_VERSION
+	compile group: 'com.tooltwist', name: 'ttStd', version: TOOLTWIST_VERSION
+	*/
+	compile group: 'com.tooltwist', name: 'ttWbd', version: TOOLTWIST_VERSION 
+    
+    // This jar contains stubs used only while compiling. At runtime the
+    // web server (e.g. Tomcat) provides the real implementation of the API.
+    provided 'javax:javaee-api:6.0'
 
 	// Used only during unit testing
 	testCompile group: 'junit', name: 'junit', version: '4.8.2'
