@@ -58,7 +58,11 @@
 
 <!--[if gt IE 9]><!-->
 <script src="/ttsvr/studylane_t/libraries/jquery/2.1.0/jquery-2.1.0.min.js"></script>
+
 <!--<![endif]-->
+
+<!-- Mustache -->
+<script src="/ttsvr/studylane_t/libraries/mustache/mustache.min.js"></script>
 
 <!-- Font Awesome -->
 <link href="/ttsvr/studylane_t/libraries/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
