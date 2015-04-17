@@ -1,27 +1,33 @@
+{{#DESIGNER_MODE}}
+<!--Carousel-->
+    {{#viewHelper.imageList}}
+			<div>
+				<img src="{{image}}" alt="{{image}}">
+			</div>
+    {{/viewHelper.imageList}}
+
+
+
+{{/DESIGNER_MODE}}{{^DESIGNER_MODE}}
+
 <div id="carousel-example-generic" class="carousel slide">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-   {{#imageList}}
+   {{#viewHelper.imageList}}
 	    <li data-target="#carousel-example-generic" data-slide-to="{{index}}" class="{{#active}}active{{/active}}"></li>
-    {{/imageList}}
+    {{/viewHelper.imageList}}
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
-          
-    {{#imageList}}
+    {{#viewHelper.imageList}}
 			<div class="item {{#active}}active{{/active}}">
-{{#DESIGNER_MODE}}
-				<img src="{{image}}" alt="Banner">
-{{/DESIGNER_MODE}}{{^DESIGNER_MODE}}
 				<a href="{{url}}"><img src="{{image}}" alt="Banner"></a>
-{{/DESIGNER_MODE}}
 			</div>
-    {{/imageList}}
-   
+    {{/viewHelper.imageList}}   
   </div>
   
-  {{#isNutra}}
+  {{#viewHelper.isNutra}}
 	<div class="callToAction">
 		<a href="/ttsvr/n/Superfood-Blends/nutraorganics-360?categoryId=1">
 			<img src="/ttsvr/cloudmall/images/nutraorganics/button-superfoods.png" alt="Nutra Superfoods" />
@@ -39,7 +45,7 @@
 			<img src="/ttsvr/cloudmall/images/nutraorganics/button-pantry.png" alt="Nutra Pantry" />
 		</a>
 	</div>
-{{/isNutra}}
+{{/viewHelper.isNutra}}
 
   <!-- Controls -->
   <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -49,3 +55,4 @@
     <span class="icon-next"></span>
   </a>
 </div>
+{{/DESIGNER_MODE}}
