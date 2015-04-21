@@ -1,6 +1,7 @@
 <!--START-->
 <!-- header for responsivePage -->
 <%@page import="tooltwist.myrp.util.FreemiumUtil"%>
+<%@page import="tooltwist.myrp.util.Config"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.myrp.util.WebUtil"%>
 <%@page import="com.myrp.util.Cloudfront"%>
