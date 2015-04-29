@@ -5,24 +5,35 @@ group = 'com.tooltwist'
 version = '1.0.0-SNAPSHOT'
 sourceCompatibility = 1.7
 
+task sourceJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourceJar
+}
+
+//----------------------------------------------------------------------
+// Gradle lacks the "provided" dependency so we'll have to add it.
+// http://blog.codeaholics.org/2012/emulating-mavens-provided-scope-in-gradle/
 configurations {
     provided
     published
 }
-
 sourceSets {
     main.compileClasspath += configurations.provided
     test.compileClasspath += configurations.provided
     test.runtimeClasspath += configurations.provided
-    main { resources { srcDir 'src' } }
 }
+//----------------------------------------------------------------------
 
 repositories {
     maven {
-        url RESOLVE_ARTIFACTORY_CONTEXTURL + RESOLVE_ARTIFACTORY_REPO
+        url RESOLVE_CONTEXTURL + RESOLVE_REPO
         credentials {
-            username = "${RESOLVE_ARTIFACTORY_USER}"
-            password = "${RESOLVE_ARTIFACTORY_PASSWORD}"
+            username = "${ARTIFACTORY_USER}"
+            password = "${ARTIFACTORY_PASSWORD}"
         }
     }
     ivy {
