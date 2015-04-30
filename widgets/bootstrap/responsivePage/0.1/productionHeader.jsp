@@ -20,6 +20,7 @@
     %%topCode%%
     <div class="container">
       <input type="hidden" name="serverUrl" value="<%=WbdCache.getProperty("server.url")%>">
+      <input type="hidden" name="siteUrl" value="<%=WbdCache.getProperty("site.url")%>">
 
 <%@page import="tooltwist.wbd.Navpoint"%>
 <%@page import="com.dinaa.misc.AltLang"%>
