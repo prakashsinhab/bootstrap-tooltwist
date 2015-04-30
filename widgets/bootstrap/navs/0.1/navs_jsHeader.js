@@ -14,11 +14,11 @@ var Navs = function() {
 		        if(currentUrl && currentUrl.length > 1){
 		        	var paramString = currentUrl[1].split("#");
 		        	if(currentUrl[0].charAt(currentUrl[0].length-1) === "/"){
-		        		url = currentUrl[0].slice(0, -1);		        		
+		        		url = currentUrl[0].slice(0, -1);		
 		        	}
 		        	if(paramString && paramString.length > 1){
 		        		var hash = paramString[1];
-		        		url = url + "#" + hash;
+//		        		url = url + "#" + hash;
 		        	}
 		        }
 		        window.location.href = url; 
