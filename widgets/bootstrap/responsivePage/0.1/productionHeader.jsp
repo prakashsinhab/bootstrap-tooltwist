@@ -1,6 +1,7 @@
 <!--START-->
 <!-- header for responsivePage -->
 <%@page import="tooltwist.myrp.util.FreemiumUtil"%>
+<%@page import="tooltwist.myrp.util.FreemiumErrorCatchUtil"%>
 <%@page import="tooltwist.myrp.util.Config"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.myrp.util.WebUtil"%>
@@ -42,6 +43,8 @@
 
 <%@page import="tooltwist.wbd.WbdCache"%>
 <%@page contentType="text/html; charset=UTF-8" %>
+<% session.removeAttribute("freemiumErrorCatch"); %>
+<% session.removeAttribute("freemiumPageCall"); %>
 
 	%%importCode%%
 	<%

@@ -71,41 +71,47 @@
 			a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0020/9013.js?"+Math.floor(new Date().getTime()/3600000);
 			a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
 		</script>
-		
+		 <%if (FreemiumErrorCatchUtil.isPageError(request)=="true"){ %>
+		<script type="text/javascript">
+		   jQuery('#errorModal').modal();
+		</script>
+		<%}%>
 	</body>
 	
 </html>
 
 <%
-	request.getSession().removeAttribute("propertyDetailSession");
-	request.getSession().removeAttribute("propertySearchSession");
-	request.getSession().removeAttribute("purchaseHistorySession");
-	request.getSession().removeAttribute("relevantAgentSession");
-	request.getSession().removeAttribute("demographicsParagraphSession");
-	request.getSession().removeAttribute("avmSalesHistoryDetailSession");
-	request.getSession().removeAttribute("bsg3PropertyAddressSession");
-	request.getSession().removeAttribute("bsg3PropertyDetailsSession");
-	request.getSession().removeAttribute("bsg3SalesPropertySearchSession");
-	request.getSession().removeAttribute("bsg3ForSaleAdvertisementUrlSession");
-	request.getSession().removeAttribute("bsg3SuggestService");
-	request.getSession().removeAttribute("avmSession");
-	request.getSession().removeAttribute("isOtmSession");
-	request.getSession().removeAttribute("requestTimeSession");
-	request.getSession().removeAttribute("bsg3StreetSalesPropertySearchSession");
-	request.getSession().removeAttribute("bsg3SuburbSalesPropetySearchSession");
-	request.getSession().removeAttribute("bsg3ForSaleAdvertisementUrlSession");
+	session.removeAttribute("propertyDetailSession");
+	session.removeAttribute("propertySearchSession");
+	session.removeAttribute("purchaseHistorySession");
+	session.removeAttribute("relevantAgentSession");
+	session.removeAttribute("demographicsParagraphSession");
+	session.removeAttribute("avmSalesHistoryDetailSession");
+	session.removeAttribute("bsg3PropertyAddressSession");
+	session.removeAttribute("bsg3PropertyDetailsSession");
+	session.removeAttribute("bsg3SalesPropertySearchSession");
+	session.removeAttribute("bsg3ForSaleAdvertisementUrlSession");
+	session.removeAttribute("bsg3SuggestService");
+	session.removeAttribute("avmSession");
+	session.removeAttribute("isOtmSession");
+	session.removeAttribute("requestTimeSession");
+	session.removeAttribute("bsg3StreetSalesPropertySearchSession");
+	session.removeAttribute("bsg3SuburbSalesPropetySearchSession");
+	session.removeAttribute("bsg3ForSaleAdvertisementUrlSession");
 	//WidgetUtil.displayBSGLog(request);
 	
 	//freemium session
-	/* request.getSession().removeAttribute("bsg3PropertyAddressSessionFreemium");
-	request.getSession().removeAttribute("bsg3PropertyAdvertisementsSessionFreemium");
-	request.getSession().removeAttribute("bsg3SalesPropertySearchSessionFreemium");
-	request.getSession().removeAttribute("bsg3SuggestServiceFreemium");
-	request.getSession().removeAttribute("propertySearchSessionFreemium"); */
+	/* session.removeAttribute("bsg3PropertyAddressSessionFreemium");
+	session.removeAttribute("bsg3PropertyAdvertisementsSessionFreemium");
+	session.removeAttribute("bsg3SalesPropertySearchSessionFreemium");
+	session.removeAttribute("bsg3SuggestServiceFreemium");
+	session.removeAttribute("propertySearchSessionFreemium"); */
 	
 	// for Juls
-	/* request.getSession().removeAttribute("propertyDetailSessionFreemium"); */
+	/* session.removeAttribute("propertyDetailSessionFreemium"); */
 	
 	// for Jay
-	request.getSession().removeAttribute("myrpErrorMessages");
+	session.removeAttribute("myrpErrorMessages");
+	session.removeAttribute("freemiumErrorCatch");
+	session.removeAttribute("freemiumPageCall");
 %>
