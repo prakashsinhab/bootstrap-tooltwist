@@ -36,6 +36,7 @@ var Navs = function() {
 		    var n = hash.search("webdesign");
 		    if(n<=0){
 		    	$('.tabbable a[href="' + hash + '"]').tab('show');
+		    	$(window).scrollTop(0);
 		    }
 		    
 		},
