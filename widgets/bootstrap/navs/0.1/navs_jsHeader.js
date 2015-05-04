@@ -21,7 +21,8 @@ var Navs = function() {
 //		        		url = url + "#" + hash;
 		        	}
 		        }
-		        window.location.href = url; 
+		        window.location.href = url;
+		        $(window).scrollTop(0);
 		    });
 
 		    // store the currently selected tab in the hash value
