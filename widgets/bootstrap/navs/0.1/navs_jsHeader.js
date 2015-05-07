@@ -34,7 +34,7 @@ var Navs = function() {
 		    // on load of the page: switch to the currently selected tab
 		    var hash = window.location.hash;
 		    var n = hash.search("webdesign");
-		    if(n<=0){
+		    if(n<=0 && hash.search("collapse")<=0 && hash !=""){
 		    	$('.tabbable a[href="' + hash + '"]').tab('show');
 		    	$(window).scrollTop(0);
 		    }
