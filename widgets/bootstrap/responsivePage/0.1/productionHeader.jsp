@@ -2,6 +2,7 @@
 <%@page import="tooltwist.myrp.util.FreemiumUtil"%>
 <%@page import="tooltwist.myrp.util.FreemiumErrorCatchUtil"%>
 <%@page import="tooltwist.myrp.util.Config"%>
+<%@page import="tooltwist.myrp.util.LoginUser"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.myrp.util.WebUtil"%>
 <%@page import="com.myrp.util.Cloudfront"%>
