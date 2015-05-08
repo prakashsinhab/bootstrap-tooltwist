@@ -32,9 +32,16 @@
 		
 		%%bottomCode%%
 		
+		<script type="text/javascript">
 		<% if (LoginUser.isLoggedIn(request)) { %>
-		<script type="text/javascript">setTimeout(function() { identifyKissmetrics('<%=LoginUser.getData(request).getEmail() %>'); }, 300);</script>
+		setTimeout(function() { _kmq.push(['identify', '<%=LoginUser.getData(request).getEmail() %>']); }, 1000);
 		<% } %>
+		
+		function recordKissmetricsEvent (eventAction) {
+			setTimeout(function() { _kmq.push(['record', eventAction]); }, 1000);
+		}
+		</script>
+		
 		
 		<script type="text/javascript">
 			setTimeout(function(){var a=document.createElement("script");
