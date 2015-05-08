@@ -72,7 +72,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<%if(currentNavpointId.equals("myrp-1327")){%>
-			 <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+	<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+	<% } %>
+	
+	<%if(currentNavpointId.equals("myrp-1282")){%>
+	<meta name="google-site-verification" content="yFbd-YGWTkGOW-6CQL4pOJ6d-A9hxYk0ZvXHKkL97UI" />
 	<% } %>
 	
 	<!--[ Import Open Sans font ]-->
