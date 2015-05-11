@@ -29,25 +29,22 @@
 		<script src='/ttsvr/freemium/script/watchlist-functions.js'></script>
 		
 		<script src='/ttsvr/freemium/script/allfreemium.js'></script>
-		
-		%%bottomCode%%
-		
 		<script type="text/javascript">
-		<% if (LoginUser.isLoggedIn(request)) { %>
-		setTimeout(function() { _kmq.push(['identify', '<%=LoginUser.getData(request).getEmail() %>']); }, 1000);
-		<% } %>
-		
 		function recordKissmetricsEvent (eventAction) {
-			setTimeout(function() { _kmq.push(['record', eventAction]); }, 1000);
+			try {	_kmq.push(['record', eventAction]); } catch (e) {
+				console.log(e);
+			}
 		}
 		</script>
-		
-		
+		%%bottomCode%%
 		<script type="text/javascript">
-			setTimeout(function(){var a=document.createElement("script");
-			var b=document.getElementsByTagName("script")[0];
-			a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0020/9013.js?"+Math.floor(new Date().getTime()/3600000);
-			a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+		$(document).ready(function() { 
+			setTimeout(function() { 
+				try { _kmq.push(['identify', '<%=LoginUser.getData(request).getEmail() %>']); } catch (e) {
+					console.log(e);
+				} 
+			}, 1000); 
+		});
 		</script>
 		 <%if (FreemiumErrorCatchUtil.isPageError(request)=="true"){ %>
 		<script type="text/javascript">
