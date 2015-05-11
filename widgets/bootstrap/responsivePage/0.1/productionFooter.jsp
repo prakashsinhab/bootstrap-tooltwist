@@ -5,10 +5,8 @@
 	
 	<body>
 		
-		<!-- [ wala akong idea kung anong gamit neto. ] -->
       	<hr>
     	
-    	<!-- [ lalo na to. ] -->
     	</div>
 		
 		<!-- [ Should be called first and cannot be mixed into the unified Js file. ] -->
