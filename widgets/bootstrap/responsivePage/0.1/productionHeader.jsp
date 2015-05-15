@@ -49,8 +49,8 @@
 	
 	<%
 	FreemiumUtil.checkFreemiumSiteRedirect(request, response);
-
-	WebUtil.checkCookieRedirect(request, response);
+	String map_navpoints_enabled_tmp = Config.getValue("maps.navpoint.enabled");
+	String [] map_navpoints_enabled = map_navpoints_enabled_tmp.split(",");
 	Map<String, String> properties = new HashMap<String, String>();
 	String currentNavpointId = "";
 	try {
@@ -96,6 +96,15 @@
 	<script src="<%=Cloudfront.getDNS %>/freemium/script/modalBox.js" type="text/javascript"></script>
     <!-- [ CSS from cssContainer widget ] -->
 	%%headerCode%%
+	<%
+		for(String map_navpoint_enabled : map_navpoints_enabled) {
+			if(map_navpoint_enabled.equals(currentNavpointId)) {	
+	%>
+	<script src="https://maps.google.com/maps/api/js?sensor=false"></script>
+	<%
+			}	
+		} 
+	%>
     
     <!-- [ Favicon ] -->
 	<link rel="shortcut icon" href="/ttsvr/freemium/images/pv/favicon.ico" type="image/x-icon">
