@@ -2,33 +2,22 @@
 	<head></head>
 	
 	<body>
-	
-		<!-- [ Jquery Cookie ] -->
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-		
-		<!-- [ Bootstrap Project ] -->
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> <!-- version used by Simple Machines -->
-		<!-- <script src="/ttsvr/bootstrap/js/bootstrap.min.js?v=3.0.0"></script> --> <!-- before -->
-		
+		<script src="<%=Cloudfront.getDNS %>/freemium/script/bootstrap.min.v3.3.1.js"></script> <!-- version used by Simple Machines -->
 		<!-- [ myrp_t ] -->
-		<script src="/ttsvr/freemium/script/main.js"></script>
-		
-		<script src='/ttsvr/freemium/script/jquery.transit.min.js'></script>
-		<script src='/ttsvr/freemium/script/jquery.easing.min.js'></script>
-		
-		<script src='/ttsvr/freemium/script/nav.js'></script>
-		<script src='/ttsvr/freemium/script/select.js'></script>
-		<script src='/ttsvr/freemium/script/suburb.js'></script>
-		<script src='/ttsvr/freemium/script/property.js'></script>
-		<script src="/ttsvr/freemium/script/signup.js"></script>
-		
-		<script src='/ttsvr/freemium/script/jquery.peity.min.js'></script>
-		
-		<script src='/ttsvr/freemium/script/bootstrap-datepicker.js'></script>
-		<script src="/ttsvr/freemium/script/search-suggestions.js"></script>
-		<script src='/ttsvr/freemium/script/watchlist-functions.js'></script>
-		
-		<script src='/ttsvr/freemium/script/allfreemium.js'></script>
+		<script src="<%=Cloudfront.getDNS %>/freemium/script/main.js"></script>
+		<script src="<%=Cloudfront.getDNS %>/freemium/script/jquery.cookie.min.js"></script>
+		<script src="<%=Cloudfront.getDNS %>/freemium/script/jquery.transit.min.js"></script>
+		<script src="<%=Cloudfront.getDNS %>/freemium/script/jquery.easing.min.js"></script>
+		<script src="<%=Cloudfront.getDNS %>/freemium/script/nav.js"></script>
+		<script src="<%=Cloudfront.getDNS %>/freemium/script/select.js"></script>
+		<script src="<%=Cloudfront.getDNS %>/freemium/script/suburb.js"></script>
+		<script src="<%=Cloudfront.getDNS %>/freemium/script/property.js"></script>
+		<script src="<%=Cloudfront.getDNS %>/freemium/script/signup.js"></script>
+		<script src="<%=Cloudfront.getDNS %>/freemium/script/jquery.peity.min.js"></script>
+		<script src="<%=Cloudfront.getDNS %>/freemium/script/bootstrap-datepicker.js"></script>
+		<script src="<%=Cloudfront.getDNS %>/freemium/script/search-suggestions.js"></script>
+		<script src="<%=Cloudfront.getDNS %>/freemium/script/watchlist-functions.js"></script>
+		<script src="<%=Cloudfront.getDNS %>/freemium/script/allfreemium.js"></script>
 		<script type="text/javascript">
 		function recordKissmetricsEvent (eventAction) {
 			try {	_kmq.push(['record', eventAction]); } catch (e) {
@@ -73,17 +62,6 @@
 	session.removeAttribute("bsg3StreetSalesPropertySearchSession");
 	session.removeAttribute("bsg3SuburbSalesPropetySearchSession");
 	session.removeAttribute("bsg3ForSaleAdvertisementUrlSession");
-	//WidgetUtil.displayBSGLog(request);
-	
-	//freemium session
-	/* session.removeAttribute("bsg3PropertyAddressSessionFreemium");
-	session.removeAttribute("bsg3PropertyAdvertisementsSessionFreemium");
-	session.removeAttribute("bsg3SalesPropertySearchSessionFreemium");
-	session.removeAttribute("bsg3SuggestServiceFreemium");
-	session.removeAttribute("propertySearchSessionFreemium"); */
-	
-	// for Juls
-	/* session.removeAttribute("propertyDetailSessionFreemium"); */
 	
 	// for Jay
 	session.removeAttribute("myrpErrorMessages");
