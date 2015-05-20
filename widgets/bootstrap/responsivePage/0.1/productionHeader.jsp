@@ -86,11 +86,11 @@
 	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 	
     <!--[ Bootstrap ]-->
-    <link href="<%=Cloudfront.getDNS %>/bootstrap/css/bootstrap.min.v3.3.1.css" rel="stylesheet" media="screen"> <!-- version used by Simple Machines -->
+    <link href="<%=Cloudfront.getDNS %>/bootstrap/css/bootstrap.min.v3.3.1.css.gz" rel="stylesheet" media="screen"> <!-- version used by Simple Machines -->
     <!--[ Font Awesome ]-->
-    <link href="<%=Cloudfront.getDNS %>/bootstrap/css/font-awesome.css" rel="stylesheet" media="screen">
+    <link href="<%=Cloudfront.getDNS %>/bootstrap/css/font-awesome.css.gz" rel="stylesheet" media="screen">
     <!-- [ jQuery ] -->
-	<script src="<%=Cloudfront.getDNS %>/freemium/script/jquery.1.11.1.min.js"></script>
+	<script src="<%=Cloudfront.getDNS %>/freemium/script/jquery.1.11.1.min.js.gz"></script>
 	<script>$.ajaxSetup({ cache: false });</script>
 	<script src="<%=Cloudfront.getDNS %>/freemium/script/modalBox.js" type="text/javascript"></script>
     <!-- [ CSS from cssContainer widget ] -->
