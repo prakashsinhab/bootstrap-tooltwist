@@ -4,20 +4,7 @@
 	<body>
 		<script src="<%=Cloudfront.getDNS %>/freemium/script/bootstrap.min.v3.3.1.js.gz"></script> <!-- version used by Simple Machines -->
 		<!-- [ myrp_t ] -->
-		<script src="<%=Cloudfront.getDNS %>/freemium/script/main.js"></script>
-		<script src="<%=Cloudfront.getDNS %>/freemium/script/jquery.cookie.min.js.gz"></script>
-		<script src="<%=Cloudfront.getDNS %>/freemium/script/jquery.transit.min.js.gz"></script>
-		<script src="<%=Cloudfront.getDNS %>/freemium/script/jquery.easing.min.js.gz"></script>
-		<script src="<%=Cloudfront.getDNS %>/freemium/script/nav.js"></script>
-		<script src="<%=Cloudfront.getDNS %>/freemium/script/select.js"></script>
-		<script src="<%=Cloudfront.getDNS %>/freemium/script/suburb.js"></script>
-		<script src="<%=Cloudfront.getDNS %>/freemium/script/property.js"></script>
-		<script src="<%=Cloudfront.getDNS %>/freemium/script/signup.js"></script>
-		<script src="<%=Cloudfront.getDNS %>/freemium/script/jquery.peity.min.js.gz"></script>
-		<script src="<%=Cloudfront.getDNS %>/freemium/script/bootstrap-datepicker.js.gz"></script>
-		<script src="<%=Cloudfront.getDNS %>/freemium/script/search-suggestions.js"></script>
-		<script src="<%=Cloudfront.getDNS %>/freemium/script/watchlist-functions.js"></script>
-		<script src="<%=Cloudfront.getDNS %>/freemium/script/allfreemium.js"></script>
+		<script src="<%=Cloudfront.getDNS %>/freemium/script/allfreemium.js.gz"></script>
 		<script type="text/javascript">
 		function recordKissmetricsEvent (eventAction) {
 			try {	_kmq.push(['record', eventAction]); } catch (e) {

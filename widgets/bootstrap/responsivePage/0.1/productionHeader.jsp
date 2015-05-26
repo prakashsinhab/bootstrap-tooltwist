@@ -92,7 +92,6 @@
     <!-- [ jQuery ] -->
 	<script src="<%=Cloudfront.getDNS %>/freemium/script/jquery.1.11.1.min.js.gz"></script>
 	<script>$.ajaxSetup({ cache: false });</script>
-	<script src="<%=Cloudfront.getDNS %>/freemium/script/modalBox.js" type="text/javascript"></script>
     <!-- [ CSS from cssContainer widget ] -->
 	%%headerCode%%
 	<%
