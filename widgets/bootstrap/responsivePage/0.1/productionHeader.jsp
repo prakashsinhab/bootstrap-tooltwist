@@ -89,11 +89,11 @@
     <link href="<%=Cloudfront.getDNS %>/bootstrap/css/bootstrap.min.v3.3.1.css.gz" rel="stylesheet" media="screen"> <!-- version used by Simple Machines -->
     <!--[ Font Awesome ]-->
     <link href="<%=Cloudfront.getDNS %>/bootstrap/css/font-awesome.css.gz" rel="stylesheet" media="screen">
+	%%headerCode%%
     <!-- [ jQuery ] -->
 	<script src="<%=Cloudfront.getDNS %>/freemium/script/jquery.1.11.1.min.js.gz"></script>
 	<script>$.ajaxSetup({ cache: false });</script>
     <!-- [ CSS from cssContainer widget ] -->
-	%%headerCode%%
 	<%
 		for(String map_navpoint_enabled : map_navpoints_enabled) {
 			if(map_navpoint_enabled.equals(currentNavpointId)) {
