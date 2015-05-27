@@ -86,12 +86,12 @@
 	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 	
     <!--[ Bootstrap ]-->
-    <link href="<%=Cloudfront.getDNS %>/bootstrap/css/bootstrap.min.v3.3.1.css.gz" rel="stylesheet" media="screen"> <!-- version used by Simple Machines -->
+    <link href="<%=Cloudfront.getDNS() %>/bootstrap/css/bootstrap.min.v3.3.1.css.gz" rel="stylesheet" media="screen"> <!-- version used by Simple Machines -->
     <!--[ Font Awesome ]-->
-    <link href="<%=Cloudfront.getDNS %>/bootstrap/css/font-awesome.css.gz" rel="stylesheet" media="screen">
+    <link href="<%=Cloudfront.getDNS() %>/bootstrap/css/font-awesome.css.gz" rel="stylesheet" media="screen">
 	%%headerCode%%
     <!-- [ jQuery ] -->
-	<script src="<%=Cloudfront.getDNS %>/freemium/script/jquery.1.11.1.min.js.gz"></script>
+	<script src="<%=Cloudfront.getDNS() %>/freemium/script/jquery.1.11.1.min.js.gz"></script>
 	<script>$.ajaxSetup({ cache: false });</script>
     <!-- [ CSS from cssContainer widget ] -->
 	<%
@@ -99,7 +99,7 @@
 			if(map_navpoint_enabled.equals(currentNavpointId)) {
 	%>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3&client=gme-rpdata&sensor=false&channel=freemium"></script>
-	<script src="<%=Cloudfront.getDNS %>/freemium/script/markerwithlabel.js"></script>
+	<script src="<%=Cloudfront.getDNS() %>/freemium/script/markerwithlabel.js"></script>
 	<%
 			}	
 		} 
