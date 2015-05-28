@@ -30,7 +30,13 @@
 	</body>
 
 	<%
-	if (request.getServerName().contains("localhost")) {
+	String justice = request.getParameter("showJustice");
+	if (justice instanceof String && justice.equals("true")) {
+		session.setAttribute("justice_active", "true");
+	} else if (justice instanceof String && justice.equals("false")) {
+		session.removeAttribute("justice_active");
+	}
+	if (session.getAttribute("justice_active") instanceof String && "true".equals(session.getAttribute("justice_active"))) {
 	%>
 		<script type="text/javascript" src="https://rawgit.com/okor/justice/master/build/justice.min.js"></script>
 		<script type="text/javascript">
