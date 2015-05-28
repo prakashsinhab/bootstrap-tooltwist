@@ -82,13 +82,15 @@
 	<meta name="google-site-verification" content="yFbd-YGWTkGOW-6CQL4pOJ6d-A9hxYk0ZvXHKkL97UI" />
 	<% } %>
 	
-	<!--[ Import Open Sans font ]-->
 	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <link href="<%=Cloudfront.getDNS() %>/bootstrap/css/bootstrap.min.v3.3.1.css.gz" type="text/css" rel="stylesheet" media="screen"> <!-- version used by Simple Machines -->
+    <link href="<%=Cloudfront.getDNS() %>/bootstrap/css/font-awesome.css.gz" type="text/css" rel="stylesheet" media="screen">
+    <link href="<%=Cloudfront.getDNS() %>/freemium/css/pv/cl-bootstrap.css.gz" type="text/css" rel="stylesheet" media="screen">
+    <link href="<%=Cloudfront.getDNS() %>/freemium/css/pv/z-adjustments.css.gz" type="text/css" rel="stylesheet" media="screen">
+     <!-- [ Favicon ] -->
+	<link rel="shortcut icon" href="/ttsvr/freemium/images/pv/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/ttsvr/freemium/images/pv/favicon.ico" type="image/x-icon">
 	
-    <!--[ Bootstrap ]-->
-    <link href="<%=Cloudfront.getDNS() %>/bootstrap/css/bootstrap.min.v3.3.1.css.gz" rel="stylesheet" media="screen"> <!-- version used by Simple Machines -->
-    <!--[ Font Awesome ]-->
-    <link href="<%=Cloudfront.getDNS() %>/bootstrap/css/font-awesome.css.gz" rel="stylesheet" media="screen">
 	%%headerCode%%
     <!-- [ jQuery ] -->
 	<script src="<%=Cloudfront.getDNS() %>/freemium/script/jquery.1.11.1.min.js.gz"></script>
@@ -104,27 +106,6 @@
 			}	
 		} 
 	%>
-    
-    <!-- [ Favicon ] -->
-	<link rel="shortcut icon" href="/ttsvr/freemium/images/pv/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="/ttsvr/freemium/images/pv/favicon.ico" type="image/x-icon">
-	
-	<%
-	Navpoint navpoint = WbdCache.findNavpointInAnyLoadedProject(jspName, true);
-	boolean requiresLogin = navpoint.requiresLogin();
-	
-	if (!requiresLogin) {
-	%>
-		<script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		  ga('create', '<%=WbdCache.getProperty("uaCode")%>', '<%=WbdCache.getProperty("uaDomainName")%>');
-		  ga('require', 'linkid', 'linkid.js');
-		  ga('send', 'pageview');
-		</script>	
-	<% } %>
   </head>
 <body>
 <!-- Google Tag Manager -->

@@ -4,7 +4,7 @@
 	<body>
 		<script src="<%=Cloudfront.getDNS() %>/freemium/script/bootstrap.min.v3.3.1.js.gz"></script> <!-- version used by Simple Machines -->
 		<!-- [ myrp_t ] -->
-		<script src="<%=Cloudfront.getDNS() %>/freemium/script/allfreemium.js.gz"></script>
+		<script src="<%=Cloudfront.getDNS() %>/freemium/script/allfreemium.v1.02.min.js.gz"></script>
 		<script type="text/javascript">
 		function recordKissmetricsEvent (eventAction) {
 			try {	_kmq.push(['record', eventAction]); } catch (e) {
