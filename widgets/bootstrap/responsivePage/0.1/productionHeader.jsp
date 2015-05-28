@@ -101,7 +101,7 @@
 			if(map_navpoint_enabled.equals(currentNavpointId)) {
 	%>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3&client=gme-rpdata&sensor=false&channel=freemium"></script>
-	<script src="<%=Cloudfront.getDNS() %>/freemium/script/markerwithlabel.js"></script>
+	<script src="<%=Cloudfront.getDNS() %>/freemium/script/markerwithlabel.min.js.gz"></script>
 	<%
 			}	
 		} 
