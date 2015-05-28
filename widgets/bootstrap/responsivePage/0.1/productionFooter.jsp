@@ -28,7 +28,19 @@
 		</script>
 		<%}%>
 	</body>
-	
+
+	<%
+	if (request.getServerName().contains("localhost")) {
+	%>
+		<script type="text/javascript" src="https://rawgit.com/okor/justice/master/build/justice.min.js"></script>
+		<script type="text/javascript">
+			Justice.init();
+		</script>
+	<%
+	}
+	%>
+
+
 </html>
 
 <%
