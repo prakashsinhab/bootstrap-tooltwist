@@ -18,7 +18,7 @@ var Navs = function() {
 		        	}
 		        	if(paramString && paramString.length > 1){
 		        		var hash = paramString[1];
-//		        		url = url + "#" + hash;
+		        		url = url + "#" + hash;
 		        	}
 		        }
 		        window.location.href = url;
