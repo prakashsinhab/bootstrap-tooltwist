@@ -100,7 +100,7 @@
 		for(String map_navpoint_enabled : map_navpoints_enabled) {
 			if(map_navpoint_enabled.equals(currentNavpointId)) {
 	%>
-	<script src="https://maps.googleapis.com/maps/api/js?v=3&client=gme-rpdata&sensor=false&channel=freemium"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3&client=gme-rpdata&sensor=false&channel=freemium&libraries=places"></script>
 	<script src="<%=Cloudfront.getDNS() %>/freemium/script/markerwithlabel.min.js.gz"></script>
 	<%
 			}	
